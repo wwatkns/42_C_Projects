@@ -92,5 +92,6 @@ t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 
 int					ft_nbrlen(int n);
 char				*ft_strrev(const char *s, int size);
+int 				ft_wordcount(const char *s, char c);
 
 #endif

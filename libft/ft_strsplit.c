@@ -12,24 +12,6 @@
 
 #include "libft.h"
 
-static int	ft_wcount(char const *s, char c)
-{
-	int	i;
-	int	counter;
-
-	i = 0;
-	counter = 0;
-	if (s[i] == 0 || (s[i] != c && i == 0))
-		counter++;
-	while (s[i] != 0)
-	{
-		i++;
-		if (s[i] != c && s[i - 1] == c)
-			counter++;
-	}
-	return (counter);
-}
-
 char		**ft_strsplit(char const *s, char c)
 {
 	int		i;
@@ -39,7 +21,7 @@ char		**ft_strsplit(char const *s, char c)
 
 	i = 0;
 	k = 0;
-	if (!(tab = (char**)malloc(sizeof(char*) * ft_wcount(s, c))))
+	if (!(tab = (char**)malloc(sizeof(char*) * ft_wordcount(s, c))))
 		return (NULL);
 	while (s[i] == c)
 		i++;

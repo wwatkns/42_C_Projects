@@ -6,14 +6,11 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 12:46:08 by wwatkins          #+#    #+#             */
-/*   Updated: 2015/11/24 12:46:10 by wwatkins         ###   ########.fr       */
+/*   Updated: 2015/12/03 17:46:57 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_tolower(int c)
 {
-	if ('A' <= c && c <= 'Z')
-		return (c + 32);
-	else
-		return (c);
+	return ('A' <= c && c <= 'Z' ? c + 32 : c);
 }

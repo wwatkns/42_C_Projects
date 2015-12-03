@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmap.c                                        :+:      :+:    :+:   */
+/*   ft_wordcount.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/24 16:36:42 by wwatkins          #+#    #+#             */
-/*   Updated: 2015/11/30 15:22:54 by wwatkins         ###   ########.fr       */
+/*   Created: 2015/12/03 17:41:37 by wwatkins          #+#    #+#             */
+/*   Updated: 2015/12/03 17:42:17 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-char	*ft_strmap(char const *s, char (*f)(char))
+int		ft_wordcount(char const *s, char c)
 {
-	int		i;
-	int		len;
-	char	*new;
+	int	i;
+	int	counter;
 
 	i = 0;
-	len = ft_strlen(s);
-	if (!(new = (char*)malloc(sizeof(char) * len + 1)))
-		return (NULL);
-	while (s[i] != '\0')
+	counter = 0;
+	if (s[i] == 0 || (s[i] != c && i == 0))
+		counter++;
+	while (s[i] != 0)
 	{
-		new[i] = f(s[i]);
 		i++;
+		if (s[i] != c && s[i - 1] == c)
+			counter++;
 	}
-	new[i] = '\0';
-	return (new);
+	return (counter);
 }
