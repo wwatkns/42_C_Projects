@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/25 14:33:30 by wwatkins          #+#    #+#             */
-/*   Updated: 2015/11/30 10:16:24 by wwatkins         ###   ########.fr       */
+/*   Updated: 2015/12/03 17:53:09 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,6 @@ t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 
 int					ft_nbrlen(int n);
 char				*ft_strrev(const char *s, int size);
-int 				ft_wordcount(const char *s, char c);
+int					ft_wordcount(const char *s, char c);
 
 #endif
