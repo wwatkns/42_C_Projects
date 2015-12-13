@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/25 12:10:11 by wwatkins          #+#    #+#             */
-/*   Updated: 2015/11/30 15:10:28 by wwatkins         ###   ########.fr       */
+/*   Updated: 2015/12/13 09:16:57 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@ char		*ft_itoa(int n)
 	int		size;
 	char	*new;
 
-	if (n == -2147483648)
-		return ("-2147483648");
-	i = 0;
 	size = ft_nbrlen(n);
 	sign = (n < 0 ? 1 : 0);
-	if (n < 0)
-		n *= -1;
 	if (!(new = (char*)malloc(sizeof(char) *
 		(sign == 1 ? size + 1 : size) + 1)))
 		return (NULL);
+	if (n == -2147483648)
+		return (ft_strcpy(new, "-2147483648"));
+	i = 0;
+	if (n < 0)
+		n *= -1;
 	while (i < size)
 	{
 		new[i] = n % 10 + '0';
