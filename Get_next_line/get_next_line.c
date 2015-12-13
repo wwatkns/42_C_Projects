@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/12 10:12:17 by wwatkins          #+#    #+#             */
-/*   Updated: 2015/12/13 11:51:10 by wwatkins         ###   ########.fr       */
+/*   Updated: 2015/12/13 12:22:14 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ static int	ft_checkbuf(char *buf) // Ok
 
 int			get_next_line(int const fd, char **line)
 {
-	int			i;
 	int			n;
 	int			ret;
 	char		*buf;
