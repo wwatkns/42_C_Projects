@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 17:25:45 by wwatkins          #+#    #+#             */
-/*   Updated: 2015/11/26 10:09:17 by wwatkins         ###   ########.fr       */
+/*   Updated: 2015/12/14 11:04:59 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		return (NULL);
 	len1 = ft_strlen(s1);
 	len2 = ft_strlen(s2);
-	if (!(new = (char*)malloc(sizeof(char) * (len1 + len2))))
+	if (!(new = (char*)malloc(sizeof(char) * (len1 + len2) + 1)))
 		return (NULL);
 	while (i < len1 + len2)
 	{

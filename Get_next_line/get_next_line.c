@@ -6,53 +6,39 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/12 10:12:17 by wwatkins          #+#    #+#             */
-/*   Updated: 2015/12/13 12:22:14 by wwatkins         ###   ########.fr       */
+/*   Updated: 2015/12/14 11:01:36 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <stdio.h> // TEMPORARY
 
-static int	ft_checkbuf(char *buf) // Ok
-{
-	int i;
-
-	i = 0;
-	while (i < BUFF_SIZE)
-	{
-		if (buf[i] == '\n' || buf[i] == EOF)
-			return (i);
-		i++;
-	}
-	return (-1);
-}
-
 int			get_next_line(int const fd, char **line)
 {
-	int			n;
 	int			ret;
 	char		*buf;
-	static char	*tmp = NULL;
+	static char	*tmp;
 
-	if ((buf = ft_strnew(BUFF_SIZE)) == NULL)
-		return (-1);
-	if ((tmp = ft_strnew(BUFF_SIZE)) == NULL)
-		return (-1);
-	while ((ret = read(fd, buf, BUFF_SIZE)) > 0)
+	buf = (char*)malloc(sizeof(char) * BUFF_SIZE + 1);
+	tmp = (tmp == NULL ? ft_strnew(1) : tmp);
+	while (!ft_strchr(tmp, '\n') && (ret = read(fd, buf, BUFF_SIZE)))
 	{
 		if (ret == -1)
 			return (-1);
-		buf[BUFF_SIZE + 1] = '\0';
-		n = ft_checkbuf(buf);
-		tmp = ft_strjoin(tmp, (n != -1 ? ft_strsub(buf, 0, n) : buf));
-		if (n != -1)
-			break ;
+		buf[ret] = '\0';
+		tmp = ft_strjoin(tmp, buf);
 	}
-	ft_strcpy(*line, tmp);
-	return (0);
+	if (ret > 0)
+	{
+		*line = ft_strsub(tmp, 0, ft_strchr(tmp, '\n') - tmp + 1);
+		line[0][ft_strlen(*line) - 1] = 0;
+		tmp = ft_strsub(tmp, ft_strchr(tmp, '\n') - tmp + 1, ft_strlen(tmp));
+	}
+	free(buf);
+	return (ret != 0 ? 1 : 0);
 }
 
-int			main(void)
+int			main(void) // TEMPORARY
 {
 	int		fd;
 	char	*line;
@@ -60,7 +46,10 @@ int			main(void)
 	if ((fd = open("text.txt", O_RDONLY)) == -1)
 		printf("OPEN ERROR.\n");
 	line = ft_strnew(1000);
-	get_next_line(fd, &line);
-	printf("%s", line);
+	while (get_next_line(fd, &line))
+	{
+		ft_putstr(line);
+		ft_putchar('\n');
+	}
 	return (0);
 }
