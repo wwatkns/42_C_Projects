@@ -1,6 +1,0 @@
-Je ne sais pas quoi
-ecrire dans ce fichier
-texte qui teste si ma fonction get_next_line fonctionne comme
-il faut mais il faut en tout cas que je pense
-a beaucoup de cas
-d'erreurs differents et c'est complique
