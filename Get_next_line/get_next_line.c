@@ -6,12 +6,11 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/12 10:12:17 by wwatkins          #+#    #+#             */
-/*   Updated: 2015/12/14 11:01:36 by wwatkins         ###   ########.fr       */
+/*   Updated: 2015/12/14 12:54:54 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h> // TEMPORARY
 
 int			get_next_line(int const fd, char **line)
 {
@@ -19,8 +18,9 @@ int			get_next_line(int const fd, char **line)
 	char		*buf;
 	static char	*tmp;
 
-	buf = (char*)malloc(sizeof(char) * BUFF_SIZE + 1);
 	tmp = (tmp == NULL ? ft_strnew(1) : tmp);
+	if ((buf = ft_strnew(BUFF_SIZE)) == NULL || tmp == NULL)
+		return (-1);
 	while (!ft_strchr(tmp, '\n') && (ret = read(fd, buf, BUFF_SIZE)))
 	{
 		if (ret == -1)
@@ -36,20 +36,4 @@ int			get_next_line(int const fd, char **line)
 	}
 	free(buf);
 	return (ret != 0 ? 1 : 0);
-}
-
-int			main(void) // TEMPORARY
-{
-	int		fd;
-	char	*line;
-
-	if ((fd = open("text.txt", O_RDONLY)) == -1)
-		printf("OPEN ERROR.\n");
-	line = ft_strnew(1000);
-	while (get_next_line(fd, &line))
-	{
-		ft_putstr(line);
-		ft_putchar('\n');
-	}
-	return (0);
 }

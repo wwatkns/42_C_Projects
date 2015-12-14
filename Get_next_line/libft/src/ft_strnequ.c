@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_strnequ.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/12 10:13:25 by wwatkins          #+#    #+#             */
-/*   Updated: 2015/12/14 11:55:50 by wwatkins         ###   ########.fr       */
+/*   Created: 2015/11/24 12:45:56 by wwatkins          #+#    #+#             */
+/*   Updated: 2015/11/29 17:51:46 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# include <libft.h>
-# include <unistd.h>
-# include <fcntl.h>
+int	ft_strnequ(char const *s1, char const *s2, size_t n)
+{
+	size_t i;
 
-# define BUFF_SIZE 32
-
-int	get_next_line(int const fd, char **line);
-
-#endif
+	i = 0;
+	while ((s1[i] != '\0' || s2[i] != '\0') && i < n)
+	{
+		if (s1[i] != s2[i])
+			return (0);
+		i++;
+	}
+	return (1);
+}

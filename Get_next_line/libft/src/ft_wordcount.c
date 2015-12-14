@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_wordcount.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/12 10:13:25 by wwatkins          #+#    #+#             */
-/*   Updated: 2015/12/14 11:55:50 by wwatkins         ###   ########.fr       */
+/*   Created: 2015/12/03 17:41:37 by wwatkins          #+#    #+#             */
+/*   Updated: 2015/12/03 17:42:17 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+int		ft_wordcount(char const *s, char c)
+{
+	int	i;
+	int	counter;
 
-# include <libft.h>
-# include <unistd.h>
-# include <fcntl.h>
-
-# define BUFF_SIZE 32
-
-int	get_next_line(int const fd, char **line);
-
-#endif
+	i = 0;
+	counter = 0;
+	if (s[i] == 0 || (s[i] != c && i == 0))
+		counter++;
+	while (s[i] != 0)
+	{
+		i++;
+		if (s[i] != c && s[i - 1] == c)
+			counter++;
+	}
+	return (counter);
+}

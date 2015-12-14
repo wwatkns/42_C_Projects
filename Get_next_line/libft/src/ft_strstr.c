@@ -1,24 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/12 10:13:25 by wwatkins          #+#    #+#             */
-/*   Updated: 2015/12/14 11:55:50 by wwatkins         ###   ########.fr       */
+/*   Created: 2015/11/24 14:38:24 by wwatkins          #+#    #+#             */
+/*   Updated: 2015/11/30 14:54:17 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# include <libft.h>
-# include <unistd.h>
-# include <fcntl.h>
+char	*ft_strstr(const char *s1, const char *s2)
+{
+	unsigned int	i;
+	unsigned int	j;
 
-# define BUFF_SIZE 32
-
-int	get_next_line(int const fd, char **line);
-
-#endif
+	i = 0;
+	j = 0;
+	if (s2[0] == '\0')
+		return ((char*)s1);
+	while (s1[i] != '\0')
+	{
+		if (s1[i] == s2[j])
+		{
+			while (s2[j] != 0)
+			{
+				if (s1[i + j] != s2[j])
+					break ;
+				j++;
+			}
+			if (s2[j] == 0)
+				return ((char*)&s1[i]);
+			j = 0;
+		}
+		i++;
+	}
+	return (NULL);
+}

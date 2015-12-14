@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_nbrlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/12 10:13:25 by wwatkins          #+#    #+#             */
-/*   Updated: 2015/12/14 11:55:50 by wwatkins         ###   ########.fr       */
+/*   Created: 2015/11/30 09:41:05 by wwatkins          #+#    #+#             */
+/*   Updated: 2015/11/30 09:47:47 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+int	ft_nbrlen(int n)
+{
+	int	len;
 
-# include <libft.h>
-# include <unistd.h>
-# include <fcntl.h>
-
-# define BUFF_SIZE 32
-
-int	get_next_line(int const fd, char **line);
-
-#endif
+	len = 1;
+	while (n >= 10 || n <= -10)
+	{
+		n /= 10;
+		len++;
+	}
+	return (len);
+}
