@@ -3,13 +3,12 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: scollon <scollon@student.42.fr>            +#+  +:+       +#+         #
+#    By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2015/11/25 13:40:40 by scollon           #+#    #+#              #
-#    Updated: 2015/12/14 11:44:43 by wwatkins         ###   ########.fr        #
+#    Created: 2015/12/15 09:15:55 by wwatkins          #+#    #+#              #
+#    Updated: 2015/12/15 09:16:46 by wwatkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
 
 SRC_PATH = ./src/
 OBJ_PATH = ./obj/
@@ -48,8 +47,6 @@ $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@mkdir $(OBJ_PATH) 2>/dev/null || echo "" > /dev/null
 	$(CC) $(CFLAGS) $(LIB) $(INC) -o $@ -c $<
 	@echo "\033[A\033[K\033[A"
-
-.PHONY: clean fclean re
 
 clean:
 	rm -f $(OBJ)

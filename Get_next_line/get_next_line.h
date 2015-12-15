@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/12 10:13:25 by wwatkins          #+#    #+#             */
-/*   Updated: 2015/12/14 17:38:44 by wwatkins         ###   ########.fr       */
+/*   Updated: 2015/12/15 09:18:36 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 # define GET_NEXT_LINE_H
 
 # include <libft.h>
+# include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
 
-# define BUFF_SIZE 1000
+# define BUFF_SIZE 32
 
 int	get_next_line(int const fd, char **line);
 
