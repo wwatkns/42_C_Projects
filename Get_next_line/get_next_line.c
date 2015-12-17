@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/12 10:12:17 by wwatkins          #+#    #+#             */
-/*   Updated: 2015/12/17 10:03:48 by wwatkins         ###   ########.fr       */
+/*   Updated: 2015/12/17 10:56:29 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,20 @@ int			get_next_line(int const fd, char **line)
 		return (-1);
 	while (!ft_strchr(s[fd], '\n') && (ret = read(fd, buf, BUFF_SIZE)) > 0)
 	{
+		del = s[fd];
 		buf[ret] = '\0';
-		s[fd] = ft_strjoin((del = s[fd]), buf);
-		free (del);
+		s[fd] = ft_strjoin(s[fd], buf);
+		free(del);
 	}
 	if (ret == -1)
 		return (-1);
-	*line = (ft_strchr((del = s[fd]), '\n') ? ft_strsub(s[fd], 0,
+	*line = (ft_strchr(s[fd], '\n') ? ft_strsub(s[fd], 0,
 			ft_strchr(s[fd], '\n') - s[fd]) : ft_strdup(s[fd]));
-	if (ft_strchr(s[fd], '\n'))
+	if (ft_strchr((del = s[fd]), '\n'))
 		s[fd] = ft_strsub(s[fd], ft_strchr(s[fd], '\n') - s[fd] + 1,
 				ft_strlen(s[fd]));
 	else
 		s[fd] = ft_strsub(s[fd], ft_strlen(*line), ft_strlen(s[fd]));
-	free (del);
+	free(del);
 	return (!ret && !ft_strlen(*line) && !ft_strlen(s[fd]) ? 0 : 1);
 }
