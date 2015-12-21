@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 16:11:00 by wwatkins          #+#    #+#             */
-/*   Updated: 2015/12/21 19:09:14 by wwatkins         ###   ########.fr       */
+/*   Updated: 2015/12/21 21:41:53 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		**ft_read(const char *argv, int *tabwidth)
 	{
 		printf("%s\n", line);
 
-		ft_maperror(line);
+	//	ft_maperror(line);
 		*tabwidth = (*tabwidth == 0 ? ft_wordcount(line, ' ') : *tabwidth);
 		ft_tabassign(tab, line, *tabwidth, y++);
 		free(line);

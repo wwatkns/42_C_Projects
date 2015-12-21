@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 15:28:05 by wwatkins          #+#    #+#             */
-/*   Updated: 2015/12/21 21:19:01 by wwatkins         ###   ########.fr       */
+/*   Updated: 2015/12/21 21:33:00 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,6 @@ void	ft_error(int err);
 void	ft_core(int **tab, int tabwidth);
 void	ft_assigncoor(t_env e, t_point **pts, int **tab, int tabwidth);
 void	ft_drawline(t_env e, t_line line, int color);
+t_line	ft_line(int x, int y, int x1, int y1);
 
 #endif
