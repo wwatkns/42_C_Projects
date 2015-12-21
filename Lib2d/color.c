@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 10:20:12 by wwatkins          #+#    #+#             */
-/*   Updated: 2015/12/21 12:31:08 by wwatkins         ###   ########.fr       */
+/*   Updated: 2015/12/21 15:11:46 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 **	https://github.com/spectrenoir06/FdF42/blob/master/lib2d/color.c
 */
 
-int     ft_rgb2hex(t_color color)
+int		ft_rgb2hex(t_color color)
 {
 	int c;
 
@@ -28,7 +28,7 @@ int     ft_rgb2hex(t_color color)
 	return (c);
 }
 
-t_color ft_hex2rgb(int c)
+t_color	ft_hex2rgb(int c)
 {
 	t_color color;
 

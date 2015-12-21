@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 14:05:51 by wwatkins          #+#    #+#             */
-/*   Updated: 2015/12/21 14:05:53 by wwatkins         ###   ########.fr       */
+/*   Updated: 2015/12/21 15:12:00 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	ft_drawfillrect(t_env e, t_rect rect, int color)
 	}
 }
 
-void    ft_drawcircle(t_env e, t_circle circle, int color)
+void	ft_drawcircle(t_env e, t_circle circle, int color)
 {
 	int xt;
 	int yt;
