@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 15:28:05 by wwatkins          #+#    #+#             */
-/*   Updated: 2015/12/22 16:28:27 by wwatkins         ###   ########.fr       */
+/*   Updated: 2015/12/22 16:55:25 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ typedef struct	s_env
 {
 	void	*mlx;
 	void	*win;
-	int		grid_w;
-	int		grid_h;
+	int		gw;
+	int		gh;
 	t_point	**pts;
 }				t_env;
 
@@ -54,14 +54,14 @@ typedef struct	s_color
 	unsigned char	b;
 }				t_color;
 
-int		**ft_read(t_env *env, const char *argv);
-void	ft_tabassign(t_env env, int **tab, const char *line);
+int		**ft_read(t_env *e, const char *argv);
+void	ft_tabassign(t_env e, int **tab, const char *line);
 void	ft_maperror(const char *line);
 void	ft_error(int err);
 
-void	ft_core(t_env *env, int **tab);
-void	ft_assigncoor(t_env *env, int **tab);
-void	ft_drawline(t_env env, t_line line, int color);
+void	ft_core(t_env *e, int **tab);
+void	ft_assigncoor(t_env *e, int **tab);
+void	ft_drawline(t_env e, t_line line, int color);
 t_line	ft_line(int x, int y, int x1, int y1);
 
 #endif
