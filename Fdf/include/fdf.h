@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 15:28:05 by wwatkins          #+#    #+#             */
-/*   Updated: 2015/12/22 19:46:27 by wwatkins         ###   ########.fr       */
+/*   Updated: 2015/12/22 22:00:02 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,37 @@
 # include <stdio.h> // TEMPORARY
 
 # define ABS(x) (x < 0 ? -x : x)
+# define WINDOW_W 2560
+# define WINDOW_H 1440
 # define TAB_SIZE 4096 // UGLY AS FUCK
 
 typedef struct	s_point
 {
 	int x;
 	int y;
+	int h;
 }				t_point;
+
+typedef struct	s_img
+{
+	void	*ptr;
+	t_point	size;
+	int		bpp;
+	int		sizeline;
+	int		endian;
+}				t_img;
 
 typedef struct	s_env
 {
 	t_point		**pts;
-	t_point		move;
+	t_img		img;
 	void		*mlx;
 	void		*win;
 	int			gw;
 	int			gh;
+	int			zoom;
+	int			scw;
+	int			sch;
 	int			color;
 }				t_env;
 

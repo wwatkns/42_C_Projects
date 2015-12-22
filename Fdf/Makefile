@@ -6,7 +6,7 @@
 #    By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/22 19:20:08 by wwatkins          #+#    #+#              #
-#    Updated: 2015/12/22 19:36:26 by wwatkins         ###   ########.fr        #
+#    Updated: 2015/12/22 19:57:10 by wwatkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,4 +52,4 @@ norme:
 	norminette $(SRC)
 	norminette $(INC_PATH)*.h
 
-.PHONY: re all clean fclean
+.PHONY: re all clean fclean norme
