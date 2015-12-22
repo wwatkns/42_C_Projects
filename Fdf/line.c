@@ -6,50 +6,46 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 21:28:32 by wwatkins          #+#    #+#             */
-/*   Updated: 2015/12/22 16:56:05 by wwatkins         ###   ########.fr       */
+/*   Updated: 2015/12/22 17:44:01 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	ft_drawline(t_env e, t_line line, int color)
+void	ft_drawline(t_env e, t_point p, t_point p1, int color)
 {
-	int sx;
-	int sy;
+	t_point d;
+	t_point s;
 	int err;
 	int e2;
 
-	line.dx = ABS((line.p1.x - line.p0.x));
-	line.dy = -ABS((line.p1.y - line.p0.y));
-	sx = (line.p0.x < line.p1.x ? 1 : -1);
-	sy = (line.p0.y < line.p1.y ? 1 : -1);
-	err = line.dx + line.dy;
-	while (line.p0.x != line.p1.x || line.p0.y != line.p1.y)
+	d.x = ABS((p1.x - p.x));
+	d.y = -ABS((p1.y - p.y));
+	s.x = (p.x < p1.x ? 1 : -1);
+	s.y = (p.y < p1.y ? 1 : -1);
+	err = d.x + d.y;
+	while (p.x != p1.x || p.y != p1.y)
 	{
-		mlx_pixel_put(e.mlx, e.win, line.p0.x, line.p0.y, color);
+		mlx_pixel_put(e.mlx, e.win, p.x, p.y, color);
 		e2 = 2 * err;
-		if (e2 >= line.dy)
+		if (e2 >= d.y)
 		{
-			err += line.dy;
-			line.p0.x += sx;
+			err += d.y;
+			p.x += s.x;
 		}
-		if (e2 <= line.dx)
+		if (e2 <= d.x)
 		{
-			err += line.dx;
-			line.p0.y += sy;
+			err += d.x;
+			p.y += s.y;
 		}
 	}
 }
 
-t_line      ft_line(int x, int y, int x1, int y1)
+t_point	ft_point(int x, int y)
 {
-	t_line line;
+	t_point p;
 
-	line.p0.x = x;
-	line.p0.y = y;
-	line.p1.x = x1;
-	line.p1.y = y1;
-	line.dx = 0;
-	line.dy = 0;
-	return (line);
+	p.x = x;
+	p.y = y;
+	return (p);
 }

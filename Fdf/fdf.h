@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 15:28:05 by wwatkins          #+#    #+#             */
-/*   Updated: 2015/12/22 16:55:25 by wwatkins         ###   ########.fr       */
+/*   Updated: 2015/12/22 17:45:34 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,20 +32,12 @@ typedef struct	s_point
 
 typedef struct	s_env
 {
+	t_point	**pts;
 	void	*mlx;
 	void	*win;
 	int		gw;
 	int		gh;
-	t_point	**pts;
 }				t_env;
-
-typedef struct	s_line
-{
-	t_point p0;
-	t_point p1;
-	int		dx;
-	int		dy;
-}				t_line;
 
 typedef struct	s_color
 {
@@ -61,7 +53,7 @@ void	ft_error(int err);
 
 void	ft_core(t_env *e, int **tab);
 void	ft_assigncoor(t_env *e, int **tab);
-void	ft_drawline(t_env e, t_line line, int color);
-t_line	ft_line(int x, int y, int x1, int y1);
+void	ft_drawline(t_env e, t_point p, t_point p1, int color);
+t_point	ft_point(int x, int y);
 
 #endif

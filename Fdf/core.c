@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 21:29:30 by wwatkins          #+#    #+#             */
-/*   Updated: 2015/12/22 16:55:29 by wwatkins         ###   ########.fr       */
+/*   Updated: 2015/12/22 17:44:58 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,17 @@ void	ft_assigncoor(t_env *e, int **tab)
 	int x;
 	int y;
 
-	y = 0;
+	y = -1;
 	ft_error((int)(e->pts = (t_point**)malloc(sizeof(t_point) * e->gh)));
-	while (y < e->gh)
+	while (++y < e->gh)
 	{
-		x = 0;
+		x = -1;
 		ft_error((int)(e->pts[y] = (t_point*)malloc(sizeof(t_point) * e->gw)));
-		while (x < e->gw)
+		while (++x < e->gw)
 		{
-			e->pts[y][x].x = (x * 1.2 - y * 1.5) * 20 + 600;
-			e->pts[y][x].y = (y * 1.2 + x * 1.5) * 20 - (tab[y][x] * 4) + 200;
-			x++;
+			e->pts[y][x].x = 600 + (x * 1.5 - y * 1.5) * 20;
+			e->pts[y][x].y = 200 + (y * 1.3 + x * 1.3) * 20 - (tab[y][x] * 4);
 		}
-		y++;
 	}
 }
 
@@ -38,27 +36,22 @@ void	ft_displaylines(t_env *e)
 	int x;
 	int y;
 
-	y = 0;
-	while (y < e->gh)
+	y = -1;
+	while (++y < e->gh)
 	{
-		x = 0;
-		while (x < e->gw)
+		x = -1;
+		while (++x < e->gw)
 		{
 			if (x > 0)
-				ft_drawline(*e, ft_line(e->pts[y][x].x, e->pts[y][x].y,
-				e->pts[y][x - 1].x, e->pts[y][x - 1].y), 0xE5C1A);
+				ft_drawline(*e, e->pts[y][x], e->pts[y][x - 1], 0xE5C1A);
 			if (y > 0)
-				ft_drawline(*e, ft_line(e->pts[y][x].x, e->pts[y][x].y,
-				e->pts[y - 1][x].x, e->pts[y - 1][x].y), 0xE5C1A);
-			x++;
+				ft_drawline(*e, e->pts[y][x], e->pts[y - 1][x], 0xE5C1A);
 		}
-		y++;
 	}
 }
 
 int		ft_loop(t_env *e)
 {
-	printf("ok");
 	ft_displaylines(e);
 	mlx_do_sync(e->mlx);
 	return (0);
