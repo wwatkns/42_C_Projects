@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 15:28:05 by wwatkins          #+#    #+#             */
-/*   Updated: 2015/12/22 22:00:02 by wwatkins         ###   ########.fr       */
+/*   Updated: 2015/12/22 22:04:20 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,9 @@ typedef struct	s_point
 	int h;
 }				t_point;
 
-typedef struct	s_img
-{
-	void	*ptr;
-	t_point	size;
-	int		bpp;
-	int		sizeline;
-	int		endian;
-}				t_img;
-
 typedef struct	s_env
 {
 	t_point		**pts;
-	t_img		img;
 	void		*mlx;
 	void		*win;
 	int			gw;
