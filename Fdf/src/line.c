@@ -6,18 +6,18 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 21:28:32 by wwatkins          #+#    #+#             */
-/*   Updated: 2015/12/22 17:56:11 by wwatkins         ###   ########.fr       */
+/*   Updated: 2015/12/22 19:52:09 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	ft_drawline(t_env e, t_ptcol p, t_point p1, int color)
+void	ft_drawline(t_env e, t_point p, t_point p1)
 {
 	t_point d;
 	t_point s;
-	int err;
-	int e2;
+	int		err;
+	int		e2;
 
 	d.x = ABS((p1.x - p.x));
 	d.y = -ABS((p1.y - p.y));
@@ -26,7 +26,7 @@ void	ft_drawline(t_env e, t_ptcol p, t_point p1, int color)
 	err = d.x + d.y;
 	while (p.x != p1.x || p.y != p1.y)
 	{
-		mlx_pixel_put(e.mlx, e.win, p.x, p.y, color);
+		mlx_pixel_put(e.mlx, e.win, p.x, p.y, e.color);
 		e2 = 2 * err;
 		if (e2 >= d.y)
 		{

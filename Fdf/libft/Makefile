@@ -6,13 +6,13 @@
 #    By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/15 09:15:55 by wwatkins          #+#    #+#              #
-#    Updated: 2015/12/21 15:54:08 by wwatkins         ###   ########.fr        #
+#    Updated: 2015/12/22 19:35:35 by wwatkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC_PATH = ./src/
 OBJ_PATH = ./obj/
-INC_PATH = ./includes/
+INC_PATH = ./include/
 
 NAME = libft.a
 CC = gcc

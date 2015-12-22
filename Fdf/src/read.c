@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 16:11:00 by wwatkins          #+#    #+#             */
-/*   Updated: 2015/12/22 16:56:21 by wwatkins         ###   ########.fr       */
+/*   Updated: 2015/12/22 19:38:27 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	ft_maperror(const char *line)
 	int			n;
 	static int	t = 0;
 
+	n = 0;
 	while (line[n] != '\0')
 	{
 		ft_error((ft_isdigit(line[n]) || line[n] == ' ' || line[n] == '-'));
