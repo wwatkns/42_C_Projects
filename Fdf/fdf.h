@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 15:28:05 by wwatkins          #+#    #+#             */
-/*   Updated: 2015/12/21 21:33:00 by wwatkins         ###   ########.fr       */
+/*   Updated: 2015/12/22 16:28:27 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,22 @@
 # include <stdio.h> // TEMPORARY
 
 # define ABS(x) (x < 0 ? -x : x)
-# define TAB_SIZE 2048 // UGLY AS FUCK
-
-typedef struct	s_env
-{
-	void	*mlx;
-	void	*win;
-}				t_env;
+# define TAB_SIZE 4096 // UGLY AS FUCK
 
 typedef struct	s_point
 {
 	int x;
 	int y;
 }				t_point;
+
+typedef struct	s_env
+{
+	void	*mlx;
+	void	*win;
+	int		grid_w;
+	int		grid_h;
+	t_point	**pts;
+}				t_env;
 
 typedef struct	s_line
 {
@@ -51,14 +54,14 @@ typedef struct	s_color
 	unsigned char	b;
 }				t_color;
 
-int		**ft_read(const char *argv, int *tabwidth);
-void	ft_tabassign(int **tab, const char *line, int wc, int y);
+int		**ft_read(t_env *env, const char *argv);
+void	ft_tabassign(t_env env, int **tab, const char *line);
 void	ft_maperror(const char *line);
 void	ft_error(int err);
 
-void	ft_core(int **tab, int tabwidth);
-void	ft_assigncoor(t_env e, t_point **pts, int **tab, int tabwidth);
-void	ft_drawline(t_env e, t_line line, int color);
+void	ft_core(t_env *env, int **tab);
+void	ft_assigncoor(t_env *env, int **tab);
+void	ft_drawline(t_env env, t_line line, int color);
 t_line	ft_line(int x, int y, int x1, int y1);
 
 #endif
