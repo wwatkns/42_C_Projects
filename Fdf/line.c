@@ -6,13 +6,13 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 21:28:32 by wwatkins          #+#    #+#             */
-/*   Updated: 2015/12/22 17:44:01 by wwatkins         ###   ########.fr       */
+/*   Updated: 2015/12/22 17:56:11 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	ft_drawline(t_env e, t_point p, t_point p1, int color)
+void	ft_drawline(t_env e, t_ptcol p, t_point p1, int color)
 {
 	t_point d;
 	t_point s;
