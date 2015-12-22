@@ -12,6 +12,35 @@
 
 #include "fdf.h"
 
+/*void	ft_drawline(t_env e, t_line line, int color)
+{
+	int sx;
+	int sy;
+	int err;
+	int e2;
+
+	line.dx = ABS((line.p1.x - line.p0.x));
+	line.dy = -ABS((line.p1.y - line.p0.y));
+	sx = (line.p0.x < line.p1.x ? 1 : -1);
+	sy = (line.p0.y < line.p1.y ? 1 : -1);
+	err = (line.dx > line.dy ? line.dx : -line.dy) / 2;
+	while (line.p0.x != line.p1.x || line.p0.y != line.p1.y)
+	{
+		mlx_pixel_put(e.mlx, e.win, line.p0.x, line.p0.y, color);
+		e2 = err;
+		if (e2 >= line.dy)
+		{
+			err += line.dy;
+			line.p0.x += sx;
+		}
+		if (e2 <= line.dx)
+		{
+			err += line.dx;
+			line.p0.y += sy;
+		}
+	}
+}*/ // Bresenham algorithm more opti ?
+
 void	ft_drawline(t_env e, t_line line, int color)
 {
 	int sx;
