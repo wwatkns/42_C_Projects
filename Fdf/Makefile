@@ -6,7 +6,7 @@
 #    By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/22 19:20:08 by wwatkins          #+#    #+#              #
-#    Updated: 2015/12/22 19:57:10 by wwatkins         ###   ########.fr        #
+#    Updated: 2015/12/23 11:55:25 by wwatkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,10 +18,10 @@ LIB_PATH = ./libft
 NAME = fdf
 CC = gcc
 CFLGS = -Werror -Wextra -Wall
-MLXFLGS = -L/usr/local/lib/ -I/usr/local/include -lmlx -framework OpenGL \
-		   -framework AppKit
+MLXFLGS = -L/usr/local/lib/ -I/usr/local/include -lmlx \
+		  -framework OpenGL -framework AppKit
 
-SRC_NAME  = main.c core.c line.c read.c
+SRC_NAME  = main.c core.c line.c read.c hook.c
 OBJ_NAME = $(SRC_NAME.c=.o)
 LIB_NAME =  libft.a
 

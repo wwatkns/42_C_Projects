@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 15:28:05 by wwatkins          #+#    #+#             */
-/*   Updated: 2015/12/22 22:04:20 by wwatkins         ###   ########.fr       */
+/*   Updated: 2015/12/23 12:27:17 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,8 @@
 
 # include <stdio.h> // TEMPORARY
 
-# define ABS(x) (x < 0 ? -x : x)
-# define WINDOW_W 2560
-# define WINDOW_H 1440
 # define TAB_SIZE 4096 // UGLY AS FUCK
+# define ABS(x) (x < 0 ? -x : x)
 
 typedef struct	s_point
 {
@@ -33,14 +31,26 @@ typedef struct	s_point
 	int h;
 }				t_point;
 
+typedef struct	s_key
+{
+	int	u;
+	int	d;
+	int l;
+	int r;
+	int zp;
+	int zm;
+}				t_key;
+
 typedef struct	s_env
 {
 	t_point		**pts;
+	t_point		move;
+	t_key		key;
 	void		*mlx;
 	void		*win;
+	int			zoom;
 	int			gw;
 	int			gh;
-	int			zoom;
 	int			scw;
 	int			sch;
 	int			color;
@@ -60,7 +70,17 @@ void			ft_error(int err);
 
 void			ft_core(t_env *e, int **tab);
 void			ft_assigncoor(t_env *e, int **tab);
+void			ft_displaylines(t_env *e);
 void			ft_drawline(t_env e, t_point p, t_point p1);
 t_point			ft_point(int x, int y);
+
+/*
+**	Mlx hook functions.
+*/
+
+int				ft_keyhook_pressed(int keycode, t_env *e);
+int				ft_keyhook_release(int keycode, t_env *e);
+int				ft_loophook(t_env *e);
+int				ft_exposehook(t_env *e);
 
 #endif
