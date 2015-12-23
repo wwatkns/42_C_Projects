@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 21:29:30 by wwatkins          #+#    #+#             */
-/*   Updated: 2015/12/23 12:28:44 by wwatkins         ###   ########.fr       */
+/*   Updated: 2015/12/23 17:50:40 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,9 @@ void	ft_assigncoor(t_env *e, int **tab)
 	int xoff;
 	int yoff;
 
-	e->zoom = (e->scw < e->sch ? e->sch : e->scw) /
-		(e->gw < e->gh ? e->gh : e->gw) / 2 * 0.6f;
-	xoff = ((e->scw / 2) - (e->gw * e->zoom)) * 2;
-	yoff = ((e->sch / 2) - (e->gh * e->zoom)) / 2;
+	e->zoom = e->scw / ((e->gw * SQRT3) + (e->gh * SQRT3 / 2));
+	xoff = ((e->gh + e->gw / 2) * SQRT3 * e->zoom) / 2;
+	yoff = ((e->gw + e->gh / 2) * SQRT3 * e->zoom) / 8;
 	y = -1;
 	ft_error((int)(e->pts = (t_point**)malloc(sizeof(t_point) * e->gh)));
 	while (++y < e->gh)
@@ -31,8 +30,8 @@ void	ft_assigncoor(t_env *e, int **tab)
 		ft_error((int)(e->pts[y] = (t_point*)malloc(sizeof(t_point) * e->gw)));
 		while (++x < e->gw)
 		{
-			e->pts[y][x].x = xoff + (x * 1.3 - y * 1.5) * e->zoom;
-			e->pts[y][x].y = yoff + (y * 1.5 + x * 1.3) * e->zoom - (tab[y][x] * 4);
+			e->pts[y][x].x = xoff + (x - y) * e->zoom;
+			e->pts[y][x].y = yoff + (x + y) * e->zoom - (tab[y][x] * 4);
 			e->pts[y][x].h = tab[y][x];
 		}
 	}

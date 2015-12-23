@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 15:28:05 by wwatkins          #+#    #+#             */
-/*   Updated: 2015/12/23 12:27:17 by wwatkins         ###   ########.fr       */
+/*   Updated: 2015/12/23 17:51:13 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@
 # include <stdio.h> // TEMPORARY
 
 # define TAB_SIZE 4096 // UGLY AS FUCK
+# define SQRT3 1.73205
+# define SQRT2 1.41421
+# define PI 3.14159
 # define ABS(x) (x < 0 ? -x : x)
 
 typedef struct	s_point
