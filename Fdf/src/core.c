@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 21:29:30 by wwatkins          #+#    #+#             */
-/*   Updated: 2015/12/23 19:24:28 by wwatkins         ###   ########.fr       */
+/*   Updated: 2015/12/23 19:45:21 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,8 @@ void	ft_displaylines(t_env *e)
 			e->pts[y][x].y += e->cam.move.y;
 			e->pts[y][x].x *= e->zoom;
 			e->pts[y][x].y *= e->zoom;
-			if (x > 0)
-				ft_drawline(*e, e->pts[y][x], e->pts[y][x - 1], color);
-			if (y > 0)
-				ft_drawline(*e, e->pts[y][x], e->pts[y - 1][x], color);
+			x > 0 ? ft_drawline(*e, e->pts[y][x], e->pts[y][x - 1], color) : 0;
+			y > 0 ? ft_drawline(*e, e->pts[y][x], e->pts[y - 1][x], color) : 0;
 		}
 	}
 }
@@ -83,9 +81,9 @@ void	ft_initenv(t_env *e)
 void	ft_core(t_env *e, int **tab)
 {
 	ft_initenv(e);
-	ft_assigncoor(e, tab);
 	ft_error((int)(e->mlx = mlx_init()));
 	ft_error((int)(e->win = mlx_new_window(e->mlx, e->scw, e->sch, "Fdf")));
+	ft_assigncoor(e, tab);
 	mlx_hook(e->win, 2, (1L << 0), ft_keyhook_pressed, e);
 	mlx_hook(e->win, 3, (1L << 1), ft_keyhook_release, e);
 	mlx_loop_hook(e->mlx, ft_loophook, e);
