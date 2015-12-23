@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 15:28:05 by wwatkins          #+#    #+#             */
-/*   Updated: 2015/12/23 17:51:13 by wwatkins         ###   ########.fr       */
+/*   Updated: 2015/12/23 19:20:35 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,20 @@ typedef struct	s_key
 	int zm;
 }				t_key;
 
+typedef struct	s_cam
+{
+	t_point	move;
+	int		x;
+	int		y;
+	int		zoom;
+	int		speed;
+}				t_cam;
+
 typedef struct	s_env
 {
 	t_point		**pts;
-	t_point		move;
 	t_key		key;
+	t_cam		cam;
 	void		*mlx;
 	void		*win;
 	int			zoom;
@@ -74,7 +83,7 @@ void			ft_error(int err);
 void			ft_core(t_env *e, int **tab);
 void			ft_assigncoor(t_env *e, int **tab);
 void			ft_displaylines(t_env *e);
-void			ft_drawline(t_env e, t_point p, t_point p1);
+void			ft_drawline(t_env e, t_point p, t_point p1, int color);
 t_point			ft_point(int x, int y);
 
 /*
@@ -85,5 +94,6 @@ int				ft_keyhook_pressed(int keycode, t_env *e);
 int				ft_keyhook_release(int keycode, t_env *e);
 int				ft_loophook(t_env *e);
 int				ft_exposehook(t_env *e);
+int				ft_debugmessage(t_env *e);
 
 #endif
