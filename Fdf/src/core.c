@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 21:29:30 by wwatkins          #+#    #+#             */
-/*   Updated: 2015/12/23 19:19:55 by wwatkins         ###   ########.fr       */
+/*   Updated: 2015/12/23 19:24:28 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,6 @@ void	ft_displaylines(t_env *e)
 		x = -1;
 		while (++x < e->gw)
 		{
-			if (e->pts[y][x].y != e->pts[y][x].h)
-				color = 0xFF0000;
 			e->pts[y][x].x += e->cam.move.x;
 			e->pts[y][x].y += e->cam.move.y;
 			e->pts[y][x].x *= e->zoom;
@@ -88,9 +86,8 @@ void	ft_core(t_env *e, int **tab)
 	ft_assigncoor(e, tab);
 	ft_error((int)(e->mlx = mlx_init()));
 	ft_error((int)(e->win = mlx_new_window(e->mlx, e->scw, e->sch, "Fdf")));
-	//mlx_expose_hook(e->win, ft_expose_hook, e);
-	mlx_hook(e->win, 2, 1L<<0, ft_keyhook_pressed, e);
-	mlx_hook(e->win, 3, 1L<<1, ft_keyhook_release, e);
+	mlx_hook(e->win, 2, (1L << 0), ft_keyhook_pressed, e);
+	mlx_hook(e->win, 3, (1L << 1), ft_keyhook_release, e);
 	mlx_loop_hook(e->mlx, ft_loophook, e);
 	mlx_expose_hook(e->win, ft_exposehook, e);
 	mlx_loop(e->mlx);
