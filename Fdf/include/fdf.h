@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 15:28:05 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/03 12:07:02 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/03 14:09:58 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct	s_cam
 	t_point	rota;
 	int		x;
 	int		y;
-	int		zoom;
+	float		zoom;
 	int		speed;
 }				t_cam;
 

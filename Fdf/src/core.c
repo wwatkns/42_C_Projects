@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 21:29:30 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/03 12:09:07 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/03 14:27:37 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,11 @@ void	ft_assigncoor(t_env *e, int **tab)
 	int diffx;
 	int diffy;
 
-	diffx = (e->scw < e->sch ? 0 : ABS((e->scw - e->sch)));
-	diffy = (e->scw < e->sch ? ABS((e->scw - e->sch)) : 0);
-	e->cam.zoom = (e->scw < e->sch ? e->scw : e->sch) / ((e->gw * e->ir) +
-	(e->gh * e->ir / 2));
-	e->cam.x = ((e->gh + e->gw / 2) * e->ir * e->cam.zoom) / 2 + diffx / 2;
-	e->cam.y = ((e->gw + e->gh / 2) * e->ir * e->cam.zoom) / 4 + diffy / 2;
+	diffx = (e->scw <= e->sch ? 0 : ABS((e->scw - e->sch)));
+	diffy = (e->scw <= e->sch ? ABS((e->scw - e->sch)) : 0);
+	e->cam.zoom = (e->scw < e->sch ? e->scw : e->sch) / (e->gw * e->ir + e->gh);
+	e->cam.x = (e->gh * e->ir + e->gw) * e->cam.zoom / 2 + diffx / 2;
+	e->cam.y = (e->gh + e->gw) * e->cam.zoom / 2 + diffy / 2;
 	y = -1;
 	ft_error((int)(e->pts = (t_point**)malloc(sizeof(t_point) * e->gh)));
 	while (++y < e->gh)
@@ -34,7 +33,7 @@ void	ft_assigncoor(t_env *e, int **tab)
 		while (++x < e->gw)
 		{
 			e->pts[y][x].x = e->cam.x + (x - y) * e->cam.zoom;
-			e->pts[y][x].y = e->cam.y + (x + y) * e->cam.zoom / 2;
+			e->pts[y][x].y = e->cam.y + (x + y) * e->cam.zoom / e->ir;
 			e->pts[y][x].y -= tab[y][x] * e->cam.zoom / 4;
 			e->pts[y][x].h = e->pts[y][x].y;
 		}
@@ -66,7 +65,7 @@ void	ft_initenv(t_env *e)
 {
 	e->scw = 1200;
 	e->sch = 1200;
-	e->ir = SQRT2;
+	e->ir = 2;
 	e->key.w = 0;
 	e->key.s = 0;
 	e->key.a = 0;
