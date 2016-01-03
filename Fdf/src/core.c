@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 21:29:30 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/03 10:09:09 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/03 12:07:17 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ void	ft_assigncoor(t_env *e, int **tab)
 
 	diffx = (e->scw < e->sch ? 0 : ABS((e->scw - e->sch)));
 	diffy = (e->scw < e->sch ? ABS((e->scw - e->sch)) : 0);
-	e->cam.zoom = (e->scw < e->sch ? e->scw : e->sch) / ((e->gw * SQRT3) +
-	(e->gh * SQRT3 / 2));
-	e->cam.x = ((e->gh + e->gw / 2) * SQRT3 * e->cam.zoom) / 2 + diffx / 2;
-	e->cam.y = ((e->gw + e->gh / 2) * SQRT3 * e->cam.zoom) / 8 + diffy / 2;
+	e->cam.zoom = (e->scw < e->sch ? e->scw : e->sch) / ((e->gw * e->ir) +
+	(e->gh * e->ir / 2));
+	e->cam.x = ((e->gh + e->gw / 2) * e->ir * e->cam.zoom) / 2 + diffx / 2;
+	e->cam.y = ((e->gw + e->gh / 2) * e->ir * e->cam.zoom) / 4 + diffy / 2;
 	y = -1;
 	ft_error((int)(e->pts = (t_point**)malloc(sizeof(t_point) * e->gh)));
 	while (++y < e->gh)
@@ -34,8 +34,8 @@ void	ft_assigncoor(t_env *e, int **tab)
 		while (++x < e->gw)
 		{
 			e->pts[y][x].x = e->cam.x + (x - y) * e->cam.zoom;
-			e->pts[y][x].y = e->cam.y + (x + y) * e->cam.zoom / SQRT2;
-			e->pts[y][x].y -= tab[y][x] * e->cam.zoom / 6;
+			e->pts[y][x].y = e->cam.y + (x + y) * e->cam.zoom / 2;
+			e->pts[y][x].y -= tab[y][x] * e->cam.zoom / 4;
 			e->pts[y][x].h = e->pts[y][x].y;
 		}
 	}
@@ -56,8 +56,6 @@ void	ft_displaylines(t_env *e)
 		{
 			e->pts[y][x].x += e->cam.move.x;
 			e->pts[y][x].y += e->cam.move.y;
-			e->pts[y][x].x *= e->zoom;
-			e->pts[y][x].y *= e->zoom;
 			x > 0 ? ft_drawline(*e, e->pts[y][x], e->pts[y][x - 1], color) : 0;
 			y > 0 ? ft_drawline(*e, e->pts[y][x], e->pts[y - 1][x], color) : 0;
 		}
@@ -68,13 +66,11 @@ void	ft_initenv(t_env *e)
 {
 	e->scw = 1200;
 	e->sch = 1200;
-	e->key.u = 0;
+	e->ir = SQRT2;
+	e->key.w = 0;
+	e->key.s = 0;
+	e->key.a = 0;
 	e->key.d = 0;
-	e->key.l = 0;
-	e->key.r = 0;
-	e->key.zp = 0;
-	e->key.zm = 0;
-	e->zoom = 1;
 	e->color = 0xECE9F1;
 }
 

@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 15:28:05 by wwatkins          #+#    #+#             */
-/*   Updated: 2015/12/23 19:45:29 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/03 12:07:02 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,16 @@ typedef struct	s_point
 
 typedef struct	s_key
 {
-	int	u;
-	int	d;
-	int l;
-	int r;
-	int zp;
-	int zm;
+	int	w;
+	int	s;
+	int a;
+	int d;
 }				t_key;
 
 typedef struct	s_cam
 {
 	t_point	move;
+	t_point	rota;
 	int		x;
 	int		y;
 	int		zoom;
@@ -60,11 +59,13 @@ typedef struct	s_env
 	t_cam		cam;
 	void		*mlx;
 	void		*win;
-	int			zoom;
 	int			gw;
 	int			gh;
 	int			scw;
 	int			sch;
+	int			minh;
+	int			maxh;
+	float		ir;
 	int			color;
 }				t_env;
 
@@ -76,7 +77,7 @@ typedef struct	s_color
 }				t_color;
 
 int				**ft_read(t_env *e, const char *argv);
-void			ft_tabassign(t_env e, int **tab, const char *line);
+void			ft_tabassign(t_env *e, int **tab, const char *line);
 void			ft_maperror(const char *line);
 void			ft_error(int err);
 
