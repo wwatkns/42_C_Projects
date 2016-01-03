@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 21:29:30 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/03 14:27:37 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/03 18:58:19 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	ft_assigncoor(t_env *e, int **tab)
 			e->pts[y][x].x = e->cam.x + (x - y) * e->cam.zoom;
 			e->pts[y][x].y = e->cam.y + (x + y) * e->cam.zoom / e->ir;
 			e->pts[y][x].y -= tab[y][x] * e->cam.zoom / 4;
-			e->pts[y][x].h = e->pts[y][x].y;
+			e->pts[y][x].h = tab[y][x];
 		}
 	}
 }
@@ -63,8 +63,8 @@ void	ft_displaylines(t_env *e)
 
 void	ft_initenv(t_env *e)
 {
-	e->scw = 1200;
-	e->sch = 1200;
+	e->scw = 1300;
+	e->sch = 1300;
 	e->ir = 2;
 	e->key.w = 0;
 	e->key.s = 0;

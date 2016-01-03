@@ -6,13 +6,13 @@
 #    By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/22 19:20:08 by wwatkins          #+#    #+#              #
-#    Updated: 2016/01/03 10:23:24 by wwatkins         ###   ########.fr        #
+#    Updated: 2016/01/03 18:44:48 by wwatkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC_PATH = ./src/
 OBJ_PATH = ./obj/
-INC_PATH = ./include/ ./libft/include
+INC_PATH = ./include/ ./libft/include/
 LIB_PATH = ./libft
 
 NAME = fdf

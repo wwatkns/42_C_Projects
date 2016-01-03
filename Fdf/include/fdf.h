@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 15:28:05 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/03 14:09:58 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/03 17:05:53 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <fcntl.h>
 # include <mlx.h>
 
+# include <math.h>
 # include <stdio.h> // TEMPORARY
 
 # define TAB_SIZE 4096 // UGLY AS FUCK
@@ -48,8 +49,8 @@ typedef struct	s_cam
 	t_point	rota;
 	int		x;
 	int		y;
-	float		zoom;
 	int		speed;
+	float	zoom;
 }				t_cam;
 
 typedef struct	s_env
@@ -85,6 +86,8 @@ void			ft_core(t_env *e, int **tab);
 void			ft_assigncoor(t_env *e, int **tab);
 void			ft_displaylines(t_env *e);
 void			ft_drawline(t_env e, t_point p, t_point p1, int color);
+int				ft_color(t_point p, t_point p1, int color);
+int				ft_getalt(t_point p, t_point p1);
 t_point			ft_point(int x, int y);
 
 /*
