@@ -6,7 +6,7 @@
 #    By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/22 19:20:08 by wwatkins          #+#    #+#              #
-#    Updated: 2015/12/23 11:55:25 by wwatkins         ###   ########.fr        #
+#    Updated: 2016/01/03 10:09:58 by wwatkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,20 +30,29 @@ OBJ = $(addprefix $(OBJ_PATH), $(OBJ_NAME))
 INC = $(addprefix -I,$(INC_PATH))
 LIB = $(LIB_PATH)$(LIB_NAME)
 
+.PHONY: re all clean fclean cleanlib fcleanlib norme
+
 all: $(NAME)
 
 $(NAME): $(OBJ)
+	make -C libft re
 	$(CC) $(CFLGS) -L$(LIB_PATH) -lft $(SRC) $(INC) -o $(NAME) $(OBJ) $(MLXFLGS)
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@mkdir $(OBJ_PATH) 2>/dev/null || echo "" > /dev/null
 	$(CC) $(CFLGS) $(LIB) $(INC) -o $@ -c $<
 
-clean:
+cleanlib:
+	make -C libft clean
+
+fcleanlib:
+	make -C libft fclean
+
+clean: cleanlib
 	rm -fv $(OBJ)
 	@rmdir $(OBJ_PATH) 2> /dev/null || echo "" > /dev/null
 
-fclean: clean
+fclean: clean fcleanlib
 	rm -fv $(NAME)
 
 re: fclean all
@@ -51,5 +60,3 @@ re: fclean all
 norme:
 	norminette $(SRC)
 	norminette $(INC_PATH)*.h
-
-.PHONY: re all clean fclean norme

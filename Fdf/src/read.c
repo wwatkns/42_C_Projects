@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 16:11:00 by wwatkins          #+#    #+#             */
-/*   Updated: 2015/12/22 19:38:27 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/03 09:44:00 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	ft_tabassign(t_env e, int **tab, const char *line)
 		if (ft_isdigit(line[i]) || line[i] == '-')
 		{
 			tab[e.gh][x] = ft_atoi(&line[i]);
-			while (ft_isdigit(line[i]) || line[i] == '-')
+			while (line[i] != ' ')
 				i++;
 			x++;
 		}

@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 21:29:30 by wwatkins          #+#    #+#             */
-/*   Updated: 2015/12/23 19:45:21 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/03 10:09:09 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_assigncoor(t_env *e, int **tab)
 		while (++x < e->gw)
 		{
 			e->pts[y][x].x = e->cam.x + (x - y) * e->cam.zoom;
-			e->pts[y][x].y = e->cam.y + (x + y) * e->cam.zoom;
+			e->pts[y][x].y = e->cam.y + (x + y) * e->cam.zoom / SQRT2;
 			e->pts[y][x].y -= tab[y][x] * e->cam.zoom / 6;
 			e->pts[y][x].h = e->pts[y][x].y;
 		}
