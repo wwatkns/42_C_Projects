@@ -6,17 +6,17 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 14:21:45 by wwatkins          #+#    #+#             */
-/*   Updated: 2015/11/29 18:07:27 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/03 12:56:55 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 char	*ft_strrchr(const char *s, int c)
 {
 	int i;
 
-	i = 0;
-	while (s[i] != '\0')
-		i++;
+	i = ft_strlen(s);
 	while (i >= 0)
 	{
 		if ((unsigned char)c == s[i])

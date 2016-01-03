@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 16:36:42 by wwatkins          #+#    #+#             */
-/*   Updated: 2015/12/03 18:03:35 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/03 12:51:15 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,13 @@
 char	*ft_strmap(char const *s, char (*f)(char))
 {
 	int		i;
-	int		len;
 	char	*new;
 
-	i = 0;
-	len = ft_strlen(s);
-	if (!(new = (char*)malloc(sizeof(char) * len + 1)))
+	i = -1;
+	if (!(new = ft_strnew(ft_strlen(s))))
 		return (NULL);
-	while (s[i] != '\0')
-	{
+	while (s[++i] != '\0')
 		new[i] = f(s[i]);
-		i++;
-	}
 	new[i] = '\0';
 	return (new);
 }

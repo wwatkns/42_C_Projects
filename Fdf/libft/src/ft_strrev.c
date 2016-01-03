@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/30 10:11:54 by wwatkins          #+#    #+#             */
-/*   Updated: 2015/12/03 18:15:46 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/03 13:00:50 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,10 @@ char	*ft_strrev(const char *s, int size)
 	char	*srev;
 
 	i = 0;
-	if (!(srev = (char*)malloc(sizeof(char) * size + 1)))
+	if (!(srev = ft_strnew(size)))
 		return (NULL);
-	size--;
-	while (size >= 0)
-	{
-		srev[i] = s[size];
-		i++;
-		size--;
-	}
+	while (--size >= 0)
+		srev[i++] = s[size];
 	srev[i] = '\0';
 	return (srev);
 }
