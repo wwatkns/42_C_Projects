@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/26 11:33:44 by wwatkins          #+#    #+#             */
-/*   Updated: 2015/12/03 18:07:24 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/03 12:27:42 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	ft_is_the_end(char const *s, int i)
 {
 	while (s[i] != 0)
 	{
-		if (s[i] != ' ' && s[i] != ',' && s[i] != '\n' && s[i] != '\t')
+		if (s[i] != ' ' && s[i] != '\n' && s[i] != '\t')
 			return (0);
 		i++;
 	}
@@ -35,7 +35,7 @@ char		*ft_strtrim(char const *s)
 	if (s == NULL)
 		return (NULL);
 	len = ft_strlen(s);
-	if (!(trim = (char*)malloc(sizeof(char) * len + 1)))
+	if (!(trim = ft_strnew(len)))
 		return (NULL);
 	while (s[i] == ' ' || s[i] == '\n' || s[i] == '\t')
 		i++;

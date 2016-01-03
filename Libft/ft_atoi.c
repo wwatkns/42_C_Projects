@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 12:43:57 by wwatkins          #+#    #+#             */
-/*   Updated: 2015/11/26 11:25:22 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/03 13:22:43 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ int	ft_atoi(const char *str)
 	j = 0;
 	sign = 0;
 	value = 0;
-	while (str[j] == ' ' || str[j] == '\n' || str[j] == '\v' ||
-			str[j] == '\t' || str[j] == '\r' || str[j] == '\f')
+	while (ft_isblank(str[j]))
 		j++;
 	i = j;
 	while (str[i] != '\0')

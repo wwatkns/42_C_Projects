@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 14:29:42 by wwatkins          #+#    #+#             */
-/*   Updated: 2015/11/29 17:58:55 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/03 12:45:01 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_strdup(const char *s1)
 
 	i = 0;
 	len = ft_strlen(s1);
-	if (!(cpy = (char*)malloc(sizeof(char) * len + 1)))
+	if (!(cpy = ft_strnew(len)))
 		return (NULL);
 	while (i < len)
 	{
