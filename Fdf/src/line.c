@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 21:28:32 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/04 10:40:53 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/04 11:27:12 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_drawline(t_env e, t_point p, t_point p1)
 	err = d.x - d.y;
 	while (p.x != p1.x || p.y != p1.y)
 	{
-		mlx_pixel_put(e.mlx, e.win, p.x, p.y, ft_getcolor(e, p, p1));
+		ft_imgpixelput(&e, p.x, p.y, ft_getcolor(e, p, p1));
 		e2 = 2 * err;
 		if (e2 > -d.y)
 		{
@@ -38,6 +38,19 @@ void	ft_drawline(t_env e, t_point p, t_point p1)
 			err += d.x;
 			p.y += s.y;
 		}
+	}
+}
+
+void	ft_imgpixelput(t_env *e, int x, int y, int color)
+{
+	int	pos;
+
+	if (x >= 0 && x < e->scw && y >= 0 && y < e->sch)
+	{
+		pos = (x * e->img.bpp / 8) + (y * e->img.sl);
+		e->img.img[pos] = color % 256;
+		e->img.img[pos + 1] = (color >> 8) % 256;
+		e->img.img[pos + 2] = (color >> 16) % 256;
 	}
 }
 
@@ -65,6 +78,8 @@ int		ft_getcolor(t_env e, t_point p, t_point p1)
 
 void	ft_setpalette(t_env *e, int palette)
 {
+	(e->palette.i = e->palette.i < 4 ? e->palette.i + 1 : 0);
+	e->key.p = 0;
 	e->palette.step = (float)ABS((e->minh - e->maxh)) / 5.0f;
 	if (palette == 0)
 	{

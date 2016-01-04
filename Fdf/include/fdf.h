@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 15:28:05 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/04 10:09:22 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/04 11:05:39 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,21 @@ typedef struct	s_palette
 	float	step;
 }				t_palette;
 
+typedef struct	s_img
+{
+	void	*adr;
+	char	*img;
+	int		endian;
+	int		bpp;
+	int		sl;
+}				t_img;
+
 typedef struct	s_env
 {
 	t_point		**pts;
 	t_key		key;
 	t_cam		cam;
+	t_img		img;
 	t_palette	palette;
 	void		*mlx;
 	void		*win;
@@ -83,22 +93,38 @@ typedef struct	s_env
 	int			color;
 }				t_env;
 
+/*
+**	read.c functions
+*/
+
 int				**ft_read(t_env *e, const char *argv);
 void			ft_tabassign(t_env *e, int **tab, const char *line);
 void			ft_maperror(const char *line);
 void			ft_error(int err);
 
+/*
+**	core.c functions
+*/
+
 void			ft_core(t_env *e, int **tab);
+void			ft_initenv(t_env *e);
+void			ft_initimg(t_env *e);
 void			ft_assigncoor(t_env *e, int **tab);
 void			ft_displaylines(t_env *e);
+
+/*
+**	draw.c functions
+*/
+
 void			ft_drawline(t_env e, t_point p, t_point p1);
+void			ft_imgpixelput(t_env *e, int x, int y, int color);
 int				ft_getcolor(t_env e, t_point p, t_point p1);
 void			ft_setpalette(t_env *e, int palette);
 t_point			ft_point(int x, int y);
 
 /*
-**	Mlx hook functions.
-*/
+ **	hook.c functions
+ */
 
 int				ft_keyhook_pressed(int keycode, t_env *e);
 int				ft_keyhook_release(int keycode, t_env *e);

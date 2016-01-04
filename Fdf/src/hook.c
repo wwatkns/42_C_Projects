@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/23 11:54:21 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/04 10:24:53 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/04 11:26:57 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,23 +37,21 @@ int		ft_keyhook_release(int keycode, t_env *e)
 int		ft_loophook(t_env *e)
 {
 	mlx_clear_window(e->mlx, e->win);
+	mlx_destroy_image(e->mlx, e->img.adr);
 	e->cam.move.y = 0;
 	e->cam.move.x = 0;
 	e->cam.move.y = (-e->key.s + e->key.w) * 4;
 	e->cam.move.x = (-e->key.d + e->key.a) * 4;
-	if (e->key.p == 1)
-	{
-		(e->palette.i = e->palette.i < 4 ? e->palette.i + 1 : 0);
-		ft_setpalette(e, e->palette.i);
-		e->key.p = 0;
-	}
+	(e->key.p == 1 ? ft_setpalette(e, e->palette.i) : 0);
 	ft_exposehook(e);
 	return (1);
 }
 
 int		ft_exposehook(t_env *e)
 {
+	ft_initimg(e);
 	ft_displaylines(e);
+	mlx_put_image_to_window(e->mlx, e->win, e->img.adr, 0, 0);
 	ft_debugmessage(e);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 21:29:30 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/04 10:24:56 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/04 11:28:28 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,16 @@ void	ft_displaylines(t_env *e)
 	}
 }
 
+void	ft_initimg(t_env *e)
+{
+	ft_error((int)(e->img.adr = mlx_new_image(e->mlx, e->scw, e->sch)));
+	e->img.img = mlx_get_data_addr(e->img.adr, &e->img.bpp,
+								&e->img.sl, &e->img.endian);
+}
+
 void	ft_initenv(t_env *e)
 {
-	e->scw = 1300;
+	e->scw = 2500;
 	e->sch = 1300;
 	e->ir = 2;
 	e->key.w = 0;
@@ -81,6 +88,7 @@ void	ft_core(t_env *e, int **tab)
 	ft_setpalette(e, 0);
 	ft_error((int)(e->mlx = mlx_init()));
 	ft_error((int)(e->win = mlx_new_window(e->mlx, e->scw, e->sch, "Fdf")));
+	ft_initimg(e);
 	ft_assigncoor(e, tab);
 	mlx_hook(e->win, 2, (1L << 0), ft_keyhook_pressed, e);
 	mlx_hook(e->win, 3, (1L << 1), ft_keyhook_release, e);
