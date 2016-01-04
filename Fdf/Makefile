@@ -6,7 +6,7 @@
 #    By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/22 19:20:08 by wwatkins          #+#    #+#              #
-#    Updated: 2016/01/03 18:44:48 by wwatkins         ###   ########.fr        #
+#    Updated: 2016/01/04 11:57:27 by wwatkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ CFLGS = -Werror -Wextra -Wall
 MLXFLGS = -L/usr/local/lib/ -I/usr/local/include -lmlx \
 		  -framework OpenGL -framework AppKit
 
-SRC_NAME  = main.c core.c line.c read.c hook.c
+SRC_NAME  = main.c core.c draw.c read.c hook.c
 OBJ_NAME = $(SRC_NAME.c=.o)
 LIB_NAME =  libft.a
 

@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 15:27:53 by wwatkins          #+#    #+#             */
-/*   Updated: 2015/12/22 19:43:11 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/04 12:00:16 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,6 @@ int		main(int argc, char **argv)
 	tab = ft_read(&e, argv[1]);
 	ft_core(&e, tab);
 	free(tab);
+	free(&e);
 	return (0);
 }

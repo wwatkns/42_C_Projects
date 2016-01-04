@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   line.c                                             :+:      :+:    :+:   */
+/*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/21 21:28:32 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/04 11:27:12 by wwatkins         ###   ########.fr       */
+/*   Created: 2016/01/04 11:56:57 by wwatkins          #+#    #+#             */
+/*   Updated: 2016/01/04 12:04:26 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ void	ft_imgpixelput(t_env *e, int x, int y, int color)
 	{
 		pos = (x * e->img.bpp / 8) + (y * e->img.sl);
 		e->img.img[pos] = color % 256;
-		e->img.img[pos + 1] = (color >> 8) % 256;
-		e->img.img[pos + 2] = (color >> 16) % 256;
+		e->img.img[pos + 1] = (color / 256) % 256;
+		e->img.img[pos + 2] = (color / 256 / 256) % 256;
 	}
 }
 
@@ -78,8 +78,8 @@ int		ft_getcolor(t_env e, t_point p, t_point p1)
 
 void	ft_setpalette(t_env *e, int palette)
 {
-	(e->palette.i = e->palette.i < 4 ? e->palette.i + 1 : 0);
 	e->key.p = 0;
+	e->palette.i = e->palette.i < 4 ? e->palette.i + 1 : 0;
 	e->palette.step = (float)ABS((e->minh - e->maxh)) / 5.0f;
 	if (palette == 0)
 	{
@@ -121,13 +121,4 @@ void	ft_setpalette(t_env *e, int palette)
 		e->palette.c4 = 0xFEABA5;
 		e->palette.c5 = 0xFE8992;
 	}
-}
-
-t_point	ft_point(int x, int y)
-{
-	t_point p;
-
-	p.x = x;
-	p.y = y;
-	return (p);
 }

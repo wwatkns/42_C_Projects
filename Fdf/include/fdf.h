@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 15:28:05 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/04 11:05:39 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/04 11:57:41 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,6 @@ void			ft_drawline(t_env e, t_point p, t_point p1);
 void			ft_imgpixelput(t_env *e, int x, int y, int color);
 int				ft_getcolor(t_env e, t_point p, t_point p1);
 void			ft_setpalette(t_env *e, int palette);
-t_point			ft_point(int x, int y);
 
 /*
  **	hook.c functions
