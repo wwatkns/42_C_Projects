@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 21:29:30 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/04 16:21:28 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/04 16:47:42 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	ft_displaylines(t_env *e)
 		{
 			e->pts[y][x].x += e->cam.move.x;
 			e->pts[y][x].y += e->cam.move.y;
+			e->pts[y][x].y -= e->pts[y][x].h * e->cam.alt;
 			x > 0 ? ft_drawline(*e, e->pts[y][x], e->pts[y][x - 1]) : 0;
 			y > 0 ? ft_drawline(*e, e->pts[y][x], e->pts[y - 1][x]) : 0;
 		}
@@ -82,7 +83,7 @@ void	ft_initenv(t_env *e)
 void	ft_core(t_env *e, int **tab)
 {
 	ft_initenv(e);
-	ft_setpalette(e, 0);
+	ft_setpalette(e, e->palette.i);
 	ft_error((int)(e->mlx = mlx_init()));
 	ft_error((int)(e->win = mlx_new_window(e->mlx, e->scw, e->sch, "Fdf")));
 	ft_initimg(e);

@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 15:28:05 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/04 16:20:25 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/04 16:48:37 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 # include <stdio.h> // TEMPORARY
 
-# define BUFFSIZE 1
+# define BUFFSIZE 32
 # define ABS(x) (x < 0 ? -x : x)
 
 typedef struct	s_point
@@ -37,6 +37,8 @@ typedef struct	s_key
 	int	s;
 	int a;
 	int d;
+	int	i;
+	int	k;
 	int p;
 }				t_key;
 
@@ -47,6 +49,7 @@ typedef struct	s_cam
 	int		x;
 	int		y;
 	int		speed;
+	float	alt;
 	float	zoom;
 }				t_cam;
 
