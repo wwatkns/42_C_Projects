@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 15:28:05 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/03 17:05:53 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/04 10:09:22 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct	s_key
 	int	s;
 	int a;
 	int d;
+	int p;
 }				t_key;
 
 typedef struct	s_cam
@@ -53,11 +54,23 @@ typedef struct	s_cam
 	float	zoom;
 }				t_cam;
 
+typedef struct	s_palette
+{
+	int		c1;
+	int		c2;
+	int		c3;
+	int		c4;
+	int		c5;
+	int		i;
+	float	step;
+}				t_palette;
+
 typedef struct	s_env
 {
 	t_point		**pts;
 	t_key		key;
 	t_cam		cam;
+	t_palette	palette;
 	void		*mlx;
 	void		*win;
 	int			gw;
@@ -70,13 +83,6 @@ typedef struct	s_env
 	int			color;
 }				t_env;
 
-typedef struct	s_color
-{
-	unsigned char	r;
-	unsigned char	g;
-	unsigned char	b;
-}				t_color;
-
 int				**ft_read(t_env *e, const char *argv);
 void			ft_tabassign(t_env *e, int **tab, const char *line);
 void			ft_maperror(const char *line);
@@ -85,9 +91,9 @@ void			ft_error(int err);
 void			ft_core(t_env *e, int **tab);
 void			ft_assigncoor(t_env *e, int **tab);
 void			ft_displaylines(t_env *e);
-void			ft_drawline(t_env e, t_point p, t_point p1, int color);
-int				ft_color(t_point p, t_point p1, int color);
-int				ft_getalt(t_point p, t_point p1);
+void			ft_drawline(t_env e, t_point p, t_point p1);
+int				ft_getcolor(t_env e, t_point p, t_point p1);
+void			ft_setpalette(t_env *e, int palette);
 t_point			ft_point(int x, int y);
 
 /*

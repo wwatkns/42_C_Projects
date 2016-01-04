@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 21:29:30 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/03 18:58:19 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/04 10:24:56 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ void	ft_displaylines(t_env *e)
 		{
 			e->pts[y][x].x += e->cam.move.x;
 			e->pts[y][x].y += e->cam.move.y;
-			x > 0 ? ft_drawline(*e, e->pts[y][x], e->pts[y][x - 1], color) : 0;
-			y > 0 ? ft_drawline(*e, e->pts[y][x], e->pts[y - 1][x], color) : 0;
+			(x > 0 ? ft_drawline(*e, e->pts[y][x], e->pts[y][x - 1]) : 0);
+			(y > 0 ? ft_drawline(*e, e->pts[y][x], e->pts[y - 1][x]) : 0);
 		}
 	}
 }
@@ -70,12 +70,15 @@ void	ft_initenv(t_env *e)
 	e->key.s = 0;
 	e->key.a = 0;
 	e->key.d = 0;
+	e->key.p = 0;
+	e->palette.i = 0;
 	e->color = 0xECE9F1;
 }
 
 void	ft_core(t_env *e, int **tab)
 {
 	ft_initenv(e);
+	ft_setpalette(e, 0);
 	ft_error((int)(e->mlx = mlx_init()));
 	ft_error((int)(e->win = mlx_new_window(e->mlx, e->scw, e->sch, "Fdf")));
 	ft_assigncoor(e, tab);
