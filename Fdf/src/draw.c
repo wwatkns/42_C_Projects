@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/04 11:56:57 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/04 12:24:59 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/04 14:53:56 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ void	ft_imgpixelput(t_env *e, int x, int y, int color)
 	{
 		pos = (x * e->img.bpp / 8) + (y * e->img.sl);
 		e->img.img[pos] = color % 256;
-		e->img.img[pos + 1] = (color / 256) % 256;
-		e->img.img[pos + 2] = (color / 256 / 256) % 256;
+		e->img.img[pos + 1] = (color >> 8) % 256;
+		e->img.img[pos + 2] = (color >> 16) % 256;
 	}
 }
 

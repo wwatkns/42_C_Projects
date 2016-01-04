@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/23 11:54:21 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/04 12:16:12 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/04 14:57:52 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ int		ft_loophook(t_env *e)
 	mlx_destroy_image(e->mlx, e->img.adr);
 	e->cam.move.y = 0;
 	e->cam.move.x = 0;
-	e->cam.move.y = (-e->key.s + e->key.w) * 4;
-	e->cam.move.x = (-e->key.d + e->key.a) * 4;
+	e->cam.move.y = (-e->key.s + e->key.w) * 6;
+	e->cam.move.x = (-e->key.d + e->key.a) * 6;
 	e->key.p == 1 ? ft_setpalette(e, e->palette.i) : 0;
 	ft_exposehook(e);
 	return (1);
