@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 15:28:05 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/04 15:02:46 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/04 16:20:25 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,9 @@
 # include <fcntl.h>
 # include <mlx.h>
 
-# include <math.h>
 # include <stdio.h> // TEMPORARY
 
-# define TAB_SIZE 4096 // UGLY AS FUCK
-# define BUFFSIZE 64
-# define SQRT3 1.73205
-# define SQRT2 1.41421
-# define PI 3.14159
+# define BUFFSIZE 1
 # define ABS(x) (x < 0 ? -x : x)
 
 typedef struct	s_point
@@ -98,10 +93,10 @@ typedef struct	s_env
 */
 
 int				**ft_read(t_env *e, const char *argv);
-void			ft_tabassign(t_env *e, int **tab, const char *line);
+void			ft_tabassign(t_env *e, int **tab, const char *line, int j);
+void			ft_getgridsize(t_env *e, const char *argv);
 void			ft_maperror(const char *line);
 void			ft_error(int err);
-void			ft_getlinenum(t_env *e, const char *argv);
 
 /*
 **	core.c functions

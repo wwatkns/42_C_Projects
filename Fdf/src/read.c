@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 16:11:00 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/04 15:01:01 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/04 16:17:12 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,60 +17,63 @@ int		**ft_read(t_env *e, const char *argv)
 	int		fd;
 	char	*line;
 	int		**tab;
+	int		j;
 
+	j = 0;
+	ft_getgridsize(e, argv);
 	ft_error((fd = open(argv, O_RDONLY)));
-	ft_error((int)(tab = (int**)malloc(sizeof(int*) * TAB_SIZE)));
+	ft_error((int)(tab = (int**)malloc(sizeof(int*) * e->gh + 1)));
 	e->minh = 0;
 	e->maxh = 0;
-	get_next_line(fd, &line);
-	e->gh = 0;
-	e->gw = ft_wordcount(line, ' ');
-	ft_tabassign(e, tab, line);
-	e->gh++;
 	while (get_next_line(fd, &line))
 	{
-		ft_tabassign(e, tab, line);
+		ft_tabassign(e, tab, line, j);
 		free(line);
-		e->gh++;
+		j++;
 	}
-	printf("gh: %d, gw: %d\n", e->gh, e->gw);
-	close(fd);
+	ft_error((close(fd) + 1));
 	return (tab);
 }
 
-void	ft_getlinenum(t_env *e, const char *argv)
+void	ft_getgridsize(t_env *e, const char *argv)
 {
-//	int		fd;
+	int		fd;
+	int		ret;
 	char	*buf;
+	char	*line;
 
-	if (argv)
-		return ;
-//	fd = open(argv, O_RDONLY);
-	buf = ft_strnew(BUFFSIZE);
-/*	while ((ret = read(fd, buf, BUFFSIZE)) > 0)
+	ft_error((fd = open(argv, O_RDONLY)));
+	ft_error((int)(buf = ft_strnew(BUFFSIZE)));
+	ft_error(!(get_next_line(fd, &line) == -1));
+	e->gh = 0;
+	e->gw = ft_wordcount(line, ' ');
+	free(line);
+	while ((ret = read(fd, buf, BUFFSIZE)) > 0)
 	{
-		e->gh += ret;
-	}*/
-	e->gh = 10;
-	e->gw = 10;
-//	close(fd);
+		buf[ret] = 0;
+		ft_strchr(buf, '\n') ? e->gh += 1 : 0;
+	}
+	ft_error(!(ret == -1));
+	e->gh++;
+	ft_error((close(fd) + 1));
+	free(buf);
 }
 
-void	ft_tabassign(t_env *e, int **tab, const char *line)
+void	ft_tabassign(t_env *e, int **tab, const char *line, int j)
 {
 	int i;
 	int x;
 
 	i = 0;
 	x = 0;
-	ft_error((int)(tab[e->gh] = (int*)malloc(sizeof(int) * e->gw)));
+	ft_error((int)(tab[j] = (int*)malloc(sizeof(int) * e->gw)));
 	while (x < e->gw)
 	{
 		if (ft_isdigit(line[i]) || line[i] == '-')
 		{
-			tab[e->gh][x] = ft_atoi(&line[i]);
-			e->minh = (tab[e->gh][x] < e->minh ? tab[e->gh][x] : e->minh);
-			e->maxh = (tab[e->gh][x] > e->maxh ? tab[e->gh][x] : e->maxh);
+			tab[j][x] = ft_atoi(&line[i]);
+			e->minh = (tab[j][x] < e->minh ? tab[j][x] : e->minh);
+			e->maxh = (tab[j][x] > e->maxh ? tab[j][x] : e->maxh);
 			while (line[i] != ' ')
 				i++;
 			x++;

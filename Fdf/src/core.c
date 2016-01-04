@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 21:29:30 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/04 15:03:01 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/04 16:21:28 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	ft_initimg(t_env *e)
 
 void	ft_initenv(t_env *e)
 {
-	e->scw = 1300;
+	e->scw = 2300;
 	e->sch = 1300;
 	e->ir = 2;
 	e->key.w = 0;
