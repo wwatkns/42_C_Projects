@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 15:28:05 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/04 13:00:51 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/04 15:02:46 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ typedef struct	s_env
 	int			minh;
 	int			maxh;
 	float		ir;
-	int			color;
 }				t_env;
 
 /*

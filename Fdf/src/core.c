@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 21:29:30 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/04 14:44:58 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/04 15:03:01 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,8 @@ void	ft_displaylines(t_env *e)
 {
 	int x;
 	int y;
-	int	color;
 
 	y = -1;
-	color = e->color;
 	while (++y < e->gh)
 	{
 		x = -1;
