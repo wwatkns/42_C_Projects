@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 16:11:00 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/04 17:26:32 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/04 20:05:14 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int		**ft_read(t_env *e, const char *argv)
 	int		j;
 
 	j = 0;
+	line = ft_strnew(1);
 	ft_getgridsize(e, argv);
 	ft_error((fd = open(argv, O_RDONLY)));
 	ft_error((int)(tab = (int**)malloc(sizeof(int*) * e->gh + 1)));
@@ -47,7 +48,6 @@ void	ft_getgridsize(t_env *e, const char *argv)
 	ft_error(!(get_next_line(fd, &line) == -1));
 	e->gh = 0;
 	e->gw = ft_wordcount(line, ' ');
-	free(line);
 	while ((ret = read(fd, buf, BUFFSIZE)) > 0)
 	{
 		buf[ret] = 0;
@@ -55,7 +55,9 @@ void	ft_getgridsize(t_env *e, const char *argv)
 	}
 	ft_error(!(ret == -1));
 	e->gh++;
+	printf("(%d, %d)\n", e->gw, e->gh);
 	free(buf);
+	free(line);
 }
 
 void	ft_tabassign(t_env *e, int **tab, const char *line, int j)
@@ -65,7 +67,7 @@ void	ft_tabassign(t_env *e, int **tab, const char *line, int j)
 
 	i = 0;
 	x = 0;
-	ft_error((int)(tab[j] = (int*)malloc(sizeof(int) * e->gw)));
+	ft_error((int)(tab[j] = (int*)malloc(sizeof(int) * e->gw + 1)));
 	while (x < e->gw)
 	{
 		if (ft_isdigit(line[i]) || line[i] == '-')

@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/04 11:56:57 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/04 16:40:02 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/04 18:28:45 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	ft_setpalette(t_env *e, int palette)
 {
 	e->key.p = 0;
 	e->palette.i = e->palette.i < 4 ? e->palette.i + 1 : 0;
-	e->palette.step = (float)ABS((e->minh - e->maxh)) / 5.0f;
+	e->palette.step = (float)ABS((e->minh - e->maxh)) / 4.5f;
 	if (palette == 0)
 	{
 		e->palette.c1 = 0x40833E;
