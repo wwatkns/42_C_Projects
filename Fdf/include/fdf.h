@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 15:28:05 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/04 11:57:41 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/04 13:00:51 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <stdio.h> // TEMPORARY
 
 # define TAB_SIZE 4096 // UGLY AS FUCK
+# define BUFFSIZE 64
 # define SQRT3 1.73205
 # define SQRT2 1.41421
 # define PI 3.14159
@@ -101,6 +102,7 @@ int				**ft_read(t_env *e, const char *argv);
 void			ft_tabassign(t_env *e, int **tab, const char *line);
 void			ft_maperror(const char *line);
 void			ft_error(int err);
+void			ft_getlinenum(t_env *e, const char *argv);
 
 /*
 **	core.c functions

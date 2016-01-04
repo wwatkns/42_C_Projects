@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 21:29:30 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/04 11:47:11 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/04 12:09:47 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ void	ft_displaylines(t_env *e)
 		{
 			e->pts[y][x].x += e->cam.move.x;
 			e->pts[y][x].y += e->cam.move.y;
-			(x > 0 ? ft_drawline(*e, e->pts[y][x], e->pts[y][x - 1]) : 0);
-			(y > 0 ? ft_drawline(*e, e->pts[y][x], e->pts[y - 1][x]) : 0);
+			x > 0 ? ft_drawline(*e, e->pts[y][x], e->pts[y][x - 1]) : 0;
+			y > 0 ? ft_drawline(*e, e->pts[y][x], e->pts[y - 1][x]) : 0;
 		}
 	}
 }
@@ -79,7 +79,6 @@ void	ft_initenv(t_env *e)
 	e->key.d = 0;
 	e->key.p = 0;
 	e->palette.i = 0;
-	e->color = 0xECE9F1;
 }
 
 void	ft_core(t_env *e, int **tab)
