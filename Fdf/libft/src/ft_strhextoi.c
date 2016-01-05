@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/05 14:39:55 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/05 14:46:47 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/05 14:53:45 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ int	ft_strhextoi(char *str)
 		if (ft_isdigit(str[i]))
 			hex += (str[i] - '0') * e;
 		else if ('a' <= str[i] && str[i] <= 'f')
-			hex += (str[i] - 'a') * e;
+			hex += (str[i] - 'a' + 10) * e;
 		else if ('A' <= str[i] && str[i] <= 'F')
-			hex += (str[i] - 'A') * e;
+			hex += (str[i] - 'A' + 10) * e;
 		e *= 16;
 	}
 	return (hex);
