@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/04 11:56:57 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/05 17:27:36 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/05 18:04:51 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,15 +59,12 @@ int		ft_getcolor(t_env e, t_point p, t_point p1)
 	int	i;
 	int	*q;
 
-	i = 2;
+	i = 1;
 	q = (int*)malloc(sizeof(int) * e.palette.cn + 1);
 	q[0] = 0;
 	q[1] = e.minh + e.palette.step;
-	while (i <= e.palette.cn)
-	{
+	while (++i <= e.palette.cn)
 		q[i] = q[i - 1] + e.palette.step;
-		i++;
-	}
 	i = e.palette.cn;
 	while (i > 0)
 	{
@@ -86,18 +83,18 @@ void	ft_setpalette(t_env *e)
 
 	e->key.p = 0;
 	i = 0;
-	fd = open(e->av, O_RDONLY);
+	ft_error((fd = open(e->av, O_RDONLY)));
 	get_next_line(fd, &line);
 	e->palette.pn = ft_atoi(line) - 1;
 	get_next_line(fd, &line);
 	e->palette.cn = ft_atoi(line) - 1;
 	e->palette.c = (int*)malloc(sizeof(int) * e->palette.cn + 1);
 	e->palette.step = (e->maxh - e->minh) / (e->palette.cn);
-	printf("step: %f, cn: %d\n", e->palette.step, e->palette.cn);
 	while (i < e->palette.i * (e->palette.cn + 2) && get_next_line(fd, &line))
 		i++;
 	e->palette.i = e->palette.i < e->palette.pn ? e->palette.i + 1 : 0;
 	i = -1;
 	while (++i <= e->palette.cn && get_next_line(fd, &line))
 		e->palette.c[i] = ft_strhextoi(line);
+	free(line);
 }
