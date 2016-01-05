@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/25 14:33:30 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/03 12:18:55 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/05 14:49:09 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ int					ft_nbrlen(int n);
 char				*ft_strrev(const char *s, int size);
 int					ft_wordcount(const char *s, char c);
 int					ft_isblank(char c);
+int					ft_strhextoi(char *str);
 int					get_next_line(int const fd, char **line);
 
 #endif
