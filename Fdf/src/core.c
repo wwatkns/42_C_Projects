@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 21:29:30 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/05 11:50:34 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/05 15:08:39 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	ft_initenv(t_env *e)
 void	ft_core(t_env *e, int **tab)
 {
 	ft_initenv(e);
-	ft_setpalette(e, e->palette.i);
+	ft_setpalette(e);
 	ft_error((int)(e->mlx = mlx_init()));
 	ft_error((int)(e->win = mlx_new_window(e->mlx, e->scw, e->sch, "Fdf")));
 	ft_initimg(e);

@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 15:28:05 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/05 13:08:21 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/05 15:08:19 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ typedef struct	s_env
 	t_palette	palette;
 	void		*mlx;
 	void		*win;
+	char		*avfile;
 	int			gw;
 	int			gh;
 	int			scw;
@@ -119,7 +120,7 @@ void			ft_displaylines(t_env *e);
 void			ft_drawline(t_env e, t_point p, t_point p1);
 void			ft_imgpixelput(t_env *e, int x, int y, int color);
 int				ft_getcolor(t_env e, t_point p, t_point p1);
-void			ft_setpalette(t_env *e, int palette);
+void			ft_setpalette(t_env *e);
 
 /*
  **	hook.c functions

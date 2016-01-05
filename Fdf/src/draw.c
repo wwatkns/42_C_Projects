@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/04 11:56:57 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/05 13:39:07 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/05 15:14:29 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,49 +76,28 @@ int		ft_getcolor(t_env e, t_point p, t_point p1)
 	return (e.palette.c1);
 }
 
-void	ft_setpalette(t_env *e, int palette)
+void	ft_setpalette(t_env *e)
 {
+	int		i;
+	int		fd;
+	char	*line;
+
 	e->key.p = 0;
-	e->palette.i = e->palette.i < 5 ? e->palette.i + 1 : 0;
+	e->palette.i = e->palette.i < 4 ? e->palette.i + 1 : 0;
 	e->palette.step = (float)ABS((e->minh - e->maxh)) / 4.5f;
-	if (palette == 0)
-	{
-		e->palette.c1 = 0x26532B;
-		e->palette.c2 = 0x5A8D48;
-		e->palette.c3 = 0x7C5A4D;
-		e->palette.c4 = 0x94999F;
-		e->palette.c5 = 0xFFF9F5;
-	}
-	else if (palette == 1)
-	{
-		e->palette.c1 = 0x31231E;
-		e->palette.c2 = 0x5A3A31;
-		e->palette.c3 = 0x84714F;
-		e->palette.c4 = 0xE3D888;
-		e->palette.c5 = 0xE2F1AF;
-	}
-	else if (palette == 2)
-	{
-		e->palette.c1 = 0x718A8D;
-		e->palette.c2 = 0x875C5C;
-		e->palette.c3 = 0x585858;
-		e->palette.c4 = 0x92BD6B;
-		e->palette.c5 = 0x7AB288;
-	}
-	else if (palette == 3)
-	{
-		e->palette.c1 = 0x293132;
-		e->palette.c2 = 0x474044;
-		e->palette.c3 = 0x4F5165;
-		e->palette.c4 = 0x547AA5;
-		e->palette.c5 = 0x50D8D7;
-	}
-	else if (palette == 4)
-	{
-		e->palette.c1 = 0xFFBD00;
-		e->palette.c2 = 0xFF5400;
-		e->palette.c3 = 0xFF0054;
-		e->palette.c4 = 0x9E0059;
-		e->palette.c5 = 0x390099;
-	}
+
+	i = 0;
+	fd = open(e->avfile, O_RDONLY);
+	while (++i <= e->palette.i * 6)
+		get_next_line(fd, &line);
+	get_next_line(fd, &line);
+	e->palette.c1 = ft_strhextoi(line);
+	get_next_line(fd, &line);
+	e->palette.c2 = ft_strhextoi(line);
+	get_next_line(fd, &line);
+	e->palette.c3 = ft_strhextoi(line);
+	get_next_line(fd, &line);
+	e->palette.c4 = ft_strhextoi(line);
+	get_next_line(fd, &line);
+	e->palette.c5 = ft_strhextoi(line);
 }

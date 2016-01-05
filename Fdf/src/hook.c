@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/23 11:54:21 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/05 11:43:58 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/05 15:07:58 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int		ft_loophook(t_env *e)
 	e->cam.alt += (-e->key.k + e->key.i);
 	e->cam.zoom += (-e->key.km + e->key.kp);
 	e->cam.zoom < 1 ? e->cam.zoom = 1 : 0;
-	e->key.p == 1 ? ft_setpalette(e, e->palette.i) : 0;
+	e->key.p == 1 ? ft_setpalette(e) : 0;
 	ft_exposehook(e);
 	return (1);
 }
