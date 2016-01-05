@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 21:29:30 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/04 19:09:30 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/05 09:37:27 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ void	ft_displaylines(t_env *e)
 		x = -1;
 		while (++x < e->gw)
 		{
-			e->pts[y][x].x += e->cam.move.x;
-			e->pts[y][x].y += e->cam.move.y;
-			e->pts[y][x].y -= e->pts[y][x].h * e->cam.alt;
+			e->pts[y][x].x = e->cam.x + (x - y) * e->cam.zoom;
+			e->pts[y][x].y = e->cam.y + (x + y) * e->cam.zoom / e->ir -
+					(e->pts[y][x].h * (e->cam.alt + 1) * e->cam.zoom / 4);
 			x > 0 ? ft_drawline(*e, e->pts[y][x], e->pts[y][x - 1]) : 0;
 			y > 0 ? ft_drawline(*e, e->pts[y][x], e->pts[y - 1][x]) : 0;
 		}
@@ -72,6 +72,7 @@ void	ft_initenv(t_env *e)
 	e->scw = 1300;
 	e->sch = 1300;
 	e->ir = 2;
+	e->cam.alt = 0;
 	e->key.w = 0;
 	e->key.s = 0;
 	e->key.a = 0;
@@ -79,6 +80,8 @@ void	ft_initenv(t_env *e)
 	e->key.i = 0;
 	e->key.k = 0;
 	e->key.p = 0;
+	e->key.kp = 0;
+	e->key.km = 0;
 	e->palette.i = 0;
 }
 

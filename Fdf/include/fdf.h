@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 15:28:05 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/04 18:21:03 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/05 09:11:26 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ typedef struct	s_key
 	int	i;
 	int	k;
 	int p;
+	int kp;
+	int km;
 }				t_key;
 
 typedef struct	s_cam
