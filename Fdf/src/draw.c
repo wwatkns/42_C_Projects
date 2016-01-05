@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/04 11:56:57 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/05 15:59:30 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/05 17:27:36 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,30 +56,31 @@ void	ft_imgpixelput(t_env *e, int x, int y, int color)
 
 int		ft_getcolor(t_env e, t_point p, t_point p1)
 {
-	int q1;
-	int	q2;
-	int q3;
-	int q4;
+	int	i;
+	int	*q;
 
-	q1 = e.minh + e.palette.step;
-	q2 = q1 + e.palette.step;
-	q3 = q2 + e.palette.step;
-	q4 = q3 + e.palette.step;
-	if ((p.h + p1.h) / 2 >= q4)
-		return (e.palette.c5);
-	if ((p.h + p1.h) / 2 >= q3)
-		return (e.palette.c4);
-	if ((p.h + p1.h) / 2 >= q2)
-		return (e.palette.c3);
-	if ((p.h + p1.h) / 2 >= q1)
-		return (e.palette.c2);
-	return (e.palette.c1);
+	i = 2;
+	q = (int*)malloc(sizeof(int) * e.palette.cn + 1);
+	q[0] = 0;
+	q[1] = e.minh + e.palette.step;
+	while (i <= e.palette.cn)
+	{
+		q[i] = q[i - 1] + e.palette.step;
+		i++;
+	}
+	i = e.palette.cn;
+	while (i > 0)
+	{
+		if ((p.h + p1.h) / 2 >= q[i])
+			return (e.palette.c[i]);
+		i--;
+	}
+	return (e.palette.c[0]);
 }
 
 void	ft_setpalette(t_env *e)
 {
 	int		i;
-	int		n;
 	int		fd;
 	char	*line;
 
@@ -87,18 +88,16 @@ void	ft_setpalette(t_env *e)
 	i = 0;
 	fd = open(e->av, O_RDONLY);
 	get_next_line(fd, &line);
-	n = ft_atoi(line) - 1;
-	while (i < e->palette.i * 6 && get_next_line(fd, &line))
+	e->palette.pn = ft_atoi(line) - 1;
+	get_next_line(fd, &line);
+	e->palette.cn = ft_atoi(line) - 1;
+	e->palette.c = (int*)malloc(sizeof(int) * e->palette.cn + 1);
+	e->palette.step = (e->maxh - e->minh) / (e->palette.cn);
+	printf("step: %f, cn: %d\n", e->palette.step, e->palette.cn);
+	while (i < e->palette.i * (e->palette.cn + 2) && get_next_line(fd, &line))
 		i++;
-	e->palette.i = e->palette.i < n ? e->palette.i + 1 : 0;
-	get_next_line(fd, &line);
-	e->palette.c1 = ft_strhextoi(line);
-	get_next_line(fd, &line);
-	e->palette.c2 = ft_strhextoi(line);
-	get_next_line(fd, &line);
-	e->palette.c3 = ft_strhextoi(line);
-	get_next_line(fd, &line);
-	e->palette.c4 = ft_strhextoi(line);
-	get_next_line(fd, &line);
-	e->palette.c5 = ft_strhextoi(line);
+	e->palette.i = e->palette.i < e->palette.pn ? e->palette.i + 1 : 0;
+	i = -1;
+	while (++i <= e->palette.cn && get_next_line(fd, &line))
+		e->palette.c[i] = ft_strhextoi(line);
 }

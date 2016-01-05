@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 21:29:30 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/05 15:55:37 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/05 16:33:25 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ void	ft_initenv(t_env *e)
 	e->key.kp = 0;
 	e->key.km = 0;
 	e->palette.i = 0;
-	e->palette.step = (e->maxh - e->minh) / 4;
 }
 
 void	ft_core(t_env *e, int **tab)

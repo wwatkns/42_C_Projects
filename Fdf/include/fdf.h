@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 15:28:05 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/05 15:40:55 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/05 16:44:37 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,9 @@ typedef struct	s_cam
 
 typedef struct	s_palette
 {
-	int		c1;
-	int		c2;
-	int		c3;
-	int		c4;
-	int		c5;
+	int		*c;
+	int		pn;
+	int		cn;
 	int		i;
 	float	step;
 }				t_palette;
