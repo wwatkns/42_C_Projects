@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 15:28:05 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/05 12:18:49 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/05 13:08:21 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 
 # include <stdio.h> // TEMPORARY
 
-# define BUFFSIZE 10
 # define ABS(x) (x < 0 ? -x : x)
 
 typedef struct	s_point
