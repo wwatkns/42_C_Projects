@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/04 11:56:57 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/05 15:14:29 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/05 15:59:30 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,17 +79,18 @@ int		ft_getcolor(t_env e, t_point p, t_point p1)
 void	ft_setpalette(t_env *e)
 {
 	int		i;
+	int		n;
 	int		fd;
 	char	*line;
 
 	e->key.p = 0;
-	e->palette.i = e->palette.i < 4 ? e->palette.i + 1 : 0;
-	e->palette.step = (float)ABS((e->minh - e->maxh)) / 4.5f;
-
 	i = 0;
-	fd = open(e->avfile, O_RDONLY);
-	while (++i <= e->palette.i * 6)
-		get_next_line(fd, &line);
+	fd = open(e->av, O_RDONLY);
+	get_next_line(fd, &line);
+	n = ft_atoi(line) - 1;
+	while (i < e->palette.i * 6 && get_next_line(fd, &line))
+		i++;
+	e->palette.i = e->palette.i < n ? e->palette.i + 1 : 0;
 	get_next_line(fd, &line);
 	e->palette.c1 = ft_strhextoi(line);
 	get_next_line(fd, &line);

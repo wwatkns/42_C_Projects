@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 15:28:05 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/05 15:08:19 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/05 15:40:55 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ typedef struct	s_env
 	t_palette	palette;
 	void		*mlx;
 	void		*win;
-	char		*avfile;
+	char		*av;
 	int			gw;
 	int			gh;
 	int			scw;

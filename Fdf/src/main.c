@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 15:27:53 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/05 15:13:07 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/05 16:05:59 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ int		main(int argc, char **argv)
 	t_env	e;
 	int		**tab;
 
-	ft_error(!(argc < 2));
-	e.avfile = argv[2];
+	ft_error(!(argc != 2 && argc != 3));
+	e.av = (argc == 3 ? argv[2] : ft_strdup("palette/default.fdfcolor"));
 	tab = ft_parse(&e, argv[1]);
 	ft_core(&e, tab);
 	free(tab);
