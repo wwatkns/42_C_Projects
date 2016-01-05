@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read.c                                             :+:      :+:    :+:   */
+/*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/21 16:11:00 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/04 20:05:14 by wwatkins         ###   ########.fr       */
+/*   Created: 2016/01/05 11:41:32 by wwatkins          #+#    #+#             */
+/*   Updated: 2016/01/05 12:28:04 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int		**ft_read(t_env *e, const char *argv)
+int		**ft_parse(t_env *e, const char *argv)
 {
 	int		fd;
 	char	*line;
@@ -39,24 +39,16 @@ int		**ft_read(t_env *e, const char *argv)
 void	ft_getgridsize(t_env *e, const char *argv)
 {
 	int		fd;
-	int		ret;
-	char	*buf;
 	char	*line;
 
-	ft_error((fd = open(argv, O_RDONLY)));
-	ft_error((int)(buf = ft_strnew(BUFFSIZE)));
-	ft_error(!(get_next_line(fd, &line) == -1));
 	e->gh = 0;
-	e->gw = ft_wordcount(line, ' ');
-	while ((ret = read(fd, buf, BUFFSIZE)) > 0)
+	ft_error((fd = open(argv, O_RDONLY)));
+	while (get_next_line(fd, &line))
 	{
-		buf[ret] = 0;
-		ft_strchr(buf, '\n') ? e->gh++ : 0;
+		e->gw = ft_wordcount(line, ' ');
+		e->gh++;
 	}
-	ft_error(!(ret == -1));
-	e->gh++;
 	printf("(%d, %d)\n", e->gw, e->gh);
-	free(buf);
 	free(line);
 }
 

@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 15:28:05 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/05 09:11:26 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/05 12:18:49 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 # include <stdio.h> // TEMPORARY
 
-# define BUFFSIZE 32
+# define BUFFSIZE 10
 # define ABS(x) (x < 0 ? -x : x)
 
 typedef struct	s_point
@@ -94,12 +94,12 @@ typedef struct	s_env
 }				t_env;
 
 /*
-**	read.c functions
+**	parse.c functions
 */
 
-int				**ft_read(t_env *e, const char *argv);
-void			ft_tabassign(t_env *e, int **tab, const char *line, int j);
+int				**ft_parse(t_env *e, const char *argv);
 void			ft_getgridsize(t_env *e, const char *argv);
+void			ft_tabassign(t_env *e, int **tab, const char *line, int j);
 void			ft_maperror(const char *line);
 void			ft_error(int err);
 
