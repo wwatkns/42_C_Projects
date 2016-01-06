@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 21:29:30 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/06 11:25:48 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/06 12:42:28 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ void	ft_assigncoor(t_env *e, int **tab)
 	e->cam.x = (e->gh * e->ir + e->gw) * e->cam.zoom / 2 + diffx / 2;
 	e->cam.y = (e->gh + e->gw) * e->cam.zoom / 2 + diffy / 2;
 	y = -1;
-	ft_error((int)(e->pts = (t_point**)malloc(sizeof(t_point) * e->gh)));
+	ft_error((int)(e->pts = (t_point**)malloc(sizeof(t_point) * (e->gh + 1))));
 	while (++y < e->gh)
 	{
 		x = -1;
-		ft_error((int)(e->pts[y] = (t_point*)malloc(sizeof(t_point) * e->gw)));
+		ft_error((int)(e->pts[y] = (t_point*)malloc(sizeof(t_point) * (e->gw + 1))));
 		while (++x < e->gw)
 		{
 			e->pts[y][x].x = e->cam.x + (x - y) * e->cam.zoom;

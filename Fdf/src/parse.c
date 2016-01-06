@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/05 11:41:32 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/06 10:06:19 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/06 12:55:36 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,15 @@ int		**ft_parse(t_env *e)
 	int		j;
 
 	j = 0;
-	line = ft_strnew(1);
+	line = ft_strnew(4096);
 	ft_getgridsize(e);
 	ft_error((fd = open(e->arg.map, O_RDWR)));
-	ft_error((int)(tab = (int**)malloc(sizeof(int*) * e->gh + 1)));
+	ft_error((int)(tab = (int**)malloc(sizeof(int*) * (e->gh + 1))));
 	e->minh = 0;
 	e->maxh = 0;
 	while (get_next_line(fd, &line))
 	{
+		ft_maperror(line);
 		ft_tabassign(e, tab, line, j);
 		free(line);
 		j++;
@@ -54,41 +55,34 @@ void	ft_getgridsize(t_env *e)
 
 void	ft_tabassign(t_env *e, int **tab, const char *line, int j)
 {
-	int i;
-	int x;
+	int		i;
+	int		x;
+	char	**split;
 
 	i = 0;
 	x = 0;
-	ft_error((int)(tab[j] = (int*)malloc(sizeof(int) * e->gw + 1)));
-	while (x < e->gw)
+	ft_error((int)(tab[j] = (int*)malloc(sizeof(int) * (e->gw + 1))));
+	split = ft_strsplit(line, ' ');
+	while (split[i] != NULL)
 	{
-		if (ft_isdigit(line[i]) || line[i] == '-')
-		{
-			tab[j][x] = ft_atoi(&line[i]);
-			e->minh = (tab[j][x] < e->minh ? tab[j][x] : e->minh);
-			e->maxh = (tab[j][x] > e->maxh ? tab[j][x] : e->maxh);
-			while (line[i] != ' ')
-				i++;
-			x++;
-		}
+		tab[j][i] = ft_atoi(split[i]);
+		e->minh = (tab[j][i] < e->minh ? tab[j][i] : e->minh);
+		e->maxh = (tab[j][i] > e->maxh ? tab[j][i] : e->maxh);
 		i++;
 	}
 }
 
 void	ft_maperror(const char *line)
 {
-	int			n;
-	static int	t = 0;
+	int			i;
 
-	n = 0;
-	while (line[n] != '\0')
+	i = 0;
+	while (line[i] != '\0')
 	{
-		ft_error((ft_isdigit(line[n]) || line[n] == ' ' || line[n] == '-'));
-		ft_error(!(line[n + 1] != 0 && line[n] == '-' && line[n + 1] == '0'));
-		n++;
+		ft_error((ft_isalnum(line[i]) || line[i] == ' ' ||
+					line[i] == ',') || line[i] == '-');
+		i++;
 	}
-	ft_error(!(t != 0 && n != t));
-	t = n;
 }
 
 void	ft_error(int err)
