@@ -6,36 +6,50 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/27 15:42:23 by wwatkins          #+#    #+#             */
-/*   Updated: 2015/11/30 15:39:24 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/06 13:21:36 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char		**ft_strsplit(char const *s, char c)
+static int	ft_wcount(char const *s, char c)
 {
-	int		i;
-	int		j;
-	int		k;
-	char	**tab;
+	size_t		wc;
 
-	i = 0;
-	k = 0;
-	if (!(tab = (char**)malloc(sizeof(char*) * ft_wordcount(s, c))))
-		return (NULL);
-	while (s[i] == c)
-		i++;
-	while (s[i] != 0)
+	while (*s && *s == c)
+		s++;
+	wc = (*s ? 1 : 0);
+	while (*s)
 	{
-		if ((s[i] != c && s[i - 1] == c) || (s[i] != c && i == 0))
-		{
-			j = 0;
-			while (s[i + j] != c && s[i + j] != 0)
-				j++;
-			tab[k++] = ft_strsub(s, i, j);
-		}
-		i++;
+		if (*s == c && s[1] && s[1] != c)
+			wc++;
+		s++;
 	}
-	tab[k] = 0;
-	return (tab);
+	return (wc);
+}
+
+char			**ft_strsplit(char const *s, char c)
+{
+	size_t		wc;
+	char		*start;
+	char		**tab;
+
+	wc = ft_wcount((char *)s, c);
+	if(!(tab = (char **)malloc(sizeof(char *) * (wc + 1))))
+		return (NULL);
+	start = (char *)s;
+	while (*s)
+	{
+		if (*s == c)
+		{
+			if (start != s)
+				*(tab++) = ft_strsub(start, 0, s - start);
+			start = (char *)s + 1;
+		}
+		s++;
+	}
+	if (start != s)
+		*(tab++) = ft_strsub(start, 0, s - start);
+	*tab = NULL;
+	return (tab - wc);
 }
