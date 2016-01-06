@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 15:28:05 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/05 16:44:37 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/06 10:31:08 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,14 @@ typedef struct	s_img
 	int		sl;
 }				t_img;
 
+typedef struct	s_arg
+{
+	char	*map;
+	char	*pal;
+	int		w;
+	int		h;
+}				t_arg;
+
 typedef struct	s_env
 {
 	t_point		**pts;
@@ -79,9 +87,9 @@ typedef struct	s_env
 	t_cam		cam;
 	t_img		img;
 	t_palette	palette;
+	t_arg		arg;
 	void		*mlx;
 	void		*win;
-	char		*av;
 	int			gw;
 	int			gh;
 	int			scw;
@@ -92,11 +100,18 @@ typedef struct	s_env
 }				t_env;
 
 /*
+**	main.c functions
+*/
+
+void			ft_getargs(t_env *e, int argc, char **argv);
+void			ft_cleanall(t_env *e, int **tab);
+
+/*
 **	parse.c functions
 */
 
-int				**ft_parse(t_env *e, const char *argv);
-void			ft_getgridsize(t_env *e, const char *argv);
+int				**ft_parse(t_env *e);
+void			ft_getgridsize(t_env *e);
 void			ft_tabassign(t_env *e, int **tab, const char *line, int j);
 void			ft_maperror(const char *line);
 void			ft_error(int err);

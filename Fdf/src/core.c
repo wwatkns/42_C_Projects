@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 21:29:30 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/05 16:33:25 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/06 10:25:57 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ void	ft_initimg(t_env *e)
 
 void	ft_initenv(t_env *e)
 {
-	e->scw = 1300;
-	e->sch = 1300;
+	e->scw = e->arg.w;
+	e->sch = e->arg.h;
 	e->ir = 2;
 	e->cam.alt = 0;
 	e->key.w = 0;
@@ -94,7 +94,8 @@ void	ft_core(t_env *e, int **tab)
 	ft_initenv(e);
 	ft_setpalette(e);
 	ft_error((int)(e->mlx = mlx_init()));
-	ft_error((int)(e->win = mlx_new_window(e->mlx, e->scw, e->sch, "Fdf")));
+	ft_error((int)(e->win = mlx_new_window(e->mlx, e->scw, e->sch,
+					e->arg.map)));
 	ft_initimg(e);
 	ft_assigncoor(e, tab);
 	mlx_hook(e->win, 2, (1L << 0), ft_keyhook_pressed, e);

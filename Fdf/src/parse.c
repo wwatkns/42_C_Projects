@@ -6,13 +6,13 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/05 11:41:32 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/05 13:12:16 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/06 10:06:19 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int		**ft_parse(t_env *e, const char *argv)
+int		**ft_parse(t_env *e)
 {
 	int		fd;
 	char	*line;
@@ -21,8 +21,8 @@ int		**ft_parse(t_env *e, const char *argv)
 
 	j = 0;
 	line = ft_strnew(1);
-	ft_getgridsize(e, argv);
-	ft_error((fd = open(argv, O_RDONLY)));
+	ft_getgridsize(e);
+	ft_error((fd = open(e->arg.map, O_RDWR)));
 	ft_error((int)(tab = (int**)malloc(sizeof(int*) * e->gh + 1)));
 	e->minh = 0;
 	e->maxh = 0;
@@ -36,13 +36,13 @@ int		**ft_parse(t_env *e, const char *argv)
 	return (tab);
 }
 
-void	ft_getgridsize(t_env *e, const char *argv)
+void	ft_getgridsize(t_env *e)
 {
 	int		fd;
 	char	*line;
 
 	e->gh = 0;
-	ft_error((fd = open(argv, O_RDONLY)));
+	ft_error((fd = open(e->arg.map, O_RDWR)));
 	get_next_line(fd, &line);
 	e->gw = ft_wordcount(line, ' ');
 	e->gh++;
