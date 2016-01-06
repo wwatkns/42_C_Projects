@@ -6,13 +6,13 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/04 11:56:57 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/06 15:49:24 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/06 19:31:29 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	ft_drawline(t_env e, t_point p, t_point p1)
+void	ft_drawline(t_env *e, t_point p, t_point p1)
 {
 	t_point	d;
 	t_point	s;
@@ -26,7 +26,7 @@ void	ft_drawline(t_env e, t_point p, t_point p1)
 	err = d.x - d.y;
 	while (p.x != p1.x || p.y != p1.y)
 	{
-		ft_imgpixelput(&e, p.x, p.y, ft_getcolor(e, p, p1));
+		ft_imgpixelput(e, p.x, p.y, ft_getcolor(e, p, p1));
 		e2 = 2 * err;
 		if (e2 > -d.y)
 		{
@@ -54,25 +54,26 @@ void	ft_imgpixelput(t_env *e, int x, int y, int color)
 	}
 }
 
-int		ft_getcolor(t_env e, t_point p, t_point p1)
+int		ft_getcolor(t_env *e, t_point p, t_point p1)
 {
 	int	i;
 	int	*q;
 
 	i = 1;
-	q = (int*)malloc(sizeof(int) * e.palette.cn + 1);
-	q[0] = e.minh;
-	q[1] = e.minh + e.palette.step;
-	while (++i <= e.palette.cn)
-		q[i] = q[i - 1] + e.palette.step;
-	i = e.palette.cn;
+	q = (int*)malloc(sizeof(int) * e->palette.cn + 1);
+	q[0] = e->minh;
+	q[1] = e->minh + e->palette.step;
+	while (++i <= e->palette.cn)
+		q[i] = q[i - 1] + e->palette.step;
+	i = e->palette.cn;
 	while (i > 0)
 	{
 		if ((p.h + p1.h) / 2 > q[i - 1])
-			return (e.palette.c[i]);
+			return (e->palette.c[i]);
 		i--;
 	}
-	return (e.palette.c[0]);
+	free(q);
+	return (e->palette.c[0]);
 }
 
 void	ft_setpalette(t_env *e)
@@ -97,4 +98,5 @@ void	ft_setpalette(t_env *e)
 	while (++i < e->palette.cn + 1 && get_next_line(fd, &line))
 		e->palette.c[i] = ft_strhextoi(line);
 	free(line);
+	close(fd);
 }

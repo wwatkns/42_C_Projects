@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 15:27:53 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/06 11:42:09 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/06 19:31:12 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int		main(int argc, char **argv)
 	ft_getargs(&e, argc, argv);
 	tab = ft_parse(&e);
 	ft_core(&e, tab);
-	ft_cleanall(&e, tab);
+	ft_cleanall(&e);
 	return (0);
 }
 
@@ -61,19 +61,14 @@ void	ft_helparg(void)
 	exit(0);
 }
 
-void	ft_cleanall(t_env *e, int **tab)
+void	ft_cleanall(t_env *e)
 {
-	int	i;
+	int i;
 
-	i = 0;
-	while (i < e->gw)
-	{
+	i = -1;
+	while (++i < e->gw)
 		free(e->pts[i]);
-		free(tab[i]);
-		i++;
-	}
 	free(e->pts);
-	free(tab);
 	free(e->arg.map);
 	free(e->arg.pal);
 	free(e->img.adr);

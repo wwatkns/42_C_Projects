@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 15:28:05 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/06 14:44:26 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/06 20:03:30 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ typedef struct	s_env
 
 void			ft_getargs(t_env *e, int argc, char **argv);
 void			ft_helparg(void);
-void			ft_cleanall(t_env *e, int **tab);
+void			ft_cleanall(t_env *e);
 
 /*
 **	parse.c functions
@@ -133,9 +133,9 @@ void			ft_displaylines(t_env *e);
 **	draw.c functions
 */
 
-void			ft_drawline(t_env e, t_point p, t_point p1);
+void			ft_drawline(t_env *e, t_point p, t_point p1);
 void			ft_imgpixelput(t_env *e, int x, int y, int color);
-int				ft_getcolor(t_env e, t_point p, t_point p1);
+int				ft_getcolor(t_env *e, t_point p, t_point p1);
 void			ft_setpalette(t_env *e);
 
 /*

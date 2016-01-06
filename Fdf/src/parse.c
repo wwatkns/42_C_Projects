@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/05 11:41:32 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/06 13:19:52 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/06 19:12:07 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int		**ft_parse(t_env *e)
 	int		j;
 
 	j = 0;
-	line = ft_strnew(4096);
+	line = ft_strnew(1);
 	ft_getgridsize(e);
 	ft_error((fd = open(e->arg.map, O_RDWR)));
 	ft_error((int)(tab = (int**)malloc(sizeof(int*) * (e->gh + 1))));

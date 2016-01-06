@@ -6,7 +6,7 @@
 #    By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/22 19:20:08 by wwatkins          #+#    #+#              #
-#    Updated: 2016/01/05 11:41:19 by wwatkins         ###   ########.fr        #
+#    Updated: 2016/01/06 20:07:59 by wwatkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ LIB_PATH = ./libft
 
 NAME = fdf
 CC = gcc
-CFLGS = -Werror -Wextra -Wall
+CFLGS = -Werror -Wextra -Wall -o3
 MLXFLGS = -L/usr/local/lib/ -I/usr/local/include -lmlx \
 		  -framework OpenGL -framework AppKit
 
