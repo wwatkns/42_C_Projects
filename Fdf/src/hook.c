@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/23 11:54:21 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/06 11:27:50 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/06 14:46:06 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int		ft_keyhook_pressed(int keycode, t_env *e)
 	keycode == 35 ? e->key.p = 1 : 0;
 	keycode == 69 ? e->key.kp = 1 : 0;
 	keycode == 78 ? e->key.km = 1 : 0;
+	keycode == 116 ? e->key.pu = 1 : 0;
+	keycode == 121 ? e->key.pd = 1 : 0;
 	printf("%d\n", keycode);
 	return (1);
 }
@@ -39,6 +41,8 @@ int		ft_keyhook_release(int keycode, t_env *e)
 	keycode == 35 ? e->key.p = 0 : 0;
 	keycode == 69 ? e->key.kp = 0 : 0;
 	keycode == 78 ? e->key.km = 0 : 0;
+	keycode == 116 ? e->key.pu = 0 : 0;
+	keycode == 121 ? e->key.pd = 0 : 0;
 	return (1);
 }
 
@@ -54,6 +58,7 @@ int		ft_loophook(t_env *e)
 	e->cam.zoom += (-e->key.km + e->key.kp);
 	e->cam.zoom < 1 ? e->cam.zoom = 1 : 0;
 	e->key.p == 1 ? ft_setpalette(e) : 0;
+	e->palette.step += (-e->key.pd + e->key.pu);
 	ft_exposehook(e);
 	return (1);
 }

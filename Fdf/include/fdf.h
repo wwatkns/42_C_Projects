@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 15:28:05 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/06 10:41:16 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/06 14:44:26 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ typedef struct	s_key
 	int	i;
 	int	k;
 	int p;
+	int	pu;
+	int pd;
 	int kp;
 	int km;
 }				t_key;

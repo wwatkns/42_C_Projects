@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 21:29:30 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/06 12:42:28 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/06 14:46:24 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,8 @@ void	ft_initenv(t_env *e)
 	e->key.p = 0;
 	e->key.kp = 0;
 	e->key.km = 0;
+	e->key.pu = 0;
+	e->key.pd = 0;
 	e->palette.i = 0;
 }
 
