@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/23 11:54:21 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/06 14:46:06 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/06 15:48:30 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,15 @@ int		ft_exposehook(t_env *e)
 
 int		ft_debugmessage(t_env *e)
 {
-	mlx_string_put(e->mlx, e->win, 10, 2, 0xFFFFBF,
-			"[arrows]: move camera.");
-	mlx_string_put(e->mlx, e->win, 10, 20, 0xFFFFBF,
-			"[p]     : change palette.");
-	mlx_string_put(e->mlx, e->win, 10, 38, 0xFFFFBF,
-			"[i, k]  : modify altitude.");
-	mlx_string_put(e->mlx, e->win, 10, 56, 0xFFFFBF,
-			"[+, -]  : modify zoom.");
+	mlx_string_put(e->mlx, e->win, 10, 2, 0xFFFFDF,
+			"[pgup, pgdwn]: move color altitude");
+	mlx_string_put(e->mlx, e->win, 10, 20, 0xFFFFDF,
+			"     [arrows]: move camera");
+	mlx_string_put(e->mlx, e->win, 10, 38, 0xFFFFDF,
+			"       [i, k]: change altitude");
+	mlx_string_put(e->mlx, e->win, 10, 56, 0xFFFFDF,
+			"       [+, -]: change zoom");
+	mlx_string_put(e->mlx, e->win, 10, 74, 0xFFFFDF,
+			"          [p]: change palette");
 	return (1);
 }
