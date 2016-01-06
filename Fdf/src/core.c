@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 21:29:30 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/06 10:25:57 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/06 11:25:48 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,9 @@ void	ft_displaylines(t_env *e)
 				e->key.i || e->key.k || e->key.kp || e->key.km)
 			{
 				e->pts[y][x].x = e->cam.x + (x - y) * e->cam.zoom;
-				e->pts[y][x].y = e->cam.y + (x + y) * e->cam.zoom / e->ir -
-					(e->pts[y][x].h * (e->cam.alt + 1) * e->cam.zoom / 4);
+				e->pts[y][x].y = e->cam.y + (x + y) * e->cam.zoom / e->ir;
+				e->pts[y][x].y -= e->pts[y][x].h * (e->cam.alt + 1) *
+								e->cam.zoom / 4;
 			}
 			x > 0 ? ft_drawline(*e, e->pts[y][x], e->pts[y][x - 1]) : 0;
 			y > 0 ? ft_drawline(*e, e->pts[y][x], e->pts[y - 1][x]) : 0;

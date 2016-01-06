@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 15:28:05 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/06 10:31:08 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/06 10:41:16 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ typedef struct	s_env
 */
 
 void			ft_getargs(t_env *e, int argc, char **argv);
+void			ft_helparg(void);
 void			ft_cleanall(t_env *e, int **tab);
 
 /*
