@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 15:27:53 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/06 11:17:10 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/06 11:42:09 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ void	ft_getargs(t_env *e, int argc, char **argv)
 			ft_helparg();
 		i++;
 	}
-	e->arg.w = (e->arg.w <= 0 || e->arg.w > 2560 ? 1200 : e->arg.w);
-	e->arg.h = (e->arg.h <= 0 || e->arg.h > 1440 ? 1200 : e->arg.h);
+	e->arg.w = (e->arg.w < 420 || e->arg.w > 2560 ? 1200 : e->arg.w);
+	e->arg.h = (e->arg.h < 420 || e->arg.h > 1440 ? 1200 : e->arg.h);
 	e->arg.pal == NULL ? e->arg.pal = ft_strdup("palette/default.fdfcolor") : 0;
 }
 
