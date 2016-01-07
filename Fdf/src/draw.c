@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/04 11:56:57 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/06 19:31:29 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/07 10:29:12 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,9 @@ void	ft_setpalette(t_env *e)
 	e->key.p = 0;
 	i = 0;
 	ft_error((fd = open(e->arg.pal, O_RDWR)));
-	get_next_line(fd, &line);
+	ft_error((get_next_line(fd, &line)));
 	e->palette.pn = ft_atoi(line) - 1;
-	get_next_line(fd, &line);
+	ft_error((get_next_line(fd, &line)));
 	e->palette.cn = ft_atoi(line) - 1;
 	e->palette.c = (int*)malloc(sizeof(int) * e->palette.cn + 1);
 	e->palette.step = (float)(e->maxh - e->minh) / (float)(e->palette.cn + 1);

@@ -6,7 +6,7 @@
 #    By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/22 19:20:08 by wwatkins          #+#    #+#              #
-#    Updated: 2016/01/07 09:38:02 by wwatkins         ###   ########.fr        #
+#    Updated: 2016/01/07 10:14:00 by wwatkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ MLX_PATH = ./minilibx_macos
 
 NAME = fdf
 CC = gcc
-CFLGS = -Werror -Wextra -Wall -o3
+CFLGS = -Werror -Wextra -Wall -o2
 MLXFLGS = -L$(MLX_PATH) -I$(MLX_PATH) -lmlx \
 		  -framework OpenGL -framework AppKit
 
