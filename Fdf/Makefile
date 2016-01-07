@@ -6,7 +6,7 @@
 #    By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/22 19:20:08 by wwatkins          #+#    #+#              #
-#    Updated: 2016/01/07 10:14:00 by wwatkins         ###   ########.fr        #
+#    Updated: 2016/01/07 10:41:02 by wwatkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,5 +63,5 @@ fclean: clean fcleanlib
 re: fclean all
 
 norme:
+	make -C $(LIB_PATH) norme
 	norminette $(SRC)
-	norminette $(INC_PATH)*.h

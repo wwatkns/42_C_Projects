@@ -6,7 +6,7 @@
 #    By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/15 09:15:55 by wwatkins          #+#    #+#              #
-#    Updated: 2016/01/05 14:48:58 by wwatkins         ###   ########.fr        #
+#    Updated: 2016/01/07 10:41:56 by wwatkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,9 @@ $(NAME): $(OBJ)
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@mkdir $(OBJ_PATH) 2>/dev/null || echo "" > /dev/null
 	$(CC) $(CFLAGS) $(LIB) $(INC) -o $@ -c $<
-	@echo "\033[A\033[K\033[A"
+
+norme:
+	norminette $(SRC) $(INC_PATH)libft.h
 
 clean:
 	rm -f $(OBJ)

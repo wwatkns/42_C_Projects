@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 15:28:05 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/07 09:56:19 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/07 10:34:04 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <mlx.h>
-
-# include <stdio.h> // TEMPORARY
 
 # define ABS(x) (x < 0 ? -x : x)
 
@@ -137,8 +135,8 @@ int				ft_getcolor(t_env *e, t_point p, t_point p1);
 void			ft_setpalette(t_env *e);
 
 /*
- **	hook.c functions
- */
+**	hook.c functions
+*/
 
 int				ft_keyhook_pressed(int keycode, t_env *e);
 int				ft_keyhook_release(int keycode, t_env *e);
