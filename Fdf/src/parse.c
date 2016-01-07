@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/05 11:41:32 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/06 19:12:07 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/07 10:04:34 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	ft_getgridsize(t_env *e)
 	e->gh++;
 	while (get_next_line(fd, &line))
 		e->gh++;
-	printf("(%d, %d)\n", e->gw, e->gh);
 	free(line);
 }
 
