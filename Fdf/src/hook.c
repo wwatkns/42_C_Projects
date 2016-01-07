@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/23 11:54:21 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/07 11:54:59 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/07 13:32:56 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ int		ft_keyhook_pressed(int keycode, t_env *e)
 	keycode == 78 ? e->key.km = 1 : 0;
 	keycode == 116 ? e->key.pu = 1 : 0;
 	keycode == 121 ? e->key.pd = 1 : 0;
-	ft_putnbr(keycode);
-	ft_putchar('\n');
 	return (0);
 }
 
