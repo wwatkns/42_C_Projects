@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 21:29:30 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/07 11:16:55 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/07 12:07:54 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ void	ft_core(t_env *e, int **tab)
 {
 	ft_initenv(e);
 	ft_setpalette(e);
+	e->palette.step = (float)(e->maxh - e->minh) / (float)(e->palette.cn + 1);
 	ft_error((int)(e->mlx = mlx_init()));
 	ft_error((int)(e->win = mlx_new_window(e->mlx, e->scw, e->sch,
 					e->arg.map)));
