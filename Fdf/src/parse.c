@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/05 11:41:32 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/07 10:04:34 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/07 11:45:37 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int		**ft_parse(t_env *e)
 		free(line);
 		j++;
 	}
+	ft_error((j));
 	ft_error((close(fd) + 1));
 	return (tab);
 }
