@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/04 11:56:57 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/07 10:29:12 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/07 11:14:57 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int		ft_getcolor(t_env *e, t_point p, t_point p1)
 	i = e->palette.cn;
 	while (i > 0)
 	{
-		if ((p.h + p1.h) / 2 > q[i - 1])
+		if ((float)(p.h + p1.h) / 2.0f >= q[i - 1])
 			return (e->palette.c[i]);
 		i--;
 	}
@@ -98,5 +98,4 @@ void	ft_setpalette(t_env *e)
 	while (++i < e->palette.cn + 1 && get_next_line(fd, &line))
 		e->palette.c[i] = ft_strhextoi(line);
 	free(line);
-	close(fd);
 }
