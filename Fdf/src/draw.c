@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/04 11:56:57 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/08 13:53:23 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/08 14:11:23 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,10 @@ void	ft_drawline(t_env *e, t_point p, t_point p1)
 	{
 		ft_imgpixelput(e, p.x, p.y, ft_getcolor(e, p, p1));
 		e2 = 2 * err;
-		if (e2 > -d.y)
-		{
-			err -= d.y;
-			p.x += s.x;
-		}
-		if (e2 < d.x)
-		{
-			err += d.x;
-			p.y += s.y;
-		}
+		e2 > -d.y ? err -= d.y : 0;
+		e2 > -d.y ? p.x += s.x : 0;
+		e2 < d.x ? err += d.x : 0;
+		e2 < d.x ? p.y += s.y : 0;
 	}
 }
 
@@ -62,7 +56,7 @@ int		ft_setindex(t_env *e, t_point p, t_point p1)
 
 	h = (float)(p.h + p1.h) / 2.0f;
 	i = (h / (e->maxh - e->minh)) * e->palette.cn + e->palette.step;
-	i > e->palette.cn + 1 ? i = e->palette.cn : 0;
+	i > e->palette.cn ? i = e->palette.cn : 0;
 	return (i > 0 ? i : 0);
 }
 
