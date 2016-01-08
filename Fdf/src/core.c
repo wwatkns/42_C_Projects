@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 21:29:30 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/07 12:07:54 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/08 12:13:05 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,13 +88,13 @@ void	ft_initenv(t_env *e)
 	e->cam.x = 0;
 	e->cam.y = 0;
 	e->palette.i = 0;
+	e->palette.step = 0;
 }
 
 void	ft_core(t_env *e, int **tab)
 {
 	ft_initenv(e);
 	ft_setpalette(e);
-	e->palette.step = (float)(e->maxh - e->minh) / (float)(e->palette.cn + 1);
 	ft_error((int)(e->mlx = mlx_init()));
 	ft_error((int)(e->win = mlx_new_window(e->mlx, e->scw, e->sch,
 					e->arg.map)));
@@ -103,7 +103,7 @@ void	ft_core(t_env *e, int **tab)
 	ft_displaylines(e);
 	mlx_hook(e->win, 2, (1L << 0), ft_keyhook_pressed, e);
 	mlx_hook(e->win, 3, (1L << 1), ft_keyhook_release, e);
-	mlx_loop_hook(e->mlx, ft_loophook, e);
 	mlx_expose_hook(e->win, ft_exposehook, e);
+	mlx_loop_hook(e->mlx, ft_loophook, e);
 	mlx_loop(e->mlx);
 }

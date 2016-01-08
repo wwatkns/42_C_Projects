@@ -6,7 +6,7 @@
 #    By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/22 19:20:08 by wwatkins          #+#    #+#              #
-#    Updated: 2016/01/07 10:41:02 by wwatkins         ###   ########.fr        #
+#    Updated: 2016/01/08 09:50:27 by wwatkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ $(NAME): $(OBJ)
 	make -C $(MLX_PATH) re
 	make -C $(LIB_PATH) re
 	$(CC) $(CFLGS) -L$(LIB_PATH) -lft $(SRC) $(INC) -o $(NAME) $(OBJ) $(MLXFLGS)
+	@ls | grep auteur && echo "auteur [OK]" || echo "auteur [KO]"
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@mkdir $(OBJ_PATH) 2>/dev/null || echo "" > /dev/null
@@ -65,3 +66,7 @@ re: fclean all
 norme:
 	make -C $(LIB_PATH) norme
 	norminette $(SRC)
+
+
+
+

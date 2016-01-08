@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/04 11:56:57 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/07 12:09:00 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/08 12:14:22 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,39 +41,42 @@ void	ft_drawline(t_env *e, t_point p, t_point p1)
 	}
 }
 
-void	ft_imgpixelput(t_env *e, int x, int y, int color)
+void	ft_imgpixelput(t_env *e, int x, int y, int *rgb)
 {
 	int	pos;
 
 	if (x >= 0 && x < e->scw && y >= 0 && y < e->sch)
 	{
 		pos = (x * e->img.bpp / 8) + (y * e->img.sl);
-		e->img.img[pos] = color % 256;
-		e->img.img[pos + 1] = (color >> 8) % 256;
-		e->img.img[pos + 2] = (color >> 16) % 256;
+		e->img.img[pos] = rgb[0];
+		e->img.img[pos + 1] = rgb[1];
+		e->img.img[pos + 2] = rgb[2];
 	}
+	ft_memdel((void**)&rgb);
 }
 
-int		ft_getcolor(t_env *e, t_point p, t_point p1)
+int		ft_setindex(t_env *e, t_point p, t_point p1)
 {
-	int	i;
-	int	*q;
+	float	h;
+	float	i;
 
-	i = 1;
-	q = (int*)malloc(sizeof(int) * e->palette.cn + 1);
-	q[0] = e->minh;
-	q[1] = e->minh + e->palette.step;
-	while (++i <= e->palette.cn)
-		q[i] = q[i - 1] + e->palette.step;
-	i = e->palette.cn;
-	while (i > 0)
-	{
-		if ((float)(p.h + p1.h) / 2.0f >= q[i - 1])
-			return (e->palette.c[i]);
-		i--;
-	}
-	free(q);
-	return (e->palette.c[0]);
+	h = (float)(p.h + p1.h) / 2.0f;
+	i = (h / (e->maxh - e->minh)) * e->palette.cn + e->palette.step;
+	i > e->palette.cn + 1 ? i = e->palette.cn : 0;
+	return (i > 0 ? i : 0);
+}
+
+int		*ft_getcolor(t_env *e, t_point p, t_point p1)
+{
+	int	n;
+	int	*rgb;
+
+	n = ft_setindex(e, p, p1);
+	rgb = (int*)malloc(sizeof(int) * 3);
+	rgb[0] = e->palette.c[n] % 256;
+	rgb[1] = (e->palette.c[n] >> 8) % 256;
+	rgb[2] = (e->palette.c[n] >> 16) % 256;
+	return (rgb);
 }
 
 void	ft_setpalette(t_env *e)
