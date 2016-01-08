@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 10:01:59 by wwatkins          #+#    #+#             */
-/*   Updated: 2015/12/21 15:14:16 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/08 16:09:18 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,22 @@
 
 # define ABS(x) (x < 0 ? -x : x)
 
+typedef struct	s_img
+{
+	void	*adr;
+	char	*img;
+	int		endian;
+	int		bpp;
+	int		sl;
+}				t_img;
+
 typedef struct	s_env
 {
-	void *mlx;
-	void *win;
+	t_img	img;
+	void	*mlx;
+	void	*win;
+	int		winw;
+	int		winh;
 }				t_env;
 
 typedef struct	s_point
@@ -84,5 +96,11 @@ int				ft_rgb2hex(t_color color);
 t_color			ft_hex2rgb(int c);
 t_color			ft_rgb(unsigned char r, unsigned char g, unsigned char b);
 int				ft_rgbcolor(unsigned char r, unsigned char g, unsigned char b);
+
+/*
+** Mlx added functions (mlx_functions.c)
+*/
+
+void			ft_img_pixel_put(t_env *e, int x, int y, int color);
 
 #endif
