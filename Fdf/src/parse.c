@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/05 11:41:32 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/07 11:45:37 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/08 13:51:53 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,10 @@ void	ft_tabassign(t_env *e, int **tab, const char *line, int j)
 		tab[j][i] = ft_atoi(split[i]);
 		e->minh = (tab[j][i] < e->minh ? tab[j][i] : e->minh);
 		e->maxh = (tab[j][i] > e->maxh ? tab[j][i] : e->maxh);
+		free(split[i]);
 		i++;
 	}
+	free(split);
 }
 
 void	ft_maperror(const char *line)

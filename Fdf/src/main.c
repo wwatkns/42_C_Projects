@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 15:27:53 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/07 10:16:58 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/08 13:47:06 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,13 @@ void	ft_cleanall(t_env *e)
 
 	i = -1;
 	while (++i < e->gw)
-		free(e->pts[i]);
-	free(e->pts);
-	free(e->arg.map);
-	free(e->arg.pal);
-	free(e->img.adr);
-	free(e->img.img);
-	free(e->mlx);
-	free(e->win);
-	free(e);
+		ft_memdel((void**)e->pts[i]);
+	ft_memdel((void**)e->pts);
+	ft_memdel((void**)e->arg.map);
+	ft_memdel((void**)e->arg.pal);
+	ft_memdel((void**)e->img.adr);
+	ft_memdel((void**)e->img.img);
+	ft_memdel((void**)e->mlx);
+	ft_memdel((void**)e->win);
+	ft_memdel((void**)e);
 }
