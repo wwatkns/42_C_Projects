@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 15:27:53 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/08 13:47:06 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/09 13:14:00 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,13 @@ void	ft_getargs(t_env *e, int argc, char **argv)
 	e->arg.w = (e->arg.w < 420 || e->arg.w > 2560 ? 1280 : e->arg.w);
 	e->arg.h = (e->arg.h < 420 || e->arg.h > 1440 ? 1000 : e->arg.h);
 	e->arg.pal == NULL ? e->arg.pal = ft_strdup("palette/default.fdfcolor") : 0;
+}
+
+void	ft_initimg(t_env *e)
+{
+	ft_error((int)(e->img.adr = mlx_new_image(e->mlx, e->scw, e->sch)));
+	e->img.img = mlx_get_data_addr(e->img.adr, &e->img.bpp,
+	&e->img.sl, &e->img.endian);
 }
 
 void	ft_helparg(void)

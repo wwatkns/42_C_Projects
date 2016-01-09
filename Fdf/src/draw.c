@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/04 11:56:57 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/08 14:11:23 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/09 13:36:09 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_drawline(t_env *e, t_point p, t_point p1)
 	while (p.x != p1.x || p.y != p1.y)
 	{
 		ft_imgpixelput(e, p.x, p.y, ft_getcolor(e, p, p1));
-		e2 = 2 * err;
+		e2 = err + err;
 		e2 > -d.y ? err -= d.y : 0;
 		e2 > -d.y ? p.x += s.x : 0;
 		e2 < d.x ? err += d.x : 0;

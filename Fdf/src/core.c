@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 21:29:30 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/08 13:59:09 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/09 13:20:58 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,18 +54,28 @@ void	ft_displaylines(t_env *e)
 			e->pts[y][x].x = e->cam.x + (x - y) * e->cam.zoom;
 			e->pts[y][x].y = e->cam.y + (x + y) * e->cam.zoom / e->ir;
 			e->pts[y][x].y -= e->pts[y][x].h * (e->cam.alt + 1) *
-							e->cam.zoom / 4;
-			x > 0 ? ft_drawline(e, e->pts[y][x], e->pts[y][x - 1]) : 0;
-			y > 0 ? ft_drawline(e, e->pts[y][x], e->pts[y - 1][x]) : 0;
+			e->cam.zoom / 4;
+			ft_drawmode(e, x, y);
 		}
 	}
 }
 
-void	ft_initimg(t_env *e)
+void	ft_drawmode(t_env *e, int x, int y)
 {
-	ft_error((int)(e->img.adr = mlx_new_image(e->mlx, e->scw, e->sch)));
-	e->img.img = mlx_get_data_addr(e->img.adr, &e->img.bpp,
-								&e->img.sl, &e->img.endian);
+	if (e->cam.mode == 0 || e->cam.mode == 1)
+	{
+		x > 0 ? ft_drawline(e, e->pts[y][x], e->pts[y][x - 1]) : 0;
+		y > 0 ? ft_drawline(e, e->pts[y][x], e->pts[y - 1][x]) : 0;
+	}
+	if ((e->cam.mode == 1) && x > 0 && y > 0)
+		ft_drawline(e, e->pts[y][x], e->pts[y - 1][x - 1]);
+	if ((e->cam.mode == 2 || e->cam.mode == 3) && x > 0 && y > 0)
+	{
+		ft_drawtriangle(e, e->pts[y - 1][x - 1], e->pts[y][x - 1],
+		e->pts[y][x]);
+		ft_drawtriangle(e, e->pts[y - 1][x - 1], e->pts[y - 1][x],
+		e->pts[y][x]);
+	}
 }
 
 void	ft_initenv(t_env *e)
@@ -87,6 +97,7 @@ void	ft_initenv(t_env *e)
 	e->key.pd = 0;
 	e->cam.x = 0;
 	e->cam.y = 0;
+	e->cam.mode = 0;
 	e->palette.i = 0;
 	e->palette.step = 0;
 }

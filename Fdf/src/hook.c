@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/23 11:54:21 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/08 13:58:58 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/09 13:27:07 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int		ft_keyhook_pressed(int keycode, t_env *e)
 	keycode == 34 ? e->key.i = 1 : 0;
 	keycode == 40 ? e->key.k = 1 : 0;
 	keycode == 35 ? e->key.p = 1 : 0;
+	keycode == 46 ? e->key.m = 1 : 0;
 	keycode == 69 ? e->key.kp = 1 : 0;
 	keycode == 78 ? e->key.km = 1 : 0;
 	keycode == 116 ? e->key.pu = 1 : 0;
@@ -38,6 +39,7 @@ int		ft_keyhook_release(int keycode, t_env *e)
 	keycode == 34 ? e->key.i = 0 : 0;
 	keycode == 40 ? e->key.k = 0 : 0;
 	keycode == 35 ? e->key.p = 0 : 0;
+	keycode == 46 ? e->key.m = 0 : 0;
 	keycode == 69 ? e->key.kp = 0 : 0;
 	keycode == 78 ? e->key.km = 0 : 0;
 	keycode == 116 ? e->key.pu = 0 : 0;
@@ -52,6 +54,14 @@ int		ft_loophook(t_env *e)
 	e->cam.alt += (e->key.i - e->key.k) * 0.1f;
 	e->cam.zoom += (e->key.kp - e->key.km) * 0.5f;
 	e->cam.zoom < 1 ? e->cam.zoom = 1 : 0;
+	if (e->key.m)
+	{
+		e->cam.mode++ > 2 ? e->cam.mode = 0 : 0;
+		e->key.m = 0;
+		mlx_destroy_image(e->mlx, e->img.adr);
+		ft_initimg(e);
+		ft_displaylines(e);
+	}
 	if (e->key.p)
 	{
 		ft_setpalette(e);
@@ -65,8 +75,8 @@ int		ft_loophook(t_env *e)
 int		ft_exposehook(t_env *e)
 {
 	mlx_clear_window(e->mlx, e->win);
-	if (e->key.i || e->key.k || e->key.p || e->key.kp || e->key.km ||
-		e->key.pu || e->key.pd || e->key.w || e->key.s || e->key.a || e->key.d)
+	if (e->key.i || e->key.k || e->key.kp || e->key.km || e->key.pu ||
+		e->key.pd || e->key.w || e->key.s || e->key.a || e->key.d)
 	{
 		mlx_destroy_image(e->mlx, e->img.adr);
 		ft_initimg(e);
@@ -89,5 +99,7 @@ int		ft_debugmessage(t_env *e)
 			"       [+, -]: change zoom");
 	mlx_string_put(e->mlx, e->win, 10, 74, 0xFFFFDF,
 			"          [p]: change palette");
+	mlx_string_put(e->mlx, e->win, 10, 92, 0xFFFFDF,
+			"          [m]: change fill method");
 	return (1);
 }

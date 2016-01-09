@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 15:28:05 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/08 13:36:44 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/09 13:36:53 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct	s_key
 	int	i;
 	int	k;
 	int p;
+	int m;
 	int	pu;
 	int pd;
 	int kp;
@@ -48,6 +49,7 @@ typedef struct	s_cam
 	int		x;
 	int		y;
 	int		speed;
+	int		mode;
 	float	alt;
 	float	zoom;
 }				t_cam;
@@ -102,6 +104,7 @@ typedef struct	s_env
 */
 
 void			ft_getargs(t_env *e, int argc, char **argv);
+void			ft_initimg(t_env *e);
 void			ft_helparg(void);
 void			ft_cleanall(t_env *e);
 
@@ -119,11 +122,11 @@ void			ft_error(int err);
 **	core.c functions
 */
 
-void			ft_core(t_env *e, int **tab);
-void			ft_initenv(t_env *e);
-void			ft_initimg(t_env *e);
 void			ft_assigncoor(t_env *e, int **tab);
 void			ft_displaylines(t_env *e);
+void			ft_drawmode(t_env *e, int x, int y);
+void			ft_initenv(t_env *e);
+void			ft_core(t_env *e, int **tab);
 
 /*
 **	draw.c functions
@@ -134,6 +137,13 @@ void			ft_imgpixelput(t_env *e, int x, int y, int *rgb);
 int				ft_setindex(t_env *e, t_point p, t_point p1);
 int				*ft_getcolor(t_env *e, t_point p, t_point p1);
 void			ft_setpalette(t_env *e);
+
+/*
+**	triangle.c functions
+*/
+
+void			ft_drawhorizontal(t_env *e, t_point p, t_point p1);
+void			ft_drawtriangle(t_env *e, t_point p, t_point p1, t_point p2);
 
 /*
 **	hook.c functions

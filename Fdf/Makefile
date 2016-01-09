@@ -6,7 +6,7 @@
 #    By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/22 19:20:08 by wwatkins          #+#    #+#              #
-#    Updated: 2016/01/08 13:34:07 by wwatkins         ###   ########.fr        #
+#    Updated: 2016/01/09 13:38:38 by wwatkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ CFLGS = -Werror -Wextra -Wall -o2
 MLXFLGS = -L$(MLX_PATH) -I$(MLX_PATH) -lmlx \
 		  -framework OpenGL -framework AppKit
 
-SRC_NAME  = main.c core.c draw.c parse.c hook.c
+SRC_NAME  = main.c core.c draw.c triangle.c parse.c hook.c
 OBJ_NAME = $(SRC_NAME.c=.o)
 LIB_NAME =  libft.a
 
@@ -65,7 +65,7 @@ re: fclean all
 
 norme:
 	make -C $(LIB_PATH) norme
-	norminette $(SRC)
+	norminette $(SRC) ./include/fdf.h
 
 
 
