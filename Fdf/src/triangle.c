@@ -23,12 +23,18 @@ void	ft_drawhorizontal(t_env *e, t_point p, t_point p1)
 
 void	ft_drawtriangle(t_env *e, t_point p, t_point p1, t_point p2)
 {
-	while (p.y < p1.y)
+	/*while (p.y < p1.y)
 	{
 		p.y++;
 		e->cam.mode == 2 ? ft_drawline(e, p, p1) : 0;
 		e->cam.mode == 3 ? ft_drawhorizontal(e, p, p1) : 0;
 	}
+	while (p.y < p2.y)
+	{
+		p.y++;
+		e->cam.mode == 2 ? ft_drawline(e, p, p1) : 0;
+		e->cam.mode == 3 ? ft_drawhorizontal(e, p, p1) : 0;
+	}*/
 	while (p.y < p2.y)
 	{
 		p.y++;
