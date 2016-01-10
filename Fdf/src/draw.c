@@ -56,6 +56,7 @@ int		ft_setindex(t_env *e, t_point p, t_point p1)
 
 	h = (float)(p.h + p1.h) / 2.0f;
 	//i = ((float)p.h / (e->maxh)) * e->palette.cn + e->palette.step;
+	//i = (((float)p.h + ABS(e->minh)) / (e->maxh - e->minh)) * e->palette.cn + e->palette.step; for neg values
 	i = (h / (e->maxh - e->minh)) * e->palette.cn + e->palette.step;
 	i > e->palette.cn ? i = e->palette.cn : 0;
 	return (i > 0 ? i : 0);
