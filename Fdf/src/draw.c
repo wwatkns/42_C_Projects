@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/04 11:56:57 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/09 13:36:09 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/10 10:59:17 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int		ft_setindex(t_env *e, t_point p, t_point p1)
 	float	i;
 
 	h = (float)(p.h + p1.h) / 2.0f;
+	//i = ((float)p.h / (e->maxh)) * e->palette.cn + e->palette.step;
 	i = (h / (e->maxh - e->minh)) * e->palette.cn + e->palette.step;
 	i > e->palette.cn ? i = e->palette.cn : 0;
 	return (i > 0 ? i : 0);
