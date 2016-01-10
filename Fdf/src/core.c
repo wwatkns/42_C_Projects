@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 21:29:30 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/09 13:20:58 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/10 09:52:56 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ void	ft_drawmode(t_env *e, int x, int y)
 		ft_drawline(e, e->pts[y][x], e->pts[y - 1][x - 1]);
 	if ((e->cam.mode == 2 || e->cam.mode == 3) && x > 0 && y > 0)
 	{
-		ft_drawtriangle(e, e->pts[y - 1][x - 1], e->pts[y][x - 1],
-		e->pts[y][x]);
+		e->cam.mode == 2 ? ft_drawtriangle(e, e->pts[y - 1][x - 1],
+		e->pts[y][x - 1], e->pts[y][x]) : 0;
 		ft_drawtriangle(e, e->pts[y - 1][x - 1], e->pts[y - 1][x],
 		e->pts[y][x]);
 	}
