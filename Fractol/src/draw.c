@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 10:19:51 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/11 15:15:11 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/11 17:56:00 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int		ft_getcolor(t_env *e, int iteration)
 
 	if (e->win_w == 0)
 		exit(0);
-	color = iteration * 0x000FF0;
+	color = 0xF71A74;
+	color += iteration * 0x000F00;
 	return (color);
 }
