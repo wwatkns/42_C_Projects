@@ -6,7 +6,7 @@
 /*   By: wwatkins <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 09:28:40 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/11 10:38:35 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/11 15:59:53 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	ft_getargs(t_env *e, int argc, char **argv)
 			e->arg.h = ft_atoi(argv[i + 1]);
 		i++;
 	}
+	!ft_strcmp(e->arg.fract, "mandelbrot") ? e->f.n = 0 : 0;
+	!ft_strcmp(e->arg.fract, "julia") ? e->f.n = 1 : 0;
 	e->arg.w = (e->arg.w < 420 || e->arg.w > 2560 ? 1280 : e->arg.w);
 	e->arg.h = (e->arg.h < 420 || e->arg.h > 1440 ? 1000 : e->arg.h);
 }

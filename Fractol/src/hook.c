@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 10:03:22 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/11 15:45:21 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/11 16:09:03 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,14 @@
 
 int		ft_loop_hook(t_env *e)
 {
-	e->f.zoom *= 1.0f + ((double)e->key.kp * 0.1f - (double)e->key.km * 0.1f);
+	e->f.zoom *= 1.0f + ((float)e->key.kp * 0.1f - (float)e->key.km * 0.1f);
 	e->f.zoom < 0.0f ? e->f.zoom = 0.0f : 0;
-
-	e->key.a || e->key.d ? e->f.dw += (double)(e->key.a - e->key.d) * 6.0f : 0;
-	e->key.w || e->key.s ? e->f.dh += (double)(e->key.w - e->key.s) * 6.0f : 0;
+	e->key.a || e->key.d ? e->f.dw += (e->key.a - e->key.d) * 6.0f : 0;
+	e->key.w || e->key.s ? e->f.dh += (e->key.w - e->key.s) * 6.0f : 0;
 	if (e->key.kp || e->key.km)
 	{
-		e->f.dw += ((double)e->win_w / 2.0f) - e->mouse.x;
-		e->f.dh += ((double)e->win_h / 2.0f) - e->mouse.y;
+		e->f.dw += (e->win_w / 2.0f) - e->mouse.x;
+		e->f.dh += (e->win_h / 2.0f) - e->mouse.y;
 	}
 	ft_expose_hook(e);
 	return (0);

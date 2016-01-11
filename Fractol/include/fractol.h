@@ -6,7 +6,7 @@
 /*   By: wwatkins <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 09:25:57 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/11 15:37:03 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/11 16:13:50 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,15 +56,16 @@ typedef struct	s_key
 
 typedef struct	s_fract
 {
-	double	c_re;
-	double	c_im;
-	double	dw;
-	double	dh;
-	double	x;
-	double	y;
-	double	x2;
-	double	y2;
-	double	zoom;
+	float	c_re;
+	float	c_im;
+	float	dw;
+	float	dh;
+	float	x;
+	float	y;
+	float	x2;
+	float	y2;
+	float	zoom;
+	int		n;
 	int		max;
 }				t_fract;
 

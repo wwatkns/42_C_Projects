@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 09:35:22 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/11 14:58:06 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/11 16:14:44 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_core(t_env *e)
 	ft_displayfract(e);
 	mlx_hook(e->win, 2, (1L << 0), ft_key_pressed, e);
 	mlx_hook(e->win, 3, (1L << 1), ft_key_released, e);
-	mlx_hook(e->win, 6, (1L << 6), ft_mouse_pos, e);
+//	mlx_hook(e->win, 6, (1L << 6), ft_mouse_pos, e);
 	mlx_expose_hook(e->win, ft_expose_hook, e);
 	mlx_loop_hook(e->mlx, ft_loop_hook, e);
 	mlx_loop(e->mlx);
@@ -40,8 +40,8 @@ void	ft_displayfract(t_env *e)
 		x = 0;
 		while (x < e->win_w)
 		{
-			!ft_strcmp(e->arg.fract, "mandelbrot") ? ft_mandelbrot(e, x, y) : 0;
-			//!ft_strcmp(e->arg.fract, "julia") ? ft_julia(e, x, y) : 0;
+			e->f.n == 0 ? ft_mandelbrot(e, x, y) : 0;
+			//e->f.n == 1 ? ft_julia(e, x, y) : 0;
 			x++;
 		}
 		y++;

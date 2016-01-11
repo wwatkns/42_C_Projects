@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 15:46:11 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/11 15:46:12 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/11 16:14:19 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,10 @@ void	ft_mandelbrot(t_env *e, int x, int y)
 		e->f.y2 = e->f.y * e->f.y;
 		iteration++;
 	}
-	iteration == e->f.max ? ft_imgpixelput(e, x, y, 0) :
-	ft_imgpixelput(e, x, y, ft_getcolor(e, iteration));
+	if (iteration == e->f.max)
+		ft_imgpixelput(e, x, y, 0);
+	else
+		ft_imgpixelput(e, x, y, ft_getcolor(e, iteration));
 }
 
 void	ft_initfract(t_env *e)
