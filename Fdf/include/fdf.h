@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 15:28:05 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/09 13:36:53 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/11 09:16:44 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,8 +134,8 @@ void			ft_core(t_env *e, int **tab);
 
 void			ft_drawline(t_env *e, t_point p, t_point p1);
 void			ft_imgpixelput(t_env *e, int x, int y, int *rgb);
-int				ft_setindex(t_env *e, t_point p, t_point p1);
-int				*ft_getcolor(t_env *e, t_point p, t_point p1);
+int				ft_setindex(t_env *e, t_point p);
+int				*ft_getcolor(t_env *e, t_point p);
 void			ft_setpalette(t_env *e);
 
 /*

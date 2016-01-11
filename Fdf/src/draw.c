@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/04 11:56:57 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/10 10:59:17 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/11 09:17:04 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_drawline(t_env *e, t_point p, t_point p1)
 	err = d.x - d.y;
 	while (p.x != p1.x || p.y != p1.y)
 	{
-		ft_imgpixelput(e, p.x, p.y, ft_getcolor(e, p, p1));
+		ft_imgpixelput(e, p.x, p.y, ft_getcolor(e, p));
 		e2 = err + err;
 		e2 > -d.y ? err -= d.y : 0;
 		e2 > -d.y ? p.x += s.x : 0;
@@ -49,25 +49,22 @@ void	ft_imgpixelput(t_env *e, int x, int y, int *rgb)
 	ft_memdel((void**)&rgb);
 }
 
-int		ft_setindex(t_env *e, t_point p, t_point p1)
+int		ft_setindex(t_env *e, t_point p)
 {
-	float	h;
 	float	i;
 
-	h = (float)(p.h + p1.h) / 2.0f;
-	//i = ((float)p.h / (e->maxh)) * e->palette.cn + e->palette.step;
-	//i = (((float)p.h + ABS(e->minh)) / (e->maxh - e->minh)) * e->palette.cn + e->palette.step; for neg values
-	i = (h / (e->maxh - e->minh)) * e->palette.cn + e->palette.step;
+	i = (((float)p.h + ABS(e->minh)) / (e->maxh - e->minh)) *
+		e->palette.cn + e->palette.step;
 	i > e->palette.cn ? i = e->palette.cn : 0;
 	return (i > 0 ? i : 0);
 }
 
-int		*ft_getcolor(t_env *e, t_point p, t_point p1)
+int		*ft_getcolor(t_env *e, t_point p)
 {
 	int	n;
 	int	*rgb;
 
-	n = ft_setindex(e, p, p1);
+	n = ft_setindex(e, p);
 	rgb = (int*)malloc(sizeof(int) * 3);
 	rgb[0] = e->palette.c[n] % 256;
 	rgb[1] = (e->palette.c[n] >> 8) % 256;

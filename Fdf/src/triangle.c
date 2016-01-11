@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/09 13:35:13 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/10 10:27:02 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/11 09:17:35 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_drawhorizontal(t_env *e, t_point p, t_point p1)
 {
 	while (p.x < p1.x)
 	{
-		ft_imgpixelput(e, p.x, p.y, ft_getcolor(e, p, p1));
+		ft_imgpixelput(e, p.x, p.y, ft_getcolor(e, p));
 		p.x++;
 	}
 }
