@@ -6,7 +6,7 @@
 /*   By: wwatkins <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 09:28:40 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/11 15:59:53 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/11 17:22:49 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void	ft_getargs(t_env *e, int argc, char **argv)
 	ft_error((argc >= 1 && argc <= 6));
 	argc == 1 ? ft_dispargs() : 0;
 	e->arg.fract = ft_strdup(argv[1]);
-	if (ft_strcmp(e->arg.fract, "julia") && ft_strcmp(e->arg.fract, "mandelbrot"))
+	if (ft_strcmp(e->arg.fract, "julia") && ft_strcmp(e->arg.fract,
+		"mandelbrot"))
 		ft_dispargs();
 	e->arg.w = 0;
 	e->arg.h = 0;

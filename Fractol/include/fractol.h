@@ -6,7 +6,7 @@
 /*   By: wwatkins <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 09:25:57 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/11 16:13:50 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/11 17:22:05 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ typedef struct	s_fract
 	float	x2;
 	float	y2;
 	float	zoom;
+	float	offx;
+	float	offy;
 	int		n;
 	int		max;
 }				t_fract;
@@ -86,42 +88,42 @@ typedef struct	s_env
 **	main.c functions
 */
 
-void	ft_getargs(t_env *e, int argc, char **argv);
-void	ft_dispargs(void);
-void	ft_error(int err);
+void			ft_getargs(t_env *e, int argc, char **argv);
+void			ft_dispargs(void);
+void			ft_error(int err);
 
 /*
 **	core.c functions
 */
 
-void	ft_core(t_env *e);
-void	ft_displayfract(t_env *e);
-void	ft_initenv(t_env *e);
+void			ft_core(t_env *e);
+void			ft_displayfract(t_env *e);
+void			ft_initenv(t_env *e);
 
 /*
 **	hook.c functions
 */
 
-int		ft_expose_hook(t_env *e);
-int		ft_loop_hook(t_env *e);
-int		ft_key_pressed(int keycode, t_env *e);
-int		ft_key_released(int keycode, t_env *e);
-int		ft_mouse_pos(int x, int y, t_env *e);
+int				ft_expose_hook(t_env *e);
+int				ft_loop_hook(t_env *e);
+int				ft_key_pressed(int keycode, t_env *e);
+int				ft_key_released(int keycode, t_env *e);
+int				ft_mouse_pos(int x, int y, t_env *e);
 
 /*
 **	draw.c functions
 */
 
-void	ft_imgpixelput(t_env *e, int x, int y, int color);
-void	ft_initimg(t_env *e);
-int		ft_getcolor(t_env *e, int iteration);
+void			ft_imgpixelput(t_env *e, int x, int y, int color);
+void			ft_initimg(t_env *e);
+int				ft_getcolor(t_env *e, int iteration);
 
 /*
 **	fractale.c
 */
 
-void	ft_julia(t_env *e, int x, int y);
-void	ft_mandelbrot(t_env *e, int x, int y);
-void	ft_initfract(t_env *e);
+void			ft_julia(t_env *e, int x, int y);
+void			ft_mandelbrot(t_env *e, int x, int y);
+void			ft_initfract(t_env *e);
 
 #endif
