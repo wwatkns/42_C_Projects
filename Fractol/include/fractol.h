@@ -6,7 +6,7 @@
 /*   By: wwatkins <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 09:25:57 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/12 16:59:10 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/12 17:27:44 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,6 @@ typedef struct	s_arg
 
 typedef struct	s_key
 {
-	int		w;
-	int		s;
-	int		a;
-	int		d;
 	int		p;
 	int		pu;
 	int		pd;
@@ -64,8 +60,6 @@ typedef struct	s_fract
 {
 	double	c_re;
 	double	c_im;
-	double	dw;
-	double	dh;
 	double	x;
 	double	y;
 	double	x2;
@@ -119,6 +113,7 @@ int				ft_expose_hook(t_env *e);
 int				ft_loop_hook(t_env *e);
 int				ft_key_pressed(int keycode, t_env *e);
 int				ft_key_released(int keycode, t_env *e);
+void			ft_debugtext(t_env *e);
 
 /*
 **	mousehook.c functions

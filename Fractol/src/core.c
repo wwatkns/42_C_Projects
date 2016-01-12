@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 09:35:22 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/12 16:58:55 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/12 17:25:23 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,6 @@ void	ft_initenv(t_env *e)
 	e->win_h = e->arg.h;
 	e->hwin_w = e->arg.w / 2.0;
 	e->hwin_h = e->arg.h / 2.0;
-	e->key.w = 0;
-	e->key.s = 0;
-	e->key.a = 0;
-	e->key.d = 0;
 	e->key.p = 0;
 	e->key.pu = 0;
 	e->key.pd = 0;

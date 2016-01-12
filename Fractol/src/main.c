@@ -6,7 +6,7 @@
 /*   By: wwatkins <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 09:28:40 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/12 17:07:23 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/12 17:22:25 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,10 @@ void	ft_dispargs(void)
 {
 	ft_putendl("\nusage: ./fractol (type) [-w width] [-h height]");
 	ft_putendl(" type: julia\n       mandelbrot\n       burningship\n");
+	ft_putendl(" keys: 'p' to switch colors");
+	ft_putendl("       zoom with '+', '-' or 'mousewheel'");
+	ft_putendl("       move around with 'mouse' (while zooming)");
+	ft_putendl("       in julia 'mouse' will also change fractal settings");
 	exit(0);
 }
 

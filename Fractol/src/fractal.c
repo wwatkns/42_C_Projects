@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 15:46:11 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/12 17:04:17 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/12 17:12:39 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,6 @@ void	ft_burningship(t_env *e, int x, int y)
 void	ft_initfract(t_env *e)
 {
 	e->f.max = 100;
-	e->f.dw = e->win_w / 2.0f;
-	e->f.dh = e->win_h / 2.0f;
 	e->f.zoom = 0.25f;
 	e->f.x = 0;
 	e->f.y = 0;
