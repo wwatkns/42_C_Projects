@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 15:46:11 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/12 16:25:22 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/12 17:04:17 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,31 @@ void	ft_mandelbrot(t_env *e, int x, int y)
 	{
 		e->f.y = 2.0 * e->f.x * e->f.y + e->f.c_im;
 		e->f.x = e->f.x2 - e->f.y2 + e->f.c_re;
+		e->f.x2 = e->f.x * e->f.x;
+		e->f.y2 = e->f.y * e->f.y;
+		++iteration;
+	}
+	if (iteration == e->f.max)
+		ft_imgpixelput(e, x, y, 0);
+	else
+		ft_imgpixelput(e, x, y, ft_getcolor(e, iteration));
+}
+
+void	ft_burningship(t_env *e, int x, int y)
+{
+	int		iteration;
+
+	e->f.x = 0;
+	e->f.y = 0;
+	e->f.x2 = 0;
+	e->f.y2 = 0;
+	e->f.c_re = (x - e->hwin_w) / e->f.zwin_w + e->f.offx;
+	e->f.c_im = (y - e->hwin_h) / e->f.zwin_h + e->f.offy;
+	iteration = 0;
+	while (e->f.x2 + e->f.y2 < 10 && iteration < e->f.max)
+	{
+		e->f.y = 2.0 * ABS((e->f.x * e->f.y)) + e->f.c_im;
+		e->f.x = e->f.x2 - e->f.y2 - e->f.c_re;
 		e->f.x2 = e->f.x * e->f.x;
 		e->f.y2 = e->f.y * e->f.y;
 		++iteration;

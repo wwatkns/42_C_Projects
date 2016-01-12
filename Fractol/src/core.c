@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 09:35:22 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/12 13:23:22 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/12 16:58:55 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	ft_displayfract(t_env *e)
 		{
 			e->f.n == 0 ? ft_mandelbrot(e, x, y) : 0;
 			e->f.n == 1 ? ft_julia(e, x, y) : 0;
+			e->f.n == 2 ? ft_burningship(e, x, y) : 0;
 		}
 	}
 }
@@ -59,6 +60,9 @@ void	ft_initenv(t_env *e)
 	e->key.s = 0;
 	e->key.a = 0;
 	e->key.d = 0;
+	e->key.p = 0;
+	e->key.pu = 0;
+	e->key.pd = 0;
 	e->key.kp = 0;
 	e->key.km = 0;
 	e->mouse.x = e->hwin_w;

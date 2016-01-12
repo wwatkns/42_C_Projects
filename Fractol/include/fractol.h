@@ -6,7 +6,7 @@
 /*   By: wwatkins <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 09:25:57 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/12 15:34:59 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/12 16:59:10 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <mlx.h>
 
 # include <stdio.h> // TMPE
+
+# define ABS(x) (x < 0 ? -x : x)
 
 typedef struct	s_mouse
 {
@@ -52,6 +54,8 @@ typedef struct	s_key
 	int		a;
 	int		d;
 	int		p;
+	int		pu;
+	int		pd;
 	int		kp;
 	int		km;
 }				t_key;
@@ -137,6 +141,7 @@ int				ft_getcolor(t_env *e, int iteration);
 
 void			ft_julia(t_env *e, int x, int y);
 void			ft_mandelbrot(t_env *e, int x, int y);
+void			ft_burningship(t_env *e, int x, int y);
 void			ft_initfract(t_env *e);
 
 #endif
