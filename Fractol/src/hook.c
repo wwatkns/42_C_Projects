@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 10:03:22 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/12 11:40:12 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/12 11:52:09 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,10 @@ int		ft_loop_hook(t_env *e)
 {
 	if (e->key.kp || e->key.km)
 	{
-		double move_x;
-		double move_y;
-
 		e->f.zoom *= 1.0f + (e->key.kp * 0.05f - e->key.km * 0.05f);
 		e->f.zoom < 0.0f ? e->f.zoom = 0.0f : 0;
-		move_x = ((double)e->mouse.x - (e->win_w / 2.0)) / (e->win_w / 2);
-		move_y = ((double)e->mouse.y - (e->win_h / 2.0)) / (e->win_h / 2);
-		e->f.offx += move_x / e->f.zoom / 10;
-		e->f.offy += move_y / e->f.zoom / 10;
+		e->f.offx += ((double)e->mouse.x - e->hwin_w) / e->hwin_w / e->f.zoom / 10;
+		e->f.offy += ((double)e->mouse.y - e->hwin_h) / e->hwin_h / e->f.zoom / 10;
 	}
 	e->key.a || e->key.d ? e->f.dw += (float)(e->key.a - e->key.d) * 6.0f : 0;
 	e->key.w || e->key.s ? e->f.dh += (float)(e->key.w - e->key.s) * 6.0f : 0;

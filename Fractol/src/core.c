@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 09:35:22 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/12 08:57:00 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/12 12:06:49 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	ft_displayfract(t_env *e)
 	int	y;
 
 	y = -1;
+	e->f.zwin_w = e->f.zoom * e->win_w;
+	e->f.zwin_h = e->f.zoom * e->win_h;
 	while (++y < e->win_h)
 	{
 		x = -1;
@@ -50,6 +52,8 @@ void	ft_initenv(t_env *e)
 {
 	e->win_w = e->arg.w;
 	e->win_h = e->arg.h;
+	e->hwin_w = e->arg.w / 2.0;
+	e->hwin_h = e->arg.h / 2.0;
 	e->key.w = 0;
 	e->key.s = 0;
 	e->key.a = 0;

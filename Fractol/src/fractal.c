@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 15:46:11 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/12 11:34:27 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/12 12:13:05 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,8 @@ void	ft_mandelbrot(t_env *e, int x, int y)
 	e->f.y = 0;
 	e->f.x2 = 0;
 	e->f.y2 = 0;
-	//e->f.c_re = (x - (float)(e->win_w - e->mouse.x) / 2.0) / e->f.zoom;
-	//e->f.c_im = (y - (float)(e->win_h - e->mouse.y) / 2.0) / e->f.zoom;
-	e->f.c_re = 1.5 * (x - e->win_w / 2) / (1 * e->f.zoom * e->win_w) + e->f.offx;
-	e->f.c_im = (y - e->win_h / 2) / (1 * e->f.zoom * e->win_h) + e->f.offy;
+	e->f.c_re = (x - e->hwin_w) / e->f.zwin_w + e->f.offx;
+	e->f.c_im = (y - e->hwin_h) / e->f.zwin_h + e->f.offy;
 	iteration = 0;
 	while (e->f.x2 + e->f.y2 < 4 && iteration < e->f.max)
 	{
@@ -69,10 +67,10 @@ void	ft_mandelbrot(t_env *e, int x, int y)
 
 void	ft_initfract(t_env *e)
 {
-	e->f.max = 50;
+	e->f.max = 100;
 	e->f.dw = e->win_w / 2.0f;
 	e->f.dh = e->win_h / 2.0f;
-	e->f.zoom = 4.0 / e->win_w;
+	e->f.zoom = 0.25f;
 	e->f.x = 0;
 	e->f.y = 0;
 	e->f.offx = 0.0;

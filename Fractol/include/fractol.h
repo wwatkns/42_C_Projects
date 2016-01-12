@@ -6,7 +6,7 @@
 /*   By: wwatkins <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 09:25:57 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/12 08:58:54 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/12 12:05:37 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ typedef struct	s_fract
 	double	zoom;
 	double	offx;
 	double	offy;
+	double	zwin_w;
+	double	zwin_h;
 	int		n;
 	int		max;
 }				t_fract;
@@ -82,6 +84,8 @@ typedef struct	s_env
 	void	*win;
 	int		win_w;
 	int		win_h;
+	int		hwin_w;
+	int		hwin_h;
 }				t_env;
 
 /*
