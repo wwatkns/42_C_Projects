@@ -6,7 +6,7 @@
 #    By: wwatkins <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/11 09:24:09 by wwatkins          #+#    #+#              #
-#    Updated: 2016/01/11 17:20:21 by wwatkins         ###   ########.fr        #
+#    Updated: 2016/01/12 10:55:45 by wwatkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,9 @@ $(NAME): $(OBJ)
 	echo "  Libft [\033[31mKO\033[0m]"
 	@ls $(MLX_PATH) | grep -q libmlx.a && echo "    Mlx [\033[32mOK\033[0m]" ||\
 	echo "    Mlx [\033[31mKO\033[0m]"
+
+nolib:
+	$(CC) $(CFLGS) -L$(LIB_PATH) -lft $(SRC) $(INC) -o $(NAME) $(OBJ) $(MLXFLGS)
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@mkdir $(OBJ_PATH) 2>/dev/null || echo "" > /dev/null
