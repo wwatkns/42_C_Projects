@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 10:03:22 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/12 13:56:45 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/12 15:09:33 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		ft_loop_hook(t_env *e)
 {
-	if (e->key.kp || e->key.km || e->mouse.zp || e->mouse.zm)
+	if (e->f.n == 0 && (e->key.kp || e->key.km || e->mouse.zp || e->mouse.zm))
 	{
 		e->f.zoom *= 1.0f + (e->key.kp * 0.05f - e->key.km * 0.05f);
 		e->f.zoom < 0.0f ? e->f.zoom = 0.0f : 0;
@@ -22,6 +22,11 @@ int		ft_loop_hook(t_env *e)
 		e->f.zoom / 10;
 		e->f.offy += ((double)e->mouse.y - e->hwin_h) / e->hwin_h /
 		e->f.zoom / 10;
+	}
+	if (e->f.n == 1)
+	{
+		e->f.c_re = (double)(e->mouse.x - e->hwin_w) / 300.0f;
+		e->f.c_im = (double)(e->mouse.y - e->hwin_w) / 300.0f;
 	}
 	e->key.a || e->key.d ? e->f.dw += (float)(e->key.a - e->key.d) * 6.0f : 0;
 	e->key.w || e->key.s ? e->f.dh += (float)(e->key.w - e->key.s) * 6.0f : 0;
@@ -35,6 +40,7 @@ int		ft_expose_hook(t_env *e)
 	if (e->key.w || e->key.s || e->key.a || e->key.d || e->key.kp ||
 		e->key.km || e->mouse.zp || e->mouse.zm)
 		ft_displayfract(e);
+	e->f.n == 1 ? ft_displayfract(e) : 0;
 	e->mouse.zp = 0;
 	e->mouse.zm = 0;
 	mlx_put_image_to_window(e->mlx, e->win, e->img.adr, 0, 0);
