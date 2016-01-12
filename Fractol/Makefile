@@ -6,7 +6,7 @@
 #    By: wwatkins <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/11 09:24:09 by wwatkins          #+#    #+#              #
-#    Updated: 2016/01/12 10:55:45 by wwatkins         ###   ########.fr        #
+#    Updated: 2016/01/12 13:19:38 by wwatkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ CFLGS = -Werror -Wextra -Wall -o2
 MLXFLGS = -L$(MLX_PATH) -I$(MLX_PATH) -lmlx \
 		  -framework OpenGL -framework AppKit
 
-SRC_NAME  = main.c hook.c core.c draw.c fractal.c
+SRC_NAME  = main.c hook.c mousehook.c core.c draw.c fractal.c
 OBJ_NAME = $(SRC_NAME.c=.o)
 LIB_NAME =  libft.a
 

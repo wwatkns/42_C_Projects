@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 09:35:22 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/12 12:06:49 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/12 13:23:22 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	ft_core(t_env *e)
 	mlx_hook(e->win, 2, (1L << 0), ft_key_pressed, e);
 	mlx_hook(e->win, 3, (1L << 1), ft_key_released, e);
 	mlx_hook(e->win, 6, (1L << 6), ft_mouse_pos, e);
+	mlx_mouse_hook(e->win, ft_mouse_hook, e);
 	mlx_expose_hook(e->win, ft_expose_hook, e);
 	mlx_loop_hook(e->mlx, ft_loop_hook, e);
 	mlx_loop(e->mlx);
@@ -60,6 +61,6 @@ void	ft_initenv(t_env *e)
 	e->key.d = 0;
 	e->key.kp = 0;
 	e->key.km = 0;
-	e->mouse.x = e->win_w / 2.0f;
-	e->mouse.y = e->win_h / 2.0f;
+	e->mouse.x = e->hwin_w;
+	e->mouse.y = e->hwin_h;
 }

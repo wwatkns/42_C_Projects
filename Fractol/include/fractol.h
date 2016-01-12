@@ -6,7 +6,7 @@
 /*   By: wwatkins <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 09:25:57 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/12 12:05:37 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/12 13:26:12 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ typedef struct	s_mouse
 	int x;
 	int y;
 	int	button;
+	int	zp;
+	int	zm;
 }				t_mouse;
 
 typedef struct	s_img
@@ -112,7 +114,13 @@ int				ft_expose_hook(t_env *e);
 int				ft_loop_hook(t_env *e);
 int				ft_key_pressed(int keycode, t_env *e);
 int				ft_key_released(int keycode, t_env *e);
+
+/*
+**	mousehook.c functions
+*/
+
 int				ft_mouse_pos(int x, int y, t_env *e);
+int				ft_mouse_hook(int button, int x, int y, t_env *e);
 
 /*
 **	draw.c functions

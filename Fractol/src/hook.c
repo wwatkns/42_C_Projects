@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 10:03:22 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/12 11:52:09 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/12 13:56:45 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 
 int		ft_loop_hook(t_env *e)
 {
-	if (e->key.kp || e->key.km)
+	if (e->key.kp || e->key.km || e->mouse.zp || e->mouse.zm)
 	{
 		e->f.zoom *= 1.0f + (e->key.kp * 0.05f - e->key.km * 0.05f);
 		e->f.zoom < 0.0f ? e->f.zoom = 0.0f : 0;
-		e->f.offx += ((double)e->mouse.x - e->hwin_w) / e->hwin_w / e->f.zoom / 10;
-		e->f.offy += ((double)e->mouse.y - e->hwin_h) / e->hwin_h / e->f.zoom / 10;
+		e->f.offx += ((double)e->mouse.x - e->hwin_w) / e->hwin_w /
+		e->f.zoom / 10;
+		e->f.offy += ((double)e->mouse.y - e->hwin_h) / e->hwin_h /
+		e->f.zoom / 10;
 	}
 	e->key.a || e->key.d ? e->f.dw += (float)(e->key.a - e->key.d) * 6.0f : 0;
 	e->key.w || e->key.s ? e->f.dh += (float)(e->key.w - e->key.s) * 6.0f : 0;
@@ -30,8 +32,11 @@ int		ft_loop_hook(t_env *e)
 int		ft_expose_hook(t_env *e)
 {
 	mlx_clear_window(e->mlx, e->win);
-	if (e->key.w || e->key.s || e->key.a || e->key.d || e->key.kp || e->key.km)
+	if (e->key.w || e->key.s || e->key.a || e->key.d || e->key.kp ||
+		e->key.km || e->mouse.zp || e->mouse.zm)
 		ft_displayfract(e);
+	e->mouse.zp = 0;
+	e->mouse.zm = 0;
 	mlx_put_image_to_window(e->mlx, e->win, e->img.adr, 0, 0);
 	return (0);
 }
@@ -56,12 +61,5 @@ int		ft_key_released(int keycode, t_env *e)
 	keycode == 124 ? e->key.d = 0 : 0;
 	keycode == 69 ? e->key.kp = 0 : 0;
 	keycode == 78 ? e->key.km = 0 : 0;
-	return (0);
-}
-
-int		ft_mouse_pos(int x, int y, t_env *e)
-{
-	e->mouse.x = x;
-	e->mouse.y = y;
 	return (0);
 }

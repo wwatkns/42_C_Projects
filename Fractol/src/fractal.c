@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 15:46:11 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/12 12:13:05 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/12 13:50:27 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	ft_julia(t_env *e, int x, int y)
 	e->f.y = (y - e->win_h / 2) * 8.0 / e->win_w;
 	e->f.x2 = 0;
 	e->f.y2 = 0;
-	e->f.c_re = -0.6548;//-0.123f;
-	e->f.c_im = -0.1477;//0.745f;
+	e->f.c_re = -0.123f;
+	e->f.c_im = 0.745f;
 
 	iteration = 0;
 	while (iteration < e->f.max)
@@ -30,7 +30,7 @@ void	ft_julia(t_env *e, int x, int y)
 		e->f.x = e->f.x2 - e->f.y2 + e->f.c_re;
 		e->f.x2 = e->f.x * e->f.x;
 		e->f.y2 = e->f.y * e->f.y;
-		if (e->f.x2 + e->f.y2 > 4)
+		if (e->f.x2 + e->f.y2 >= 4)
 			break ;
 		iteration++;
 	}
@@ -57,7 +57,7 @@ void	ft_mandelbrot(t_env *e, int x, int y)
 		e->f.x = e->f.x2 - e->f.y2 + e->f.c_re;
 		e->f.x2 = e->f.x * e->f.x;
 		e->f.y2 = e->f.y * e->f.y;
-		iteration++;
+		++iteration;
 	}
 	if (iteration == e->f.max)
 		ft_imgpixelput(e, x, y, 0);
