@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 10:19:51 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/12 16:19:07 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/12 16:28:59 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,10 @@ int		ft_getcolor(t_env *e, int iteration)
 	if (e->f.color == 1)
 		return (0x00454 + iteration * 0x0000A1 / e->f.max);
 	if (e->f.color == 2)
-		return (0x4104E1 + 0x001A2E * iteration * iteration);
+		return (0x0FA411 + iteration * 0x0F0011);
 	if (e->f.color == 3)
-		return (iteration * iteration * iteration * 0x0F000);
-	if (e->f.color == 4)
 		return (iteration * 0xF0000);
-	if (e->f.color == 5)
+	if (e->f.color == 4)
 		return (iteration * 0x0000F);
 	return (0xFFFFFF);
 }
