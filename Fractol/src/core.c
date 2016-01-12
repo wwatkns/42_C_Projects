@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 09:35:22 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/11 19:01:42 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/12 08:57:00 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	ft_displayfract(t_env *e)
 		while (++x < e->win_w)
 		{
 			e->f.n == 0 ? ft_mandelbrot(e, x, y) : 0;
-			//e->f.n == 1 ? ft_julia(e, x, y) : 0;
+			e->f.n == 1 ? ft_julia(e, x, y) : 0;
 		}
 	}
 }

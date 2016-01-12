@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 10:03:22 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/11 19:09:32 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/12 09:47:21 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@ int		ft_loop_hook(t_env *e)
 	{
 		e->f.zoom *= 1.0f + (e->key.kp * 0.1f - e->key.km * 0.1f);
 		e->f.zoom < 0.0f ? e->f.zoom = 0.0f : 0;
-		e->f.offx += e->mouse.x - (e->win_w / 2.0f);
-		e->f.offy += e->mouse.y - (e->win_h / 2.0f);
+		e->f.offx = e->win_w - e->mouse.x;
+		e->f.offy = e->win_h - e->mouse.y;
+		//e->f.offx = e->win_w - e->mouse.x;
+		//e->f.offy = e->win_h - e->mouse.y;
 	}
 	e->key.a || e->key.d ? e->f.dw += (float)(e->key.a - e->key.d) * 6.0f : 0;
 	e->key.w || e->key.s ? e->f.dh += (float)(e->key.w - e->key.s) * 6.0f : 0;
