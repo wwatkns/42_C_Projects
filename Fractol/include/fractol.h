@@ -6,7 +6,7 @@
 /*   By: wwatkins <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 09:25:57 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/12 13:26:12 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/12 15:34:59 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ typedef struct	s_mouse
 {
 	int x;
 	int y;
-	int	button;
 	int	zp;
 	int	zm;
 }				t_mouse;
@@ -52,6 +51,7 @@ typedef struct	s_key
 	int		s;
 	int		a;
 	int		d;
+	int		p;
 	int		kp;
 	int		km;
 }				t_key;
@@ -71,6 +71,7 @@ typedef struct	s_fract
 	double	offy;
 	double	zwin_w;
 	double	zwin_h;
+	int		color;
 	int		n;
 	int		max;
 }				t_fract;

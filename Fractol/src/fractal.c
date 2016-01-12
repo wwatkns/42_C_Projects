@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 15:46:11 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/12 15:10:35 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/12 15:39:12 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,5 @@ void	ft_initfract(t_env *e)
 	e->f.offy = 0.0;
 	e->f.c_re = 0.0;
 	e->f.c_im = 0.0;
+	e->f.color = 0;
 }
