@@ -6,7 +6,7 @@
 /*   By: wwatkins <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 09:25:57 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/12 17:27:44 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/13 10:16:15 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <mlx.h>
-
-# include <stdio.h> // TMPE
 
 # define ABS(x) (x < 0 ? -x : x)
 
@@ -37,6 +35,7 @@ typedef struct	s_img
 	char	*img;
 	int		endian;
 	int		bpp;
+	int		opp;
 	int		sl;
 }				t_img;
 
@@ -50,6 +49,7 @@ typedef struct	s_arg
 typedef struct	s_key
 {
 	int		p;
+	int		o;
 	int		pu;
 	int		pd;
 	int		kp;
@@ -126,9 +126,10 @@ int				ft_mouse_hook(int button, int x, int y, t_env *e);
 **	draw.c functions
 */
 
-void			ft_imgpixelput(t_env *e, int x, int y, int color);
+void			ft_imgpixelput(t_env *e, int x, int y, int *rgb);
 void			ft_initimg(t_env *e);
-int				ft_getcolor(t_env *e, int iteration);
+int				*ft_getcolor(t_env *e, int i);
+int				*ft_setrgb(int r, int g, int b);
 
 /*
 **	fractale.c
