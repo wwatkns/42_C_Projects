@@ -6,7 +6,7 @@
 /*   By: wwatkins <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 09:28:40 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/13 14:30:26 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/13 14:41:39 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_getargs(t_env *e, int argc, char **argv)
 {
 	int i;
 
-	i = 1;
+	i = 0;
 	ft_error((argc >= 1 && argc <= 6));
 	argc == 1 ? ft_dispargs() : 0;
 	e->arg.fract = ft_strdup(argv[1]);
@@ -35,13 +35,12 @@ void	ft_getargs(t_env *e, int argc, char **argv)
 		ft_dispargs();
 	e->arg.w = 0;
 	e->arg.h = 0;
-	while (i < argc)
+	while (++i < argc)
 	{
 		if (!ft_strcmp(argv[i], "-w") && i + 1 < argc)
 			e->arg.w = ft_atoi(argv[i + 1]);
 		if (!ft_strcmp(argv[i], "-h") && i + 1 < argc)
 			e->arg.h = ft_atoi(argv[i + 1]);
-		i++;
 	}
 	!ft_strcmp(e->arg.fract, "mandelbrot") ? e->f.n = 0 : 0;
 	!ft_strcmp(e->arg.fract, "julia") ? e->f.n = 1 : 0;
@@ -57,7 +56,7 @@ void	ft_dispargs(void)
 	ft_putendl(" type: julia\n       mandelbrot\n       burningship");
 	ft_putendl("       tricorn\n");
 	ft_putendl(" keys: 'p' to switch colors");
-	ft_putendl("       'o' to switch from black or max iteration color for set");
+	ft_putendl("       'o' to switch from black or max iteration color");
 	ft_putendl("       zoom with '+', '-' or 'mousewheel'");
 	ft_putendl("       move around with 'mouse' (while zooming)");
 	ft_putendl("       'pgup' and 'pgdown' to modify max iteration");

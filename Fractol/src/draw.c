@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 10:19:51 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/13 14:14:55 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/13 14:45:10 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,19 @@ int		*ft_getcolor(t_env *e, int i)
 	if (e->f.color == 0)
 		return (ft_setrgb(i * 80 / e->f.max, i * 200 / e->f.max, 50));
 	if (e->f.color == 1)
+	{
 		return (ft_setrgb(i * 100 / e->f.max + 155, i * 220 / e->f.max + 20,
 		i * 160 / e->f.max + 10));
+	}
 	if (e->f.color == 2)
 		return (ft_setrgb(200 - i * i / 2, 155 - i * 125 / e->f.max, i * 9));
 	if (e->f.color == 3)
 		return (ft_setrgb(50, i * 200 / e->f.max + 55, 75));
 	if (e->f.color == 4)
+	{
 		return (ft_setrgb(i * 240 / e->f.max + 50, i * 130 / e->f.max + 50,
 		i * 80 / e->f.max + 75));
+	}
 	if (e->f.color == 5)
 		return (ft_setrgb(i * 2, i * 5, i * 7 + 50));
 	if (e->f.color == 6)
