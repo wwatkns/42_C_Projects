@@ -6,7 +6,7 @@
 /*   By: wwatkins <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 09:25:57 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/13 13:56:22 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/13 14:46:00 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <mlx.h>
-# include <math.h>
 
 # define ABS(x) (x < 0 ? -x : x)
 
