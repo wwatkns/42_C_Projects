@@ -6,7 +6,7 @@
 /*   By: wwatkins <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 09:25:57 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/13 10:16:15 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/13 13:56:22 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <mlx.h>
+# include <math.h>
 
 # define ABS(x) (x < 0 ? -x : x)
 
@@ -138,6 +139,7 @@ int				*ft_setrgb(int r, int g, int b);
 void			ft_julia(t_env *e, int x, int y);
 void			ft_mandelbrot(t_env *e, int x, int y);
 void			ft_burningship(t_env *e, int x, int y);
+void			ft_tricorn(t_env *e, int x, int y);
 void			ft_initfract(t_env *e);
 
 #endif

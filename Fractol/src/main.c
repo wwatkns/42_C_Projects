@@ -6,7 +6,7 @@
 /*   By: wwatkins <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 09:28:40 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/13 10:35:16 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/13 14:30:26 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ void	ft_getargs(t_env *e, int argc, char **argv)
 	argc == 1 ? ft_dispargs() : 0;
 	e->arg.fract = ft_strdup(argv[1]);
 	if (ft_strcmp(e->arg.fract, "julia") && ft_strcmp(e->arg.fract,
-		"mandelbrot") && ft_strcmp(e->arg.fract, "burningship"))
+		"mandelbrot") && ft_strcmp(e->arg.fract, "burningship") &&
+		ft_strcmp(e->arg.fract, "tricorn"))
 		ft_dispargs();
 	e->arg.w = 0;
 	e->arg.h = 0;
@@ -45,6 +46,7 @@ void	ft_getargs(t_env *e, int argc, char **argv)
 	!ft_strcmp(e->arg.fract, "mandelbrot") ? e->f.n = 0 : 0;
 	!ft_strcmp(e->arg.fract, "julia") ? e->f.n = 1 : 0;
 	!ft_strcmp(e->arg.fract, "burningship") ? e->f.n = 2 : 0;
+	!ft_strcmp(e->arg.fract, "tricorn") ? e->f.n = 3 : 0;
 	e->arg.w = (e->arg.w < 420 || e->arg.w > 2560 ? 800 : e->arg.w);
 	e->arg.h = (e->arg.h < 420 || e->arg.h > 1440 ? 800 : e->arg.h);
 }
@@ -52,7 +54,8 @@ void	ft_getargs(t_env *e, int argc, char **argv)
 void	ft_dispargs(void)
 {
 	ft_putendl("\nusage: ./fractol (type) [-w width] [-h height]");
-	ft_putendl(" type: julia\n       mandelbrot\n       burningship\n");
+	ft_putendl(" type: julia\n       mandelbrot\n       burningship");
+	ft_putendl("       tricorn\n");
 	ft_putendl(" keys: 'p' to switch colors");
 	ft_putendl("       'o' to switch from black or max iteration color for set");
 	ft_putendl("       zoom with '+', '-' or 'mousewheel'");
