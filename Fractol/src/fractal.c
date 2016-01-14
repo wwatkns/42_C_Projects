@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 15:46:11 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/13 15:35:45 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/14 15:57:14 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ void	ft_tricorn(t_env *e, int x, int y)
 
 void	ft_initfract(t_env *e)
 {
-	e->f.max = 100;
+	e->f.max = 70;
 	e->f.zoom = 0.25f;
 	e->f.x = 0;
 	e->f.y = 0;

@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 10:19:51 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/13 15:35:32 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/14 16:14:48 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	ft_imgpixelput(t_env *e, int x, int y, int *rgb)
 		e->img.img[pos + 1] = rgb[1];
 		e->img.img[pos + 2] = rgb[0];
 	}
-	ft_memdel((void**)&rgb);
 }
 
 void	ft_initimg(t_env *e)
@@ -36,9 +35,8 @@ void	ft_initimg(t_env *e)
 
 int		*ft_setrgb(int r, int g, int b)
 {
-	int *rgb;
+	static int	rgb[3];
 
-	rgb = (int*)malloc(sizeof(int) * 3);
 	rgb[0] = r;
 	rgb[1] = g;
 	rgb[2] = b;
