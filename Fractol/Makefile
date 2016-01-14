@@ -6,7 +6,7 @@
 #    By: wwatkins <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/11 09:24:09 by wwatkins          #+#    #+#              #
-#    Updated: 2016/01/14 11:53:08 by wwatkins         ###   ########.fr        #
+#    Updated: 2016/01/14 14:40:46 by wwatkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,10 +18,11 @@ MLX_PATH = ./minilibx_macos
 
 NAME = fractol
 CC = gcc
-CFLGS = -Werror -Wextra -Wall -o2
+CFLGS = -Werror -Wextra -Wall
 MLXFLGS = -L$(MLX_PATH) -I$(MLX_PATH) -lmlx \
 		  -framework OpenGL -framework AppKit
-FORBID = printf atoi
+FNCTION = $(shell ls -l $(LIB_PATH)/src | grep ft_ | sed 's/^.*ft_//' | sed 's/..$$//')
+FORBID = printf $(FNCTION)
 
 SRC_NAME  = main.c hook.c mousehook.c core.c draw.c fractal.c
 OBJ_NAME = $(SRC_NAME.c=.o)
@@ -31,7 +32,7 @@ SRC = $(addprefix $(SRC_PATH), $(SRC_NAME))
 OBJ = $(addprefix $(OBJ_PATH), $(OBJ_NAME))
 INC = $(addprefix -I,$(INC_PATH))
 LIB = $(LIB_PATH)$(LIB_NAME)
-FOR = $(addprefix -e , $(FORBID))
+FBN = $(addprefix -e $\" ,$(addsuffix $\", $(FORBID)))
 
 .PHONY: re all clean fclean cleanmlx cleanlib fcleanlib check nolib norme
 
@@ -69,16 +70,18 @@ fclean: clean fcleanlib
 re: fclean all
 
 check:
-	@ls | grep -q auteur && cat -e auteur | grep $(USER)$ && echo \
+	@ls | grep -q auteur && cat -e auteur | grep -q $(USER)$ && echo \
 	"   Auteur [\033[32mOK\033[0m]" || echo "   Auteur [\033[31mKO\033[0m]"
+	@cat $(SRC) | grep -q $(FBN) && echo "Forbidden [\033[31mKO\033[0m]" ||\
+	echo "Forbidden [\033[32mOK\033[0m]"
 	@ls | grep -q -U fractol && echo "  Fractol [\033[32mOK\033[0m]" ||\
 	echo "  Fractol [\033[31mKO\033[0m]"
+	@$(MAKE) norme | grep -B 1 Error && echo "    Norme [\033[31mKO\033[0m]" || \
+	echo "    Norme [\033[32mOK\033[0m]"
 	@ls $(LIB_PATH) | grep -q libft.a && echo "    Libft [\033[32mOK\033[0m]" ||\
 	echo "    Libft [\033[31mKO\033[0m]"
 	@ls $(MLX_PATH) | grep -q libmlx.a && echo "      Mlx [\033[32mOK\033[0m]" ||\
 	echo "      Mlx [\033[31mKO\033[0m]"
-	cat $(SRC) | grep $(FOR) && echo "Forbidden [\033[31mKO\033[0m]" ||\
-	echo "Forbidden [\033[32mOK\033[0m]"
 
 norme:
 	make -C $(LIB_PATH) norme
