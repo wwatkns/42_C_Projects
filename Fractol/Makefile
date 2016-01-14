@@ -6,7 +6,7 @@
 #    By: wwatkins <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/11 09:24:09 by wwatkins          #+#    #+#              #
-#    Updated: 2016/01/13 14:53:23 by wwatkins         ###   ########.fr        #
+#    Updated: 2016/01/14 11:53:08 by wwatkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ CC = gcc
 CFLGS = -Werror -Wextra -Wall -o2
 MLXFLGS = -L$(MLX_PATH) -I$(MLX_PATH) -lmlx \
 		  -framework OpenGL -framework AppKit
+FORBID = printf atoi
 
 SRC_NAME  = main.c hook.c mousehook.c core.c draw.c fractal.c
 OBJ_NAME = $(SRC_NAME.c=.o)
@@ -30,6 +31,7 @@ SRC = $(addprefix $(SRC_PATH), $(SRC_NAME))
 OBJ = $(addprefix $(OBJ_PATH), $(OBJ_NAME))
 INC = $(addprefix -I,$(INC_PATH))
 LIB = $(LIB_PATH)$(LIB_NAME)
+FOR = $(addprefix -e , $(FORBID))
 
 .PHONY: re all clean fclean cleanmlx cleanlib fcleanlib check nolib norme
 
@@ -68,13 +70,15 @@ re: fclean all
 
 check:
 	@ls | grep -q auteur && cat -e auteur | grep $(USER)$ && echo \
-	" Auteur [\033[32mOK\033[0m]" || echo " Auteur [\033[31mKO\033[0m]"
-	@ls | grep -q -U fractol && echo "Fractol [\033[32mOK\033[0m]" ||\
-	echo "Fractol [\033[31mKO\033[0m]"
-	@ls $(LIB_PATH) | grep -q libft.a && echo "  Libft [\033[32mOK\033[0m]" ||\
-	echo "  Libft [\033[31mKO\033[0m]"
-	@ls $(MLX_PATH) | grep -q libmlx.a && echo "    Mlx [\033[32mOK\033[0m]" ||\
-	echo "    Mlx [\033[31mKO\033[0m]"
+	"   Auteur [\033[32mOK\033[0m]" || echo "   Auteur [\033[31mKO\033[0m]"
+	@ls | grep -q -U fractol && echo "  Fractol [\033[32mOK\033[0m]" ||\
+	echo "  Fractol [\033[31mKO\033[0m]"
+	@ls $(LIB_PATH) | grep -q libft.a && echo "    Libft [\033[32mOK\033[0m]" ||\
+	echo "    Libft [\033[31mKO\033[0m]"
+	@ls $(MLX_PATH) | grep -q libmlx.a && echo "      Mlx [\033[32mOK\033[0m]" ||\
+	echo "      Mlx [\033[31mKO\033[0m]"
+	cat $(SRC) | grep $(FOR) && echo "Forbidden [\033[31mKO\033[0m]" ||\
+	echo "Forbidden [\033[32mOK\033[0m]"
 
 norme:
 	make -C $(LIB_PATH) norme
