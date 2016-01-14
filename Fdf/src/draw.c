@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/04 11:56:57 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/11 09:17:04 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/14 16:30:19 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,11 @@ void	ft_imgpixelput(t_env *e, int x, int y, int *rgb)
 
 	if (x >= 0 && x < e->scw && y >= 0 && y < e->sch)
 	{
-		pos = (x * e->img.bpp / 8) + (y * e->img.sl);
+		pos = (x * 4) + (y * e->img.sl);
 		e->img.img[pos] = rgb[0];
 		e->img.img[pos + 1] = rgb[1];
 		e->img.img[pos + 2] = rgb[2];
 	}
-	ft_memdel((void**)&rgb);
 }
 
 int		ft_setindex(t_env *e, t_point p)
@@ -62,10 +61,9 @@ int		ft_setindex(t_env *e, t_point p)
 int		*ft_getcolor(t_env *e, t_point p)
 {
 	int	n;
-	int	*rgb;
+	static int	rgb[3];
 
 	n = ft_setindex(e, p);
-	rgb = (int*)malloc(sizeof(int) * 3);
 	rgb[0] = e->palette.c[n] % 256;
 	rgb[1] = (e->palette.c[n] >> 8) % 256;
 	rgb[2] = (e->palette.c[n] >> 16) % 256;
