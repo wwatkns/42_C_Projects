@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 11:01:11 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/18 12:18:12 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/18 12:45:30 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_getargs(t_env *e, int argc, char **argv)
 	int	i;
 
 	i = 0;
-	argc == 1 ? ft_dispargs() : 0;
+	argc > 5 ? ft_dispargs() : 0;
 	e->arg.w = 0;
 	e->arg.h = 0;
 	while (++i < argc)

@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 10:57:02 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/18 12:17:24 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/18 15:41:34 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <math.h>
+
+# define ABS(x) (x < 0 ? -x : x)
 
 typedef struct	s_arg
 {
@@ -36,6 +38,19 @@ typedef struct	s_key
 	short	e;
 }				t_key;
 
+typedef struct	s_vec2
+{
+	int	x;
+	int	y;
+}				t_vec2;
+
+typedef struct	s_cam
+{
+	t_vec2	dir;
+	t_vec2	pos;
+	t_vec2	pln;
+}				t_cam;
+
 typedef struct	s_img
 {
 	void	*adr;
@@ -48,6 +63,7 @@ typedef struct	s_img
 
 typedef struct	s_env
 {
+	t_cam	cam;
 	t_img	img;
 	t_key	key;
 	t_arg	arg;
@@ -73,9 +89,17 @@ void			ft_core(t_env *e);
 void			ft_initenv(t_env *e);
 
 /*
+**	wolf3d.c functions
+*/
+
+
+
+/*
 **	draw.c functions
 */
 
+void			ft_drawline(t_env *e, t_vec2 p, t_vec2 p1);
+t_vec2			ft_setvec2(int x, int y);
 void			ft_imgpixelput(t_env *e, int x, int y, int *rgb);
 void			ft_initimg(t_env *e);
 int				*ft_setrgb(int r, int g, int b);
