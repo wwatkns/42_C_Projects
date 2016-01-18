@@ -6,7 +6,7 @@
 #    By: wwatkins <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/11 09:24:09 by wwatkins          #+#    #+#              #
-#    Updated: 2016/01/18 11:09:06 by wwatkins         ###   ########.fr        #
+#    Updated: 2016/01/18 12:08:01 by wwatkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ MLXFLGS = -L$(MLX_PATH) -I$(MLX_PATH) -lmlx \
 FNCTION = $(shell ls -l $(LIB_PATH)/src | grep ft_ | sed 's/^.*ft_//' | sed 's/..$$//')
 FORBID = printf $(FNCTION)
 
-SRC_NAME  = main.c
+SRC_NAME  = main.c draw.c core.c hook.c
 OBJ_NAME = $(SRC_NAME.c=.o)
 LIB_NAME =  libft.a
 
@@ -74,11 +74,11 @@ check:
 	"    Auteur [\033[32mOK\033[0m]" || echo "    Auteur [\033[31mKO\033[0m]"
 	@cat $(SRC) | grep -q $(FBN) && echo " Forbidden [\033[31mKO\033[0m]" ||\
 	echo " Forbidden [\033[32mOK\033[0m]"
-	@ls | grep -q -U fractol && echo "Executable [\033[32mOK\033[0m]" ||\
+	@ls | grep -q -U $(NAME) && echo "Executable [\033[32mOK\033[0m]" ||\
 	echo "Executable [\033[31mKO\033[0m]"
 	@$(MAKE) norme | grep -B 1 Error && echo "     Norme [\033[31mKO\033[0m]" || \
 	echo "     Norme [\033[32mOK\033[0m]"
-	@ls $(LIB_PATH) | grep -q libft.a && echo "     Libft [\033[32mOK\033[0m]" ||\
+	@ls $(LIB_PATH) | grep -q $(LIB_NAME) && echo "     Libft [\033[32mOK\033[0m]" ||\
 	echo "     Libft [\033[31mKO\033[0m]"
 	@ls $(MLX_PATH) | grep -q libmlx.a && echo "       Mlx [\033[32mOK\033[0m]" ||\
 	echo "       Mlx [\033[31mKO\033[0m]"
