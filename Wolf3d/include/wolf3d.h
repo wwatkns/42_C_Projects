@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 10:57:02 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/19 15:41:46 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/19 15:56:37 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,11 +96,17 @@ void			ft_initenv(t_env *e);
 
 float			vec2_magnitude(t_vec2 vec2);
 void			vec2_normalize(t_vec2 *vec2);
+void			vec2_scale(t_vec2 *vec2, float scale);
+t_vec2			vec2(int x, int y);
+t_vec2			vec2f(float x, float y);
+
+/*
+**	vector_op.c functions
+*/
+
 void			vec2_rot(t_vec2 *vec2, float theta);
 t_vec2			vec2_add(t_vec2 vec2a, t_vec2 vec2b);
 t_vec2			vec2_mul(t_vec2 vec2a, t_vec2 vec2b);
-t_vec2			vec2(int x, int y);
-t_vec2			vec2f(float x, float y);
 
 /*
 **	draw.c functions

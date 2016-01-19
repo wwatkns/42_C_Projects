@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 12:06:26 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/19 15:41:24 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/19 15:53:21 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ int		ft_loop_hook(t_env *e)
 	if (e->key.w)
 	{
 		e->cam.pos = vec2_add(e->cam.dir, e->cam.pos);
-		vec2_normalize(&e->cam.dir);
-		e->cam.dir = vec2_mul(e->cam.dir, vec2f(10, 10));
+		vec2_scale(&e->cam.dir, 5);
 	}
 	ft_expose_hook(e);
 	return (0);
