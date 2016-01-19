@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/19 12:27:47 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/19 12:28:16 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/19 12:44:57 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char	*ft_itoa_base(int value, int base)
 	}
 	if (abs == 1 || base != 10)
 	{
-		cal = value % base;
+		cal = (value % base) * abs;
 		r[len] = (cal > 9 ? cal - 10 + 'A' : cal + '0');
 	}
 	return (r);
