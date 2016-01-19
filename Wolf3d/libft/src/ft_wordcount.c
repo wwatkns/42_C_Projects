@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 17:41:37 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/06 13:00:10 by wwatkins         ###   ########.fr       */
+/*   Updated: 2015/12/03 17:42:17 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ int		ft_wordcount(char const *s, char c)
 		counter++;
 	while (s[i] != 0)
 	{
+		i++;
 		if (s[i] != c && s[i - 1] == c)
 			counter++;
-		i++;
 	}
 	return (counter);
 }
