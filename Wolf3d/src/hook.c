@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 12:06:26 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/19 15:53:21 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/19 17:19:01 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,18 @@ int		ft_loop_hook(t_env *e)
 {
 	if (e->key.a)
 	{
-		vec2_rot(&e->cam.dir, 0.05);
-		vec2_rot(&e->cam.pln, 0.05);
+		vec2_rotate(&e->cam.dir, 0.1);
+		vec2_rotate(&e->cam.pln, 0.1);
 	}
 	if (e->key.d)
 	{
-		vec2_rot(&e->cam.dir, -0.05);
-		vec2_rot(&e->cam.pln, -0.05);
+		vec2_rotate(&e->cam.dir, -0.1);
+		vec2_rotate(&e->cam.pln, -0.1);
 	}
 	if (e->key.w)
-	{
-		e->cam.pos = vec2_add(e->cam.dir, e->cam.pos);
-		vec2_scale(&e->cam.dir, 5);
-	}
+		e->cam.pos = vec2_add(e->cam.pos, vec2_scale(e->cam.dir, 5));
+	if (e->key.s)
+		e->cam.pos = vec2_sub(e->cam.pos, vec2_scale(e->cam.dir, 5));
 	ft_expose_hook(e);
 	return (0);
 }
@@ -38,17 +37,21 @@ int		ft_expose_hook(t_env *e)
 	mlx_clear_window(e->mlx, e->win);
 	mlx_destroy_image(e->mlx, e->img.adr);
 	ft_initimg(e);
-// up
-	ft_drawline(e, vec2(e->cam.pos.x, e->cam.pos.y),
-	vec2(e->cam.pos.x + e->cam.dir.x, e->cam.pos.y + e->cam.dir.y));
-// right
-	ft_drawline(e, vec2(e->cam.pos.x + e->cam.dir.x + e->cam.pln.x,
-	e->cam.pos.y + e->cam.dir.y + e->cam.pln.y),
-	vec2(e->cam.pos.x + e->cam.dir.x, e->cam.pos.y + e->cam.dir.y));
-// left
-	ft_drawline(e, vec2(e->cam.pos.x + e->cam.dir.x - e->cam.pln.x,
-	e->cam.pos.y + e->cam.dir.y - e->cam.pln.y),
-	vec2(e->cam.pos.x + e->cam.dir.x, e->cam.pos.y + e->cam.dir.y));
+
+	ft_drawline(e, vec2i(e->cam.pos),
+	vec2i(vec2_add(e->cam.pos, e->cam.dir)));
+
+	ft_drawline(e, vec2i(vec2_add(e->cam.pos, e->cam.dir)),
+	vec2i(vec2_add(e->cam.pos, vec2_add(e->cam.dir, e->cam.pln))));
+
+	ft_drawline(e, vec2i(vec2_add(e->cam.pos, e->cam.dir)),
+	vec2i(vec2_add(e->cam.pos, vec2_sub(e->cam.dir, e->cam.pln))));
+
+	ft_drawline(e, vec2i(e->cam.pos),
+	vec2i(vec2_add(e->cam.pos, vec2_add(e->cam.dir, e->cam.pln))));
+
+	ft_drawline(e, vec2i(e->cam.pos),
+	vec2i(vec2_add(e->cam.pos, vec2_sub(e->cam.dir, e->cam.pln))));
 
 	mlx_put_image_to_window(e->mlx, e->win, e->img.adr, 0, 0);
 	return (0);

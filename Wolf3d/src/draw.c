@@ -6,13 +6,13 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 11:48:31 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/19 15:02:41 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/19 16:27:26 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void	ft_drawline(t_env *e, t_vec2 p, t_vec2 p1)
+void	ft_drawline(t_env *e, t_vec2_int p, t_vec2_int p1)
 {
 	t_vec2	d;
 	t_vec2	s;

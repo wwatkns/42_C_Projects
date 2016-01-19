@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/19 14:14:23 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/19 15:55:37 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/19 17:18:31 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,15 @@ void	vec2_normalize(t_vec2 *vec2)
 	vec2->y /= magnitude;
 }
 
-void	vec2_scale(t_vec2 *vec2, float scale)
+t_vec2	vec2_scale(t_vec2 vec2, float scale)
 {
-	vec2_normalize(vec2);
-	vec2->x *= scale;
-	vec2->y *= scale;
+	vec2_normalize(&vec2);
+	vec2.x *= scale;
+	vec2.y *= scale;
+	return (vec2);
 }
 
-t_vec2	vec2f(float x, float y)
+t_vec2	vec2(float x, float y)
 {
 	t_vec2  vector;
 
@@ -41,11 +42,11 @@ t_vec2	vec2f(float x, float y)
 	return (vector);
 }
 
-t_vec2	vec2(int x, int y)
+t_vec2_int	vec2i(t_vec2 vec2)
 {
-	t_vec2  vector;
+	t_vec2_int	vec2_int;
 
-	vector.x = x;
-	vector.y = y;
-	return (vector);
+	vec2_int.x = (int)vec2.x;
+	vec2_int.y = (int)vec2.y;
+	return (vec2_int);
 }

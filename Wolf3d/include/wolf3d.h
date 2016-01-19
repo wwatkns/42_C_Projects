@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 10:57:02 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/19 15:56:37 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/19 17:19:09 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,12 @@ typedef struct	s_key
 	short	q;
 	short	e;
 }				t_key;
+
+typedef struct	s_vec2_int
+{
+	int	x;
+	int	y;
+}				t_vec2_int;
 
 typedef struct	s_vec2
 {
@@ -96,23 +102,24 @@ void			ft_initenv(t_env *e);
 
 float			vec2_magnitude(t_vec2 vec2);
 void			vec2_normalize(t_vec2 *vec2);
-void			vec2_scale(t_vec2 *vec2, float scale);
-t_vec2			vec2(int x, int y);
-t_vec2			vec2f(float x, float y);
+t_vec2			vec2_scale(t_vec2 vec2, float scale);
+t_vec2			vec2(float x, float y);
+t_vec2_int		vec2i(t_vec2 vec2);
 
 /*
 **	vector_op.c functions
 */
 
-void			vec2_rot(t_vec2 *vec2, float theta);
-t_vec2			vec2_add(t_vec2 vec2a, t_vec2 vec2b);
-t_vec2			vec2_mul(t_vec2 vec2a, t_vec2 vec2b);
+void			vec2_rotate(t_vec2 *vec2, float theta);
+t_vec2			vec2_add(t_vec2 vec2_a, t_vec2 vec2_b);
+t_vec2			vec2_sub(t_vec2 vec2_a, t_vec2 vec2_b);
+t_vec2			vec2_mul(t_vec2 vec2_a, t_vec2 vec2_b);
 
 /*
 **	draw.c functions
 */
 
-void			ft_drawline(t_env *e, t_vec2 p, t_vec2 p1);
+void			ft_drawline(t_env *e, t_vec2_int p, t_vec2_int p1);
 void			ft_imgpixelput(t_env *e, int x, int y, int *rgb);
 void			ft_initimg(t_env *e);
 int				*ft_setrgb(int r, int g, int b);
