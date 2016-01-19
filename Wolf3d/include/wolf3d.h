@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 10:57:02 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/19 14:28:17 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/19 15:41:46 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <math.h>
+
+# include <stdio.h> // TEMPORARY
 
 # define ABS(x) (x < 0 ? -x : x)
 
@@ -92,15 +94,19 @@ void			ft_initenv(t_env *e);
 **	vector.c functions
 */
 
-void			ft_vec_rotate(t_vec2 *vec2, float theta);
-t_vec2			ft_vec_add(t_vec2 vec2a, t_vec2 vec2b);
+float			vec2_magnitude(t_vec2 vec2);
+void			vec2_normalize(t_vec2 *vec2);
+void			vec2_rot(t_vec2 *vec2, float theta);
+t_vec2			vec2_add(t_vec2 vec2a, t_vec2 vec2b);
+t_vec2			vec2_mul(t_vec2 vec2a, t_vec2 vec2b);
+t_vec2			vec2(int x, int y);
+t_vec2			vec2f(float x, float y);
 
 /*
 **	draw.c functions
 */
 
 void			ft_drawline(t_env *e, t_vec2 p, t_vec2 p1);
-t_vec2			ft_setvec2(int x, int y);
 void			ft_imgpixelput(t_env *e, int x, int y, int *rgb);
 void			ft_initimg(t_env *e);
 int				*ft_setrgb(int r, int g, int b);

@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 11:48:31 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/18 15:41:18 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/19 15:02:41 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,6 @@ void	ft_drawline(t_env *e, t_vec2 p, t_vec2 p1)
 		e2 < d.x ? err += d.x : 0;
 		e2 < d.x ? p.y += s.y : 0;
 	}
-}
-
-t_vec2	ft_setvec2(int x, int y)
-{
-	static t_vec2	vector;
-
-	vector.x = x;
-	vector.y = y;
-	return (vector);
 }
 
 void	ft_imgpixelput(t_env *e, int x, int y, int *rgb)
