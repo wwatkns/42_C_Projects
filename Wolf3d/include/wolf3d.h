@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 10:57:02 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/18 15:41:34 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/19 14:28:17 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ typedef struct	s_key
 
 typedef struct	s_vec2
 {
-	int	x;
-	int	y;
+	float	x;
+	float	y;
 }				t_vec2;
 
 typedef struct	s_cam
@@ -89,10 +89,11 @@ void			ft_core(t_env *e);
 void			ft_initenv(t_env *e);
 
 /*
-**	wolf3d.c functions
+**	vector.c functions
 */
 
-
+void			ft_vec_rotate(t_vec2 *vec2, float theta);
+t_vec2			ft_vec_add(t_vec2 vec2a, t_vec2 vec2b);
 
 /*
 **	draw.c functions
