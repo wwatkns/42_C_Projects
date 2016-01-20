@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 10:57:02 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/20 14:21:41 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/20 16:47:53 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define PI 3.1415926
 # define DEG2RAD PI / 180
 # define RAD2DEG 180 / PI
-# define FOV 60
+# define FOV 90
 
 typedef struct	s_arg
 {
