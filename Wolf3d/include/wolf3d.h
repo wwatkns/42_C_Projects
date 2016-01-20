@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 10:57:02 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/20 11:54:38 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/20 14:21:41 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@
 
 # define ABS(x) (x < 0 ? -x : x)
 # define PI 3.1415926
+# define DEG2RAD PI / 180
 # define RAD2DEG 180 / PI
+# define FOV 60
 
 typedef struct	s_arg
 {
@@ -60,6 +62,7 @@ typedef struct	s_cam
 	t_vec2	dir;
 	t_vec2	pos;
 	t_vec2	pln;
+	float	fov;
 }				t_cam;
 
 typedef struct	s_img
@@ -152,5 +155,11 @@ int				key_released(int keycode, t_env *e);
 void			map_init(t_env *e);
 void			map_parse(t_env *e);
 void			map_assign(t_env *e, const char *line, int j);
+
+/*
+**	raycast.c functions
+*/
+
+void			raycast(t_env *e);
 
 #endif

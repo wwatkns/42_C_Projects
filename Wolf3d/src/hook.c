@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 12:06:26 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/20 11:52:54 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/20 14:10:30 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ int		loop_hook(t_env *e)
 {
 	if (e->key.a)
 	{
-		vec2_rotate(&e->cam.dir, -0.06);
-		vec2_rotate(&e->cam.pln, -0.06);
+		vec2_rotate(&e->cam.dir, -2.5);
+		vec2_rotate(&e->cam.pln, -2.5);
 	}
 	if (e->key.d)
 	{
-		vec2_rotate(&e->cam.dir, 0.06);
-		vec2_rotate(&e->cam.pln, 0.06);
+		vec2_rotate(&e->cam.dir, 2.5);
+		vec2_rotate(&e->cam.pln, 2.5);
 	}
 	if (e->key.w)
 		e->cam.pos = vec2_add(e->cam.pos, vec2_scale(e->cam.dir, 5));
@@ -37,6 +37,7 @@ int		expose_hook(t_env *e)
 	mlx_clear_window(e->mlx, e->win);
 	mlx_destroy_image(e->mlx, e->img.adr);
 	img_init(e);
+	raycast(e);
 	draw_line(e, vec2i(e->cam.pos),
 	vec2i(vec2_add(e->cam.pos, e->cam.dir)));
 	draw_line(e, vec2i(vec2_add(e->cam.pos, e->cam.dir)),
