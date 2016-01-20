@@ -6,13 +6,13 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 11:48:31 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/20 09:33:05 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/20 11:52:05 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void	ft_drawline(t_env *e, t_vec2i p, t_vec2i p1)
+void	draw_line(t_env *e, t_vec2i p, t_vec2i p1)
 {
 	t_vec2i	d;
 	t_vec2i	s;
@@ -26,7 +26,7 @@ void	ft_drawline(t_env *e, t_vec2i p, t_vec2i p1)
 	err = d.x - d.y;
 	while (p.x != p1.x || p.y != p1.y)
 	{
-		ft_imgpixelput(e, p.x, p.y, ft_setrgb(255, 255, 255));
+		img_pixel_put(e, p.x, p.y, set_rgb(255, 255, 255));
 		e2 = err + err;
 		e2 > -d.y ? err -= d.y : 0;
 		e2 > -d.y ? p.x += s.x : 0;
@@ -35,7 +35,7 @@ void	ft_drawline(t_env *e, t_vec2i p, t_vec2i p1)
 	}
 }
 
-void	ft_imgpixelput(t_env *e, int x, int y, int *rgb)
+void	img_pixel_put(t_env *e, int x, int y, int *rgb)
 {
 	int pos;
 
@@ -48,15 +48,15 @@ void	ft_imgpixelput(t_env *e, int x, int y, int *rgb)
 	}
 }
 
-void	ft_initimg(t_env *e)
+void	img_init(t_env *e)
 {
-	ft_error(((int)(e->img.adr = mlx_new_image(e->mlx, e->win_w, e->win_h))));
+	error(((int)(e->img.adr = mlx_new_image(e->mlx, e->win_w, e->win_h))));
 	e->img.img = mlx_get_data_addr(e->img.adr, &e->img.bpp,
 			&e->img.sl, &e->img.endian);
 	e->img.opp = e->img.bpp / 8;
 }
 
-int		*ft_setrgb(int r, int g, int b)
+int		*set_rgb(int r, int g, int b)
 {
 	static int	rgb[3];
 

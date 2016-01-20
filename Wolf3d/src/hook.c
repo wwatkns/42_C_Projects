@@ -6,13 +6,13 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 12:06:26 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/20 11:06:07 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/20 11:52:54 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-int		ft_loop_hook(t_env *e)
+int		loop_hook(t_env *e)
 {
 	if (e->key.a)
 	{
@@ -28,31 +28,30 @@ int		ft_loop_hook(t_env *e)
 		e->cam.pos = vec2_add(e->cam.pos, vec2_scale(e->cam.dir, 5));
 	if (e->key.s)
 		e->cam.pos = vec2_sub(e->cam.pos, vec2_scale(e->cam.dir, 5));
-	ft_expose_hook(e);
+	expose_hook(e);
 	return (0);
 }
 
-int		ft_expose_hook(t_env *e)
+int		expose_hook(t_env *e)
 {
 	mlx_clear_window(e->mlx, e->win);
 	mlx_destroy_image(e->mlx, e->img.adr);
-	ft_initimg(e);
-	ft_drawline(e, vec2i(e->cam.pos),
+	img_init(e);
+	draw_line(e, vec2i(e->cam.pos),
 	vec2i(vec2_add(e->cam.pos, e->cam.dir)));
-	ft_drawline(e, vec2i(vec2_add(e->cam.pos, e->cam.dir)),
+	draw_line(e, vec2i(vec2_add(e->cam.pos, e->cam.dir)),
 	vec2i(vec2_add(e->cam.pos, vec2_add(e->cam.dir, e->cam.pln))));
-	ft_drawline(e, vec2i(vec2_add(e->cam.pos, e->cam.dir)),
+	draw_line(e, vec2i(vec2_add(e->cam.pos, e->cam.dir)),
 	vec2i(vec2_add(e->cam.pos, vec2_sub(e->cam.dir, e->cam.pln))));
-	ft_drawline(e, vec2i(e->cam.pos),
+	draw_line(e, vec2i(e->cam.pos),
 	vec2i(vec2_add(e->cam.pos, vec2_add(e->cam.dir, e->cam.pln))));
-	ft_drawline(e, vec2i(e->cam.pos),
+	draw_line(e, vec2i(e->cam.pos),
 	vec2i(vec2_add(e->cam.pos, vec2_sub(e->cam.dir, e->cam.pln))));
-
 	mlx_put_image_to_window(e->mlx, e->win, e->img.adr, 0, 0);
 	return (0);
 }
 
-int		ft_key_pressed(int keycode, t_env *e)
+int		key_pressed(int keycode, t_env *e)
 {
 	keycode == 53 ? exit(0) : 0;
 	keycode == 13 || keycode == 126 ? e->key.w = 1 : 0;
@@ -62,7 +61,7 @@ int		ft_key_pressed(int keycode, t_env *e)
 	return (0);
 }
 
-int		ft_key_released(int keycode, t_env *e)
+int		key_released(int keycode, t_env *e)
 {
 	keycode == 13 || keycode == 126 ? e->key.w = 0 : 0;
 	keycode == 1 || keycode == 125 ? e->key.s = 0 : 0;

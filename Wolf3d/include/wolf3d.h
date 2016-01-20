@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 10:57:02 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/20 11:25:00 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/20 11:54:38 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,16 +97,16 @@ typedef struct	s_env
 **	main.c functions
 */
 
-void			ft_getargs(t_env *e, int argc, char **argv);
-void			ft_dispargs(void);
-void			ft_error(int err);
+void			args_get(t_env *e, int argc, char **argv);
+void			args_disp(void);
+void			error(int err);
 
 /*
 **	core.c functions
 */
 
-void			ft_core(t_env *e);
-void			init_env(t_env *e);
+void			core(t_env *e);
+void			env_init(t_env *e);
 
 /*
 **	vector.c functions
@@ -131,26 +131,26 @@ t_vec2			vec2_mul(t_vec2 vec2_a, t_vec2 vec2_b);
 **	draw.c functions
 */
 
-void			ft_drawline(t_env *e, t_vec2i p, t_vec2i p1);
-void			ft_imgpixelput(t_env *e, int x, int y, int *rgb);
-void			ft_initimg(t_env *e);
-int				*ft_setrgb(int r, int g, int b);
+void			draw_line(t_env *e, t_vec2i p, t_vec2i p1);
+void			img_pixel_put(t_env *e, int x, int y, int *rgb);
+void			img_init(t_env *e);
+int				*set_rgb(int r, int g, int b);
 
 /*
 **	hook.c functions
 */
 
-int				ft_loop_hook(t_env *e);
-int				ft_expose_hook(t_env *e);
-int				ft_key_pressed(int keycode, t_env *e);
-int				ft_key_released(int keycode, t_env *e);
+int				loop_hook(t_env *e);
+int				expose_hook(t_env *e);
+int				key_pressed(int keycode, t_env *e);
+int				key_released(int keycode, t_env *e);
 
 /*
 **	map.c functions
 */
 
-void			init_map(t_env *e);
-void			parse_map(t_env *e);
+void			map_init(t_env *e);
+void			map_parse(t_env *e);
 void			map_assign(t_env *e, const char *line, int j);
 
 #endif

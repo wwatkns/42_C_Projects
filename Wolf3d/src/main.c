@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 11:01:11 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/20 11:33:52 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/20 11:57:33 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,17 @@ int		main(int argc, char **argv)
 {
 	t_env e;
 
-	ft_getargs(&e, argc, argv);
-	ft_core(&e);
+	args_get(&e, argc, argv);
+	core(&e);
 	return (0);
 }
 
-void	ft_getargs(t_env *e, int argc, char **argv)
+void	args_get(t_env *e, int argc, char **argv)
 {
 	int	i;
 
 	i = 0;
-	argc > 6 ? ft_dispargs() : 0;
+	argc > 6 ? args_disp() : 0;
 	if (argc == 1 || !ft_strstr(argv[1], ".map"))
 		e->arg.map = ft_strdup("maps/default.map");
 	else
@@ -44,13 +44,13 @@ void	ft_getargs(t_env *e, int argc, char **argv)
 	e->arg.h = (e->arg.h < 420 || e->arg.h > 1440 ? 960 : e->arg.h);
 }
 
-void	ft_dispargs(void)
+void	args_disp(void)
 {
-	ft_putendl("\nusage: ./wolf3d [-w width] [-h height]");
+	ft_putendl("\nusage: ./wolf3d (maps) [-w width] [-h height]");
 	exit(0);
 }
 
-void	ft_error(int err)
+void	error(int err)
 {
 	if (err == 0 || err == -1)
 	{
