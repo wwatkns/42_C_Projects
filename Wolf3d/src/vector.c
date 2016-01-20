@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/19 14:14:23 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/19 17:18:31 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/20 09:32:10 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,16 @@ t_vec2	vec2_scale(t_vec2 vec2, float scale)
 
 t_vec2	vec2(float x, float y)
 {
-	t_vec2  vector;
+	t_vec2	vector;
 
 	vector = (t_vec2) { x, y };
 	return (vector);
 }
 
-t_vec2_int	vec2i(t_vec2 vec2)
+t_vec2i	vec2i(t_vec2 vec2)
 {
-	t_vec2_int	vec2_int;
+	t_vec2i	vec2i;
 
-	vec2_int.x = (int)vec2.x;
-	vec2_int.y = (int)vec2.y;
-	return (vec2_int);
+	vec2i = (t_vec2i) { (int)vec2.x, (int)vec2.y };
+	return (vec2i);
 }

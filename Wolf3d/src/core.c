@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 11:55:09 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/18 15:40:06 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/20 11:05:57 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	ft_core(t_env *e)
 {
-	ft_initenv(e);
+	init_env(e);
+	init_map(e);
 	ft_error((int)(e->mlx = mlx_init()));
 	ft_error((int)(e->win = mlx_new_window(e->mlx, e->win_w, e->win_h,
 	"wolf3d")));
@@ -26,7 +27,7 @@ void	ft_core(t_env *e)
 	mlx_loop(e->mlx);
 }
 
-void	ft_initenv(t_env *e)
+void	init_env(t_env *e)
 {
 	e->win_w = e->arg.w;
 	e->win_h = e->arg.h;

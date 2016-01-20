@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 10:57:02 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/19 17:19:09 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/20 11:25:00 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,12 @@
 # include <stdio.h> // TEMPORARY
 
 # define ABS(x) (x < 0 ? -x : x)
+# define PI 3.1415926
+# define RAD2DEG 180 / PI
 
 typedef struct	s_arg
 {
+	char	*map;
 	int		w;
 	int		h;
 }				t_arg;
@@ -40,11 +43,11 @@ typedef struct	s_key
 	short	e;
 }				t_key;
 
-typedef struct	s_vec2_int
+typedef struct	s_vec2i
 {
 	int	x;
 	int	y;
-}				t_vec2_int;
+}				t_vec2i;
 
 typedef struct	s_vec2
 {
@@ -69,8 +72,17 @@ typedef struct	s_img
 	int		sl;
 }				t_img;
 
+typedef struct	s_map
+{
+	int	**map;
+	int	size;
+	int	w;
+	int	h;
+}				t_map;
+
 typedef struct	s_env
 {
+	t_map	map;
 	t_cam	cam;
 	t_img	img;
 	t_key	key;
@@ -94,7 +106,7 @@ void			ft_error(int err);
 */
 
 void			ft_core(t_env *e);
-void			ft_initenv(t_env *e);
+void			init_env(t_env *e);
 
 /*
 **	vector.c functions
@@ -104,7 +116,7 @@ float			vec2_magnitude(t_vec2 vec2);
 void			vec2_normalize(t_vec2 *vec2);
 t_vec2			vec2_scale(t_vec2 vec2, float scale);
 t_vec2			vec2(float x, float y);
-t_vec2_int		vec2i(t_vec2 vec2);
+t_vec2i			vec2i(t_vec2 vec2);
 
 /*
 **	vector_op.c functions
@@ -119,7 +131,7 @@ t_vec2			vec2_mul(t_vec2 vec2_a, t_vec2 vec2_b);
 **	draw.c functions
 */
 
-void			ft_drawline(t_env *e, t_vec2_int p, t_vec2_int p1);
+void			ft_drawline(t_env *e, t_vec2i p, t_vec2i p1);
 void			ft_imgpixelput(t_env *e, int x, int y, int *rgb);
 void			ft_initimg(t_env *e);
 int				*ft_setrgb(int r, int g, int b);
@@ -132,5 +144,13 @@ int				ft_loop_hook(t_env *e);
 int				ft_expose_hook(t_env *e);
 int				ft_key_pressed(int keycode, t_env *e);
 int				ft_key_released(int keycode, t_env *e);
+
+/*
+**	map.c functions
+*/
+
+void			init_map(t_env *e);
+void			parse_map(t_env *e);
+void			map_assign(t_env *e, const char *line, int j);
 
 #endif

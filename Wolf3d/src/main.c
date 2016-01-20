@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 11:01:11 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/18 12:45:30 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/20 11:33:52 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,11 @@ void	ft_getargs(t_env *e, int argc, char **argv)
 	int	i;
 
 	i = 0;
-	argc > 5 ? ft_dispargs() : 0;
+	argc > 6 ? ft_dispargs() : 0;
+	if (argc == 1 || !ft_strstr(argv[1], ".map"))
+		e->arg.map = ft_strdup("maps/default.map");
+	else
+		e->arg.map = ft_strdup(argv[1]);
 	e->arg.w = 0;
 	e->arg.h = 0;
 	while (++i < argc)
@@ -36,8 +40,8 @@ void	ft_getargs(t_env *e, int argc, char **argv)
 		if (!ft_strcmp(argv[i], "-h") && i + 1 < argc)
 			e->arg.h = ft_atoi(argv[i + 1]);
 	}
-	e->arg.w = (e->arg.w < 420 || e->arg.w > 2560 ? 800 : e->arg.w);
-	e->arg.h = (e->arg.h < 420 || e->arg.h > 1440 ? 800 : e->arg.h);
+	e->arg.w = (e->arg.w < 420 || e->arg.w > 2560 ? 960 : e->arg.w);
+	e->arg.h = (e->arg.h < 420 || e->arg.h > 1440 ? 960 : e->arg.h);
 }
 
 void	ft_dispargs(void)
