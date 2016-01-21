@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/20 10:46:57 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/21 17:17:48 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/21 17:33:15 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,17 +89,17 @@ void	raycast_init(t_env *e, int x)
 	float	dir_y2;
 
 	cam = 2 * x / (float)e->win_w - 1;
-	dir_x2 = e->cam.dir.x * 2;
-	dir_y2 = e->cam.dir.y * 2;
 	e->ray.hit = 0;
 	e->ray.pos.x = e->map.pos.x;
 	e->ray.pos.y = e->map.pos.y;
-	e->ray.map.x = (int)e->map.pos.x;
-	e->ray.map.y = (int)e->map.pos.y;
+	e->ray.map.x = e->map.pos.x;
+	e->ray.map.y = e->map.pos.y;
 	e->ray.dir.x = e->cam.dir.x + e->cam.pln.x * cam;
 	e->ray.dir.y = e->cam.dir.y + e->cam.pln.y * cam;
-	e->ray.a.x = sqrt(1.0 + dir_y2 / dir_x2);
-	e->ray.a.y = sqrt(1.0 + dir_x2 / dir_y2);
+	dir_x2 = e->ray.dir.x * 2;
+	dir_y2 = e->ray.dir.y * 2;
+	e->ray.a.x = sqrt(1 + dir_y2 / dir_x2);
+	e->ray.a.y = sqrt(1 + dir_x2 / dir_y2);
 }
 
 void	raycast(t_env *e)
