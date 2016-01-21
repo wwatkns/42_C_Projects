@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/20 10:46:57 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/21 17:33:15 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/21 18:24:41 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,8 @@ void	raycast_algo(t_env *e)
 		}
 		if (e->ray.map.x > 14 || e->ray.map.y > 14 ||
 			e->ray.map.x < 0 || e->ray.map.y < 0)
-			break ; // temporary, generates flickers between NE & SW walls
-		if (e->map.map[e->ray.map.x][e->ray.map.y] > 0)
-			e->ray.hit = 1;
+			break ;
+		e->map.map[e->ray.map.x][e->ray.map.y] > 0 ? e->ray.hit = 1 : 0;
 	}
 }
 
@@ -68,10 +67,10 @@ void	raycast_draw(t_env *e, int x)
 	short	color;
 
 	if (e->ray.side == 0)
-		e->ray.dist = fabs(((float)e->ray.map.x - e->ray.pos.x +
+		e->ray.dist = fabs((e->ray.map.x - e->ray.pos.x +
 		(1 - e->ray.step.x) / 2) / e->ray.dir.x);
 	else
-		e->ray.dist = fabs(((float)e->ray.map.y - e->ray.pos.y +
+		e->ray.dist = fabs((e->ray.map.y - e->ray.pos.y +
 		(1 - e->ray.step.y) / 2) / e->ray.dir.y);
 	line_height = abs((int)(e->win_h / e->ray.dist));
 	y = -line_height / 2 + e->win_h / 2;
@@ -79,7 +78,9 @@ void	raycast_draw(t_env *e, int x)
 	y < 0 ? y = 0 : 0;
 	y1 >= e->win_h ? y1 = e->win_h - 1 : 0;
 	color = (e->ray.side == 1 ? 128 : 255);
+	draw_vertical_line(e, vec2(x, 0), y, set_rgb(10, 110, 120));
 	draw_vertical_line(e, vec2(x, y), y1, set_rgb(color, color, color));
+	draw_vertical_line(e, vec2(x, y1), e->win_h, set_rgb(152, 190, 154));
 }
 
 void	raycast_init(t_env *e, int x)
@@ -92,10 +93,10 @@ void	raycast_init(t_env *e, int x)
 	e->ray.hit = 0;
 	e->ray.pos.x = e->map.pos.x;
 	e->ray.pos.y = e->map.pos.y;
-	e->ray.map.x = e->map.pos.x;
-	e->ray.map.y = e->map.pos.y;
 	e->ray.dir.x = e->cam.dir.x + e->cam.pln.x * cam;
 	e->ray.dir.y = e->cam.dir.y + e->cam.pln.y * cam;
+	e->ray.map.x = (int)e->ray.pos.x;
+	e->ray.map.y = (int)e->ray.pos.y;
 	dir_x2 = e->ray.dir.x * 2;
 	dir_y2 = e->ray.dir.y * 2;
 	e->ray.a.x = sqrt(1 + dir_y2 / dir_x2);
