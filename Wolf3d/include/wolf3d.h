@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 10:57:02 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/20 16:47:53 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/21 17:11:40 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define PI 3.1415926
 # define DEG2RAD PI / 180
 # define RAD2DEG 180 / PI
-# define FOV 90
+# define FOV 60
 
 typedef struct	s_arg
 {
@@ -77,14 +77,29 @@ typedef struct	s_img
 
 typedef struct	s_map
 {
-	int	**map;
-	int	size;
-	int	w;
-	int	h;
+	t_vec2	pos;
+	int		**map;
+	int		size;
+	int		w;
+	int		h;
 }				t_map;
+
+typedef	struct	s_ray
+{
+	t_vec2	pos;
+	t_vec2	dir;
+	t_vec2	len;
+	t_vec2	a;
+	t_vec2i	map;
+	t_vec2i	step;
+	int		side;
+	int		hit;
+	double	dist;
+}				t_ray;
 
 typedef struct	s_env
 {
+	t_ray	ray;
 	t_map	map;
 	t_cam	cam;
 	t_img	img;
@@ -135,6 +150,7 @@ t_vec2			vec2_mul(t_vec2 vec2_a, t_vec2 vec2_b);
 */
 
 void			draw_line(t_env *e, t_vec2i p, t_vec2i p1);
+void			draw_vertical_line(t_env *e, t_vec2 p, int y, int *rgb);
 void			img_pixel_put(t_env *e, int x, int y, int *rgb);
 void			img_init(t_env *e);
 int				*set_rgb(int r, int g, int b);
@@ -155,11 +171,16 @@ int				key_released(int keycode, t_env *e);
 void			map_init(t_env *e);
 void			map_parse(t_env *e);
 void			map_assign(t_env *e, const char *line, int j);
+void			map_coor(t_env *e);
 
 /*
 **	raycast.c functions
 */
 
 void			raycast(t_env *e);
+void			raycast_init(t_env *e, int x);
+void			raycast_calc(t_env *e);
+void			raycast_algo(t_env *e);
+void			raycast_draw(t_env *e, int x);
 
 #endif

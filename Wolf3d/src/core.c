@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 11:55:09 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/20 16:06:27 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/21 17:19:02 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,14 @@ void	env_init(t_env *e)
 	e->cam.pos.x = e->win_w / 2;
 	e->cam.pos.y = e->win_h / 2;
 	e->cam.fov = FOV;
-	e->cam.dir.x = 0;
+	e->cam.dir.x = 1;
+	e->cam.dir.y = 0;
+	e->cam.pln.x = 0;
+	e->cam.pln.y = 1;
+	/*e->cam.dir.x = 0;
 	e->cam.dir.y = -e->win_w / 2 / tan(e->cam.fov / 2 * DEG2RAD);
 	e->cam.pln.x = e->win_w / 2;
-	e->cam.pln.y = 0;
+	e->cam.pln.y = 0;*/
 	e->key.w = 0;
 	e->key.s = 0;
 	e->key.a = 0;

@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/20 09:34:44 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/20 12:05:02 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/21 17:17:29 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,10 @@ void	map_assign(t_env *e, const char *line, int j)
 		free(split[i]);
 	}
 	free(split);
+}
+
+void	map_coor(t_env *e)
+{
+	e->map.pos = vec2_mul(e->cam.pos,
+	vec2(e->map.w / (float)e->win_w, e->map.h / (float)e->win_h));
 }

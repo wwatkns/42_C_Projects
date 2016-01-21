@@ -6,89 +6,113 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/20 10:46:57 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/20 16:49:51 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/21 17:17:48 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
-/*
-void	raycast(t_env *e)
+
+void	raycast_algo(t_env *e)
 {
-	int		i;
-	int		j;
-	int		hit;
-	t_vec2	ray;
-	t_vec2i	ray_t;
-	t_vec2i	pos;
-	float	angle;
-
-	i = -1;
-	angle = e->cam.fov / e->win_w;
-	ray = vec2_sub(e->cam.dir, e->cam.pln);
-	pos = vec2i(vec2_mul(e->cam.pos,
-	vec2((1 / (float)e->win_w * 15), (1 / (float)e->win_w * 15))));
-	pos = vec2i(vec2_sub(vec2(pos.x, pos.y), vec2(1, 1)));
-	printf("(%d, %d)\n", pos.x, pos.y);
-	vec2_normalize(&ray);
-	while (++i < e->win_w)
+	while (e->ray.hit == 0)
 	{
-		vec2_rotate(&ray, angle);
-		hit = 0;
-		j = 1;
-		ray_t = vec2i(ray);
-		while (!hit)
+		if (e->ray.len.x < e->ray.len.y)
 		{
-			if (e->map.map[pos.y + ray_t.y][pos.x + ray_t.x] > 0)
-				hit = 1;
-			ray_t = vec2i(vec2_scale(ray, j));
-			printf("(%d, %d)\n", ray_t.x, ray_t.y);
-			j++;
+			e->ray.len.x += e->ray.a.x;
+			e->ray.map.x += e->ray.step.x;
+			e->ray.side = 0;
 		}
-		printf("hit\n");
-		//draw_line(e, vec2i(e->cam.pos), vec2i(vec2_add(e->cam.pos,
-		//vec2_scale(ray, 1400))));
-	}
-}*/
-
-void	raycast(t_env *e)
-{
-	t_vec2	ray;
-	t_vec2	ray_t;
-	t_vec2	pos;
-	float	angle;
-	int		i;
-	int		j;
-
-	i = -1;
-	angle = e->cam.fov / e->win_w;
-	ray = vec2_sub(e->cam.dir, e->cam.pln);
-	vec2_normalize(&ray);
-	pos = vec2_mul(e->cam.pos, vec2(15 / (float)e->win_w, 15 / (float)e->win_w));
-	pos = (t_vec2) { (int)pos.x, (int)pos.y };
-//	printf("r: (%f, %f) - p: (%f, %f)\n", ray.x, ray.y, pos.x, pos.y);
-	while (++i < e->win_w)
-	{
-		vec2_rotate(&ray, angle);
-		j = 1;
-		ray_t = ray;
-		while (1)
+		else
 		{
-			if (pos.x + ray_t.x < 0 || pos.y + ray_t.y < 0 ||
-				pos.x + ray_t.x > e->map.w - 1 ||
-				pos.y + ray_t.y > e->map.w - 1)
-				break ;
-			if (e->map.map[(int)(pos.y + ray_t.y)][(int)(pos.x + ray_t.x)] > 0)
-				break ;
-			ray_t = vec2_scale(ray_t, j);
-			//printf("(%f, %f)\n", ray_t.x, ray_t.y);
-			j++;
+			e->ray.len.y += e->ray.a.y;
+			e->ray.map.y += e->ray.step.y;
+			e->ray.side = 1;
 		}
-		draw_line(e, vec2i(e->cam.pos),
-		vec2i(vec2_add(e->cam.pos, vec2_scale(ray_t, 500))));
-		//printf("Hit\n");
+		if (e->ray.map.x > 14 || e->ray.map.y > 14 ||
+			e->ray.map.x < 0 || e->ray.map.y < 0)
+			break ; // temporary, generates flickers between NE & SW walls
+		if (e->map.map[e->ray.map.x][e->ray.map.y] > 0)
+			e->ray.hit = 1;
 	}
 }
 
+void	raycast_calc(t_env *e)
+{
+	if (e->ray.dir.x < 0)
+	{
+		e->ray.step.x = -1;
+		e->ray.len.x = (e->ray.pos.x - e->ray.map.x) * e->ray.a.x;
+	}
+	else
+	{
+		e->ray.step.x = 1;
+		e->ray.len.x = (e->ray.map.x + 1.0 - e->ray.pos.x) * e->ray.a.x;
+	}
+	if (e->ray.dir.y < 0)
+	{
+		e->ray.step.y = -1;
+		e->ray.len.y = (e->ray.pos.y - e->ray.map.y) * e->ray.a.y;
+	}
+	else
+	{
+		e->ray.step.y = 1;
+		e->ray.len.y = (e->ray.map.y + 1.0 - e->ray.pos.y) * e->ray.a.y;
+	}
+}
 
+void	raycast_draw(t_env *e, int x)
+{
+	int		y;
+	int		y1;
+	int		line_height;
+	short	color;
 
+	if (e->ray.side == 0)
+		e->ray.dist = fabs(((float)e->ray.map.x - e->ray.pos.x +
+		(1 - e->ray.step.x) / 2) / e->ray.dir.x);
+	else
+		e->ray.dist = fabs(((float)e->ray.map.y - e->ray.pos.y +
+		(1 - e->ray.step.y) / 2) / e->ray.dir.y);
+	line_height = abs((int)(e->win_h / e->ray.dist));
+	y = -line_height / 2 + e->win_h / 2;
+	y1 = line_height / 2 + e->win_h / 2;
+	y < 0 ? y = 0 : 0;
+	y1 >= e->win_h ? y1 = e->win_h - 1 : 0;
+	color = (e->ray.side == 1 ? 128 : 255);
+	draw_vertical_line(e, vec2(x, y), y1, set_rgb(color, color, color));
+}
 
+void	raycast_init(t_env *e, int x)
+{
+	float	cam;
+	float	dir_x2;
+	float	dir_y2;
+
+	cam = 2 * x / (float)e->win_w - 1;
+	dir_x2 = e->cam.dir.x * 2;
+	dir_y2 = e->cam.dir.y * 2;
+	e->ray.hit = 0;
+	e->ray.pos.x = e->map.pos.x;
+	e->ray.pos.y = e->map.pos.y;
+	e->ray.map.x = (int)e->map.pos.x;
+	e->ray.map.y = (int)e->map.pos.y;
+	e->ray.dir.x = e->cam.dir.x + e->cam.pln.x * cam;
+	e->ray.dir.y = e->cam.dir.y + e->cam.pln.y * cam;
+	e->ray.a.x = sqrt(1.0 + dir_y2 / dir_x2);
+	e->ray.a.y = sqrt(1.0 + dir_x2 / dir_y2);
+}
+
+void	raycast(t_env *e)
+{
+	int		x;
+
+	x = 0;
+	while (x < e->win_w)
+	{
+		raycast_init(e, x);
+		raycast_calc(e);
+		raycast_algo(e);
+		raycast_draw(e, x);
+		x++;
+	}
+}

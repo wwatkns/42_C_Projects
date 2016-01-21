@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 11:48:31 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/20 11:52:05 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/21 17:05:08 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,15 @@ void	draw_line(t_env *e, t_vec2i p, t_vec2i p1)
 		e2 > -d.y ? p.x += s.x : 0;
 		e2 < d.x ? err += d.x : 0;
 		e2 < d.x ? p.y += s.y : 0;
+	}
+}
+
+void	draw_vertical_line(t_env *e, t_vec2 p, int y, int *rgb)
+{
+	while (p.y < y)
+	{
+		img_pixel_put(e, p.x, p.y, rgb);
+		p.y++;
 	}
 }
 
