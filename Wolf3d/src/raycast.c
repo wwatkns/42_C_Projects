@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/20 10:46:57 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/22 17:35:34 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/22 17:59:16 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,9 @@ void	raycast_algo(t_env *e)
 			e->ray.map.y += e->ray.step.y;
 			e->ray.side = 1;
 		}
-//		if (e->ray.map.x > e->map.w - 1 || e->ray.map.x < 0 ||
-//			e->ray.map.y > e->map.h - 1 || e->ray.map.y < 0)
-//			break ;
+		if (e->ray.map.x > e->map.w - 1 || e->ray.map.x < 0 ||
+			e->ray.map.y > e->map.h - 1 || e->ray.map.y < 0)
+			break ;
 		e->map.map[e->ray.map.y][e->ray.map.x] > 0 ? e->ray.hit = 1 : 0;
 	}
 }
