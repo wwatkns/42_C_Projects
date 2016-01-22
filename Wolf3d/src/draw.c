@@ -6,34 +6,11 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 11:48:31 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/21 17:05:08 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/22 16:07:54 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
-
-void	draw_line(t_env *e, t_vec2i p, t_vec2i p1)
-{
-	t_vec2i	d;
-	t_vec2i	s;
-	int		err;
-	int		e2;
-
-	d.x = ABS((p1.x - p.x));
-	d.y = ABS((p1.y - p.y));
-	s.x = (p.x < p1.x ? 1 : -1);
-	s.y = (p.y < p1.y ? 1 : -1);
-	err = d.x - d.y;
-	while (p.x != p1.x || p.y != p1.y)
-	{
-		img_pixel_put(e, p.x, p.y, set_rgb(255, 255, 255));
-		e2 = err + err;
-		e2 > -d.y ? err -= d.y : 0;
-		e2 > -d.y ? p.x += s.x : 0;
-		e2 < d.x ? err += d.x : 0;
-		e2 < d.x ? p.y += s.y : 0;
-	}
-}
 
 void	draw_vertical_line(t_env *e, t_vec2 p, int y, int *rgb)
 {

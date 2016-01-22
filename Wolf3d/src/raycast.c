@@ -6,33 +6,41 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/20 10:46:57 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/22 14:28:36 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/22 16:17:09 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void	raycast_algo(t_env *e)
+void	raycast(t_env *e)
 {
-	while (e->ray.hit == 0)
+	int		x;
+
+	x = 0;
+	while (x < e->win_w)
 	{
-		if (e->ray.len.x < e->ray.len.y)
-		{
-			e->ray.len.x += e->ray.a.x;
-			e->ray.map.x += e->ray.step.x;
-			e->ray.side = 0;
-		}
-		else
-		{
-			e->ray.len.y += e->ray.a.y;
-			e->ray.map.y += e->ray.step.y;
-			e->ray.side = 1;
-		}
-		if (e->ray.map.x > e->map.w - 1 || e->ray.map.y > e->map.h - 1 ||
-			e->ray.map.x < 0 || e->ray.map.y < 0)
-			break ;
-		e->map.map[e->ray.map.x][e->ray.map.y] > 0 ? e->ray.hit = 1 : 0;
+		raycast_init(e, x);
+		raycast_calc(e);
+		raycast_algo(e);
+		raycast_draw(e, x);
+		x++;
 	}
+}
+
+void	raycast_init(t_env *e, int x)
+{
+	float	cam;
+	t_vec2	dir_pow;
+
+	cam = (2 * x / (float)e->win_w) - 1;
+	e->ray.hit = 0;
+	e->ray.pos = e->map.pos;
+	e->ray.dir.x = e->cam.dir.x + e->cam.pln.x * cam;
+	e->ray.dir.y = e->cam.dir.y + e->cam.pln.y * cam;
+	e->ray.map = vec2i(e->ray.pos);
+	dir_pow = vec2_mul(e->ray.dir, vec2(e->ray.dir.x, e->ray.dir.y));
+	e->ray.a.x = sqrt(1 + dir_pow.y / dir_pow.x);
+	e->ray.a.y = sqrt(1 + dir_pow.x / dir_pow.y);
 }
 
 void	raycast_calc(t_env *e)
@@ -59,6 +67,29 @@ void	raycast_calc(t_env *e)
 	}
 }
 
+void	raycast_algo(t_env *e)
+{
+	while (e->ray.hit == 0)
+	{
+		if (e->ray.len.x < e->ray.len.y)
+		{
+			e->ray.len.x += e->ray.a.x;
+			e->ray.map.x += e->ray.step.x;
+			e->ray.side = 0;
+		}
+		else
+		{
+			e->ray.len.y += e->ray.a.y;
+			e->ray.map.y += e->ray.step.y;
+			e->ray.side = 1;
+		}
+		if (e->ray.map.x > e->map.w - 1 || e->ray.map.x < 0 ||
+			e->ray.map.y > e->map.h - 1 || e->ray.map.y < 0)
+			break ;
+		e->map.map[e->ray.map.x][e->ray.map.y] > 0 ? e->ray.hit = 1 : 0;
+	}
+}
+
 void	raycast_draw(t_env *e, int x)
 {
 	int		y;
@@ -78,39 +109,9 @@ void	raycast_draw(t_env *e, int x)
 	y < 0 ? y = 0 : 0;
 	y1 >= e->win_h ? y1 = e->win_h : 0;
 	color = 210;
+	color > 0 ? color -= e->ray.dist * 8.0 : 0;
 	(e->ray.side == 1 ? color /= 2 : 0);
-	draw_vertical_line(e, vec2(x, 0), y, set_rgb(10, 130, 150));
+	draw_vertical_line(e, vec2(x, 0), y, set_rgb(60, 70, 80));
 	draw_vertical_line(e, vec2(x, y), y1, set_rgb(color, color, color));
-	draw_vertical_line(e, vec2(x, y1), e->win_h, set_rgb(212, 120, 104));
-}
-
-void	raycast_init(t_env *e, int x)
-{
-	float	cam;
-	t_vec2	dir_pow;
-
-	cam = (2 * x / (float)e->win_w) - 1;
-	e->ray.hit = 0;
-	e->ray.pos = e->map.pos;
-	e->ray.dir.x = e->cam.dir.x + e->cam.pln.x * cam;
-	e->ray.dir.y = e->cam.dir.y + e->cam.pln.y * cam;
-	e->ray.map = vec2i(e->ray.pos);
-	dir_pow = vec2_mul(e->ray.dir, vec2(e->ray.dir.x, e->ray.dir.y));
-	e->ray.a.x = sqrt(1 + dir_pow.y / dir_pow.x);
-	e->ray.a.y = sqrt(1 + dir_pow.x / dir_pow.y);
-}
-
-void	raycast(t_env *e)
-{
-	int		x;
-
-	x = 0;
-	while (x < e->win_w)
-	{
-		raycast_init(e, x);
-		raycast_calc(e);
-		raycast_algo(e);
-		raycast_draw(e, x);
-		x++;
-	}
+	draw_vertical_line(e, vec2(x, y1), e->win_h, set_rgb(192, 100, 84));
 }

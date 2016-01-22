@@ -6,55 +6,17 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 12:06:26 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/22 14:52:18 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/22 15:44:46 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-/*float	get_velocity(t_env *e)
-{
-	float			vel = 0;
-	static float	acc = 0;
-	static int		dec = 0;
-
-	vel = VEL * acc;
-	acc += 0.075;
-	if (dec && !e->key.w && acc > 0)
-		acc = 0;
-	acc > 1 ? acc = 1 : 0;
-	acc < 0 ? acc = 0 : 0;
-
-	if (dec && acc == 0)
-		dec = 0;
-	else if (!dec && acc > 0)
-		dec = e->key.w;
-
-	printf("acc: %f\n", acc);
-	return (vel);
-}*/
-
 int		loop_hook(t_env *e)
 {
-	if (e->key.a)
-	{
-		vec2_rotate(&e->cam.dir, -3.5);
-		vec2_rotate(&e->cam.pln, -3.5);
-	}
-	if (e->key.d)
-	{
-		vec2_rotate(&e->cam.dir, 3.5);
-		vec2_rotate(&e->cam.pln, 3.5);
-	}
-	mouse_rotate(e);
-	if (e->key.w)
-		e->map.pos = vec2_add(e->map.pos, vec2_scale(e->cam.dir, 0.065));
-	if (e->key.s)
-		e->map.pos = vec2_sub(e->map.pos, vec2_scale(e->cam.dir, 0.065));
-	if (e->key.q)
-		e->map.pos = vec2_sub(e->map.pos, vec2_scale(e->cam.pln, 0.05));
-	if (e->key.e)
-		e->map.pos = vec2_add(e->map.pos, vec2_scale(e->cam.pln, 0.05));
+	camera_move(e);
+	camera_rotate(e);
+	mouse_look(e);
 	expose_hook(e);
 	return (0);
 }
@@ -62,8 +24,6 @@ int		loop_hook(t_env *e)
 int		expose_hook(t_env *e)
 {
 	mlx_clear_window(e->mlx, e->win);
-	mlx_destroy_image(e->mlx, e->img.adr);
-	img_init(e);
 	raycast(e);
 	mlx_put_image_to_window(e->mlx, e->win, e->img.adr, 0, 0);
 	return (0);
@@ -78,6 +38,7 @@ int		key_pressed(int keycode, t_env *e)
 	keycode == 2 || keycode == 124 ? e->key.d = 1 : 0;
 	keycode == 12 ? e->key.q = 1 : 0;
 	keycode == 14 ? e->key.e = 1 : 0;
+	keycode == 257 || keycode == 258 ? e->key.shift = 1 : 0;
 	return (0);
 }
 
@@ -89,5 +50,6 @@ int		key_released(int keycode, t_env *e)
 	keycode == 2 || keycode == 124 ? e->key.d = 0 : 0;
 	keycode == 12 ? e->key.q = 0 : 0;
 	keycode == 14 ? e->key.e = 0 : 0;
+	keycode == 257 || keycode == 258 ? e->key.shift = 0 : 0;
 	return (0);
 }

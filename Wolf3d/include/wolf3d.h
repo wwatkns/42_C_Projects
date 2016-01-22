@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 10:57:02 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/22 14:41:17 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/22 16:13:01 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@
 # define DEG2RAD PI / 180
 # define RAD2DEG 180 / PI
 # define FOV 60
-# define VEL 0.075
+# define VELX 0.041
+# define VELY 0.051
+# define VELR 3.1
 
 typedef struct	s_arg
 {
@@ -45,6 +47,7 @@ typedef struct	s_key
 	short	d;
 	short	q;
 	short	e;
+	short	shift;
 }				t_key;
 
 typedef struct	s_vec2i
@@ -65,6 +68,9 @@ typedef struct	s_cam
 	t_vec2	pos;
 	t_vec2	pln;
 	float	fov;
+	float	vx;
+	float	vy;
+	float	vr;
 }				t_cam;
 
 typedef struct	s_img
@@ -152,7 +158,6 @@ t_vec2			vec2_mul(t_vec2 vec2_a, t_vec2 vec2_b);
 **	draw.c functions
 */
 
-void			draw_line(t_env *e, t_vec2i p, t_vec2i p1);
 void			draw_vertical_line(t_env *e, t_vec2 p, int y, int *rgb);
 void			img_pixel_put(t_env *e, int x, int y, int *rgb);
 void			img_init(t_env *e);
@@ -172,8 +177,8 @@ int				key_released(int keycode, t_env *e);
 */
 
 int				mouse_pos(int x, int y, t_env *e);
-void			mouse_rotate(t_env *e);
-void			mouse_rotate_dif(t_env *e);
+void			mouse_look(t_env *e);
+void			mouse_look_free(t_env *e);
 
 /*
 **	map.c functions
@@ -192,5 +197,12 @@ void			raycast_init(t_env *e, int x);
 void			raycast_calc(t_env *e);
 void			raycast_algo(t_env *e);
 void			raycast_draw(t_env *e, int x);
+
+/*
+**	movement.c functions
+*/
+
+void			camera_move(t_env *e);
+void			camera_rotate(t_env *e);
 
 #endif

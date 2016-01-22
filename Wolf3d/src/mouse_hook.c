@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 13:17:20 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/22 14:34:32 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/22 15:21:28 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,7 @@ int		mouse_pos(int x, int y, t_env *e)
 	return (0);
 }
 
-void	mouse_rotate_dif(t_env *e)
-{
-	float	angle;
-	float	dif;
-
-	dif = e->mouse.x - (e->win_w / 2);
-	angle = dif / 100;
-	vec2_rotate(&e->cam.dir, angle);
-	vec2_rotate(&e->cam.pln, angle);
-}
-
-void	mouse_rotate(t_env *e)
+void	mouse_look(t_env *e)
 {
 	float			angle;
 	float			dif;
@@ -39,6 +28,17 @@ void	mouse_rotate(t_env *e)
 	dif = e->mouse.x - old;
 	old = e->mouse.x;
 	angle = PIOVER4 * 0.5 * dif;
+	vec2_rotate(&e->cam.dir, angle);
+	vec2_rotate(&e->cam.pln, angle);
+}
+
+void	mouse_look_free(t_env *e)
+{
+	float	angle;
+	float	dif;
+
+	dif = e->mouse.x - (e->win_w / 2);
+	angle = dif / 100;
 	vec2_rotate(&e->cam.dir, angle);
 	vec2_rotate(&e->cam.pln, angle);
 }
