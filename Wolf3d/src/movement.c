@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 15:10:46 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/22 16:15:17 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/22 17:30:29 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 void	camera_move(t_env *e)
 {
 	e->cam.vy = (e->key.shift == 1 ? 0.1 : 0.058);
-	if (e->key.w)
+	if (e->key.w && !camera_collision(e))
 		e->map.pos = vec2_add(e->map.pos, vec2_scale(e->cam.dir, e->cam.vy));
-	if (e->key.s)
+	if (e->key.s && !camera_collision(e))
 		e->map.pos = vec2_sub(e->map.pos, vec2_scale(e->cam.dir, e->cam.vy));
-	if (e->key.a)
+	if (e->key.a && !camera_collision(e))
 		e->map.pos = vec2_sub(e->map.pos, vec2_scale(e->cam.pln, e->cam.vx));
-	if (e->key.d)
+	if (e->key.d && !camera_collision(e))
 		e->map.pos = vec2_add(e->map.pos, vec2_scale(e->cam.pln, e->cam.vx));
 }
 
@@ -33,23 +33,17 @@ void	camera_rotate(t_env *e)
 	e->key.e ? vec2_rotate(&e->cam.pln, e->cam.vr) : 0;
 }
 
-/*float get_velocity(t_env *e)
+int		camera_collision(t_env *e)
 {
-	float           vel = 0;
-	static float    acc = 0;
-	static int      dec = 0;
+	t_vec2	next;
 
-	vel = VEL * acc;
-	acc += 0.075;
-	if (dec && !e->key.w && acc > 0)
-	acc = 0;
-	acc > 1 ? acc = 1 : 0;
-	acc < 0 ? acc = 0 : 0;
-
-	if (dec && acc == 0)
-	dec = 0;
-	else if (!dec && acc > 0)
-	dec = e->key.w;
-
-	return(vel);
-}*/
+	if (e->key.w)
+		next = vec2_add(e->map.pos, vec2_scale(e->cam.dir, e->cam.vy));
+	if (e->key.s)
+		next = vec2_sub(e->map.pos, vec2_scale(e->cam.dir, e->cam.vy));
+	if (e->key.a)
+		next = vec2_sub(e->map.pos, vec2_scale(e->cam.pln, e->cam.vy));
+	if (e->key.d)
+		next = vec2_add(e->map.pos, vec2_scale(e->cam.pln, e->cam.vy));
+	return (e->map.map[(int)next.x][(int)next.y]);
+}

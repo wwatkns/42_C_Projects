@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 11:01:11 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/20 14:19:42 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/22 17:31:36 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ void	args_get(t_env *e, int argc, char **argv)
 		if (!ft_strcmp(argv[i], "-h") && i + 1 < argc)
 			e->arg.h = ft_atoi(argv[i + 1]);
 	}
-	e->arg.w = (e->arg.w < 320 || e->arg.w > 2560 ? 960 : e->arg.w);
-	e->arg.h = (e->arg.h < 200 || e->arg.h > 1440 ? 960 : e->arg.h);
+	e->arg.w = (e->arg.w < 320 || e->arg.w > 2560 ? 1160 : e->arg.w);
+	e->arg.h = (e->arg.h < 200 || e->arg.h > 1440 ? 920 : e->arg.h);
 }
 
 void	args_disp(void)

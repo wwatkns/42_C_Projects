@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 10:57:02 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/22 16:13:01 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/22 17:29:53 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,13 @@ typedef struct	s_arg
 	int		w;
 	int		h;
 }				t_arg;
+
+typedef struct	s_rgb
+{
+	short	r;
+	short	g;
+	short	b;
+}				t_rgb;
 
 typedef struct	s_key
 {
@@ -158,10 +165,10 @@ t_vec2			vec2_mul(t_vec2 vec2_a, t_vec2 vec2_b);
 **	draw.c functions
 */
 
-void			draw_vertical_line(t_env *e, t_vec2 p, int y, int *rgb);
-void			img_pixel_put(t_env *e, int x, int y, int *rgb);
+void			draw_vertical_line(t_env *e, t_vec2 p, int y, t_rgb rgb);
+void			img_pixel_put(t_env *e, int x, int y, t_rgb rgb);
 void			img_init(t_env *e);
-int				*set_rgb(int r, int g, int b);
+t_rgb			set_rgb(int r, int g, int b);
 
 /*
 **	hook.c functions
@@ -204,5 +211,6 @@ void			raycast_draw(t_env *e, int x);
 
 void			camera_move(t_env *e);
 void			camera_rotate(t_env *e);
+int				camera_collision(t_env *e);
 
 #endif

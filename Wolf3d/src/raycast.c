@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/20 10:46:57 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/22 16:17:09 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/22 17:09:55 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	raycast(t_env *e)
 {
-	int		x;
+	int	x;
 
 	x = 0;
 	while (x < e->win_w)
@@ -109,9 +109,11 @@ void	raycast_draw(t_env *e, int x)
 	y < 0 ? y = 0 : 0;
 	y1 >= e->win_h ? y1 = e->win_h : 0;
 	color = 210;
-	color > 0 ? color -= e->ray.dist * 8.0 : 0;
+	color -= e->ray.dist * 8.0;
+	color < 0 ? color = 0 : 0;
 	(e->ray.side == 1 ? color /= 2 : 0);
-	draw_vertical_line(e, vec2(x, 0), y, set_rgb(60, 70, 80));
-	draw_vertical_line(e, vec2(x, y), y1, set_rgb(color, color, color));
-	draw_vertical_line(e, vec2(x, y1), e->win_h, set_rgb(192, 100, 84));
+	draw_vertical_line(e, vec2(x, 0), y, set_rgb(125, 140, 196));
+	draw_vertical_line(e, vec2(x, y), y1,
+	set_rgb(color + 45, color + 25, color));
+	draw_vertical_line(e, vec2(x, y1), e->win_h, set_rgb(60, 95, 182));
 }
