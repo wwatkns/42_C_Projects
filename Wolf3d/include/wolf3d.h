@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 10:57:02 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/22 11:56:46 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/22 14:41:17 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 
 # define ABS(x) (x < 0 ? -x : x)
 # define PI 3.1415926
+# define PIOVER4 PI / 4
 # define DEG2RAD PI / 180
 # define RAD2DEG 180 / PI
 # define FOV 60
@@ -106,6 +107,7 @@ typedef struct	s_env
 	t_img	img;
 	t_key	key;
 	t_arg	arg;
+	t_vec2	mouse;
 	void	*win;
 	void	*mlx;
 	int		win_w;
@@ -164,6 +166,14 @@ int				loop_hook(t_env *e);
 int				expose_hook(t_env *e);
 int				key_pressed(int keycode, t_env *e);
 int				key_released(int keycode, t_env *e);
+
+/*
+**	mouse_hook.c functions
+*/
+
+int				mouse_pos(int x, int y, t_env *e);
+void			mouse_rotate(t_env *e);
+void			mouse_rotate_dif(t_env *e);
 
 /*
 **	map.c functions
