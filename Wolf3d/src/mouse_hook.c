@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 13:17:20 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/22 15:21:28 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/22 17:58:01 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,13 @@ void	mouse_look(t_env *e)
 	float			angle;
 	float			dif;
 	static float	old = 0;
+	static float	old_angle = 0;
 
 	dif = e->mouse.x - old;
 	old = e->mouse.x;
 	angle = PIOVER4 * 0.5 * dif;
+	angle = (angle + old_angle) / 2.0;
+	old_angle = angle;
 	vec2_rotate(&e->cam.dir, angle);
 	vec2_rotate(&e->cam.pln, angle);
 }
