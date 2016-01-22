@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 12:06:26 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/21 18:21:47 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/22 10:45:14 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ int		loop_hook(t_env *e)
 		vec2_rotate(&e->cam.pln, 2.5);
 	}
 	if (e->key.w)
-		e->cam.pos = vec2_add(e->cam.pos, vec2_scale(e->cam.dir, 5));
+		e->map.pos = vec2_add(e->map.pos, vec2_scale(e->cam.dir, 0.05));
 	if (e->key.s)
-		e->cam.pos = vec2_sub(e->cam.pos, vec2_scale(e->cam.dir, 5));
+		e->map.pos = vec2_sub(e->map.pos, vec2_scale(e->cam.dir, 0.05));
 	expose_hook(e);
 	return (0);
 }
@@ -37,7 +37,6 @@ int		expose_hook(t_env *e)
 	mlx_clear_window(e->mlx, e->win);
 	mlx_destroy_image(e->mlx, e->img.adr);
 	img_init(e);
-	map_coor(e);
 	raycast(e);
 	mlx_put_image_to_window(e->mlx, e->win, e->img.adr, 0, 0);
 	return (0);

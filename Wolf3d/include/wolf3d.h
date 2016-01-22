@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 10:57:02 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/21 17:11:40 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/22 10:52:37 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ typedef	struct	s_ray
 	t_vec2i	step;
 	int		side;
 	int		hit;
-	double	dist;
+	float	dist;
 }				t_ray;
 
 typedef struct	s_env
@@ -171,7 +171,6 @@ int				key_released(int keycode, t_env *e);
 void			map_init(t_env *e);
 void			map_parse(t_env *e);
 void			map_assign(t_env *e, const char *line, int j);
-void			map_coor(t_env *e);
 
 /*
 **	raycast.c functions

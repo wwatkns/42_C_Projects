@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/20 09:34:44 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/21 17:48:32 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/22 11:00:09 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,19 +45,14 @@ void	map_assign(t_env *e, const char *line, int j)
 	int		i;
 	char	**split;
 
-	i = -1;
+	i = 0;
+	error((int)(e->map.map[j] = (int*)malloc(sizeof(int) * e->map.w)));
 	split = ft_strsplit(line, ' ');
-	while (split[++i] != NULL)
+	while (split[i] != NULL)
 	{
-		error((int)(e->map.map[j] = (int*)malloc(sizeof(int) * e->map.w)));
 		e->map.map[j][i] = ft_atoi(split[i]);
 		free(split[i]);
+		i++;
 	}
 	free(split);
-}
-
-void	map_coor(t_env *e)
-{
-	e->map.pos = vec2_mul(e->cam.pos,
-	vec2(e->map.w / (float)e->win_w, e->map.h / (float)e->win_h));
 }
