@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/20 10:46:57 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/22 10:50:59 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/22 12:32:49 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,11 @@ void	raycast_draw(t_env *e, int x)
 	y1 = (int)(line_height / 2 + e->win_h / 2);
 	y < 0 ? y = 0 : 0;
 	y1 >= e->win_h ? y1 = e->win_h - 1 : 0;
-	color = (e->ray.side == 1 ? 128 : 255);
-	draw_vertical_line(e, vec2(x, 0), y, set_rgb(10, 110, 120));
+	color = 210;
+	(e->ray.side == 1 ? color /= 2 : 0);
+	draw_vertical_line(e, vec2(x, 0), y, set_rgb(10, 130, 150));
 	draw_vertical_line(e, vec2(x, y), y1, set_rgb(color, color, color));
-	draw_vertical_line(e, vec2(x, y1), e->win_h, set_rgb(152, 190, 154));
+	draw_vertical_line(e, vec2(x, y1), e->win_h, set_rgb(212, 120, 104));
 }
 
 void	raycast_init(t_env *e, int x)

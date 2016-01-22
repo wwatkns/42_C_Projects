@@ -6,23 +6,11 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 11:55:09 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/22 10:54:19 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/22 11:04:31 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
-
-void	map_disp(t_env *e)
-{
-	for (int y = 0; y < e->map.h; y++)
-	{
-		for (int x = 0; x < e->map.w; x++)
-		{
-			printf("%d ", e->map.map[y][x]);
-		}
-		printf("\n");
-	}
-}
 
 void	core(t_env *e)
 {
@@ -32,7 +20,6 @@ void	core(t_env *e)
 	error((int)(e->win = mlx_new_window(e->mlx, e->win_w, e->win_h,
 	"wolf3d")));
 	img_init(e);
-	map_disp(e);
 	mlx_hook(e->win, 2, (1L << 0), key_pressed, e);
 	mlx_hook(e->win, 3, (1L << 1), key_released, e);
 	mlx_expose_hook(e->win, expose_hook, e);
