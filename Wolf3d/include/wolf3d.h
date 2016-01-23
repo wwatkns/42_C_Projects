@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 10:57:02 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/23 13:20:08 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/23 15:05:34 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define VELX 0.041
 # define VELY 0.051
 # define VELR 3.1
+# define TEXTURE_SIZE 64
 
 typedef struct	s_arg
 {

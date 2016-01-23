@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/20 09:34:44 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/23 13:18:00 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/23 14:58:02 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	map_init(t_env *e)
 {
 	e->map.size = 64;
 	map_parse(e);
-/*	e->tex.texture = (char**)malloc(sizeof(char*) * 10);
-	if (e->arg.texture)
+	e->tex.texture = (int**)malloc(sizeof(int*) * 10);
+/*	if (e->arg.texture)
 	{
 		printf("%s\n", e->arg.file_texture);
 		e->img.adr = mlx_xpm_file_to_image(e->mlx, e->arg.file_texture,
