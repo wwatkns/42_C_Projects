@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 12:06:26 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/22 15:44:46 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/23 10:52:06 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int		loop_hook(t_env *e)
 int		expose_hook(t_env *e)
 {
 	mlx_clear_window(e->mlx, e->win);
+	mlx_destroy_image(e->mlx, e->img.adr);
+	img_init(e);
 	raycast(e);
 	mlx_put_image_to_window(e->mlx, e->win, e->img.adr, 0, 0);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/20 09:34:44 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/22 11:00:09 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/23 13:18:00 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,16 @@ void	map_init(t_env *e)
 {
 	e->map.size = 64;
 	map_parse(e);
+/*	e->tex.texture = (char**)malloc(sizeof(char*) * 10);
+	if (e->arg.texture)
+	{
+		printf("%s\n", e->arg.file_texture);
+		e->img.adr = mlx_xpm_file_to_image(e->mlx, e->arg.file_texture,
+		&e->tex.w, &e->tex.h);
+		e->img.img = mlx_get_data_addr(e->img.adr, &e->img.bpp,
+		&e->img.sl, &e->img.endian);
+		printf("%s\n", e->img.img);
+	}*/
 }
 
 void	map_parse(t_env *e)
@@ -25,7 +35,7 @@ void	map_parse(t_env *e)
 	char	*line;
 
 	j = 0;
-	error((fd = open(e->arg.map, O_RDWR)));
+	error((fd = open(e->arg.file_map, O_RDWR)));
 	get_next_line(fd, &line);
 	e->map.w = ft_atoi(line);
 	get_next_line(fd, &line);

@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 15:10:46 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/22 17:35:29 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/23 09:39:04 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,5 @@ int		camera_collision(t_env *e)
 		next = vec2_sub(e->map.pos, vec2_scale(e->cam.pln, e->cam.vy));
 	if (e->key.d)
 		next = vec2_add(e->map.pos, vec2_scale(e->cam.pln, e->cam.vy));
-	return (e->map.map[(int)next.y][(int)next.x]);
+	return ((e->map.map[(int)next.y][(int)next.x] > 0));
 }

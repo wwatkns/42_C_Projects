@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/20 10:46:57 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/22 17:59:16 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/23 12:21:01 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,23 @@
 
 void	raycast(t_env *e)
 {
-	int	x;
-
-	x = 0;
-	while (x < e->win_w)
+	e->ray.x = 0;
+	while (e->ray.x < e->win_w)
 	{
-		raycast_init(e, x);
+		raycast_init(e);
 		raycast_calc(e);
 		raycast_algo(e);
-		raycast_draw(e, x);
-		x++;
+		raycast_draw(e);
+		e->ray.x++;
 	}
 }
 
-void	raycast_init(t_env *e, int x)
+void	raycast_init(t_env *e)
 {
 	float	cam;
 	t_vec2	dir_pow;
 
-	cam = (2 * x / (float)e->win_w) - 1;
+	cam = (2 * e->ray.x / (float)e->win_w) - 1;
 	e->ray.hit = 0;
 	e->ray.pos = e->map.pos;
 	e->ray.dir.x = e->cam.dir.x + e->cam.pln.x * cam;
@@ -90,12 +88,11 @@ void	raycast_algo(t_env *e)
 	}
 }
 
-void	raycast_draw(t_env *e, int x)
+void	raycast_draw(t_env *e)
 {
 	int		y;
 	int		y1;
-	int		line_height;
-	short	color;
+	int		line_h;
 
 	if (e->ray.side == 0)
 		e->ray.dist = fabs((e->ray.map.x -
@@ -103,17 +100,13 @@ void	raycast_draw(t_env *e, int x)
 	else
 		e->ray.dist = fabs((e->ray.map.y -
 		e->ray.pos.y + (1 - e->ray.step.y) / 2) / e->ray.dir.y);
-	line_height = abs((int)(e->win_h / e->ray.dist));
-	y = (int)(-line_height / 2 + e->win_h / 2);
-	y1 = (int)(line_height / 2 + e->win_h / 2);
+	line_h = abs((int)(e->win_h / e->ray.dist));
+	y = (int)(-line_h / 2 + e->win_h / 2);
+	y1 = (int)(line_h / 2 + e->win_h / 2);
 	y < 0 ? y = 0 : 0;
 	y1 >= e->win_h ? y1 = e->win_h : 0;
-	color = 210;
-	color -= e->ray.dist * 8.0;
-	color < 0 ? color = 0 : 0;
-	(e->ray.side == 1 ? color /= 2 : 0);
-	draw_vertical_line(e, vec2(x, 0), y, set_rgb(125, 140, 196));
-	draw_vertical_line(e, vec2(x, y), y1,
-	set_rgb(color + 45, color + 25, color));
-	draw_vertical_line(e, vec2(x, y1), e->win_h, set_rgb(60, 95, 182));
+	if (e->arg.texture)
+		raycast_textured(e, y, y1, line_h);
+	else
+		raycast_untextured(e, y, y1);
 }

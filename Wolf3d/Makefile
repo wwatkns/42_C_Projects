@@ -6,7 +6,7 @@
 #    By: wwatkins <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/11 09:24:09 by wwatkins          #+#    #+#              #
-#    Updated: 2016/01/22 15:09:58 by wwatkins         ###   ########.fr        #
+#    Updated: 2016/01/23 09:57:50 by wwatkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ FNCTION = $(shell ls -l $(LIB_PATH)/src | grep ft_ | sed 's/^.*ft_//' | sed 's/.
 FORBID = printf $(FNCTION)
 
 SRC_NAME = main.c draw.c core.c hook.c vector.c vector_op.c map.c raycast.c \
-		   mouse_hook.c movement.c
+		   mouse_hook.c movement.c raycast_texture.c
 OBJ_NAME = $(SRC_NAME.c=.o)
 LIB_NAME =  libft.a
 
