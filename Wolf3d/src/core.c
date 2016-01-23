@@ -6,13 +6,13 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 11:55:09 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/23 13:19:48 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/23 14:08:00 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void    generate_texture(t_env *e)
+void    generate_texture(t_env *e) //temporary
 {
 	e->tex.texture = (int**)malloc(sizeof(int*) * 10);
 	e->tex.texture[0] = (int*)malloc(sizeof(int) * 50000);
