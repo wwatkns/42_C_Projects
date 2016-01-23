@@ -6,7 +6,7 @@
 #    By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/22 19:20:08 by wwatkins          #+#    #+#              #
-#    Updated: 2016/01/09 13:38:38 by wwatkins         ###   ########.fr        #
+#    Updated: 2016/01/23 14:09:00 by wwatkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ OBJ = $(addprefix $(OBJ_PATH), $(OBJ_NAME))
 INC = $(addprefix -I,$(INC_PATH))
 LIB = $(LIB_PATH)$(LIB_NAME)
 
-.PHONY: re all clean fclean cleanmlx cleanlib fcleanlib norme
+.PHONY: re all nolib clean fclean cleanmlx cleanlib fcleanlib norme
 
 all: $(NAME)
 
@@ -44,6 +44,9 @@ $(NAME): $(OBJ)
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@mkdir $(OBJ_PATH) 2>/dev/null || echo "" > /dev/null
 	$(CC) $(CFLGS) $(LIB) $(INC) -o $@ -c $<
+
+nolib:
+	$(CC) $(CFLGS) -L$(LIB_PATH) -lft $(SRC) $(INC) -o $(NAME) $(OBJ) $(MLXFLGS)
 
 cleanmlx:
 	make -C $(MLX_PATH) clean
