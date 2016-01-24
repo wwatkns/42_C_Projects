@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 10:57:02 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/23 15:05:34 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/24 09:24:08 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,9 +97,19 @@ typedef struct	s_tex
 {
 	int		**texture;
 	t_vec2i	texel;
+	double	wall;
 	int		w;
 	int		h;
 }				t_tex;
+
+typedef struct	s_flr
+{
+	t_vec2i	txl_f;
+	t_vec2	txl_w;
+	t_vec2	flr;
+	double	dwall;
+	double	dpos;
+}				t_flr;
 
 typedef struct	s_map
 {
@@ -131,6 +141,7 @@ typedef struct	s_env
 	t_cam	cam;
 	t_img	img;
 	t_tex	tex;
+	t_flr	flr;
 	t_key	key;
 	t_arg	arg;
 	t_vec2	mouse;
@@ -225,6 +236,9 @@ void			raycast_draw(t_env *e);
 
 void			raycast_untextured(t_env *e, int y, int y1);
 void			raycast_textured(t_env *e, int y, int y1, int line_h);
+void			raycast_wall_texel(t_env *e);
+void			floor_casting(t_env *e, int y1);
+void			floor_casting_draw(t_env *e, int y1);
 
 /*
 **	movement.c functions

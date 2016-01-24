@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 11:55:09 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/23 15:04:00 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/24 09:22:47 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void    generate_texture(t_env *e) //temporary
 		for (int y = 0; y < e->tex.h; y++)
 		{
 			int	xycolor = y * 128 / e->tex.h + x * 128 / e->tex.w;
-			e->tex.texture[0][e->tex.w * y + x] = 32 * xycolor + 65536 * xycolor;
+			e->tex.texture[0][e->tex.w * y + x] = 32768 * xycolor - xycolor;
 		}
 	}
 }
@@ -59,6 +59,7 @@ void	env_init(t_env *e)
 	e->cam.vr = VELR;
 	e->tex.w = TEXTURE_SIZE;
 	e->tex.h = TEXTURE_SIZE;
+	e->tex.wall = 0;
 	e->key.w = 0;
 	e->key.s = 0;
 	e->key.a = 0;
