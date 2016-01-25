@@ -1,7 +1,7 @@
 /* XPM */
-static char *cqbks_mu32s[] = {
+static char *greystone[] = {
 /* columns rows colors chars-per-pixel */
-"64 64 22 1 ",
+"64 64 22 1",
 "  c gray12",
 ". c gray23",
 "X c #3F3F3F",

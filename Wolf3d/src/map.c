@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/20 09:34:44 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/25 11:45:19 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/25 16:06:20 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,20 @@ void	texture_init(t_env *e)
 {
 	int		i;
 	int		fd;
-	int		nb;
 	char	*line;
 
 	i = -1;
 	error((fd = open(e->arg.file_template, O_RDWR)));
 	get_next_line(fd, &line);
-	nb = ft_atoi(line);
-	error((int)(e->tin = (t_tin*)malloc(sizeof(t_tin) * nb)));
-	while (get_next_line(fd, &line) > 0 && ++i < nb)
+	e->tex.nb = ft_atoi(line);
+	error((int)(e->tin = (t_tin*)malloc(sizeof(t_tin) * e->tex.nb)));
+	while (get_next_line(fd, &line) > 0 && ++i < e->tex.nb)
 	{
 		ft_strstr(line, "wall") ? e->tin[i].id = 0 : 0;
 		ft_strstr(line, "floor") ? e->tex.f = i : 0;
 		ft_strstr(line, "ceiling") ? e->tex.c = i : 0;
-		e->tin[i].adr = mlx_xpm_file_to_image(e->mlx, line, &e->tin[i].w, &e->tin[i].h);
+		e->tin[i].adr = mlx_xpm_file_to_image(e->mlx, line,
+						&e->tin[i].w, &e->tin[i].h);
 		e->tin[i].img = mlx_get_data_addr(e->tin[i].adr, &e->tin[i].bpp,
 						&e->tin[i].sl, &e->tin[i].endian);
 		e->tin[i].opp = e->tin[i].bpp / 8;

@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/23 09:52:31 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/25 12:00:10 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/25 16:11:26 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,11 @@ void	raycast_untextured(t_env *e, int y, int y1)
 
 void	raycast_textured(t_env *e, int y, int y1, int line_h)
 {
-	int		i;
-	int		pos;
-	int		num;
+	int	i;
+	int	pos;
 
-	num = e->map.map[(int)e->ray.map.y][(int)e->ray.map.x] - 1;
-	e->tin[num].id != 0 ? num = 0 : 0;
+	e->tex.n = e->map.map[(int)e->ray.map.y][(int)e->ray.map.x] - 1;
+	e->tin[e->tex.n].id != 0 ? e->tex.n = 0 : 0;
 	raycast_wall_texel(e);
 	e->tex.texel.x = (int)(e->tex.wall * e->tex.w);
 	if ((e->ray.side == 0 && e->ray.dir.x < 0) ||
@@ -45,10 +44,15 @@ void	raycast_textured(t_env *e, int y, int y1, int line_h)
 	while (++i < y1)
 	{
 		e->tex.texel.y = (i * 2 - e->win_h + line_h) * (e->tex.h / 2) / line_h;
-		pos = (e->tex.texel.x * e->tin[num].opp) + (e->tex.texel.y *
-				e->tin[num].sl);
-		img_pixel_put(e, e->ray.x, i, set_rgb(e->tin[num].img[pos + 2],
-					e->tin[num].img[pos + 1], e->tin[num].img[pos]));
+		pos = (e->tex.texel.x * e->tin[e->tex.n].opp) + (e->tex.texel.y *
+				e->tin[e->tex.n].sl);
+		e->tin[e->tex.n].rgb.r = e->ray.side ? e->tin[e->tex.n].img[pos + 2] :
+							e->tin[e->tex.n].img[pos + 2] >> 1 & 0x7F;
+		e->tin[e->tex.n].rgb.g = e->ray.side ? e->tin[e->tex.n].img[pos + 1] :
+							e->tin[e->tex.n].img[pos + 1] >> 1 & 0x7F;
+		e->tin[e->tex.n].rgb.b = e->ray.side ? e->tin[e->tex.n].img[pos] :
+							e->tin[e->tex.n].img[pos] >> 1 & 0x7F;
+		img_pixel_put(e, e->ray.x, i, e->tin[e->tex.n].rgb);
 	}
 	e->tex.f != -1 || e->tex.c != -1 ? floor_casting(e, y1) : 0;
 }
@@ -91,29 +95,29 @@ void	floor_casting(t_env *e, int y1)
 
 void	floor_casting_draw(t_env *e, int y1)
 {
-	int		y;
-	int		pos;
 	double	weight;
-	double	dist;
+	t_rgb	rgb;
 
-	y = y1;
-	while (y++ < e->win_h)
+	e->i.y = y1;
+	while (e->i.y++ < e->win_h)
 	{
-		dist = e->win_h / (2.0 * y - e->win_h);
-		weight = (dist - e->flr.dpos) / (e->flr.dwall - e->flr.dpos);
+		e->flr.dist = e->win_h / (2.0 * e->i.y - e->win_h);
+		weight = (e->flr.dist - e->flr.dpos) / (e->flr.dwall - e->flr.dpos);
 		e->flr.flr.x = weight * e->flr.txl_w.x + (1.0 - weight) * e->map.pos.x;
 		e->flr.flr.y = weight * e->flr.txl_w.y + (1.0 - weight) * e->map.pos.y;
 		e->flr.txl_f.x = (int)(e->flr.flr.x * e->tex.w) % e->tex.w;
 		e->flr.txl_f.y = (int)(e->flr.flr.y * e->tex.h) % e->tex.h;
-		e->tex.f != -1 ? pos = (e->flr.txl_f.x * e->tin[e->tex.f].opp) +
+		e->tex.f != -1 ? e->i.pos = (e->flr.txl_f.x * e->tin[e->tex.f].opp) +
 		(e->flr.txl_f.y * e->tin[e->tex.f].sl) : 0;
-		e->tex.f != -1 ? img_pixel_put(e, e->ray.x, y - 1,
-		set_rgb(e->tin[e->tex.f].img[pos + 2],
-		e->tin[e->tex.f].img[pos + 1], e->tin[e->tex.f].img[pos])) : 0;
-		e->tex.c != -1 ? pos = (e->flr.txl_f.x * e->tin[e->tex.c].opp) +
+		rgb.r = e->tin[e->tex.f].img[e->i.pos + 2];
+		rgb.g = e->tin[e->tex.f].img[e->i.pos + 1];
+		rgb.b = e->tin[e->tex.f].img[e->i.pos];
+		e->tex.f != -1 ? img_pixel_put(e, e->ray.x, e->flr.y - 1, rgb) : 0;
+		e->tex.c != -1 ? e->i.pos = (e->flr.txl_f.x * e->tin[e->tex.c].opp) +
 		(e->flr.txl_f.y * e->tin[e->tex.c].sl) : 0;
-		e->tex.c != -1 ? img_pixel_put(e, e->ray.x, e->win_h - y,
-		set_rgb(e->tin[e->tex.c].img[pos + 2],
-		e->tin[e->tex.c].img[pos + 1], e->tin[e->tex.c].img[pos])) : 0;
+		rgb.r = e->tin[e->tex.c].img[e->i.pos + 2];
+		rgb.g = e->tin[e->tex.c].img[e->i.pos + 1];
+		rgb.b = e->tin[e->tex.c].img[e->i.pos];
+		e->tex.c != -1 ? img_pixel_put(e, e->ray.x, e->win_h - e->i.y, rgb) : 0;
 	}
 }

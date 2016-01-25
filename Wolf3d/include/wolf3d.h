@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 10:57:02 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/25 11:47:41 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/25 16:08:56 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ typedef	struct	s_tin
 	int		w;
 	int		h;
 	int		id;
+	t_rgb	rgb;
 }				t_tin;
 
 typedef struct	s_tex
@@ -110,8 +111,10 @@ typedef struct	s_tex
 	double	wall;
 	int		w;
 	int		h;
+	int		nb;
 	int		f;
 	int		c;
+	int		n;
 }				t_tex;
 
 typedef struct	s_flr
@@ -121,6 +124,7 @@ typedef struct	s_flr
 	t_vec2	flr;
 	double	dwall;
 	double	dpos;
+	double	dist;
 }				t_flr;
 
 typedef struct	s_map
@@ -146,6 +150,12 @@ typedef	struct	s_ray
 	float	dist;
 }				t_ray;
 
+typedef struct	s_i
+{
+	int	y;
+	int	pos;
+}				t_i;
+
 typedef struct	s_env
 {
 	t_ray	ray;
@@ -158,6 +168,7 @@ typedef struct	s_env
 	t_key	key;
 	t_arg	arg;
 	t_vec2	mouse;
+	t_i		i;
 	void	*win;
 	void	*mlx;
 	int		win_w;
