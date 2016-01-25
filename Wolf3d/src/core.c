@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 11:55:09 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/25 11:47:21 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/25 19:12:30 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	env_init(t_env *e)
 	e->mouse = vec2(e->win_w / 2, e->win_h / 2);
 	e->cam.dir = vec2(0, -1);
 	e->cam.pln = vec2(1, 0);
-	e->map.pos = vec2(10, 10);
+	e->map.pos = vec2(1, 1);
 	e->cam.vx = VELX;
 	e->cam.vy = VELY;
 	e->cam.vr = VELR;

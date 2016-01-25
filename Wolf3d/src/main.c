@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 11:01:11 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/25 16:16:24 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/25 17:48:36 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ void	args_get(t_env *e, int argc, char **argv)
 		!ft_strcmp(argv[i], "--help") ? args_disp() : 0;
 	}
 	e->arg.file_template != NULL ? e->arg.texture = 1 : 0;
-	e->arg.w = (e->arg.w < 320 || e->arg.w > 2560 ? 960 : e->arg.w);
-	e->arg.h = (e->arg.h < 200 || e->arg.h > 1440 ? 800 : e->arg.h);
+	e->arg.w = (e->arg.w < 320 || e->arg.w > 2560 ? 1000 : e->arg.w);
+	e->arg.h = (e->arg.h < 200 || e->arg.h > 1440 ? 720 : e->arg.h);
 }
 
 void	args_disp(void)

@@ -1,7 +1,7 @@
 6
-./resource/texture/wall_t_1.xpm
-./resource/texture/wall_2.xpm
-./resource/texture/wall_3.xpm
-./resource/texture/wall_4.xpm
-./resource/texture/floor_1.xpm
-./resource/texture/ceiling_1.xpm
+w: ./resource/texture/pack_1/wall_t_1.xpm
+w: ./resource/texture/pack_1/wall_2.xpm
+w: ./resource/texture/pack_1/wall_3.xpm
+w: ./resource/texture/pack_1/wall_4.xpm
+f: ./resource/texture/pack_1/floor_1.xpm
+c: ./resource/texture/pack_1/ceiling_1.xpm

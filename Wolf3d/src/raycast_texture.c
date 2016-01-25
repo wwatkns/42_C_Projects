@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/23 09:52:31 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/25 16:14:26 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/25 16:29:16 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,15 +109,15 @@ void	floor_casting_draw(t_env *e, int y1)
 		e->flr.txl_f.y = (int)(e->flr.flr.y * e->tex.h) % e->tex.h;
 		e->tex.f != -1 ? e->i.pos = (e->flr.txl_f.x * e->tin[e->tex.f].opp) +
 		(e->flr.txl_f.y * e->tin[e->tex.f].sl) : 0;
-		rgb.r = e->tin[e->tex.f].img[e->i.pos + 2];
-		rgb.g = e->tin[e->tex.f].img[e->i.pos + 1];
-		rgb.b = e->tin[e->tex.f].img[e->i.pos];
+		e->tex.f != -1 ? rgb.r = e->tin[e->tex.f].img[e->i.pos + 2] : 0;
+		e->tex.f != -1 ? rgb.g = e->tin[e->tex.f].img[e->i.pos + 1] : 0;
+		e->tex.f != -1 ? rgb.b = e->tin[e->tex.f].img[e->i.pos] : 0;
 		e->tex.f != -1 ? img_pixel_put(e, e->ray.x, e->i.y - 1, rgb) : 0;
 		e->tex.c != -1 ? e->i.pos = (e->flr.txl_f.x * e->tin[e->tex.c].opp) +
 		(e->flr.txl_f.y * e->tin[e->tex.c].sl) : 0;
-		rgb.r = e->tin[e->tex.c].img[e->i.pos + 2];
-		rgb.g = e->tin[e->tex.c].img[e->i.pos + 1];
-		rgb.b = e->tin[e->tex.c].img[e->i.pos];
+		e->tex.c != -1 ? rgb.r = e->tin[e->tex.c].img[e->i.pos + 2] : 0;
+		e->tex.c != -1 ? rgb.g = e->tin[e->tex.c].img[e->i.pos + 1] : 0;
+		e->tex.c != -1 ? rgb.b = e->tin[e->tex.c].img[e->i.pos] : 0;
 		e->tex.c != -1 ? img_pixel_put(e, e->ray.x, e->win_h - e->i.y, rgb) : 0;
 	}
 }

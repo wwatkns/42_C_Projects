@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 10:57:02 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/25 16:08:56 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/25 18:34:21 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,8 +111,8 @@ typedef struct	s_tex
 	double	wall;
 	int		w;
 	int		h;
-	int		nb;
 	int		f;
+	int		nb;
 	int		c;
 	int		n;
 }				t_tex;
