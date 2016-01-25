@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 11:01:11 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/25 11:26:52 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/25 16:16:24 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	args_get(t_env *e, int argc, char **argv)
 	int	i;
 
 	i = 0;
-	e->arg.file_map = ft_strdup("ressources/maps/default.map");
+	e->arg.file_map = ft_strdup("resource/map/default.map");
 	e->arg.file_template = NULL;
 	e->arg.texture = 0;
 	e->arg.w = 0;
