@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 10:57:02 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/24 09:24:08 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/25 11:47:41 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@
 # define PIOVER4 PI / 4
 # define DEG2RAD PI / 180
 # define RAD2DEG 180 / PI
-# define FOV 60
 # define VELX 0.041
 # define VELY 0.051
 # define VELR 3.1
@@ -36,7 +35,7 @@
 typedef struct	s_arg
 {
 	char	*file_map;
-	char	*file_texture;
+	char	*file_template;
 	int		texture;
 	int		w;
 	int		h;
@@ -77,7 +76,6 @@ typedef struct	s_cam
 	t_vec2	dir;
 	t_vec2	pos;
 	t_vec2	pln;
-	float	fov;
 	float	vx;
 	float	vy;
 	float	vr;
@@ -93,13 +91,27 @@ typedef struct	s_img
 	int		sl;
 }				t_img;
 
+typedef	struct	s_tin
+{
+	void	*adr;
+	char	*img;
+	int		endian;
+	int		bpp;
+	int		opp;
+	int		sl;
+	int		w;
+	int		h;
+	int		id;
+}				t_tin;
+
 typedef struct	s_tex
 {
-	int		**texture;
 	t_vec2i	texel;
 	double	wall;
 	int		w;
 	int		h;
+	int		f;
+	int		c;
 }				t_tex;
 
 typedef struct	s_flr
@@ -140,6 +152,7 @@ typedef struct	s_env
 	t_map	map;
 	t_cam	cam;
 	t_img	img;
+	t_tin	*tin;
 	t_tex	tex;
 	t_flr	flr;
 	t_key	key;
@@ -191,7 +204,6 @@ t_vec2			vec2_mul(t_vec2 vec2_a, t_vec2 vec2_b);
 
 void			draw_vertical_line(t_env *e, t_vec2 p, int y, t_rgb rgb);
 void			img_pixel_put(t_env *e, int x, int y, t_rgb rgb);
-void			img_pixel_put_hex(t_env *e, int x, int y, int color);
 void			img_init(t_env *e);
 t_rgb			set_rgb(int r, int g, int b);
 
@@ -219,6 +231,7 @@ void			mouse_look_free(t_env *e);
 void			map_init(t_env *e);
 void			map_parse(t_env *e);
 void			map_assign(t_env *e, const char *line, int j);
+void			texture_init(t_env *e);
 
 /*
 **	raycast.c functions

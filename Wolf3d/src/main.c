@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 11:01:11 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/24 09:24:06 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/25 11:26:52 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	args_get(t_env *e, int argc, char **argv)
 	int	i;
 
 	i = 0;
-	e->arg.file_map = ft_strdup("maps/default.map");
-	e->arg.file_texture = NULL;
+	e->arg.file_map = ft_strdup("ressources/maps/default.map");
+	e->arg.file_template = NULL;
 	e->arg.texture = 0;
 	e->arg.w = 0;
 	e->arg.h = 0;
@@ -36,14 +36,14 @@ void	args_get(t_env *e, int argc, char **argv)
 		if (!ft_strcmp(argv[i], "-m") && i + 1 < argc)
 			e->arg.file_map = ft_strdup(argv[i + 1]);
 		if (!ft_strcmp(argv[i], "-t") && i + 1 < argc)
-			e->arg.file_texture = ft_strdup(argv[i + 1]);
+			e->arg.file_template = ft_strdup(argv[i + 1]);
 		if (!ft_strcmp(argv[i], "-w") && i + 1 < argc)
 			e->arg.w = ft_atoi(argv[i + 1]);
 		if (!ft_strcmp(argv[i], "-h") && i + 1 < argc)
 			e->arg.h = ft_atoi(argv[i + 1]);
 		!ft_strcmp(argv[i], "--help") ? args_disp() : 0;
 	}
-	e->arg.file_texture != NULL ? e->arg.texture = 1 : 0;
+	e->arg.file_template != NULL ? e->arg.texture = 1 : 0;
 	e->arg.w = (e->arg.w < 320 || e->arg.w > 2560 ? 960 : e->arg.w);
 	e->arg.h = (e->arg.h < 200 || e->arg.h > 1440 ? 800 : e->arg.h);
 }

@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 11:48:31 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/23 11:58:45 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/25 11:22:19 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,6 @@ void	img_pixel_put(t_env *e, int x, int y, t_rgb rgb)
 		e->img.img[pos] = rgb.b;
 		e->img.img[pos + 1] = rgb.g;
 		e->img.img[pos + 2] = rgb.r;
-	}
-}
-
-void	img_pixel_put_hex(t_env *e, int x, int y, int color)
-{
-	int pos;
-
-	if (x >= 0 && x < e->win_w && y >= 0 && y < e->win_h)
-	{
-		pos = (x * e->img.opp) + (y * e->img.sl);
-		e->img.img[pos] = color % 256;
-		e->img.img[pos + 1] = (color >> 8) % 256;
-		e->img.img[pos + 2] = (color >> 16) % 256;
 	}
 }
 
