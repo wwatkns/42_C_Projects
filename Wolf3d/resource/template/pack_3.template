@@ -6,7 +6,7 @@ w: ./resource/texture/pack_2/stone_pilar.xpm
 w: ./resource/texture/pack_2/wood_1.xpm
 w: ./resource/texture/pack_2/wood_2.xpm
 w: ./resource/texture/pack_2/bookshelf.xpm
-w: ./resource/texture/pack_2/gold.xpm
+w: ./resource/texture/pack_2/blue_stone.xpm
 w: ./resource/texture/pack_2/bedrock.xpm
 f: ./resource/texture/pack_2/gravel.xpm
 c: ./resource/texture/pack_2/dirt.xpm

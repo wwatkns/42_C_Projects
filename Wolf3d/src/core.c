@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 11:55:09 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/26 11:06:58 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/26 15:26:35 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@ void	core(t_env *e)
 	env_init(e);
 	map_init(e);
 	error((int)(e->mlx = mlx_init()));
-	error((int)(e->win = mlx_new_window(e->mlx, e->win_w, e->win_h,
-					"wolf3d")));
+	error((int)(e->win = mlx_new_window(e->mlx, e->win_w, e->win_h, "wolf3d")));
 	e->arg.texture ? texture_init(e) : 0;
 	img_init(e);
 	mlx_hook(e->win, 2, (1L << 0), key_pressed, e);
@@ -54,5 +53,6 @@ void	env_init(t_env *e)
 	e->key.d = 0;
 	e->key.q = 0;
 	e->key.e = 0;
+	e->key.m = 0;
 	e->key.shift = 0;
 }

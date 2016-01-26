@@ -1,0 +1,9 @@
+8
+w: ./resource/texture/pack_2/wood_1.xpm
+w: ./resource/texture/pack_2/wood_2.xpm
+w: ./resource/texture/pack_2/bookshelf.xpm
+w: ./resource/texture/pack_2/sand_stone_slab.xpm
+w: ./resource/texture/pack_2/stone_pilar.xpm
+w: ./resource/texture/pack_2/sand_stone.xpm
+f: ./resource/texture/pack_2/wood_2.xpm
+c: ./resource/texture/pack_2/wood_2.xpm

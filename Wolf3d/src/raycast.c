@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/20 10:46:57 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/26 09:25:35 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/26 14:39:22 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	raycast_init(t_env *e)
 	e->ray.dir.x = e->cam.dir.x + e->cam.pln.x * cam;
 	e->ray.dir.y = e->cam.dir.y + e->cam.pln.y * cam;
 	e->ray.map = vec2i(e->ray.pos);
-	dir_pow = vec2_mul(e->ray.dir, vec2(e->ray.dir.x, e->ray.dir.y));
+	dir_pow = vec2_mul(e->ray.dir, e->ray.dir);
 	e->ray.a.x = sqrt(1 + dir_pow.y / dir_pow.x);
 	e->ray.a.y = sqrt(1 + dir_pow.x / dir_pow.y);
 }

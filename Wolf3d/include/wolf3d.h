@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 10:57:02 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/26 12:15:44 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/26 16:14:53 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <math.h>
-
-# include <stdio.h> // TEMPORARY
 
 # define ABS(x) (x < 0 ? -x : x)
 # define PI 3.1415926
@@ -56,6 +54,7 @@ typedef struct	s_key
 	short	d;
 	short	q;
 	short	e;
+	short	m;
 	short	shift;
 }				t_key;
 
@@ -130,8 +129,7 @@ typedef struct	s_map
 {
 	t_vec2	pos;
 	int		**map;
-	int		w;
-	int		h;
+	int		size;
 }				t_map;
 
 typedef	struct	s_ray
@@ -226,6 +224,7 @@ int				loop_hook(t_env *e);
 int				expose_hook(t_env *e);
 int				key_pressed(int keycode, t_env *e);
 int				key_released(int keycode, t_env *e);
+void			key_switch(short *key);
 
 /*
 **	mouse_hook.c functions
@@ -270,6 +269,5 @@ void			floor_casting_draw(t_env *e, int y1);
 
 void			camera_move(t_env *e);
 void			camera_rotate(t_env *e);
-int				camera_collision(t_env *e);
 
 #endif
