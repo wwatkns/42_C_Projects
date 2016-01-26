@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/23 09:52:31 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/26 09:24:04 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/26 11:47:51 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	raycast_textured(t_env *e, int y, int y1, int line_h)
 	int	pos;
 
 	e->tex.n = e->map.map[(int)e->ray.map.y][(int)e->ray.map.x] - 1;
-	e->tin[e->tex.n].id != 0 ? e->tex.n = 0 : 0;
+	e->tex.n > e->tex.nb - 1 ? e->tex.n = 0 : 0;
 	raycast_wall_texel(e);
 	e->tex.texel.x = (int)(e->tex.wall * e->tex.w);
 	if ((e->ray.side == 0 && e->ray.dir.x < 0) ||

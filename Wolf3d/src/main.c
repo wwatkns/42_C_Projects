@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 11:01:11 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/25 17:48:36 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/26 12:28:12 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	args_get(t_env *e, int argc, char **argv)
 	int	i;
 
 	i = 0;
-	e->arg.file_map = ft_strdup("resource/map/default.map");
+	e->arg.file_map = NULL;
 	e->arg.file_template = NULL;
 	e->arg.texture = 0;
 	e->arg.w = 0;
@@ -43,6 +43,8 @@ void	args_get(t_env *e, int argc, char **argv)
 			e->arg.h = ft_atoi(argv[i + 1]);
 		!ft_strcmp(argv[i], "--help") ? args_disp() : 0;
 	}
+	e->arg.file_map == NULL ? e->arg.file_map =
+	ft_strdup("resource/map/default.map") : 0;
 	e->arg.file_template != NULL ? e->arg.texture = 1 : 0;
 	e->arg.w = (e->arg.w < 320 || e->arg.w > 2560 ? 1000 : e->arg.w);
 	e->arg.h = (e->arg.h < 200 || e->arg.h > 1440 ? 720 : e->arg.h);
@@ -50,8 +52,15 @@ void	args_get(t_env *e, int argc, char **argv)
 
 void	args_disp(void)
 {
-	ft_putstr("\nusage: ./wolf3d [-m map_file] [-t texture_file] ");
-	ft_putendl("[-w width] [-h height]");
+	ft_putstr("\nusage: ./wolf3d [-m map_file] [-t template_file] ");
+	ft_putendl("[-w width] [-h height] [--help]");
+	ft_putendl("\noptions:");
+	ft_putendl("-m <file_path> loads specified map file.");
+	ft_putstr("-t <file_path> loads specified template file, which contains");
+	ft_putendl(" path to textures.");
+	ft_putendl("-w <width>     set specified program window width.");
+	ft_putendl("-h <height>    set specified program window height.");
+	ft_putendl("--help         show help.\n");
 	exit(0);
 }
 

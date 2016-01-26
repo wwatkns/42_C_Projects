@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/20 09:34:44 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/26 08:54:02 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/26 12:15:26 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,13 @@ void	texture_init(t_env *e)
 
 	i = 0;
 	error((fd = open(e->arg.file_template, O_RDWR)));
+	ft_strdel(&e->arg.file_template);
 	get_next_line(fd, &line);
 	e->tex.nb = ft_atoi(line);
+	ft_strdel(&line);
 	error((int)(e->tin = (t_tin*)malloc(sizeof(t_tin) * e->tex.nb)));
 	while (get_next_line(fd, &line) > 0)
 	{
-		ft_strstr(line, "w:") ? e->tin[i].id = 0 : 0;
 		ft_strstr(line, "f:") ? e->tex.f = i : 0;
 		ft_strstr(line, "c:") ? e->tex.c = i : 0;
 		e->tin[i].adr = mlx_xpm_file_to_image(e->mlx, &line[3],
@@ -61,17 +62,21 @@ void	map_parse(t_env *e)
 
 	j = 0;
 	error((fd = open(e->arg.file_map, O_RDWR)));
+	ft_strdel(&e->arg.file_map);
 	get_next_line(fd, &line);
 	e->map.w = ft_atoi(line);
+	ft_strdel(&line);
 	get_next_line(fd, &line);
 	e->map.h = ft_atoi(line);
+	ft_strdel(&line);
 	error((int)(e->map.map = (int**)malloc(sizeof(int*) * e->map.h)));
 	while (get_next_line(fd, &line))
 	{
 		map_assign(e, line, j);
-		free(line);
+		ft_strdel(&line);
 		j++;
 	}
+	ft_strdel(&line);
 	error((close(fd) + 1));
 }
 

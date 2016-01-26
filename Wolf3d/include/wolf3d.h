@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 10:57:02 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/26 08:53:53 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/26 12:15:44 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define DEG2RAD PI / 180
 # define RAD2DEG 180 / PI
 # define VELX 0.041
-# define VELY 0.051
+# define VELY 0.057
 # define VELR 3.1
 # define TEXTURE_SIZE 64
 
@@ -101,7 +101,6 @@ typedef	struct	s_tin
 	int		sl;
 	int		w;
 	int		h;
-	int		id;
 	t_rgb	rgb;
 }				t_tin;
 

@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 15:10:46 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/23 09:39:04 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/26 11:06:51 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	camera_move(t_env *e)
 {
-	e->cam.vy = (e->key.shift == 1 ? 0.1 : 0.058);
+	e->cam.vy = (e->key.shift == 1 ? VELY * 1.7 : VELY);
 	if (e->key.w && !camera_collision(e))
 		e->map.pos = vec2_add(e->map.pos, vec2_scale(e->cam.dir, e->cam.vy));
 	if (e->key.s && !camera_collision(e))
