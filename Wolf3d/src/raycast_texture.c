@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/23 09:52:31 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/25 16:29:16 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/26 09:24:04 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	floor_casting_draw(t_env *e, int y1)
 	e->i.y = y1;
 	while (e->i.y++ < e->win_h)
 	{
-		e->flr.dist = e->win_h / (2.0 * e->i.y - e->win_h);
+		e->flr.dist = (e->win_h) / (2.0 * e->i.y - e->win_h);
 		weight = (e->flr.dist - e->flr.dpos) / (e->flr.dwall - e->flr.dpos);
 		e->flr.flr.x = weight * e->flr.txl_w.x + (1.0 - weight) * e->map.pos.x;
 		e->flr.flr.y = weight * e->flr.txl_w.y + (1.0 - weight) * e->map.pos.y;

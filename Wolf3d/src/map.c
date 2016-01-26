@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/20 09:34:44 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/25 19:23:15 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/26 08:54:02 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	map_init(t_env *e)
 {
-	e->map.size = 64;
 	map_parse(e);
 	while (e->map.map[(int)e->map.pos.y][(int)e->map.pos.x] != 0)
 	{

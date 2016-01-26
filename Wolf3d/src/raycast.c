@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/20 10:46:57 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/25 18:40:18 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/26 09:25:35 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,6 @@ void	raycast_algo(t_env *e)
 			e->ray.map.y += e->ray.step.y;
 			e->ray.side = 1;
 		}
-		if (e->ray.map.x > e->map.w - 1 || e->ray.map.x < 0 ||
-			e->ray.map.y > e->map.h - 1 || e->ray.map.y < 0)
-			break ;
 		e->map.map[e->ray.map.y][e->ray.map.x] > 0 ? e->ray.hit = 1 : 0;
 	}
 }
@@ -95,14 +92,14 @@ void	raycast_draw(t_env *e)
 	int		line_h;
 
 	if (e->ray.side == 0)
-		e->ray.dist = fabs((e->ray.map.x -
-		e->ray.pos.x + (1 - e->ray.step.x) / 2) / e->ray.dir.x);
+		e->ray.dist = ABS(((e->ray.map.x -
+		e->ray.pos.x + (1 - e->ray.step.x) / 2) / e->ray.dir.x));
 	else
-		e->ray.dist = fabs((e->ray.map.y -
-		e->ray.pos.y + (1 - e->ray.step.y) / 2) / e->ray.dir.y);
-	line_h = abs((int)(e->win_h / e->ray.dist));
-	y = (int)(-line_h / 2 + e->win_h / 2);
-	y1 = (int)(line_h / 2 + e->win_h / 2);
+		e->ray.dist = ABS(((e->ray.map.y -
+		e->ray.pos.y + (1 - e->ray.step.y) / 2) / e->ray.dir.y));
+	line_h = ABS((int)(e->win_h / e->ray.dist));
+	y = (int)(-line_h / 2 + e->hwin_h);
+	y1 = (int)(line_h / 2 + e->hwin_h);
 	y < 0 ? y = 0 : 0;
 	y1 >= e->win_h ? y1 = e->win_h : 0;
 	if (e->arg.texture)

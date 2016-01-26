@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 10:57:02 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/25 18:34:21 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/26 08:53:53 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,6 @@ typedef struct	s_map
 {
 	t_vec2	pos;
 	int		**map;
-	int		size;
 	int		w;
 	int		h;
 }				t_map;
@@ -173,6 +172,8 @@ typedef struct	s_env
 	void	*mlx;
 	int		win_w;
 	int		win_h;
+	int		hwin_w;
+	int		hwin_h;
 }				t_env;
 
 /*
