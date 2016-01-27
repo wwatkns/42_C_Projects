@@ -1,6 +1,6 @@
 # Wolf3d
 
-Installation:
+__Installation:__
 * make
 * ./wolf3d
 
