@@ -2,6 +2,8 @@
 
 __Installation:__
 
+* `git clone https://github.com/wwatkins42/42Projects.git`
+* `cd ./Fractol`
 * `make`
 * `./fractol [type]`
 
@@ -16,7 +18,7 @@ __Installation:__
 **Options:**
 * `-w` [`window_width`] loads with defined window width.
 * `-h` [`window_height`]  loads with defined window height.
-* `--help`  display help text
+* `--help`  display help text.
 
 **Keys:**
 * `+` `-` or `mouse wheel`: zoom on mouse position
