@@ -6,11 +6,11 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/27 10:47:42 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/27 14:33:05 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/27 16:27:41 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lib_vector.h"
+#include "libvec.h"
 
 t_vec3	vec3(float x, float y, float z)
 {

@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lib_vector.h                                       :+:      :+:    :+:   */
+/*   libvec.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/27 14:31:48 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/27 14:33:29 by wwatkins         ###   ########.fr       */
+/*   Created: 2016/01/27 16:26:43 by wwatkins          #+#    #+#             */
+/*   Updated: 2016/01/27 16:26:51 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIB_VECTOR_H
-# define LIB_VECTOR_H
+#ifndef LIBVEC_H
+# define LIBVEC_H
 
 # include <math.h>
 
@@ -20,7 +20,7 @@
 # define DEG2RAD PI / 180
 # define RAD2DEG 180 / PI
 
-enum { UP, LEFT, FORWARD };
+enum { X, Y, Z };
 
 typedef struct	s_vec3
 {
@@ -67,7 +67,6 @@ t_vec2			vec2_sub(t_vec2 vec2a, t_vec2 vec2b);
 t_vec2			vec2_mul(t_vec2 vec2a, t_vec2 vec2b);
 float			vec2_dot(t_vec2 vec2a, t_vec2 vec2b);
 void			vec2_rot(t_vec2 *vec2, float theta);
-
 
 /*
 **	vector3.c functions

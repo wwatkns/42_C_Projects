@@ -6,7 +6,7 @@
 #    By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/27 14:31:06 by wwatkins          #+#    #+#              #
-#    Updated: 2016/01/27 14:31:10 by wwatkins         ###   ########.fr        #
+#    Updated: 2016/01/27 16:26:26 by wwatkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ SRC_PATH = ./src/
 OBJ_PATH = ./obj/
 INC_PATH = ./include/
 
-NAME = lib_vector.a
+NAME = libvec.a
 CC = gcc
 CFGLAGS = -Werror -Wextra -Wall
 
@@ -31,7 +31,6 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	@ar rc $(NAME) $(OBJ)
 	ranlib $(NAME)
-	@echo "done."
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@mkdir $(OBJ_PATH) 2>/dev/null || echo "" > /dev/null

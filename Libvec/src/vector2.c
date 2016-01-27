@@ -6,11 +6,11 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/27 14:23:31 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/27 14:32:45 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/27 16:27:08 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lib_vector.h"
+#include "libvec.h"
 
 t_vec2	vec2(float x, float y)
 {

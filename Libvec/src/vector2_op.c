@@ -6,11 +6,11 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/27 10:57:57 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/27 14:32:54 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/27 16:27:26 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lib_vector.h"
+#include "libvec.h"
 
 t_vec2	vec2_add(t_vec2 vec2a, t_vec2 vec2b)
 {
