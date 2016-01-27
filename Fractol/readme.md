@@ -20,6 +20,9 @@ __Installation:__
 * `-h` [`window_height`]  loads with defined window height.
 * `--help`  display help text.
 
+**Exemple:**
+* `./fractol burningship -w 640 -h 640`
+
 **Keys:**
 * `+` `-` or `mouse wheel`: zoom on mouse position
 * `mouse`: change julia settings
