@@ -6,7 +6,7 @@ __Installation:__
 * `./wolf3d`
 
 **Usage:**
-* ./wolf3d [-m file_path] [-t file_path] [-w width] [-h height] [--help]
+* `./wolf3d [-m file_path] [-t file_path] [-w width] [-h height] [--help]`
 
 **Options:**
 * `-m` [`file_path`]      loads map from file_path.
@@ -18,6 +18,6 @@ __Installation:__
 **Keys:**
 * &#8593; &#8592; &#8595; &#8594; or `w` `a` `s` `d`: move around.
 * `q`, `e` or `mouse`: rotate view
-* `m`: change mouse rotation
+* `m`: *change mouse rotation*
 
 ![wolf3d_screenshot](/screenshots/screenshot_wolf3d.png?raw=true "wolf3d")
