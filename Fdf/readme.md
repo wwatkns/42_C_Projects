@@ -2,6 +2,8 @@
 
 __Installation:__
 
+* `git clone https://github.com/wwatkins42/42Projects.git`
+* `cd ./fdf`
 * `make`
 * `./fdf [map file_path]`
 
