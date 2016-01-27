@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 10:57:02 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/26 16:14:53 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/27 10:28:53 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,6 +206,7 @@ void			vec2_rotate(t_vec2 *vec2, float theta);
 t_vec2			vec2_add(t_vec2 vec2_a, t_vec2 vec2_b);
 t_vec2			vec2_sub(t_vec2 vec2_a, t_vec2 vec2_b);
 t_vec2			vec2_mul(t_vec2 vec2_a, t_vec2 vec2_b);
+float			vec2_dot(t_vec2 vec2_a, t_vec2 vec2_b);
 
 /*
 **	draw.c functions

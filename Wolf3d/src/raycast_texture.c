@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/23 09:52:31 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/26 15:14:24 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/26 16:50:25 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,16 @@ void	raycast_untextured(t_env *e, int y, int y1)
 	color < 0 ? color = 0 : 0;
 	e->ray.side == 1 ? color /= 2 : 0;
 	draw_vertical_line(e, vec2(e->ray.x, 0), y, set_rgb(125, 140, 196));
+	if (e->ray.side == 0 && e->ray.dir.x > 0)
+		color = 15;
+	else if (e->ray.side == 0 && e->ray.dir.x < 0)
+		color = 60;
+	else if (e->ray.side == 1 && e->ray.dir.y > 0)
+		color = 180;
+	else if (e->ray.side == 1 && e->ray.dir.y < 0)
+		color = 110;
 	draw_vertical_line(e, vec2(e->ray.x, y), y1,
-	set_rgb(color + 45, color + 25, color));
+	set_rgb(color + 35, color - 15, color + 20));
 	draw_vertical_line(e, vec2(e->ray.x, y1), e->win_h, set_rgb(60, 95, 182));
 	e->tex.f != -1 || e->tex.c != -1 ? raycast_wall_texel(e) : 0;
 	e->tex.f != -1 || e->tex.c != -1 ? floor_casting(e, y1) : 0;

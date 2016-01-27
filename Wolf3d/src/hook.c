@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 12:06:26 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/26 15:40:31 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/27 12:49:50 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ int		loop_hook(t_env *e)
 
 int		expose_hook(t_env *e)
 {
-	mlx_clear_window(e->mlx, e->win);
 	if (e->tex.f == -1 || e->tex.c == -1)
 	{
 		mlx_destroy_image(e->mlx, e->img.adr);
 		img_init(e);
 	}
 	raycast(e);
+	mlx_clear_window(e->mlx, e->win);
 	mlx_put_image_to_window(e->mlx, e->win, e->img.adr, 0, 0);
 	return (0);
 }
