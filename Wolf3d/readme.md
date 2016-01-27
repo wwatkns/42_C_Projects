@@ -1,5 +1,6 @@
 # Wolf3d
-## Installation:
+
+Installation:
 * make
 * ./wolf3d
 
