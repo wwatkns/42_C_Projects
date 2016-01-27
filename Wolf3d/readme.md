@@ -1,2 +1,2 @@
 # Wolf3d
-![Texte alternatif](42Projects/screenshots/screenshot_wolf3d.png "texte pour le titre, facultatif")
+![wolf3d_screenshot](/42Projects/screenshots/screenshot_wolf3d.png?raw=true "wolf3d")
