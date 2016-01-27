@@ -2,6 +2,8 @@
 
 __Installation:__
 
+* `git clone https://github.com/wwatkins42/42Projects.git`
+* `cd ./Wolf3d`
 * `make`
 * `./wolf3d`
 
@@ -13,11 +15,12 @@ __Installation:__
 * `-t` [`file_path`]      loads textures pack from file_path.
 * `-w` [`window_width`] loads with defined window width.
 * `-h` [`window_height`]  loads with defined window height.
-* `--help`  display help text
+* `--help`  display help text.
 
 **Keys:**
 * &#8593; &#8592; &#8595; &#8594; or `w` `a` `s` `d`: move around.
 * `q`, `e` or `mouse`: rotate view
 * `m`: *change mouse rotation*
 
-![wolf3d_screenshot](/screenshots/screenshot_wolf3d.png?raw=true "wolf3d")
+![wolf3d_screenshot_1](/screenshots/screenshot_wolf3d_1.png?raw=true "wolf3d")
+![wolf3d_screenshot_2](/screenshots/screenshot_wolf3d_2.png?raw=true "wolf3d")
