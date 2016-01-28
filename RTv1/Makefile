@@ -6,7 +6,7 @@
 #    By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/28 10:58:16 by wwatkins          #+#    #+#              #
-#    Updated: 2016/01/28 13:12:54 by wwatkins         ###   ########.fr        #
+#    Updated: 2016/01/28 15:37:32 by wwatkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,8 +47,6 @@ $(NAME): $(OBJ)
 	make -C $(VEC_PATH) re
 	make -C $(LIB_PATH) re
 	$(CC) $(CFLGS) -L$(LIB_PATH) -L$(VEC_PATH) -lft $(SRC) $(INC) -o $(NAME) $(OBJ) $(MLXFLGS)
-	@clear
-	@$(MAKE) check
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@mkdir $(OBJ_PATH) 2>/dev/null || echo "" > /dev/null

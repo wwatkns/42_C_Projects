@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 10:54:12 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/28 15:22:14 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/28 15:32:42 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,17 +73,22 @@ typedef struct	s_lgt
 	struct s_lgt	*next;
 }				t_lgt;
 
+typedef struct	s_win
+{
+	void	*adr;
+	int		w;
+	int		h;
+}				t_win;
+
 typedef struct	s_env
 {
+	t_win	win;
 	t_arg	arg;
 	t_img	img;
 	t_cam	cam;
 	t_lgt	lgt;
 	t_obj	obj;
 	void	*mlx;
-	void	*win;
-	int		win_w;
-	int		win_h;
 }				t_env;
 
 /*

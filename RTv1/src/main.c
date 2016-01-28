@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 11:05:13 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/28 12:57:19 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/28 15:36:34 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,10 @@ void	args_get(t_env *e, int argc, char **argv)
 	int i;
 
 	i = 0;
-	argc == 1 ? args_disp() : 0;
-	e->arg.file_scene = ft_strdup(argv[1]);
+	if (argc == 1)
+		e->arg.file_scene = ft_strdup("resource/scene/default.scene");
+	else
+		e->arg.file_scene = ft_strdup(argv[1]);
 	e->arg.w = 0;
 	e->arg.h = 0;
 	while (++i < argc)
