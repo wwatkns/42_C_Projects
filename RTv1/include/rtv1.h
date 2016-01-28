@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 10:54:12 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/28 13:15:53 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/28 13:51:20 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void			env_init(t_env *e);
 
 int				loop_hook(t_env *e);
 int				expose_hook(t_env *e);
+int				key_pressed(int keycode, t_env *e);
 
 /*
 **	draw.c functions
