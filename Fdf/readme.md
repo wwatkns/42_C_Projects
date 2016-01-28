@@ -1,5 +1,7 @@
 # Fdf
 
+_This project consist of creating a wireframe schematic graphical representation of a terrain in relief by linking different points (x, y, z) with segments._
+
 __Installation:__
 
 * `git clone https://github.com/wwatkins42/42Projects.git`
