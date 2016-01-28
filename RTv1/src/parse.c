@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 15:01:22 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/28 17:58:48 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/28 18:09:13 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,10 @@ void	parse_camera(t_env *e, int fd)
 	get_next_line(fd, &line);
 	e->cam.dir = parse_vector(line);
 	ft_strdel(&line);
+
+	printf("camera:\n");
+	printf("	pos: (%f, %f, %f)\n", e->cam.pos.x, e->cam.pos.y, e->cam.pos.z);
+	printf("	dir: (%f, %f, %f)\n", e->cam.dir.x, e->cam.dir.y, e->cam.dir.z);
 }
 
 void	parse_light(t_env *e, int fd)
@@ -53,6 +57,10 @@ void	parse_light(t_env *e, int fd)
 	get_next_line(fd, &line);
 	e->lgt.color = ft_atoi_base(line, 16);
 	ft_strdel(&line);
+
+	printf("light:\n");
+	printf("	pos: (%f, %f, %f)\n", e->lgt.pos.x, e->lgt.pos.y, e->lgt.pos.z);
+	printf("	color: %x\n", e->lgt.color);
 }
 
 t_vec3	parse_vector(char *line)
@@ -103,6 +111,13 @@ t_obj	create_object(int fd)
 	(obj.color = ft_atoi_base(line, 16)) ? ft_strdel(&line) : 0;
 	obj.index = index;
 	obj.next = NULL;
+
+	printf("object:\n");
+	printf("	type: %d\n", obj.type);
+	printf("	pos: (%f, %f, %f)\n", obj.pos.x, obj.pos.y, obj.pos.z);
+	printf("	dir: (%f, %f, %f)\n", obj.dir.x, obj.dir.y, obj.dir.z);
+	printf("	size: (%f, %f, %f)\n", obj.size.x, obj.size.y, obj.size.z);
+	printf("	color: %x\n", obj.color);
 	index++;
 	return (obj);
 }
