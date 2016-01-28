@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/27 16:26:43 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/27 16:26:51 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/28 10:37:07 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,15 @@ typedef struct	s_vec2i
 	int		x;
 	int		y;
 }				t_vec2i;
+
+typedef	struct	s_vec
+{
+	t_vec3	up;
+	t_vec3	right;
+	t_vec3	forward;
+}				t_vec;
+
+t_vec	g_vec = { { 0, 0, 1 }, { 1, 0, 0}, { 0, 1, 0 } };
 
 /*
 **	vector2.c functions

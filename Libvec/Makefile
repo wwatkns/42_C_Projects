@@ -6,7 +6,7 @@
 #    By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/27 14:31:06 by wwatkins          #+#    #+#              #
-#    Updated: 2016/01/27 16:26:26 by wwatkins         ###   ########.fr        #
+#    Updated: 2016/01/28 10:37:47 by wwatkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	$(CC) $(CFLAGS) $(LIB) $(INC) -o $@ -c $<
 
 norme:
-	norminette $(SRC) $(INC_PATH)lib_vector.h
+	norminette $(SRC) $(INC_PATH)libvec.h
 
 clean:
 	rm -f $(OBJ)
