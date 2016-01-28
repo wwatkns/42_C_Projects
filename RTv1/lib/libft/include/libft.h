@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/25 14:33:30 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/28 16:40:38 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/28 16:54:16 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ int					ft_wordcount(const char *s, char c);
 int					ft_isblank(char c);
 int					ft_atoi_base(char *str, int base);
 char				*ft_itoa_base(int value, int base);
-int					ft_striterr(char *s, int (*f)(char*));
 int					get_next_line(int const fd, char **line);
 
 #endif
