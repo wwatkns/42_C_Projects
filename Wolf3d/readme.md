@@ -1,5 +1,8 @@
 # Wolf3d
 
+_This project consist of creating a realistic graphical representation of what we could see inside of a labyrinth._
+_The representation is realised using the raycasting technique._
+
 __Installation:__
 
 * `git clone https://github.com/wwatkins42/42Projects.git`
