@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 15:01:22 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/28 17:46:41 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/28 17:58:48 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,61 @@ void	parse_scene(t_env *e)
 	ft_strdel(&e->arg.file_scene);
 	while (get_next_line(fd, &line) > 0)
 	{
+		!ft_strcmp(line, "camera") ? parse_camera(e, fd) : 0;
+		!ft_strcmp(line, "light") ? parse_light(e, fd) : 0;
 		if (!ft_strcmp(line, "object"))
 			e->obj = create_object(fd); // temporary
 		ft_strdel(&line);
 	}
 	ft_strdel(&line);
 	error((close(fd) + 1));
+}
+
+void	parse_camera(t_env *e, int fd)
+{
+	char	*line;
+
+	get_next_line(fd, &line);
+	e->cam.pos = parse_vector(line);
+	ft_strdel(&line);
+	get_next_line(fd, &line);
+	e->cam.dir = parse_vector(line);
+	ft_strdel(&line);
+}
+
+void	parse_light(t_env *e, int fd)
+{
+	char	*line;
+
+	get_next_line(fd, &line);
+	e->lgt.pos = parse_vector(line);
+	ft_strdel(&line);
+	get_next_line(fd, &line);
+	e->lgt.color = ft_atoi_base(line, 16);
+	ft_strdel(&line);
+}
+
+t_vec3	parse_vector(char *line)
+{
+	int		i;
+	int		n;
+	char	**split;
+	t_vec3	vec3;
+
+	i = 0;
+	n = 0;
+	split = ft_strsplit(line, ' ');
+	while (split[i] != NULL && n != 3)
+	{
+		str_digit(split[i]) == 1 ? n++ : 0;
+		n == 1 ? vec3.x = ft_atoi(split[i]) : 0;
+		n == 2 ? vec3.y = ft_atoi(split[i]) : 0;
+		n == 3 ? vec3.z = ft_atoi(split[i]) : 0;
+		free(split[i]);
+		i++;
+	}
+	free(split);
+	return (vec3);
 }
 
 t_obj	create_object(int fd)
@@ -56,41 +105,4 @@ t_obj	create_object(int fd)
 	obj.next = NULL;
 	index++;
 	return (obj);
-}
-
-t_vec3	parse_vector(char *line)
-{
-	int		i;
-	int		n;
-	char	**split;
-	t_vec3	vec3;
-
-	i = 0;
-	n = 0;
-	split = ft_strsplit(line, ' ');
-	while (split[i] != NULL && n != 3)
-	{
-		str_digit(split[i]) == 1 ? n++ : 0;
-		n == 1 ? vec3.x = ft_atoi(split[i]) : 0;
-		n == 2 ? vec3.y = ft_atoi(split[i]) : 0;
-		n == 3 ? vec3.z = ft_atoi(split[i]) : 0;
-		free(split[i]);
-		i++;
-	}
-	free(split);
-	return (vec3);
-}
-
-int		str_digit(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		if (ft_isdigit(str[i]))
-			return (1);
-		i++;
-	}
-	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 10:54:12 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/28 17:05:51 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/28 17:58:46 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,8 +107,15 @@ void			error(int err);
 */
 
 void			parse_scene(t_env *e);
+void			parse_camera(t_env *e);
+void			parse_light(t_env *e);
 t_vec3			parse_vector(char *line);
 t_obj			create_object(int fd);
+
+/*
+**	utils.c functions
+*/
+
 int				str_digit(char *str);
 
 /*
