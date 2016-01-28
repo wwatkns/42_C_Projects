@@ -1,5 +1,7 @@
 # Fract'ol
 
+_This project consist of creating a small fractal exploration program._
+
 __Installation:__
 
 * `git clone https://github.com/wwatkins42/42Projects.git`
