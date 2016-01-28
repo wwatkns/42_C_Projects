@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 10:54:12 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/28 13:51:20 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/28 15:22:14 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <math.h>
 
 # define ABS(x) (x < 0 ? -x : x)
+
+enum { SPHERE, CONE, PLANE, CYLINDER };
 
 typedef struct	s_arg
 {
@@ -45,10 +47,39 @@ typedef struct	s_rgb
 	unsigned char	b;
 }				t_rgb;
 
+typedef struct	s_obj
+{
+	t_vec3			pos;
+	t_vec3			dir;
+	t_vec3			size;
+	short			type;
+	int				color;
+	int				index;
+	struct s_obj	*next;
+	struct s_obj	*prev;
+}				t_obj;
+
+typedef struct	s_cam
+{
+	t_vec3	pos;
+	t_vec3	dir;
+	int		fov;
+}				t_cam;
+
+typedef struct	s_lgt
+{
+	t_vec3			pos;
+	int				color;
+	struct s_lgt	*next;
+}				t_lgt;
+
 typedef struct	s_env
 {
 	t_arg	arg;
 	t_img	img;
+	t_cam	cam;
+	t_lgt	lgt;
+	t_obj	obj;
 	void	*mlx;
 	void	*win;
 	int		win_w;
@@ -62,6 +93,12 @@ typedef struct	s_env
 void			args_get(t_env *e, int argc, char **argv);
 void			args_disp(void);
 void			error(int err);
+
+/*
+**	parse.c functions
+*/
+
+void			parse_scene(t_env *e);
 
 /*
 **	core.c	functions

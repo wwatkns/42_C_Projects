@@ -1,0 +1,35 @@
+camera
+	pos = { 0, 0, 5 }
+	dir = { 0, 1, -0.2 }
+
+light
+	pos = { 50, 5, 15 }
+	color = 0xA95E0C
+
+object
+	type = sphere
+	pos = { 10, 15, 2 }
+	dir = { 0, 0, 0 }
+	size = { 5, 5, 5 }
+	color = 0x7F7F80
+
+object
+	type = cone
+	pos = { -4, 21, 4 }
+	dir = { 0, 0, 0 }
+	size = { 5, 5, 5 }
+	color = 0x7F7F80
+
+object
+	type = plane
+	pos = { 0, 0, -9 }
+	dir = { 0, 0, 0 }
+	size = { 320, 100, 1 }
+	color = 0x808080
+
+object
+	type = cylinder
+	pos = { -6, 10, 5 }
+	dir = { -7, -2, 0 }
+	size = { 9, 8, 17 }
+	color = 0xE9A5AF
