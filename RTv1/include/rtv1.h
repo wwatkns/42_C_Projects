@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 10:54:12 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/28 16:58:53 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/28 17:05:51 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 # include <libvec.h>
 # include <mlx.h>
 # include <math.h>
+# include <stdlib.h>
+
+# include <stdio.h> // temporary
 
 # define ABS(x) (x < 0 ? -x : x)
 
