@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 12:41:06 by wwatkins          #+#    #+#             */
-/*   Updated: 2015/11/24 12:41:08 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/29 14:30:52 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,5 @@
 
 void	ft_putstr_fd(char const *s, int fd)
 {
-	int i;
-
-	i = 0;
-	while (s[i] != '\0')
-	{
-		write(fd, &s[i], 1);
-		i++;
-	}
+	write(fd, s, ft_strlen(s));
 }
