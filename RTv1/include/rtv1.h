@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 10:54:12 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/29 11:07:38 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/29 13:58:58 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,11 @@ typedef struct	s_obj
 {
 	t_vec3			pos;
 	t_vec3			dir;
-	t_vec3			size;
+	t_vec3			scale;
 	short			type;
 	int				color;
 	int				index;
 	struct s_obj	*next;
-//	struct s_obj	*prev;
 }				t_obj;
 
 typedef struct	s_cam

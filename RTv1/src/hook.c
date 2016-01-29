@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 12:57:27 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/28 15:34:07 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/29 13:59:58 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,6 @@ int		expose_hook(t_env *e)
 int		key_pressed(int keycode, t_env *e)
 {
 	keycode == 53 ? exit(0) : 0;
-	e->win.h > 5000 ? exit(0) : 0; // suppress compilaion warning
+	e->win.h > 5000 ? exit(0) : 0; // suppress compilation warning
 	return (0);
 }

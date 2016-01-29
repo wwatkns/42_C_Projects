@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 15:01:22 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/29 13:08:18 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/29 13:58:16 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ t_obj	*create_object(int fd)
 	obj->dir = parse_vector(line);
 	ft_strdel(&line);
 	get_next_line(fd, &line);
-	obj->size = parse_vector(line);
+	obj->scale = parse_vector(line);
 	ft_strdel(&line);
 	get_next_line(fd, &line);
 	(obj->color = ft_atoi_base(line, 16)) ? ft_strdel(&line) : 0;
