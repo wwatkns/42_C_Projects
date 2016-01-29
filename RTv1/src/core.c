@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 12:52:47 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/28 15:32:49 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/29 11:22:00 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	core(t_env *e)
 {
-	env_init(e);
 	error((int)(e->mlx = mlx_init()));
 	error((int)(e->win.adr = mlx_new_window(e->mlx, e->win.w, e->win.h,
 				"RTv1")));
@@ -27,6 +26,11 @@ void	core(t_env *e)
 
 void	env_init(t_env *e)
 {
+	t_obj	*obj;
+
 	e->win.w = e->arg.w;
 	e->win.h = e->arg.h;
+	error((int)(obj = (t_obj*)malloc(sizeof(t_obj))));
+	e->obj = obj;
+	e->obj->next = NULL;
 }

@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 17:56:39 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/28 17:57:20 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/29 10:48:17 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,8 @@
 
 int		str_digit(char *str)
 {
-	int i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (ft_isdigit(str[i]))
+	while (*str)
+		if (ft_isdigit(*str++))
 			return (1);
-		i++;
-	}
 	return (0);
 }

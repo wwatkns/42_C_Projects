@@ -16,7 +16,7 @@ object
 object
 	type = cone
 	pos = { -4, 21, 4 }
-	dir = { 0, 0, 0 }
+	dir = { 0, 0.92, 0.5 }
 	size = { 5, 5, 5 }
 	color = 0x7F7F80
 

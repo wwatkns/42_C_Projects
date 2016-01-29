@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 10:54:12 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/28 18:02:23 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/29 11:07:38 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ typedef struct	s_obj
 	int				color;
 	int				index;
 	struct s_obj	*next;
-	struct s_obj	*prev;
+//	struct s_obj	*prev;
 }				t_obj;
 
 typedef struct	s_cam
@@ -90,7 +90,7 @@ typedef struct	s_env
 	t_img	img;
 	t_cam	cam;
 	t_lgt	lgt;
-	t_obj	obj;
+	t_obj	*obj;
 	void	*mlx;
 }				t_env;
 
@@ -110,7 +110,7 @@ void			parse_scene(t_env *e);
 void			parse_camera(t_env *e, int fd);
 void			parse_light(t_env *e, int fd);
 t_vec3			parse_vector(char *line);
-t_obj			create_object(int fd);
+t_obj			*create_object(int fd);
 
 /*
 **	utils.c functions
@@ -124,6 +124,7 @@ int				str_digit(char *str);
 
 void			core(t_env *e);
 void			env_init(t_env *e);
+void			list_init(t_obj	*obj);
 
 /*
 **	hook.c functions

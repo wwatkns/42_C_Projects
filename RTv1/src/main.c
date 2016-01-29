@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 11:05:13 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/28 16:45:25 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/29 11:20:22 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int		main(int argc, char **argv)
 	t_env	e;
 
 	args_get(&e, argc, argv);
+	env_init(&e);
 	parse_scene(&e);
 	core(&e);
 	return (0);
