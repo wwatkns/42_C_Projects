@@ -6,15 +6,15 @@
 #    By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/22 19:20:08 by wwatkins          #+#    #+#              #
-#    Updated: 2016/01/23 14:09:00 by wwatkins         ###   ########.fr        #
+#    Updated: 2016/01/29 16:08:48 by wwatkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC_PATH = ./src/
 OBJ_PATH = ./obj/
-INC_PATH = ./include/ ./libft/include/
-LIB_PATH = ./libft
-MLX_PATH = ./minilibx_macos
+INC_PATH = ./include/ ./lib/libft/include/
+LIB_PATH = ./lib/libft
+MLX_PATH = ./lib/minilibx_macos
 
 NAME = fdf
 CC = gcc
@@ -24,7 +24,7 @@ MLXFLGS = -L$(MLX_PATH) -I$(MLX_PATH) -lmlx \
 
 SRC_NAME  = main.c core.c draw.c triangle.c parse.c hook.c
 OBJ_NAME = $(SRC_NAME.c=.o)
-LIB_NAME =  libft.a
+LIB_NAME = libft.a
 
 SRC = $(addprefix $(SRC_PATH), $(SRC_NAME))
 OBJ = $(addprefix $(OBJ_PATH), $(OBJ_NAME))

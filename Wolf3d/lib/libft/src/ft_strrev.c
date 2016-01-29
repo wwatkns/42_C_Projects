@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_strrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/24 12:41:06 by wwatkins          #+#    #+#             */
-/*   Updated: 2015/11/24 12:41:08 by wwatkins         ###   ########.fr       */
+/*   Created: 2015/11/30 10:11:54 by wwatkins          #+#    #+#             */
+/*   Updated: 2016/01/29 14:41:14 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr_fd(char const *s, int fd)
+char	*ft_strrev(const char *s, int size)
 {
-	int i;
+	int		i;
+	char	*srev;
 
 	i = 0;
-	while (s[i] != '\0')
-	{
-		write(fd, &s[i], 1);
-		i++;
-	}
+	if (!(srev = ft_strnew(size)))
+		return (NULL);
+	while (--size >= 0)
+		srev[i++] = s[size];
+	srev[i] = '\0';
+	return (srev);
 }

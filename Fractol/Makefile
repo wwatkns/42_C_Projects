@@ -6,15 +6,15 @@
 #    By: wwatkins <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/11 09:24:09 by wwatkins          #+#    #+#              #
-#    Updated: 2016/01/29 13:10:06 by wwatkins         ###   ########.fr        #
+#    Updated: 2016/01/29 16:06:24 by wwatkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC_PATH = ./src/
 OBJ_PATH = ./obj/
-INC_PATH = ./include/ ./libft/include/
-LIB_PATH = ./libft
-MLX_PATH = ./minilibx_macos
+INC_PATH = ./include/ ./lib/libft/include/
+LIB_PATH = ./lib/libft
+MLX_PATH = ./lib/minilibx_macos
 
 NAME = fractol
 CC = gcc
@@ -26,7 +26,7 @@ FORBID = printf $(FNCTION)
 
 SRC_NAME  = main.c hook.c mousehook.c core.c draw.c fractal.c
 OBJ_NAME = $(SRC_NAME.c=.o)
-LIB_NAME =  libft.a
+LIB_NAME = libft.a
 
 SRC = $(addprefix $(SRC_PATH), $(SRC_NAME))
 OBJ = $(addprefix $(OBJ_PATH), $(OBJ_NAME))

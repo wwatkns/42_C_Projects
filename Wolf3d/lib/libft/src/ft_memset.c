@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strclr.c                                        :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/24 12:43:06 by wwatkins          #+#    #+#             */
-/*   Updated: 2015/11/26 09:54:00 by wwatkins         ###   ########.fr       */
+/*   Created: 2015/11/25 09:22:15 by wwatkins          #+#    #+#             */
+/*   Updated: 2016/01/29 15:16:57 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_strclr(char *s)
+void	*ft_memset(void *b, int c, size_t len)
 {
-	int i;
+	unsigned char	*bt;
 
-	i = 0;
-	if (s == NULL)
-		return ;
-	while (s[i] != '\0')
-	{
-		s[i] = '\0';
-		i++;
-	}
+	bt = (unsigned char*)b;
+	while (len--)
+		bt[len] = (unsigned char)c;
+	return (bt);
 }

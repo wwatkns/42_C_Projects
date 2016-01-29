@@ -6,15 +6,15 @@
 #    By: wwatkins <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/11 09:24:09 by wwatkins          #+#    #+#              #
-#    Updated: 2016/01/29 13:09:40 by wwatkins         ###   ########.fr        #
+#    Updated: 2016/01/29 16:05:01 by wwatkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC_PATH = ./src/
 OBJ_PATH = ./obj/
-INC_PATH = ./include/ ./libft/include/
-LIB_PATH = ./libft
-MLX_PATH = ./minilibx_macos
+INC_PATH = ./include/ ./lib/libft/include/
+LIB_PATH = ./lib/libft
+MLX_PATH = ./lib/minilibx_macos
 
 NAME = wolf3d
 CC = gcc
@@ -27,7 +27,7 @@ FORBID = printf $(FNCTION)
 SRC_NAME = main.c draw.c core.c hook.c vector.c vector_op.c map.c raycast.c \
 		   mouse_hook.c movement.c raycast_texture.c
 OBJ_NAME = $(SRC_NAME.c=.o)
-LIB_NAME =  libft.a
+LIB_NAME = libft.a
 
 SRC = $(addprefix $(SRC_PATH), $(SRC_NAME))
 OBJ = $(addprefix $(OBJ_PATH), $(OBJ_NAME))

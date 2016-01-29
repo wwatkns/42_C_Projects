@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_wordcount.c                                     :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/03 17:41:37 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/06 13:00:10 by wwatkins         ###   ########.fr       */
+/*   Created: 2015/11/25 09:49:26 by wwatkins          #+#    #+#             */
+/*   Updated: 2016/01/29 15:22:21 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_wordcount(char const *s, char c)
-{
-	int	i;
-	int	counter;
+#include "libft.h"
 
-	i = 0;
-	counter = 0;
-	if (s[i] == 0 || (s[i] != c && i == 0))
-		counter++;
-	while (s[i] != 0)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
+{
+	unsigned char	*dstt;
+	unsigned char	*srct;
+
+	dstt = (unsigned char*)dst;
+	srct = (unsigned char*)src;
+	while (n--)
 	{
-		if (s[i] != c && s[i - 1] == c)
-			counter++;
-		i++;
+		*dstt = *srct++;
+		dstt++;
 	}
-	return (counter);
+	return (dst);
 }

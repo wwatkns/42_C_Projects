@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrev.c                                        :+:      :+:    :+:   */
+/*   ft_wordcount.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/30 10:11:54 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/03 13:00:50 by wwatkins         ###   ########.fr       */
+/*   Created: 2015/12/03 17:41:37 by wwatkins          #+#    #+#             */
+/*   Updated: 2015/12/03 17:42:17 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-char	*ft_strrev(const char *s, int size)
+int		ft_wordcount(char const *s, char c)
 {
-	int		i;
-	char	*srev;
+	int	i;
+	int	counter;
 
 	i = 0;
-	if (!(srev = ft_strnew(size)))
-		return (NULL);
-	while (--size >= 0)
-		srev[i++] = s[size];
-	srev[i] = '\0';
-	return (srev);
+	counter = 0;
+	if (s[i] == 0 || (s[i] != c && i == 0))
+		counter++;
+	while (s[i] != 0)
+	{
+		i++;
+		if (s[i] != c && s[i - 1] == c)
+			counter++;
+	}
+	return (counter);
 }

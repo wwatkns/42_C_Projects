@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/24 12:43:57 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/29 09:42:50 by wwatkins         ###   ########.fr       */
+/*   Created: 2015/11/24 12:40:55 by wwatkins          #+#    #+#             */
+/*   Updated: 2016/01/29 15:40:15 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+void	ft_putnbr(int n)
 {
-	int sign;
-	int value;
-
-	sign = 0;
-	value = 0;
-	while (ft_isblank(*str))
-		str++;
-	*str == '-' ? sign = 1 : 0;
-	*str == '-' || *str == '+' ? str++ : 0;
-	while ('0' <= *str && *str <= '9')
-		value = (value * 10) + (*(str++) - '0');
-	return (sign == 0 ? value : -value);
+	if (n == -2147483648)
+		ft_putstr("-2147483648");
+	else
+	{
+		if (n < 0)
+		{
+			n = -n;
+			write(1, "-", 1);
+		}
+		n >= 10 ? ft_putnbr(n / 10) : 0;
+		ft_putchar(n % 10 + '0');
+	}
 }
