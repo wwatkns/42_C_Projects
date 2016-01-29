@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/25 11:20:02 by wwatkins          #+#    #+#             */
-/*   Updated: 2015/11/29 19:55:10 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/29 15:04:34 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,14 @@
 char	*ft_strcat(char *s1, const char *s2)
 {
 	int i;
-	int j;
-	int len1;
-	int len2;
+	int len;
 
-	j = 0;
-	len1 = ft_strlen(s1);
-	len2 = ft_strlen(s2);
-	i = len1;
-	while (i < len1 + len2)
+	i = ft_strlen(s1);
+	len = ft_strlen(s2) + 1;
+	while (--len)
 	{
-		s1[i] = s2[j];
+		s1[i] = *s2++;
 		i++;
-		j++;
 	}
 	s1[i] = '\0';
 	return (s1);
