@@ -6,7 +6,7 @@
 #    By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/28 10:58:16 by wwatkins          #+#    #+#              #
-#    Updated: 2016/01/28 18:01:55 by wwatkins         ###   ########.fr        #
+#    Updated: 2016/01/29 13:08:00 by wwatkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,8 @@ OBJ = $(addprefix $(OBJ_PATH), $(OBJ_NAME))
 INC = $(addprefix -I,$(INC_PATH))
 LIB = $(LIB_PATH)$(LIB_NAME)
 VEC = $(VEC_PATH)$(VEC_NAME)
-FBN = $(addprefix -e $\" ,$(addsuffix $\", $(FORBID)))
+FN1 = $(addprefix -e $\" ,$(addsuffix $\", $(FORBID)))
+FN2 = $(addprefix -e $\"	,$(addsuffix $\", $(FORBID)))
 
 .PHONY: re all clean fclean cleanmlx cleanvec fcleanvec cleanlib \
 		fcleanlib check nolib norme
@@ -82,7 +83,7 @@ re: fclean all
 check:
 	@ls | grep -q auteur && cat -e auteur | grep -q $(USER)$ && echo \
 	"    Auteur [\033[32mOK\033[0m]" || echo "    Auteur [\033[31mKO\033[0m]"
-	@cat $(SRC) | grep -q $(FBN) && echo " Forbidden [\033[31mKO\033[0m]" ||\
+	@cat $(SRC) | grep -q $(FN1) $(FN2) && echo " Forbidden [\033[31mKO\033[0m]" ||\
 	echo " Forbidden [\033[32mOK\033[0m]"
 	@ls | grep -q -U $(NAME) && echo "Executable [\033[32mOK\033[0m]" ||\
 	echo "Executable [\033[31mKO\033[0m]"

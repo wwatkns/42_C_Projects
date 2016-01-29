@@ -6,7 +6,7 @@
 #    By: wwatkins <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/11 09:24:09 by wwatkins          #+#    #+#              #
-#    Updated: 2016/01/19 14:04:54 by wwatkins         ###   ########.fr        #
+#    Updated: 2016/01/29 13:10:06 by wwatkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,8 @@ SRC = $(addprefix $(SRC_PATH), $(SRC_NAME))
 OBJ = $(addprefix $(OBJ_PATH), $(OBJ_NAME))
 INC = $(addprefix -I,$(INC_PATH))
 LIB = $(LIB_PATH)$(LIB_NAME)
-FBN = $(addprefix -e $\" ,$(addsuffix $\", $(FORBID)))
+FB1 = $(addprefix -e $\" ,$(addsuffix $\", $(FORBID)))
+FB2 = $(addprefix -e $\"	,$(addsuffix $\", $(FORBID)))
 
 .PHONY: re all clean fclean cleanmlx cleanlib fcleanlib check nolib norme
 
@@ -71,7 +72,7 @@ re: fclean all
 check:
 	@ls | grep -q auteur && cat -e auteur | grep -q $(USER)$ && echo \
 	"   Auteur [\033[32mOK\033[0m]" || echo "   Auteur [\033[31mKO\033[0m]"
-	@cat $(SRC) | grep -q $(FBN) && echo "Forbidden [\033[31mKO\033[0m]" ||\
+	@cat $(SRC) | grep -q $(FB1) $(FB2) && echo "Forbidden [\033[31mKO\033[0m]" ||\
 	echo "Forbidden [\033[32mOK\033[0m]"
 	@ls | grep -q -U fractol && echo "  Fractol [\033[32mOK\033[0m]" ||\
 	echo "  Fractol [\033[31mKO\033[0m]"
