@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/25 09:33:07 by wwatkins          #+#    #+#             */
-/*   Updated: 2015/11/30 10:55:15 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/29 14:37:15 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,9 @@
 
 void	ft_bzero(void *s, size_t n)
 {
-	size_t	i;
 	char	*st;
 
-	i = 0;
 	st = (char*)s;
-	while (i < n)
-	{
-		st[i] = '\0';
-		i++;
-	}
+	while (n--)
+		*st++ = '\0';
 }
