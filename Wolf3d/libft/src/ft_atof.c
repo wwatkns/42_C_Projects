@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_atof.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/24 12:43:57 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/29 09:42:50 by wwatkins         ###   ########.fr       */
+/*   Created: 2016/01/29 09:12:36 by wwatkins          #+#    #+#             */
+/*   Updated: 2016/01/29 10:33:48 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+double	ft_atof(const char *str)
 {
-	int sign;
-	int value;
+	int		sign;
+	double	i;
+	double	value;
 
+	i = 1;
 	sign = 0;
 	value = 0;
 	while (ft_isblank(*str))
@@ -24,6 +26,9 @@ int	ft_atoi(const char *str)
 	*str == '-' ? sign = 1 : 0;
 	*str == '-' || *str == '+' ? str++ : 0;
 	while ('0' <= *str && *str <= '9')
-		value = (value * 10) + (*(str++) - '0');
-	return (sign == 0 ? value : -value);
+		value = value * 10 + (*str++ - '0');
+	if (*str == '.' && (str++))
+		while ('0' <= *str && *str <= '9')
+			value += (*str++ - '0') / (i *= 10);
+	return (sign == 1 && value > 0 ? -value : value);
 }

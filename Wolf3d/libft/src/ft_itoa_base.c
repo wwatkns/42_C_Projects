@@ -6,13 +6,13 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/19 12:27:47 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/19 12:44:57 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/29 13:17:55 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-int		ft_nbrlen_base(long n, int *abs, int base)
+static int	ft_nbrlen_base(long n, int *abs, int base)
 {
 	int len;
 
@@ -34,7 +34,7 @@ int		ft_nbrlen_base(long n, int *abs, int base)
 	return (len);
 }
 
-char	*ft_itoa_base(int value, int base)
+char		*ft_itoa_base(int value, int base)
 {
 	int		len;
 	int		abs;

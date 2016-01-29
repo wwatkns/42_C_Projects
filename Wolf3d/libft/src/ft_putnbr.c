@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 12:40:55 by wwatkins          #+#    #+#             */
-/*   Updated: 2015/11/26 14:46:04 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/29 15:40:15 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	ft_putnbr(int n)
 {
-	char out;
-
 	if (n == -2147483648)
 		ft_putstr("-2147483648");
 	else
@@ -25,9 +23,7 @@ void	ft_putnbr(int n)
 			n = -n;
 			write(1, "-", 1);
 		}
-		if (n >= 10)
-			ft_putnbr(n / 10);
-		out = n % 10 + '0';
-		write(1, &out, 1);
+		n >= 10 ? ft_putnbr(n / 10) : 0;
+		ft_putchar(n % 10 + '0');
 	}
 }
