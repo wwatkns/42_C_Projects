@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 12:52:47 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/29 11:22:00 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/01/29 11:38:28 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ void	env_init(t_env *e)
 {
 	t_obj	*obj;
 
-	e->win.w = e->arg.w;
-	e->win.h = e->arg.h;
 	error((int)(obj = (t_obj*)malloc(sizeof(t_obj))));
 	e->obj = obj;
 	e->obj->next = NULL;
+	e->win.w = e->arg.w;
+	e->win.h = e->arg.h;
 }
