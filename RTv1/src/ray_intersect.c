@@ -36,7 +36,7 @@ float	ray_intersect_plane(t_env *e, t_obj *obj)
 	float	t;
 
 	t = -((vec3_dot(obj->dir, e->ray.pos) - vec3_dot(obj->dir, obj->pos)) /
-		vec3_dot(obj->dir, e->ray.dir)); // or put '-' after division.
+		vec3_dot(obj->dir, e->ray.dir));
 	if (t < 0.0001)
 		return (-1.0);
 	return (t);
@@ -48,12 +48,12 @@ float	ray_intersect_sphere(t_env *e, t_obj *obj)
 	float	b;
 	float	c;
 	float	h;
-	t_vec3	oc;
+	t_vec3	len;
 
-	oc = vec3_sub(e->ray.pos, obj->pos);
+	len = vec3_sub(e->ray.pos, obj->pos);
 	a = vec3_dot(e->ray.dir, e->ray.dir);
-	b = vec3_dot(oc, e->ray.dir);
-	c = vec3_dot(oc, oc) - vec3_magnitude(obj->scale) * vec3_magnitude(obj->scale);
+	b = vec3_dot(len, e->ray.dir);
+	c = vec3_dot(len, len) - vec3_magnitude(obj->scale) * vec3_magnitude(obj->scale);
 	h = b * b - a * c;
 	if (h < 0.0001)
 		return (-1.0);
