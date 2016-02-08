@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 10:54:12 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/08 15:10:23 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/08 19:00:09 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct	s_obj
 	t_vec3			pos;
 	t_vec3			dir;
 	t_vec3			scale;
+	t_rgb			rgb;
 	short			type;
 	int				color;
 	int				index;
@@ -142,6 +143,7 @@ int				str_digit(char *str);
 void			core(t_env *e);
 void			env_init(t_env *e);
 void			list_init(t_obj	*obj);
+void			cam_init(t_env *e);
 
 /*
 **	hook.c functions
@@ -157,6 +159,7 @@ int				key_pressed(int keycode, t_env *e);
 
 void			img_init(t_env *e);
 void			img_pixel_put(t_env *e, int x, int y, t_rgb rgb);
+t_rgb			hex_to_rgb(int color);
 t_rgb			set_rgb(unsigned char r, unsigned char g, unsigned char b);
 
 /*
@@ -172,9 +175,10 @@ void			raytracing_draw(t_env *e);
 **	ray_intersect.c functions
 */
 
-void			ray_intersect_cone(t_env *e);
-void			ray_intersect_plane(t_env *e);
-void			ray_intersect_sphere(t_env *e);
-void			ray_intersect_cylinder(t_env *e);
+t_obj			*ray_intersect(t_env *e);
+float			ray_intersect_cone(t_env *e, t_obj *obj);
+float			ray_intersect_plane(t_env *e, t_obj *obj);
+float			ray_intersect_sphere(t_env *e, t_obj *obj);
+float			ray_intersect_cylinder(t_env *e, t_obj *obj);
 
 #endif

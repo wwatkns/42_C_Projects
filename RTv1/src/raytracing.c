@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 11:03:23 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/08 15:29:35 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/08 19:01:55 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ void	raytracing(t_env *e)
 		while (e->ray.x < e->win.w)
 		{
 			raytracing_init(e);
-			raytracing_calc(e);
-//			raytracing_draw(e);
+			raytracing_draw(e);
 			e->ray.x++;
 		}
 		e->ray.y++;
@@ -41,21 +40,11 @@ void	raytracing_init(t_env *e)
 	vec3_normalize(&e->ray.dir);
 }
 
-void	raytracing_calc(t_env *e)
-{
-	t_obj	*current;
-
-	current = e->obj->next;
-	while (current != NULL)
-	{
-		current->type == CONE ? ray_intersect_cone(e) : 0;
-		current->type == PLANE ? ray_intersect_plane(e) : 0;
-		current->type == SPHERE ? ray_intersect_sphere(e) : 0;
-		current->type == CYLINDER ? ray_intersect_cylinder(e) : 0;
-		current = current->next;
-	}
-}
-/*
 void	raytracing_draw(t_env *e)
 {
-}*/
+	t_obj	*obj;
+
+	obj = ray_intersect(e);
+	if (obj != NULL)
+		img_pixel_put(e, e->ray.x, e->ray.y, obj->rgb);
+}

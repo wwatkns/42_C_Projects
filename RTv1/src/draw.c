@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 13:00:04 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/28 15:33:47 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/08 18:53:31 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,16 @@ void	img_pixel_put(t_env *e, int x, int y, t_rgb rgb)
 		e->img.img[pos + 1] = rgb.g;
 		e->img.img[pos + 2] = rgb.r;
 	}
+}
+
+t_rgb	hex_to_rgb(int color)
+{
+	t_rgb	rgb;
+
+	rgb.r = color % 256;
+	rgb.g = (color >> 8) % 256;
+	rgb.b = (color >> 16) % 256;
+	return (rgb);
 }
 
 t_rgb	set_rgb(unsigned char r, unsigned char g, unsigned char b)
