@@ -20,7 +20,7 @@ __Installation:__
 * `-h` [`window_height`]  loads with defined window height.
 * `--help`  display help text.
 
-**Exemple:**
+**Example:**
 * `./wolf3d -m resource/map/labyrinth.map -t resource/template/pack_3.template -w 1000 -h 640`
 
 **Keys:**

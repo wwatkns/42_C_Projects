@@ -18,7 +18,7 @@ __Installation:__
 * `-h` [`window_height`]  loads with defined window height.
 * `--help`  display help text.
 
-**Exemple:**
+**Example:**
 * `./fdf maps/pylone.fdf -p palette/palette.fdfcolor -w 1500 -h 1200`
 
 **Keys:**
