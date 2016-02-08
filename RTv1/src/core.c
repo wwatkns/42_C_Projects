@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 12:52:47 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/29 11:38:28 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/08 13:24:59 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,14 @@ void	env_init(t_env *e)
 	e->obj->next = NULL;
 	e->win.w = e->arg.w;
 	e->win.h = e->arg.h;
+	e->win.dw = e->arg.w / 2;
+	e->win.dh = e->arg.h / 2;
+	e->cam.dist = 1.0;
+	e->cam.w = 0.5;
+	e->cam.h = 0.35;
+	e->cam.origin = vec3_add(e->cam.pos, vec3_add(vec3_fmul(e->cam.dir,
+					e->cam.dist), vec3_sub(vec3_fmul(vec3_up(), e->cam.h / 2.0),
+					vec3_fmul(vec3_right(), e->cam.w / 2.0))));
+	e->cam.xi = e->cam.w / (float)e->win.w;
+	e->cam.yi = e->cam.h / (float)e->win.h;
 }

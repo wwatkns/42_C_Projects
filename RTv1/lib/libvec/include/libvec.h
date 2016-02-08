@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/27 16:26:43 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/28 13:14:59 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/08 13:11:24 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,15 @@ t_vec3			vec3_sub(t_vec3 vec3a, t_vec3 vec3b);
 t_vec3			vec3_mul(t_vec3 vec3a, t_vec3 vec3b);
 float			vec3_dot(t_vec3 vec3a, t_vec3 vec3b);
 void			vec3_rot(t_vec3 *vec3, int axis, float theta);
+
+/*
+**	vec.c functions
+*/
+
+t_vec3			vec3_up(void);
+t_vec3			vec3_right(void);
+t_vec3			vec3_forward(void);
+t_vec3			vec3_fmul(t_vec3 vec3, float m);
+t_vec2			vec2_fmul(t_vec2 vec2, float m);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/28 10:58:16 by wwatkins          #+#    #+#              #
-#    Updated: 2016/02/08 11:24:29 by wwatkins         ###   ########.fr        #
+#    Updated: 2016/02/08 15:12:45 by wwatkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ MLXFLGS = -L$(MLX_PATH) -I$(MLX_PATH) -lmlx \
 FNCTION = $(shell ls -l $(LIB_PATH)/src | grep ft_ | sed 's/^.*ft_//' | sed 's/..$$//')
 FORBID = printf $(FNCTION)
 
-SRC_NAME = main.c parse.c utils.c core.c hook.c draw.c raytracing.c
+SRC_NAME = main.c parse.c utils.c core.c hook.c draw.c raytracing.c ray_intersect.c
 OBJ_NAME = $(SRC_NAME.c=.o)
 LIB_NAME = libft.a
 VEC_NAME = libvec.a

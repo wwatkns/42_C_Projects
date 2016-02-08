@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hook.c                                             :+:      :+:    :+:   */
+/*   ray_intersect.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/28 12:57:27 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/08 13:53:56 by wwatkins         ###   ########.fr       */
+/*   Created: 2016/02/08 15:10:36 by wwatkins          #+#    #+#             */
+/*   Updated: 2016/02/08 15:12:00 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-int		loop_hook(t_env *e)
+void	ray_intersect_cone(t_env *e)
 {
-	expose_hook(e);
-	return (0);
+	e->win.w > 10000 ? exit(0) : 0;
 }
 
-int		expose_hook(t_env *e)
+void	ray_intersect_plane(t_env *e)
 {
-	mlx_clear_window(e->mlx, e->win.adr);
-	raytracing(e);
-	mlx_put_image_to_window(e->mlx, e->win.adr, e->img.adr, 0, 0);
-	return (0);
+	e->win.w > 10000 ? exit(0) : 0;
 }
 
-int		key_pressed(int keycode, t_env *e)
+void	ray_intersect_sphere(t_env *e)
 {
-	keycode == 53 ? exit(0) : 0;
-	e->win.h > 5000 ? exit(0) : 0; // suppress compilation warning
-	return (0);
+	e->win.w > 10000 ? exit(0) : 0;
+}
+
+void	ray_intersect_cylinder(t_env *e)
+{
+	e->win.w > 10000 ? exit(0) : 0;
 }

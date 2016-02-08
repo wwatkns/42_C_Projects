@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 10:54:12 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/08 11:11:45 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/08 15:10:23 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,12 @@ typedef struct	s_cam
 {
 	t_vec3	pos;
 	t_vec3	dir;
+	t_vec3	origin;
+	float	dist;
+	float	w;
+	float	h;
+	float	xi;
+	float	yi;
 	int		fov;
 }				t_cam;
 
@@ -81,6 +87,7 @@ typedef struct	s_ray
 	t_vec3		len;
 	int			x;
 	int			y;
+	int			dist;
 }				t_ray;
 
 typedef struct	s_win
@@ -88,6 +95,8 @@ typedef struct	s_win
 	void	*adr;
 	int		w;
 	int		h;
+	int		dw;
+	int		dh;
 }				t_win;
 
 typedef struct	s_env
@@ -156,5 +165,16 @@ t_rgb			set_rgb(unsigned char r, unsigned char g, unsigned char b);
 
 void			raytracing(t_env *e);
 void			raytracing_init(t_env *e);
+void			raytracing_calc(t_env *e);
+void			raytracing_draw(t_env *e);
+
+/*
+**	ray_intersect.c functions
+*/
+
+void			ray_intersect_cone(t_env *e);
+void			ray_intersect_plane(t_env *e);
+void			ray_intersect_sphere(t_env *e);
+void			ray_intersect_cylinder(t_env *e);
 
 #endif
