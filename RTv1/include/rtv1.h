@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 10:54:12 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/29 13:58:58 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/08 11:11:45 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ typedef struct	s_arg
 	char	*file_scene;
 	int		w;
 	int		h;
-
 }				t_arg;
 
 typedef struct	s_img
@@ -75,6 +74,15 @@ typedef struct	s_lgt
 	struct s_lgt	*next;
 }				t_lgt;
 
+typedef struct	s_ray
+{
+	t_vec3		pos;
+	t_vec3		dir;
+	t_vec3		len;
+	int			x;
+	int			y;
+}				t_ray;
+
 typedef struct	s_win
 {
 	void	*adr;
@@ -90,6 +98,7 @@ typedef struct	s_env
 	t_cam	cam;
 	t_lgt	lgt;
 	t_obj	*obj;
+	t_ray	ray;
 	void	*mlx;
 }				t_env;
 
@@ -140,5 +149,12 @@ int				key_pressed(int keycode, t_env *e);
 void			img_init(t_env *e);
 void			img_pixel_put(t_env *e, int x, int y, t_rgb rgb);
 t_rgb			set_rgb(unsigned char r, unsigned char g, unsigned char b);
+
+/*
+**	raytracing.c functions
+*/
+
+void			raytracing(t_env *e);
+void			raytracing_init(t_env *e);
 
 #endif

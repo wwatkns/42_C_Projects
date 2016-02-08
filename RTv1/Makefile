@@ -6,15 +6,15 @@
 #    By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/28 10:58:16 by wwatkins          #+#    #+#              #
-#    Updated: 2016/01/29 13:08:00 by wwatkins         ###   ########.fr        #
+#    Updated: 2016/02/08 11:24:29 by wwatkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC_PATH = ./src/
 OBJ_PATH = ./obj/
 INC_PATH = ./include/ ./lib/libft/include/ ./lib/libvec/include
-LIB_PATH = ./lib/libft
-VEC_PATH = ./lib/libvec
+LIB_PATH = ./lib/libft/
+VEC_PATH = ./lib/libvec/
 MLX_PATH = ./lib/minilibx_macos
 
 NAME = rtv1
@@ -25,7 +25,7 @@ MLXFLGS = -L$(MLX_PATH) -I$(MLX_PATH) -lmlx \
 FNCTION = $(shell ls -l $(LIB_PATH)/src | grep ft_ | sed 's/^.*ft_//' | sed 's/..$$//')
 FORBID = printf $(FNCTION)
 
-SRC_NAME = main.c parse.c utils.c core.c hook.c draw.c
+SRC_NAME = main.c parse.c utils.c core.c hook.c draw.c raytracing.c
 OBJ_NAME = $(SRC_NAME.c=.o)
 LIB_NAME = libft.a
 VEC_NAME = libvec.a
@@ -47,14 +47,14 @@ $(NAME): $(OBJ)
 	make -C $(MLX_PATH) re
 	make -C $(VEC_PATH) re
 	make -C $(LIB_PATH) re
-	$(CC) $(CFLGS) -L$(LIB_PATH) -L$(VEC_PATH) -lft $(SRC) $(INC) -o $(NAME) $(OBJ) $(MLXFLGS)
+	$(CC) $(CFLGS) -L$(LIB_PATH) -L$(VEC_PATH) $(LIB) $(VEC) $(SRC) $(INC) -o $(NAME) $(OBJ) $(MLXFLGS)
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@mkdir $(OBJ_PATH) 2>/dev/null || echo "" > /dev/null
 	$(CC) $(CFLGS) $(LIB) $(VEC) $(INC) -o $@ -c $<
 
 nolib:
-	$(CC) $(CFLGS) -L$(LIB_PATH) -L$(VEC_PATH) -lft $(SRC) $(INC) -o $(NAME) $(OBJ) $(MLXFLGS)
+	$(CC) $(CFLGS) -L$(LIB_PATH) -L$(VEC_PATH) $(LIB) $(VEC) $(SRC) $(INC) -o $(NAME) $(OBJ) $(MLXFLGS)
 
 cleanmlx:
 	make -C $(MLX_PATH) clean
