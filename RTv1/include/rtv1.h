@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 10:54:12 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/08 19:00:09 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/09 07:55:18 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,7 +175,7 @@ void			raytracing_draw(t_env *e);
 **	ray_intersect.c functions
 */
 
-t_obj			*ray_intersect(t_env *e);
+t_obj			*ray_intersect(t_env *e, float *tmin);
 float			ray_intersect_cone(t_env *e, t_obj *obj);
 float			ray_intersect_plane(t_env *e, t_obj *obj);
 float			ray_intersect_sphere(t_env *e, t_obj *obj);

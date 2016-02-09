@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 11:03:23 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/08 19:01:55 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/09 08:00:25 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,10 @@ void	raytracing_init(t_env *e)
 void	raytracing_draw(t_env *e)
 {
 	t_obj	*obj;
+	float	tmin;
 
-	obj = ray_intersect(e);
-	if (obj != NULL)
+	tmin = INFINITY;
+	obj = ray_intersect(e, &tmin);
+	if (obj != NULL && tmin != INFINITY)
 		img_pixel_put(e, e->ray.x, e->ray.y, obj->rgb);
 }

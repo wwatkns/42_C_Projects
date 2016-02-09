@@ -6,29 +6,34 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 15:10:36 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/08 19:10:14 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/09 07:55:03 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-t_obj	*ray_intersect(t_env *e)
+t_obj	*ray_intersect(t_env *e, float *tmin)
 {
 	t_obj	*current;
-	float	value;
+	t_obj	*obj;
+	float	t;
 
+	obj = NULL;
 	current = e->obj->next;
 	while (current != NULL)
 	{
 		//current->type == CONE ? value = ray_intersect_cone(e, current) : 0;
-		current->type == PLANE ? value = ray_intersect_plane(e, current) : 0;
-		current->type == SPHERE ? value = ray_intersect_sphere(e, current) : 0;
+		current->type == PLANE ? t = ray_intersect_plane(e, current) : 0;
+		current->type == SPHERE ? t = ray_intersect_sphere(e, current) : 0;
 		//current->type == CYLINDER ? value = ray_intersect_cylinder(e, current) : 0;
-		if (value > 0.0001)
-			return (current);
+		if (t > 0.0 && t < *tmin)
+		{
+			obj = current;
+			*tmin = t;
+		}
 		current = current->next;
 	}
-	return (NULL);
+	return (obj);
 }
 
 float	ray_intersect_plane(t_env *e, t_obj *obj)
@@ -37,7 +42,7 @@ float	ray_intersect_plane(t_env *e, t_obj *obj)
 
 	t = -((vec3_dot(obj->dir, e->ray.pos) - vec3_dot(obj->dir, obj->pos)) /
 		vec3_dot(obj->dir, e->ray.dir));
-	if (t < 0.0001)
+	if (t < 0.0)
 		return (-1.0);
 	return (t);
 }
@@ -55,7 +60,7 @@ float	ray_intersect_sphere(t_env *e, t_obj *obj)
 	b = vec3_dot(len, e->ray.dir);
 	c = vec3_dot(len, len) - vec3_magnitude(obj->scale) * vec3_magnitude(obj->scale);
 	h = b * b - a * c;
-	if (h < 0.0001)
+	if (h < 0.0)
 		return (-1.0);
 	return ((-b - sqrt(h)) / a);
 }
