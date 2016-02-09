@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 13:00:04 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/08 18:53:31 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/09 10:39:00 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ t_rgb	hex_to_rgb(int color)
 {
 	t_rgb	rgb;
 
-	rgb.r = color % 256;
+	rgb.b = color % 256;
 	rgb.g = (color >> 8) % 256;
-	rgb.b = (color >> 16) % 256;
+	rgb.r = (color >> 16) % 256;
 	return (rgb);
 }
 

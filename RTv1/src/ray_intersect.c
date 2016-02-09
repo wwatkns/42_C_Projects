@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 15:10:36 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/09 09:36:58 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/09 11:47:46 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,26 @@ double	ray_intersect_plane(t_env *e, t_obj *obj)
 	return (t);
 }
 
-double	ray_intersect_sphere(t_env *e, t_obj *obj)
+double	ray_intersect_sphere(t_env *e, t_obj *obj)//, t_obj *hit)
+{
+	t_vec3	len;
+	double	v;
+	double	h;
+	double	d;
+	double	r;
+
+	len = vec3_sub(e->ray.pos, obj->pos);
+	v = vec3_dot(len, e->ray.dir);
+	r = vec3_magnitude(obj->scale);
+	h = r * r - (vec3_dot(len, len) - v * v);
+	if (h < 0.0)
+		return (-1.0);
+	d = sqrt(h);
+//	hit = e->ray.pos + (v - d) * e->ray.dir;
+	return ((-v - d) / vec3_dot(e->ray.dir, e->ray.dir));
+}
+
+/*double	ray_intersect_sphere(t_env *e, t_obj *obj)
 {
 	double	a;
 	double	b;
@@ -55,9 +74,9 @@ double	ray_intersect_sphere(t_env *e, t_obj *obj)
 	len = vec3_sub(e->ray.pos, obj->pos);
 	a = vec3_dot(e->ray.dir, e->ray.dir);
 	b = vec3_dot(len, e->ray.dir);
-	c = vec3_dot(len, len) - vec3_magnitude(obj->scale) * vec3_magnitude(obj->scale);
+	c = vec3_dot(len, len) - vec3_magnitude(vec3_mul(obj->scale, obj->scale));
 	h = b * b - a * c;
 	if (h < 0.0)
 		return (-1.0);
-	return ((-b - sqrt(h)) / a);
-}
+	return ((-b - sqrt(h)) / 2.0 * a);
+}*/

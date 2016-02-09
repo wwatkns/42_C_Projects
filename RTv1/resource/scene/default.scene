@@ -1,9 +1,9 @@
 camera
-	pos = { 0, 0, 0 }
+	pos = { 0, 0.1, 0 }
 	dir = { 0, 0, 1 }
 
 light
-	pos = { 10, 30, 60 }
+	pos = { 1, 30, 20 }
 	color = 0xA95E0C
 
 object
@@ -15,17 +15,24 @@ object
 
 object
 	type = sphere
-	pos = { 70, 0, 800 }
+	pos = { 2, -0.5, 9 }
+	dir = { 0, 0, 0 }
+	scale = { 0.5, 0.5, 0.5 }
+	color = 0x403F4C
+
+object
+	type = sphere
+	pos = { 45, 5, 300 }
 	dir = { 0, 0, 0 }
 	scale = { 10, 10, 10 }
-	color = 0x7F7FF8
+	color = 0xCC2936
 
 object
 	type = sphere
 	pos = { -3, 8.7, 50 }
 	dir = { 0, 0, 0 }
 	scale = { 3, 3, 3 }
-	color = 0x7F7FF8
+	color = 0x114B5F
 
 object
 	type = cone
@@ -39,7 +46,7 @@ object
 	pos = { 0, -1, 0 }
 	dir = { 0, 1, 0 }
 	scale = { 320, 100, 1 }
-	color = 0x71B7C0
+	color = 0x18AA79
 
 object
 	type = cylinder
