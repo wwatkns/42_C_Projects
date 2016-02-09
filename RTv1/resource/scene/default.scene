@@ -4,8 +4,8 @@ camera
 	fov = 60
 
 light
-	pos = { 4, 15, 60 }
-	color = 0xFF4F79
+	pos = { 10, 25, 50 }
+	color = 0x4F7FB9
 
 object
 	type = sphere
