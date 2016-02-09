@@ -6,17 +6,17 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 15:10:36 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/09 07:55:03 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/09 08:05:56 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-t_obj	*ray_intersect(t_env *e, float *tmin)
+t_obj	*ray_intersect(t_env *e, double *tmin)
 {
 	t_obj	*current;
 	t_obj	*obj;
-	float	t;
+	double	t;
 
 	obj = NULL;
 	current = e->obj->next;
@@ -36,9 +36,9 @@ t_obj	*ray_intersect(t_env *e, float *tmin)
 	return (obj);
 }
 
-float	ray_intersect_plane(t_env *e, t_obj *obj)
+double	ray_intersect_plane(t_env *e, t_obj *obj)
 {
-	float	t;
+	double	t;
 
 	t = -((vec3_dot(obj->dir, e->ray.pos) - vec3_dot(obj->dir, obj->pos)) /
 		vec3_dot(obj->dir, e->ray.dir));
@@ -47,12 +47,12 @@ float	ray_intersect_plane(t_env *e, t_obj *obj)
 	return (t);
 }
 
-float	ray_intersect_sphere(t_env *e, t_obj *obj)
+double	ray_intersect_sphere(t_env *e, t_obj *obj)
 {
-	float	a;
-	float	b;
-	float	c;
-	float	h;
+	double	a;
+	double	b;
+	double	c;
+	double	h;
 	t_vec3	len;
 
 	len = vec3_sub(e->ray.pos, obj->pos);

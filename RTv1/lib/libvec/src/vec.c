@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 13:11:57 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/08 13:37:05 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/09 08:08:22 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_vec3	vec3_forward(void)
 	return (vec3);
 }
 
-t_vec3	vec3_fmul(t_vec3 vec3, float m)
+t_vec3	vec3_fmul(t_vec3 vec3, double m)
 {
 	t_vec3	vec3t;
 
@@ -46,7 +46,7 @@ t_vec3	vec3_fmul(t_vec3 vec3, float m)
 	return (vec3t);
 }
 
-t_vec2	vec2_fmul(t_vec2 vec2, float m)
+t_vec2	vec2_fmul(t_vec2 vec2, double m)
 {
 	t_vec2	vec2t;
 

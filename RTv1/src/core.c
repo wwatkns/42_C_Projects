@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 12:52:47 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/08 16:59:36 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/09 08:10:30 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,6 @@ void	cam_init(t_env *e)
 				vec3_add(vec3_fmul(e->cam.dir, e->cam.dist),
 				vec3_fmul(vec3_up(), e->cam.h / 2.0))),
 				vec3_fmul(vec3_right(), e->cam.w / 2.0));
-	e->cam.xi = e->cam.w / (float)e->win.w;
-	e->cam.yi = e->cam.h / (float)e->win.h;
+	e->cam.xi = e->cam.w / (double)e->win.w;
+	e->cam.yi = e->cam.h / (double)e->win.h;
 }

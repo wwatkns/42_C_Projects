@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/27 10:57:57 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/27 16:27:26 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/09 08:09:21 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,12 @@ t_vec2	vec2_mul(t_vec2 vec2a, t_vec2 vec2b)
 	return (vec2);
 }
 
-float	vec2_dot(t_vec2 vec2a, t_vec2 vec2b)
+double	vec2_dot(t_vec2 vec2a, t_vec2 vec2b)
 {
 	return ((vec2a.x * vec2b.x + vec2a.y * vec2b.y));
 }
 
-void	vec2_rot(t_vec2 *vec2, float theta)
+void	vec2_rot(t_vec2 *vec2, double theta)
 {
 	t_vec2	vec2t;
 
