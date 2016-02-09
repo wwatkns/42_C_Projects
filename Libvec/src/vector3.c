@@ -6,13 +6,13 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/27 10:47:42 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/27 16:27:41 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/09 08:09:53 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libvec.h"
 
-t_vec3	vec3(float x, float y, float z)
+t_vec3	vec3(double x, double y, double z)
 {
 	t_vec3	vec3;
 
@@ -28,7 +28,7 @@ t_vec3i	vec3i(t_vec3 vec3)
 	return (vec3i);
 }
 
-t_vec3	vec3_scale(t_vec3 vec3, float scale)
+t_vec3	vec3_scale(t_vec3 vec3, double scale)
 {
 	vec3_normalize(&vec3);
 	vec3.x *= scale;
@@ -37,14 +37,14 @@ t_vec3	vec3_scale(t_vec3 vec3, float scale)
 	return (vec3);
 }
 
-float	vec3_magnitude(t_vec3 vec3)
+double	vec3_magnitude(t_vec3 vec3)
 {
 	return (sqrt(vec3.x * vec3.x + vec3.y * vec3.y + vec3.z * vec3.z));
 }
 
 void	vec3_normalize(t_vec3 *vec3)
 {
-	float	magnitude;
+	double	magnitude;
 
 	magnitude = vec3_magnitude(*vec3);
 	vec3->x /= magnitude;

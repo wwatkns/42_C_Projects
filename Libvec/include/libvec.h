@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/27 16:26:43 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/28 13:15:30 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/09 08:07:53 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ enum { X, Y, Z };
 
 typedef struct	s_vec3
 {
-	float	x;
-	float	y;
-	float	z;
+	double	x;
+	double	y;
+	double	z;
 }				t_vec3;
 
 typedef struct	s_vec3i
@@ -38,8 +38,8 @@ typedef struct	s_vec3i
 
 typedef struct	s_vec2
 {
-	float	x;
-	float	y;
+	double	x;
+	double	y;
 }				t_vec2;
 
 typedef struct	s_vec2i
@@ -52,10 +52,10 @@ typedef struct	s_vec2i
 **	vector2.c functions
 */
 
-t_vec2			vec2(float x, float y);
+t_vec2			vec2(double x, double y);
 t_vec2i			vec2i(t_vec2 vec2);
-t_vec2			vec2_scale(t_vec2 vec2a, float scale);
-float			vec2_magnitude(t_vec2 vec2);
+t_vec2			vec2_scale(t_vec2 vec2a, double scale);
+double			vec2_magnitude(t_vec2 vec2);
 void			vec2_normalize(t_vec2 *vec2);
 
 /*
@@ -65,17 +65,17 @@ void			vec2_normalize(t_vec2 *vec2);
 t_vec2			vec2_add(t_vec2 vec2a, t_vec2 vec2b);
 t_vec2			vec2_sub(t_vec2 vec2a, t_vec2 vec2b);
 t_vec2			vec2_mul(t_vec2 vec2a, t_vec2 vec2b);
-float			vec2_dot(t_vec2 vec2a, t_vec2 vec2b);
-void			vec2_rot(t_vec2 *vec2, float theta);
+double			vec2_dot(t_vec2 vec2a, t_vec2 vec2b);
+void			vec2_rot(t_vec2 *vec2, double theta);
 
 /*
 **	vector3.c functions
 */
 
-t_vec3			vec3(float x, float y, float z);
+t_vec3			vec3(double x, double y, double z);
 t_vec3i			vec3i(t_vec3 vec3);
-t_vec3			vec3_scale(t_vec3 vec3a, float scale);
-float			vec3_magnitude(t_vec3 vec3);
+t_vec3			vec3_scale(t_vec3 vec3a, double scale);
+double			vec3_magnitude(t_vec3 vec3);
 void			vec3_normalize(t_vec3 *vec3);
 
 /*
@@ -85,7 +85,17 @@ void			vec3_normalize(t_vec3 *vec3);
 t_vec3			vec3_add(t_vec3 vec3a, t_vec3 vec3b);
 t_vec3			vec3_sub(t_vec3 vec3a, t_vec3 vec3b);
 t_vec3			vec3_mul(t_vec3 vec3a, t_vec3 vec3b);
-float			vec3_dot(t_vec3 vec3a, t_vec3 vec3b);
-void			vec3_rot(t_vec3 *vec3, int axis, float theta);
+double			vec3_dot(t_vec3 vec3a, t_vec3 vec3b);
+void			vec3_rot(t_vec3 *vec3, int axis, double theta);
+
+/*
+**	vec.c functions
+*/
+
+t_vec3			vec3_up(void);
+t_vec3			vec3_right(void);
+t_vec3			vec3_forward(void);
+t_vec3			vec3_fmul(t_vec3 vec3, double m);
+t_vec2			vec2_fmul(t_vec2 vec2, double m);
 
 #endif
