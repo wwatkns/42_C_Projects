@@ -6,30 +6,27 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 15:10:36 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/09 08:05:56 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/09 09:36:58 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-t_obj	*ray_intersect(t_env *e, double *tmin)
+t_obj	*ray_intersect(t_env *e, double *tmin, double *t)
 {
 	t_obj	*current;
 	t_obj	*obj;
-	double	t;
 
 	obj = NULL;
 	current = e->obj->next;
 	while (current != NULL)
 	{
-		//current->type == CONE ? value = ray_intersect_cone(e, current) : 0;
-		current->type == PLANE ? t = ray_intersect_plane(e, current) : 0;
-		current->type == SPHERE ? t = ray_intersect_sphere(e, current) : 0;
-		//current->type == CYLINDER ? value = ray_intersect_cylinder(e, current) : 0;
-		if (t > 0.0 && t < *tmin)
+		current->type == PLANE ? *t = ray_intersect_plane(e, current) : 0;
+		current->type == SPHERE ? *t = ray_intersect_sphere(e, current) : 0;
+		if (*t > 0.0 && *t < *tmin)
 		{
 			obj = current;
-			*tmin = t;
+			*tmin = *t;
 		}
 		current = current->next;
 	}

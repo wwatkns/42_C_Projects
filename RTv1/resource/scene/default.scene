@@ -3,14 +3,14 @@ camera
 	dir = { 0, 0, 1 }
 
 light
-	pos = { 50, 5, 15 }
+	pos = { 10, 30, 60 }
 	color = 0xA95E0C
 
 object
 	type = sphere
-	pos = { 3, 10, 200 }
+	pos = { -3, 1, 50 }
 	dir = { 0, 0, 0 }
-	scale = { 10, 10, 10 }
+	scale = { 2, 2, 2 }
 	color = 0xFF7F80
 
 object
@@ -18,6 +18,13 @@ object
 	pos = { 70, 0, 800 }
 	dir = { 0, 0, 0 }
 	scale = { 10, 10, 10 }
+	color = 0x7F7FF8
+
+object
+	type = sphere
+	pos = { -3, 8.7, 50 }
+	dir = { 0, 0, 0 }
+	scale = { 3, 3, 3 }
 	color = 0x7F7FF8
 
 object
@@ -30,7 +37,7 @@ object
 object
 	type = plane
 	pos = { 0, -1, 0 }
-	dir = { -0.05, 1, 0 }
+	dir = { 0, 1, 0 }
 	scale = { 320, 100, 1 }
 	color = 0x71B7C0
 
