@@ -10,47 +10,47 @@ object
 	type = sphere
 	pos = { -3, 1, 50 }
 	dir = { 0, 0, 0 }
-	scale = { 2, 2, 2 }
+	scale = 4
 	color = 0xFF7F80
 
 object
 	type = sphere
-	pos = { 2, -0.5, 9 }
+	pos = { 2, -0.5, 19 }
 	dir = { 0, 0, 0 }
-	scale = { 0.5, 0.5, 0.5 }
+	scale = 0.5
 	color = 0x403F4C
 
 object
 	type = sphere
 	pos = { 45, 5, 300 }
 	dir = { 0, 0, 0 }
-	scale = { 10, 10, 10 }
+	scale = 80
 	color = 0xCC2936
 
 object
 	type = sphere
-	pos = { -3, 8.7, 50 }
+	pos = { -0.25, 2.5, 50.4 }
 	dir = { 0, 0, 0 }
-	scale = { 3, 3, 3 }
+	scale = 5
 	color = 0x114B5F
 
 object
 	type = cone
-	pos = { -4, 21, 4 }
-	dir = { 0, 0.92, 0.5 }
-	scale = { 5, 5, 5 }
-	color = 0x7F7F80
+	pos = { -15, 5, 90 }
+	dir = { 0, 1, 0 }
+	scale = 2
+	color = 0xF9A03F
 
 object
 	type = plane
 	pos = { 0, -1, 0 }
 	dir = { 0.05, 1, -0.015 }
-	scale = { 320, 100, 1 }
+	scale = 3;
 	color = 0x18AA79
 
 object
 	type = cylinder
-	pos = { -6, 10, 5 }
-	dir = { -7, -2, 0 }
-	scale = { 9, 8, 17 }
-	color = 0xE9A5AF
+	pos = { 0, 4, 76 }
+	dir = { 0, 1, 0 }
+	scale = 1.5
+	color = 0x60993E
