@@ -5,7 +5,7 @@ camera
 
 light
 	pos = { 4, 15, 60 }
-	color = 0xA95E0C
+	color = 0xFF4F79
 
 object
 	type = sphere
@@ -38,7 +38,7 @@ object
 object
 	type = cone
 	pos = { -15, 5, 90 }
-	dir = { 0, 1, 0 }
+	dir = { 0, 0, 0 }
 	scale = 2
 	color = 0xF9A03F
 

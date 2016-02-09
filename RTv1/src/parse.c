@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 15:01:22 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/09 15:28:35 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/09 16:42:43 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	parse_light(t_env *e, int fd)
 	ft_strdel(&line);
 	get_next_line(fd, &line);
 	e->lgt.color = ft_atoi_base(line, 16);
+	e->lgt.rgb = hex_to_rgb(e->lgt.color);
 	ft_strdel(&line);
 }
 

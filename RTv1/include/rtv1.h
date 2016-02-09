@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 10:54:12 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/09 15:17:42 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/09 16:42:12 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ typedef struct	s_cam
 typedef struct	s_lgt
 {
 	t_vec3			pos;
+	t_rgb			rgb;
 	int				color;
 	struct s_lgt	*next;
 }				t_lgt;
@@ -158,6 +159,7 @@ int				key_pressed(int keycode, t_env *e);
 
 void			img_init(t_env *e);
 void			img_pixel_put(t_env *e, int x, int y, t_rgb rgb);
+void			img_pixel_put_hex(t_env *e, int x, int y, int color);
 t_rgb			hex_to_rgb(int color);
 t_rgb			set_rgb(unsigned char r, unsigned char g, unsigned char b);
 

@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 13:00:04 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/09 10:39:00 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/09 16:38:44 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,19 @@ void	img_init(t_env *e)
 	e->img.img = mlx_get_data_addr(e->img.adr, &e->img.bpp, &e->img.sl,
 			&e->img.endian);
 	e->img.opp = e->img.bpp / 8;
+}
+
+void	img_pixel_put_hex(t_env *e, int x, int y, int color)
+{
+	int pos;
+
+	if (x >= 0 && x < e->win.w && y >= 0 && y < e->win.h)
+	{
+		pos = (x * e->img.opp) + (y * e->img.sl);
+		e->img.img[pos] = color % 256;
+		e->img.img[pos + 1] = (color >> 8) % 256;
+		e->img.img[pos + 2] = (color >> 16) % 256;
+	}
 }
 
 void	img_pixel_put(t_env *e, int x, int y, t_rgb rgb)
