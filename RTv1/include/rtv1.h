@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 10:54:12 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/09 09:00:05 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/09 13:07:04 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ typedef struct	s_ray
 {
 	t_vec3		pos;
 	t_vec3		dir;
-	t_vec3		len;
+	t_vec3		hit;
 	int			x;
 	int			y;
 	int			dist;

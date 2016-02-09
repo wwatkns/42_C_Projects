@@ -1,9 +1,9 @@
 camera
-	pos = { 0, 0.1, 0 }
+	pos = { 0, 0.15, 0 }
 	dir = { 0, 0, 1 }
 
 light
-	pos = { 1, 30, 20 }
+	pos = { 4, 15, 60 }
 	color = 0xA95E0C
 
 object
@@ -44,7 +44,7 @@ object
 object
 	type = plane
 	pos = { 0, -1, 0 }
-	dir = { 0, 1, 0 }
+	dir = { 0.05, 1, -0.015 }
 	scale = { 320, 100, 1 }
 	color = 0x18AA79
 

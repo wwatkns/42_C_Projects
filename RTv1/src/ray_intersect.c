@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 15:10:36 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/09 11:47:46 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/09 13:23:57 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,13 @@ double	ray_intersect_plane(t_env *e, t_obj *obj)
 	return (t);
 }
 
-double	ray_intersect_sphere(t_env *e, t_obj *obj)//, t_obj *hit)
+double	ray_intersect_sphere(t_env *e, t_obj *obj)
 {
-	t_vec3	len;
 	double	v;
 	double	h;
 	double	d;
 	double	r;
+	t_vec3	len;
 
 	len = vec3_sub(e->ray.pos, obj->pos);
 	v = vec3_dot(len, e->ray.dir);
@@ -59,7 +59,6 @@ double	ray_intersect_sphere(t_env *e, t_obj *obj)//, t_obj *hit)
 	if (h < 0.0)
 		return (-1.0);
 	d = sqrt(h);
-//	hit = e->ray.pos + (v - d) * e->ray.dir;
 	return ((-v - d) / vec3_dot(e->ray.dir, e->ray.dir));
 }
 
@@ -78,5 +77,5 @@ double	ray_intersect_sphere(t_env *e, t_obj *obj)//, t_obj *hit)
 	h = b * b - a * c;
 	if (h < 0.0)
 		return (-1.0);
-	return ((-b - sqrt(h)) / 2.0 * a);
+	return ((-b - sqrt(h)) / a);
 }*/

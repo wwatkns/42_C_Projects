@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 11:03:23 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/09 11:52:15 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/09 13:23:28 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	raytracing_init(t_env *e)
 {
 	e->ray.pos = e->cam.pos;
 	e->ray.dir = e->cam.origin;
-	e->ray.len = vec3(0, 0, 0);
+	e->ray.hit = vec3(0, 0, 0);
 	e->ray.dist = 0;
 	e->ray.dir = vec3_add(e->cam.origin, vec3_sub(
 				vec3_fmul(vec3_right(), e->cam.xi * e->ray.x),
@@ -40,7 +40,7 @@ void	raytracing_init(t_env *e)
 	vec3_normalize(&e->ray.dir);
 }
 
-void	raytracing_color(t_env *e, t_obj *obj, t_vec3 hit)
+void	raytracing_color(t_env *e, t_obj *obj)
 {
 	t_obj	*other;
 	double	tmin;
@@ -48,7 +48,7 @@ void	raytracing_color(t_env *e, t_obj *obj, t_vec3 hit)
 
 	tmin = INFINITY;
 	e->ray.pos = e->lgt.pos;
-	e->ray.dir = vec3_sub(hit, e->lgt.pos);
+	e->ray.dir = vec3_sub(e->ray.hit, e->ray.pos);
 	vec3_normalize(&e->ray.dir);
 	other = ray_intersect(e, &tmin, &t);
 	if (other == obj)
@@ -61,7 +61,6 @@ void	raytracing_color(t_env *e, t_obj *obj, t_vec3 hit)
 void	raytracing_draw(t_env *e)
 {
 	t_obj	*obj;
-	t_vec3	hit;
 	double	tmin;
 	double	t;
 
@@ -69,7 +68,7 @@ void	raytracing_draw(t_env *e)
 	obj = ray_intersect(e, &tmin, &t);
 	if (obj != NULL && tmin != INFINITY)
 	{
-		//hit = vec3_fmul(vec3_add(e->ray.pos, e->ray.dir), tmin);
-		raytracing_color(e, obj, hit);
+		e->ray.hit = vec3_add(e->ray.pos, vec3_fmul(e->ray.dir, tmin));
+		raytracing_color(e, obj);
 	}
 }
