@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 12:52:47 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/09 11:18:18 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/09 15:38:25 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ void	env_init(t_env *e)
 
 void	cam_init(t_env *e)
 {
-	e->cam.dist = 1.0;
-	e->cam.w = 0.5;
-	e->cam.h = 0.36;
+	e->cam.w = e->win.w / 1000.0;
+	e->cam.h = e->win.h / 1000.0;
+	e->cam.dist = 1.0 / tan(e->cam.fov / 2.0 * DEG2RAD);
 	e->cam.origin = vec3_sub(vec3_add(e->cam.pos,
 				vec3_add(vec3_fmul(e->cam.dir, e->cam.dist),
 				vec3_fmul(vec3_up(), e->cam.h / 2.0))),

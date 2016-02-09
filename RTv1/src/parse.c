@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 15:01:22 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/09 14:29:31 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/09 15:28:35 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,9 @@ void	parse_camera(t_env *e, int fd)
 	ft_strdel(&line);
 	get_next_line(fd, &line);
 	e->cam.dir = parse_vector(line);
+	ft_strdel(&line);
+	get_next_line(fd, &line);
+	e->cam.fov = ft_atof(ft_strstr(line, "=") + 1);
 	ft_strdel(&line);
 }
 
@@ -85,7 +88,6 @@ t_vec3	parse_vector(char *line)
 
 t_obj	*create_object(int fd)
 {
-	static int	index = 0;
 	char		*line;
 	t_obj		*obj;
 
@@ -107,7 +109,6 @@ t_obj	*create_object(int fd)
 	ft_strdel(&line);
 	get_next_line(fd, &line);
 	(obj->color = ft_atoi_base(line, 16)) ? ft_strdel(&line) : 0;
-	obj->index = index++;
 	obj->rgb = hex_to_rgb(obj->color);
 	obj->next = NULL;
 	return (obj);
