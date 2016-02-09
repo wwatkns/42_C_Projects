@@ -6,7 +6,7 @@
 #    By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/27 14:31:06 by wwatkins          #+#    #+#              #
-#    Updated: 2016/02/08 13:12:13 by wwatkins         ###   ########.fr        #
+#    Updated: 2016/02/09 18:33:09 by wwatkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ NAME = libvec.a
 CC = gcc
 CFGLAGS = -Werror -Wextra -Wall
 
-SRC_NAME  = vector2.c vector2_op.c vector3.c vector3_op.c vec.c
+SRC_NAME  = vec2_a.c vec2_b.c vec3_a.c vec3_b.c vec3_c.c vec.c
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 

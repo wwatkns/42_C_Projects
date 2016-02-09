@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 13:00:04 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/09 16:38:44 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/09 17:58:42 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,46 +20,38 @@ void	img_init(t_env *e)
 	e->img.opp = e->img.bpp / 8;
 }
 
-void	img_pixel_put_hex(t_env *e, int x, int y, int color)
+void	img_pixel_put_hex(t_env *e, int x, int y, int hex)
 {
 	int pos;
 
 	if (x >= 0 && x < e->win.w && y >= 0 && y < e->win.h)
 	{
 		pos = (x * e->img.opp) + (y * e->img.sl);
-		e->img.img[pos] = color % 256;
-		e->img.img[pos + 1] = (color >> 8) % 256;
-		e->img.img[pos + 2] = (color >> 16) % 256;
+		e->img.img[pos] = hex % 256 / 255.0;
+		e->img.img[pos + 1] = (hex >> 8) % 256 / 255.0;
+		e->img.img[pos + 2] = (hex >> 16) % 256 / 255.0;
 	}
 }
 
-void	img_pixel_put(t_env *e, int x, int y, t_rgb rgb)
+void	img_pixel_put(t_env *e, int x, int y, t_vec3 color)
 {
 	int pos;
 
 	if (x >= 0 && x < e->win.w && y >= 0 && y < e->win.h)
 	{
 		pos = (x * e->img.opp) + (y * e->img.sl);
-		e->img.img[pos] = rgb.b;
-		e->img.img[pos + 1] = rgb.g;
-		e->img.img[pos + 2] = rgb.r;
+		e->img.img[pos] = color.z * 255;
+		e->img.img[pos + 1] = color.y * 255;
+		e->img.img[pos + 2] = color.x * 255;
 	}
 }
 
-t_rgb	hex_to_rgb(int color)
+t_vec3	hex_to_color(int hex)
 {
-	t_rgb	rgb;
+	t_vec3	color;
 
-	rgb.b = color % 256;
-	rgb.g = (color >> 8) % 256;
-	rgb.r = (color >> 16) % 256;
-	return (rgb);
-}
-
-t_rgb	set_rgb(unsigned char r, unsigned char g, unsigned char b)
-{
-	t_rgb	rgb;
-
-	rgb = (t_rgb) { r, g, b };
-	return (rgb);
+	color.z = hex % 256 / 255.0;
+	color.y = (hex >> 8) % 256 / 255.0;
+	color.x = (hex >> 16) % 256 / 255.0;
+	return (color);
 }

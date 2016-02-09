@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/27 16:26:43 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/09 08:07:53 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/09 18:36:23 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,17 @@ typedef struct	s_vec2i
 }				t_vec2i;
 
 /*
-**	vector2.c functions
+**	vec.c functions
+*/
+
+t_vec3			vec3_up(void);
+t_vec3			vec3_right(void);
+t_vec3			vec3_forward(void);
+t_vec3			vec3_fmul(t_vec3 vec3, double m);
+t_vec2			vec2_fmul(t_vec2 vec2, double m);
+
+/*
+**	vec2_a.c functions
 */
 
 t_vec2			vec2(double x, double y);
@@ -59,7 +69,7 @@ double			vec2_magnitude(t_vec2 vec2);
 void			vec2_normalize(t_vec2 *vec2);
 
 /*
-**	vector2_op.c functions
+**	vec2_b.c functions
 */
 
 t_vec2			vec2_add(t_vec2 vec2a, t_vec2 vec2b);
@@ -69,7 +79,7 @@ double			vec2_dot(t_vec2 vec2a, t_vec2 vec2b);
 void			vec2_rot(t_vec2 *vec2, double theta);
 
 /*
-**	vector3.c functions
+**	vec3_a.c functions
 */
 
 t_vec3			vec3(double x, double y, double z);
@@ -79,7 +89,7 @@ double			vec3_magnitude(t_vec3 vec3);
 void			vec3_normalize(t_vec3 *vec3);
 
 /*
-**	vector3_op.c functions
+**	vec3_b.c functions
 */
 
 t_vec3			vec3_add(t_vec3 vec3a, t_vec3 vec3b);
@@ -89,13 +99,9 @@ double			vec3_dot(t_vec3 vec3a, t_vec3 vec3b);
 void			vec3_rot(t_vec3 *vec3, int axis, double theta);
 
 /*
-**	vec.c functions
+**	vec3_c.c
 */
 
-t_vec3			vec3_up(void);
-t_vec3			vec3_right(void);
-t_vec3			vec3_forward(void);
-t_vec3			vec3_fmul(t_vec3 vec3, double m);
-t_vec2			vec2_fmul(t_vec2 vec2, double m);
+void			vec3_clamp(t_vec3 *vec3, double min, double max);
 
 #endif

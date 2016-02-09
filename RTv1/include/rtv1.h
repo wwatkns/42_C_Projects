@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 10:54:12 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/09 16:42:12 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/09 18:40:05 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,21 +42,15 @@ typedef struct	s_img
 	int		sl;
 }				t_img;
 
-typedef struct	s_rgb
-{
-	unsigned char	r;
-	unsigned char	g;
-	unsigned char	b;
-}				t_rgb;
-
 typedef struct	s_obj
 {
 	t_vec3			pos;
 	t_vec3			dir;
-	t_rgb			rgb;
+	t_vec3			normal;
+	t_vec3			color;
 	short			type;
 	double			scale;
-	int				color;
+	int				hex;
 	struct s_obj	*next;
 }				t_obj;
 
@@ -76,8 +70,8 @@ typedef struct	s_cam
 typedef struct	s_lgt
 {
 	t_vec3			pos;
-	t_rgb			rgb;
-	int				color;
+	t_vec3			color;
+	int				hex;
 	struct s_lgt	*next;
 }				t_lgt;
 
@@ -158,10 +152,9 @@ int				key_pressed(int keycode, t_env *e);
 */
 
 void			img_init(t_env *e);
-void			img_pixel_put(t_env *e, int x, int y, t_rgb rgb);
-void			img_pixel_put_hex(t_env *e, int x, int y, int color);
-t_rgb			hex_to_rgb(int color);
-t_rgb			set_rgb(unsigned char r, unsigned char g, unsigned char b);
+void			img_pixel_put(t_env *e, int x, int y, t_vec3 color);
+void			img_pixel_put_hex(t_env *e, int x, int y, int hex);
+t_vec3			hex_to_color(int hex);
 
 /*
 **	raytracing.c functions
@@ -181,5 +174,14 @@ double			ray_intersect_cone(t_env *e, t_obj *obj);
 double			ray_intersect_plane(t_env *e, t_obj *obj);
 double			ray_intersect_sphere(t_env *e, t_obj *obj);
 double			ray_intersect_cylinder(t_env *e, t_obj *obj);
+
+/*
+**	light.c functions
+*/
+
+void			set_light(t_env *e);
+void			set_normal(t_env *e, t_obj *obj);
+void			set_diffuse(t_env *e, t_obj *obj);
+void			set_shadows(t_env *e, t_obj *obj, double *tmin, double *t);
 
 #endif

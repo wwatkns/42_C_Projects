@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 15:01:22 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/09 16:42:43 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/09 17:54:50 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,10 @@ void	parse_light(t_env *e, int fd)
 	e->lgt.pos = parse_vector(line);
 	ft_strdel(&line);
 	get_next_line(fd, &line);
-	e->lgt.color = ft_atoi_base(line, 16);
-	e->lgt.rgb = hex_to_rgb(e->lgt.color);
+	e->lgt.hex = ft_atoi_base(line, 16);
+	e->lgt.color = hex_to_color(e->lgt.hex);
+	printf("hex: %d, vec3: (%f, %f, %f)\n", e->lgt.hex, e->lgt.color.x,
+			e->lgt.color.y, e->lgt.color.z);
 	ft_strdel(&line);
 }
 
@@ -109,8 +111,8 @@ t_obj	*create_object(int fd)
 	obj->scale = ft_atof(ft_strstr(line, "=") + 1);
 	ft_strdel(&line);
 	get_next_line(fd, &line);
-	(obj->color = ft_atoi_base(line, 16)) ? ft_strdel(&line) : 0;
-	obj->rgb = hex_to_rgb(obj->color);
+	(obj->hex = ft_atoi_base(line, 16)) ? ft_strdel(&line) : 0;
+	obj->color = hex_to_color(obj->hex);
 	obj->next = NULL;
 	return (obj);
 }
