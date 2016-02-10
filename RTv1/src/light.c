@@ -6,7 +6,7 @@
 /*   By: wwatkins <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/09 17:36:17 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/10 10:51:46 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/10 11:08:21 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,30 +19,27 @@ void	set_light(t_env *e)
 	vec3_normalize(&e->ray.dir);
 }
 
-t_vec3	set_shadows(t_env *e, t_obj *obj, t_vec3 color, double *tmin, double *t)
+void	set_shadows(t_env *e, t_obj *obj, double *tmin, double *t)
 {
 	*tmin = INFINITY;
 	if (ray_intersect(e, tmin, t) != obj)
-		return (vec3_fmul(color, 0.5));
-	return (color);
+		e->color = vec3_fmul(e->color, 0.5);
 }
 
-t_vec3	set_lambertian_shading(t_env *e, t_obj *obj)
+void	set_lambertian_shading(t_env *e, t_obj *obj)
 {
 	double	shade;
 	double	ambient;
 	double	diffuse;
-	t_vec3	color;
 
-	ambient = 0.25;
+	ambient = 0.15;
 	diffuse = 1.0 - ambient;
 	shade = vec3_dot(e->ray.dir, obj->normal);
 	if (shade < 0.0)
 		shade = 0.0;
-	color = vec3_fmul(e->lgt.color, ambient + diffuse * shade);
-	color = vec3_mul(color, obj->color);
-	vec3_clamp(&color, 0.0, 1.0);
-	return (color);
+	e->color = vec3_fmul(e->lgt.color, ambient + diffuse * shade);
+	e->color = vec3_mul(e->color, obj->color);
+	vec3_clamp(&e->color, 0.0, 1.0);
 }
 
 /*void	set_phong_shading(t_env *e, t_obj *obj)
