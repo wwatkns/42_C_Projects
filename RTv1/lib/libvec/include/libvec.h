@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/27 16:26:43 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/10 15:16:03 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/10 16:14:12 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,5 +105,6 @@ void			vec3_rot(t_vec3 *vec3, int axis, double theta);
 void			vec3_clamp(t_vec3 *vec3, double min, double max);
 t_vec3			vec3_cross(t_vec3 vec3a, t_vec3 vec3b);
 t_vec3			vec3_reflect(t_vec3 d, t_vec3 n);
+t_vec3			vec3_norm(t_vec3 vec3);
 
 #endif

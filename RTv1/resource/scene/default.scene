@@ -1,11 +1,15 @@
 camera
 	pos = { 0, 0.15, 0 }
 	dir = { 0, 0, 1 }
-	fov = 66
+	fov = 96
 
 light
-	pos = { 36, 10, 31 }
-	color = 0xEDF9EF
+	pos = { 16, 10, 11 }
+	color = 0xFDF9EF
+
+light
+	pos = { 0, 10, 31 }
+	color = 0xFDF9EF
 
 object
 	type = sphere
@@ -59,7 +63,7 @@ object
 	color = 0xF9A03F
 	ambient = 0.15
 	diffuse = 0.85
-	specular = 0.5
+	specular = 0.7
 	shininess = 64
 
 object

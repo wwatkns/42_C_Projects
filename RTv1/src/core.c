@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 12:52:47 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/09 15:38:25 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/10 17:39:32 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@ void	core(t_env *e)
 {
 	error((int)(e->mlx = mlx_init()));
 	error((int)(e->win.adr = mlx_new_window(e->mlx, e->win.w, e->win.h,
-				"RTv1")));
+					"RTv1")));
 	img_init(e);
 	mlx_hook(e->win.adr, 2, (1L << 0), key_pressed, e);
+	mlx_hook(e->win.adr, 3, (1L << 1), key_released, e);
 	mlx_expose_hook(e->win.adr, expose_hook, e);
 	mlx_loop_hook(e->mlx, loop_hook, e);
 	mlx_loop(e->mlx);
@@ -27,14 +28,22 @@ void	core(t_env *e)
 void	env_init(t_env *e)
 {
 	t_obj	*obj;
+	t_lgt	*light;
 
 	error((int)(obj = (t_obj*)malloc(sizeof(t_obj))));
+	error((int)(light = (t_lgt*)malloc(sizeof(t_lgt))));
 	e->obj = obj;
+	e->light = light;
 	e->obj->next = NULL;
+	e->light->next = NULL;
 	e->win.w = e->arg.w;
 	e->win.h = e->arg.h;
 	e->win.dw = e->arg.w / 2;
 	e->win.dh = e->arg.h / 2;
+	e->key.u = 0;
+	e->key.d = 0;
+	e->key.l = 0;
+	e->key.r = 0;
 }
 
 void	cam_init(t_env *e)

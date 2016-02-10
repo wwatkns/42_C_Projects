@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 11:03:23 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/10 15:17:16 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/10 18:15:04 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,28 @@ void	raytracing_init(t_env *e)
 
 void	raytracing_color(t_env *e, t_obj *obj, double *tmin, double *t)
 {
-	set_light(e);
-	set_normal(e, obj);
-	set_lambertian_shading(e, obj);
-	set_shadows(e, obj, tmin, t);
-	set_blinn_phong_shading(e, obj);
+	t_vec3	ambient;
+	t_vec3	diffuse;
+	t_vec3	specular;
+	t_lgt	*light;
+	t_lgt	*current;
+
+	light = NULL;
+	current = e->light->next;
+	while (current != NULL)
+	{
+		set_light(e, current);
+		set_normal(e, obj);
+		ambient = vec3_fmul(current->color, obj->mat.ambient);
+		diffuse = set_diffuse(e, obj, current);
+		specular = set_specular(e, obj, current);
+		e->color = vec3_add(ambient, vec3_add(diffuse, specular));
+		e->color = vec3_mul(obj->color, e->color);
+		set_shadows(e, obj, tmin, t);
+		vec3_clamp(&e->color, 0.0, 1.0);
+		light = current;
+		current = current->next;
+	}
 }
 
 void	raytracing_draw(t_env *e)

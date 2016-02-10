@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 15:01:22 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/10 15:27:23 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/10 18:07:15 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,25 @@ void	parse_scene(t_env *e)
 {
 	int		fd;
 	char	*line;
-	t_obj	*current;
+	t_obj	*obj;
+	t_lgt	*light;
 
-	current = e->obj;
+	obj = e->obj;
+	light = e->light;
 	error((fd = open(e->arg.file_scene, O_RDWR)));
 	ft_strdel(&e->arg.file_scene);
 	while (get_next_line(fd, &line) > 0)
 	{
 		!ft_strcmp(line, "camera") ? parse_camera(e, fd) : 0;
-		!ft_strcmp(line, "light") ? parse_light(e, fd) : 0;
+		if (!ft_strcmp(line, "light"))
+		{
+			light->next = create_light(fd);
+			light = light->next;
+		}
 		if (!ft_strcmp(line, "object"))
 		{
-			current->next = create_object(fd);
-			current = current->next;
+			obj->next = create_object(fd);
+			obj = obj->next;
 		}
 		ft_strdel(&line);
 	}
@@ -51,17 +57,21 @@ void	parse_camera(t_env *e, int fd)
 	ft_strdel(&line);
 }
 
-void	parse_light(t_env *e, int fd)
+t_lgt	*create_light(int fd)
 {
 	char	*line;
+	t_lgt	*light;
 
+	error((int)(light = (t_lgt*)malloc(sizeof(t_lgt))));
 	get_next_line(fd, &line);
-	e->lgt.pos = parse_vector(line);
+	light->pos = parse_vector(line);
 	ft_strdel(&line);
 	get_next_line(fd, &line);
-	e->lgt.hex = ft_atoi_base(line, 16);
-	e->lgt.color = hex_to_color(e->lgt.hex);
+	light->hex = ft_atoi_base(line, 16);
 	ft_strdel(&line);
+	light->color = hex_to_color(light->hex);
+	light->next = NULL;
+	return (light);
 }
 
 t_vec3	parse_vector(char *line)

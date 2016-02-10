@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 10:54:12 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/10 15:26:38 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/10 18:02:32 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ typedef struct	s_ray
 	t_vec3		hit;
 	int			x;
 	int			y;
-	short		inshade;
 }				t_ray;
 
 typedef struct	s_win
@@ -103,15 +102,24 @@ typedef struct	s_win
 	int		dh;
 }				t_win;
 
+typedef struct	s_key
+{
+	short	u;
+	short	d;
+	short	l;
+	short	r;
+}				t_key;
+
 typedef struct	s_env
 {
 	t_win	win;
 	t_arg	arg;
 	t_img	img;
 	t_cam	cam;
-	t_lgt	lgt;
 	t_obj	*obj;
+	t_lgt	*light;
 	t_ray	ray;
+	t_key	key;
 	t_vec3	color;
 	void	*mlx;
 }				t_env;
@@ -130,8 +138,8 @@ void			error(int err);
 
 void			parse_scene(t_env *e);
 void			parse_camera(t_env *e, int fd);
-void			parse_light(t_env *e, int fd);
 t_vec3			parse_vector(char *line);
+t_lgt			*create_light(int fd);
 t_obj			*create_object(int fd);
 
 /*
@@ -156,6 +164,7 @@ void			cam_init(t_env *e);
 int				loop_hook(t_env *e);
 int				expose_hook(t_env *e);
 int				key_pressed(int keycode, t_env *e);
+int				key_released(int keycode, t_env *e);
 
 /*
 **	draw.c functions
@@ -189,10 +198,10 @@ double			ray_intersect_cylinder(t_env *e, t_obj *obj);
 **	light.c functions
 */
 
-void			set_light(t_env *e);
+void			set_light(t_env *e, t_lgt *light);
 void			set_normal(t_env *e, t_obj *obj);
-void			set_blinn_phong_shading(t_env *e, t_obj *obj);
-void			set_lambertian_shading(t_env *e, t_obj *obj);
 void			set_shadows(t_env *e, t_obj *obj, double *tmin, double *t);
+t_vec3			set_diffuse(t_env *e, t_obj *obj, t_lgt *light);
+t_vec3			set_specular(t_env *e, t_obj *obj, t_lgt *light);
 
 #endif
