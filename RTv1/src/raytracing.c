@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 11:03:23 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/10 11:04:21 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/10 13:03:37 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	raytracing_color(t_env *e, t_obj *obj, double *tmin, double *t)
 	set_light(e);
 	set_normal(e, obj);
 	set_lambertian_shading(e, obj);
+	set_phong_shading(e, obj);
 	set_shadows(e, obj, tmin, t);
 }
 

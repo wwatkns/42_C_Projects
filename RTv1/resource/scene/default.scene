@@ -1,11 +1,11 @@
 camera
 	pos = { 0, 0.15, 0 }
 	dir = { 0, 0, 1 }
-	fov = 70
+	fov = 60
 
 light
 	pos = { 10, 25, 50 }
-	color = 0x4F7FB9
+	color = 0xEDF9EF
 
 object
 	type = sphere
@@ -13,6 +13,9 @@ object
 	dir = { 0, 0, 0 }
 	scale = 4
 	color = 0xFF7F80
+	ambient = 0.15
+	diffuse = 0.85
+	specular = 0.5
 
 object
 	type = sphere
@@ -20,6 +23,9 @@ object
 	dir = { 0, 0, 0 }
 	scale = 0.5
 	color = 0x403F4C
+	ambient = 0.15
+	diffuse = 0.85
+	specular = 0.5
 
 object
 	type = sphere
@@ -27,6 +33,9 @@ object
 	dir = { 0, 0, 0 }
 	scale = 80
 	color = 0xCC2936
+	ambient = 0.15
+	diffuse = 0.85
+	specular = 0.5
 
 object
 	type = sphere
@@ -34,6 +43,9 @@ object
 	dir = { 0, 0, 0 }
 	scale = 5
 	color = 0x114B5F
+	ambient = 0.15
+	diffuse = 0.85
+	specular = 0.5
 
 object
 	type = cone
@@ -41,6 +53,9 @@ object
 	dir = { 0, 0, 0 }
 	scale = 2
 	color = 0xF9A03F
+	ambient = 0.15
+	diffuse = 0.85
+	specular = 0.5
 
 object
 	type = plane
@@ -48,6 +63,9 @@ object
 	dir = { 0, 1.0, 0 }
 	scale = 3;
 	color = 0x18AA79
+	ambient = 0.15
+	diffuse = 0.85
+	specular = 0.5
 
 object
 	type = cylinder
@@ -55,3 +73,6 @@ object
 	dir = { 0, 1, 0 }
 	scale = 1.5
 	color = 0x60993E
+	ambient = 0.15
+	diffuse = 0.85
+	specular = 0.5

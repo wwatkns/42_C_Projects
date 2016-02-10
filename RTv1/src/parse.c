@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 15:01:22 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/10 10:36:43 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/10 11:32:58 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,6 @@ void	parse_light(t_env *e, int fd)
 	get_next_line(fd, &line);
 	e->lgt.hex = ft_atoi_base(line, 16);
 	e->lgt.color = hex_to_color(e->lgt.hex);
-	printf("hex: %d, vec3: (%f, %f, %f)\n", e->lgt.hex, e->lgt.color.x,
-			e->lgt.color.y, e->lgt.color.z);
 	ft_strdel(&line);
 }
 
@@ -113,6 +111,16 @@ t_obj	*create_object(int fd)
 	get_next_line(fd, &line);
 	(obj->hex = ft_atoi_base(line, 16)) ? ft_strdel(&line) : 0;
 	obj->color = hex_to_color(obj->hex);
+	ft_strdel(&line);
+	get_next_line(fd, &line);
+	obj->mat.ambient = ft_atof(ft_strstr(line, "=") + 1);
+	ft_strdel(&line);
+	get_next_line(fd, &line);
+	obj->mat.diffuse = ft_atof(ft_strstr(line, "=") + 1);
+	ft_strdel(&line);
+	get_next_line(fd, &line);
+	obj->mat.specular = ft_atof(ft_strstr(line, "=") + 1);
+	ft_strdel(&line);
 	obj->next = NULL;
 	return (obj);
 }
