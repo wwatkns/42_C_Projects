@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 11:03:23 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/10 18:15:04 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/10 18:29:24 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,20 +47,25 @@ void	raytracing_color(t_env *e, t_obj *obj, double *tmin, double *t)
 	t_lgt	*light;
 	t_lgt	*current;
 
+	t_vec3	temp;
+
 	light = NULL;
 	current = e->light->next;
+	e->color = vec3(0, 0, 0);
 	while (current != NULL)
 	{
-		set_light(e, current);
+		temp = vec3(0, 0, 0);
+		light = current;
+		set_light(e, light);
 		set_normal(e, obj);
-		ambient = vec3_fmul(current->color, obj->mat.ambient);
-		diffuse = set_diffuse(e, obj, current);
-		specular = set_specular(e, obj, current);
-		e->color = vec3_add(ambient, vec3_add(diffuse, specular));
-		e->color = vec3_mul(obj->color, e->color);
+		ambient = vec3_fmul(light->color, obj->mat.ambient);
+		diffuse = set_diffuse(e, obj, light);
+		specular = set_specular(e, obj, light);
+		temp = vec3_add(ambient, vec3_add(diffuse, specular));
+		temp = vec3_mul(obj->color, temp);
+		e->color = vec3_add(e->color, temp);
 		set_shadows(e, obj, tmin, t);
 		vec3_clamp(&e->color, 0.0, 1.0);
-		light = current;
 		current = current->next;
 	}
 }

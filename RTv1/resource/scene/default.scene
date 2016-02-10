@@ -1,15 +1,19 @@
 camera
 	pos = { 0, 0.15, 0 }
 	dir = { 0, 0, 1 }
-	fov = 96
+	fov = 70
 
 light
 	pos = { 16, 10, 11 }
 	color = 0xFDF9EF
 
 light
-	pos = { 0, 10, 31 }
-	color = 0xFDF9EF
+	pos = { 50, 1, 71 }
+	color = 0x5555EF
+
+light
+	pos = { -50.0, 10, 11 }
+	color = 0xEDA7A7
 
 object
 	type = sphere
@@ -19,8 +23,8 @@ object
 	color = 0xFF7F80
 	ambient = 0.15
 	diffuse = 0.85
-	specular = 0.5
-	shininess = 64
+	specular = 0.7
+	shininess = 64.0
 
 object
 	type = sphere
@@ -30,8 +34,8 @@ object
 	color = 0x403F4C
 	ambient = 0.15
 	diffuse = 0.85
-	specular = 0.5
-	shininess = 64
+	specular = 0.7
+	shininess = 64.0
 
 object
 	type = sphere
@@ -41,8 +45,8 @@ object
 	color = 0xCC2936
 	ambient = 0.15
 	diffuse = 0.85
-	specular = 0.5
-	shininess = 64
+	specular = 0.7
+	shininess = 64.0
 
 object
 	type = sphere
@@ -52,8 +56,8 @@ object
 	color = 0x114B5F
 	ambient = 0.15
 	diffuse = 0.85
-	specular = 0.5
-	shininess = 64
+	specular = 0.7
+	shininess = 64.0
 
 object
 	type = cone
@@ -61,10 +65,10 @@ object
 	dir = { 0, 0, 0 }
 	scale = 2
 	color = 0xF9A03F
-	ambient = 0.15
-	diffuse = 0.85
+	ambient = 0.05
+	diffuse = 0.95
 	specular = 0.7
-	shininess = 64
+	shininess = 64.0
 
 object
 	type = plane
@@ -74,7 +78,7 @@ object
 	color = 0x18AA79
 	ambient = 0.15
 	diffuse = 0.85
-	specular = 0.5
+	specular = 0.7
 	shininess = 64
 
 object
@@ -82,10 +86,10 @@ object
 	pos = { 0, 0, 500 }
 	dir = { 0, 0, 1.0 }
 	scale = 3;
-	color = 0x470063
+	color = 0x3F01AF
 	ambient = 0.025
 	diffuse = 0.975
-	specular = 1.0
+	specular = 0.57
 	shininess = 64
 
 object
@@ -93,9 +97,9 @@ object
 	pos = { 0, 4, 76 }
 	dir = { 0, 1, 0 }
 	scale = 1.5
-	color = 0x60993E
+	color = 0xFC814A
 	ambient = 0.15
 	diffuse = 0.85
-	specular = 0.5
+	specular = 0.7
 	shininess = 64
 
