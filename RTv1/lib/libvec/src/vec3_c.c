@@ -6,7 +6,7 @@
 /*   By: wwatkins <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/09 18:31:06 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/09 19:13:12 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/10 15:22:28 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,9 @@ t_vec3	vec3_cross(t_vec3 vec3a, t_vec3 vec3b)
 	vec3.y = vec3a.z * vec3b.x - vec3a.x * vec3b.z;
 	vec3.z = vec3a.x * vec3b.y - vec3a.y * vec3b.x;
 	return (vec3);
+}
+
+t_vec3	vec3_reflect(t_vec3 d, t_vec3 n)
+{
+	return (vec3_sub(d, vec3_fmul(n, 2.0 * vec3_dot(d, n))));
 }

@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 15:01:22 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/10 11:32:58 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/10 15:27:23 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,9 @@ t_obj	*create_object(int fd)
 	ft_strdel(&line);
 	get_next_line(fd, &line);
 	obj->mat.specular = ft_atof(ft_strstr(line, "=") + 1);
+	ft_strdel(&line);
+	get_next_line(fd, &line);
+	obj->mat.shininess = ft_atof(ft_strstr(line, "=") + 1);
 	ft_strdel(&line);
 	obj->next = NULL;
 	return (obj);

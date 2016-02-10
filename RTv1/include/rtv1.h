@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 10:54:12 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/10 11:13:57 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/10 15:26:38 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct	s_mat
 	double	ambient;
 	double	diffuse;
 	double	specular;
+	double	shininess;
 }				t_mat;
 
 typedef struct	s_obj
@@ -90,7 +91,7 @@ typedef struct	s_ray
 	t_vec3		hit;
 	int			x;
 	int			y;
-	int			dist;
+	short		inshade;
 }				t_ray;
 
 typedef struct	s_win
@@ -190,7 +191,7 @@ double			ray_intersect_cylinder(t_env *e, t_obj *obj);
 
 void			set_light(t_env *e);
 void			set_normal(t_env *e, t_obj *obj);
-void			set_phong_shading(t_env *e, t_obj *obj);
+void			set_blinn_phong_shading(t_env *e, t_obj *obj);
 void			set_lambertian_shading(t_env *e, t_obj *obj);
 void			set_shadows(t_env *e, t_obj *obj, double *tmin, double *t);
 
