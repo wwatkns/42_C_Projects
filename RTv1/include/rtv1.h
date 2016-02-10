@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 10:54:12 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/09 18:40:05 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/10 10:04:57 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,7 +181,7 @@ double			ray_intersect_cylinder(t_env *e, t_obj *obj);
 
 void			set_light(t_env *e);
 void			set_normal(t_env *e, t_obj *obj);
-void			set_diffuse(t_env *e, t_obj *obj);
+void			set_lambertian_shading(t_env *e, t_obj *obj);
 void			set_shadows(t_env *e, t_obj *obj, double *tmin, double *t);
 
 #endif

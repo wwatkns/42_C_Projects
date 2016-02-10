@@ -6,7 +6,7 @@
 /*   By: wwatkins <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/09 17:36:17 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/09 19:35:41 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/10 10:09:16 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,25 +26,26 @@ void	set_shadows(t_env *e, t_obj *obj, double *tmin, double *t)
 		obj->color = vec3_fmul(obj->color, 0.5);
 }
 
-void	set_diffuse(t_env *e, t_obj *obj)
+void	set_lambertian_shading(t_env *e, t_obj *obj)
 {
-	double	angle;
-	t_vec3	temp;
+	double	shade;
+	double	ambient;
+	double	diffuse;
+	t_vec3	color;
 
-	temp = obj->color;
-	angle = vec3_dot(e->ray.dir, obj->normal);
-	if (angle <= 0)
-		obj->color = vec3(0, 0, 0);
-	else
-		obj->color = vec3_fmul(e->lgt.color, 0.8 * angle);
-	obj->color = vec3_add(vec3_fmul(temp, 0.5), obj->color);
-	vec3_clamp(&obj->color, 0.0, 1.0);
+	ambient = 0.5;
+	diffuse = 1 - ambient;
+	shade = vec3_dot(e->ray.dir, obj->normal);
+	if (shade < 0)
+		shade = 0.0;
+	color = vec3_fmul(e->lgt.color, ambient + diffuse * shade);
+	vec3_clamp(&color, 0.0, 1.0);
+	obj->color = color;
 }
 
 void	set_normal(t_env *e, t_obj *obj)
 {
-	if (obj->type == PLANE)
-		obj->normal = vec3_sub(obj->pos, obj->dir);
+	obj->normal = vec3_sub(obj->pos, obj->dir); // incorrect
 	if (obj->type == SPHERE)
 		obj->normal = vec3_sub(obj->pos, e->ray.hit);
 	if (obj->type == CYLINDER || obj->type == CONE)
