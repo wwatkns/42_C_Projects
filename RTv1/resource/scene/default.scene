@@ -10,6 +10,18 @@ light
 	color = 0xFDF9FF
 	intensity = 1.0
 }
+light
+{
+	pos = { -16, 20, 51 }
+	color = 0xFDF9FF
+	intensity = 1.0
+}
+light
+{
+	pos = { 16, 20, 101 }
+	color = 0xFDF91F
+	intensity = 0.5
+}
 object
 {
 	type = sphere
