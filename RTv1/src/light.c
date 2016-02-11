@@ -6,7 +6,7 @@
 /*   By: wwatkins <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/09 17:36:17 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/11 14:03:05 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/11 15:14:43 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ t_vec3	set_specular(t_env *e, t_obj *obj, t_lgt *light)
 
 void	set_normal(t_env *e, t_obj *obj)
 {
-	obj->normal = obj->dir;
+	obj->normal = vec3_sub(obj->pos, obj->dir);
 	if (obj->type == SPHERE)
 		obj->normal = vec3_sub(obj->pos, e->ray.hit);
 	if (obj->type == CYLINDER || obj->type == CONE)

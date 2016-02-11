@@ -1,0 +1,38 @@
+camera
+{
+	pos = { 0, 0.1, 0 }
+	dir = { 0, 0, 1 }
+	fov = 60
+}
+light
+{
+	pos = { 10, 5, 5 }
+	color = 0xFF0000
+	intensity = 1.0
+}
+light
+{
+	pos = { -10, 5, 5 }
+	color = 0x00FF00
+	intensity = 1.0
+}
+light
+{
+	pos = { 0, 0, 7 }
+	color = 0x0000FF
+	intensity = 0.75
+}
+object
+{
+	type = sphere
+	pos = { 0, 1, 10 }
+	scale = 1.0
+	material
+	{
+		color = 0xFFFFFF
+		ambient = 0.05
+		diffuse = 0.95
+		specular = 1.0
+		shininess = 256
+	}
+}

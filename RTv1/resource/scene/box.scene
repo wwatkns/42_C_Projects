@@ -1,0 +1,155 @@
+camera
+{
+	pos = { 0, 0.1, 0 }
+	dir = { 0, 0, 1 }
+	fov = 90
+}
+light
+{
+	pos = { 0, 25, 70 }
+	color = 0xFF0000
+	intensity = 1.0
+}
+light
+{
+	pos = { 20, 5, 70 }
+	color = 0x00FF00
+	intensity = 1.0
+}
+light
+{
+	pos = { -20, 5, 70 }
+	color = 0x0000FF
+	intensity = 1.5
+}
+object
+{
+	type = plane
+	pos = { 0, 0, 100 }
+	dir = { 0, 0, 1 }
+	scale = 1
+	material
+	{
+		color = 0x2F2F2F
+		ambient = 0.075
+		diffuse = 0.925
+		specular = 1.0
+		shininess = 512
+	}
+}
+object
+{
+	type = plane
+	pos = { 0, -10, 0 }
+	dir = { 0, 1, 0 }
+	scale = 1
+	material
+	{
+		color = 0x7F7F7F
+		ambient = 0.075
+		diffuse = 0.925
+		specular = 1.0
+		shininess = 512
+	}
+}
+object
+{
+	type = plane
+	pos = { 0, 30, 0 }
+	dir = { 0, -1, 0 }
+	scale = 1
+	material
+	{
+		color = 0x7F7F7F
+		ambient = 0.075
+		diffuse = 0.925
+		specular = 1.0
+		shininess = 512
+	}
+}
+object
+{
+	type = plane
+	pos = { -25, 0, 0 }
+	dir = { 1, 0, 0 }
+	scale = 1
+	material
+	{
+		color = 0x7F7F7F
+		ambient = 0.075
+		diffuse = 0.925
+		specular = 1.0
+		shininess = 512
+	}
+}
+object
+{
+	type = plane
+	pos = { 25, 0, 0 }
+	dir = { -1, 0, 0 }
+	scale = 1
+	material
+	{
+		color = 0x7F7F7F
+		ambient = 0.075
+		diffuse = 0.925
+		specular = 1.0
+		shininess = 512
+	}
+}
+object
+{
+	type = sphere
+	pos = { 0, 20, 95 }
+	scale = 100
+	material
+	{
+		color = 0x9F9F9F
+		ambient = 0.075
+		diffuse = 0.925
+		specular = 1.0
+		shininess = 512
+	}
+}
+object
+{
+	type = sphere
+	pos = { 0, 0, 95 }
+	scale = 100
+	material
+	{
+		color = 0x9F9F9F
+		ambient = 0.075
+		diffuse = 0.925
+		specular = 1.0
+		shininess = 512
+	}
+}
+object
+{
+	type = cylinder
+	pos = { 30, 0, 100 }
+	scale = 300
+	material
+	{
+		color = 0x9F9F9F
+		ambient = 0.075
+		diffuse = 0.925
+		specular = 1.0
+		shininess = 512
+	}
+}
+object
+{
+	type = cylinder
+	pos = { -30, 0, 100 }
+	scale = 300
+	material
+	{
+		color = 0x9F9F9F
+		ambient = 0.075
+		diffuse = 0.925
+		specular = 1.0
+		shininess = 512
+	}
+}
