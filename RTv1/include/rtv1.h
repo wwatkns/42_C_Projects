@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 10:54:12 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/11 12:06:42 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/11 14:09:48 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ typedef struct	s_lgt
 {
 	t_vec3			pos;
 	t_vec3			color;
+	double			intensity;
 	struct s_lgt	*next;
 }				t_lgt;
 
@@ -121,6 +122,7 @@ typedef struct	s_env
 	t_ray	ray;
 	t_key	key;
 	t_vec3	color;
+	t_vec3	color_t;
 	void	*mlx;
 }				t_env;
 

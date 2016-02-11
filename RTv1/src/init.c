@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/11 12:13:56 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/11 12:13:57 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/11 14:10:08 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,5 @@ void	init_light(t_lgt *light)
 {
 	light->pos = (t_vec3) { 0.0, 0.0, 0.0 };
 	light->color = (t_vec3) { 0.0, 0.0, 0.0 };
+	light->intensity = 1.0;
 }

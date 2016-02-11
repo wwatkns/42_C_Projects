@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 15:01:22 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/11 12:13:30 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/11 14:11:01 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ t_lgt	*create_light(int fd)
 			light->pos = parse_vector(line);
 		if (ft_strstr(line, "color"))
 			light->color = hex_to_color(ft_atoi_base(line, 16));
+		if (ft_strstr(line, "intensity"))
+			light->intensity = ft_atof(ft_strstr(line, "=") + 1);
 		ft_strdel(&line);
 	}
 	ft_strdel(&line);
@@ -107,7 +109,7 @@ t_mat	create_material(int fd)
 	t_mat	mat;
 
 	init_material(&mat);
-	while (get_next_line(fd, &line) > 0 && !ft_strnstr(line, "}", 2))
+	while (get_next_line(fd, &line) > 0 && !ft_strnstr(line, "}", 5))
 	{
 		if (ft_strstr(line, "color"))
 			mat.color = hex_to_color(ft_atoi_base(line, 16));

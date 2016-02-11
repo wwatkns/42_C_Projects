@@ -4,19 +4,12 @@ camera
 	dir = { 0, 0, 1 }
 	fov = 70
 }
-
-light
-{
-	pos = { -6, 20, 41 }
-	color = 0xFDF9EF
-}
-
 light
 {
 	pos = { 16, 10, 11 }
-	color = 0xFDF9EF
+	color = 0xFDF9FF
+	intensity = 1.0
 }
-
 object
 {
 	type = sphere
@@ -28,11 +21,25 @@ object
 		color = 0xFF7F80
 		ambient = 0.15
 		diffuse = 0.85
-		specular = 0.7
-		shininess = 64.0
+		specular = 1.0
+		shininess = 256.0
 	}
 }
-
+object
+{
+	type = sphere
+	pos = { -0.25, 2.5, 50.4 }
+	dir = { 0, 0, 0 }
+	scale = 5
+	material
+	{
+		color = 0x114B5F
+		ambient = 0.15
+		diffuse = 0.85
+		specular = 1.0
+		shininess = 256.0
+	}
+}
 object
 {
 	type = sphere
@@ -48,7 +55,6 @@ object
 		shininess = 64.0
 	}
 }
-
 object
 {
 	type = sphere
@@ -64,23 +70,6 @@ object
 		shininess = 64.0
 	}
 }
-
-object
-{
-	type = sphere
-	pos = { -0.25, 2.5, 50.4 }
-	dir = { 0, 0, 0 }
-	scale = 5
-	material
-	{
-		color = 0x114B5F
-		ambient = 0.15
-		diffuse = 0.85
-		specular = 0.7
-		shininess = 64.0
-	}
-}
-
 object
 {
 	type = cone
@@ -89,14 +78,13 @@ object
 	scale = 3.0
 	material
 	{
-		color = 0xF9A03F
+		color = 0x254E3A
 		ambient = 0.05
 		diffuse = 0.95
-		specular = 0.75
+		specular = 0.95
 		shininess = 256.0
 	}
 }
-
 object
 {
 	type = plane
@@ -105,14 +93,13 @@ object
 	scale = 3;
 	material
 	{
-		color = 0x18AA79
-		ambient = 0.15
-		diffuse = 0.85
+		color = 0x292F36
+		ambient = 0.45
+		diffuse = 0.55
 		specular = 0.5
-		shininess = 32
+		shininess = 64.0
 	}
 }
-
 object
 {
 	type = plane
@@ -128,7 +115,6 @@ object
 		shininess = 64
 	}
 }
-
 object
 {
 	type = cylinder
@@ -137,10 +123,25 @@ object
 	scale = 1.5
 	material
 	{
-		color = 0xFC814A
+		color = 0x29335C
 		ambient = 0.15
 		diffuse = 0.85
-		specular = 0.7
-		shininess = 64
+		specular = 0.85
+		shininess = 128.0
+	}
+}
+object
+{
+	type = cylinder
+	pos = { 13, 4, 40 }
+	dir = { 40, 0, 0 }
+	scale = 1.5
+	material
+	{
+		color = 0x45435C
+		ambient = 0.05
+		diffuse = 0.95
+		specular = 0.15
+		shininess = 32.0
 	}
 }
