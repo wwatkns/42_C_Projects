@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 11:03:23 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/11 10:12:04 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/11 11:35:16 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	raytracing_color(t_env *e, t_obj *obj, double *tmin, double *t)
 		diffuse = set_diffuse(e, obj, light);
 		specular = set_specular(e, obj, light);
 		temp = vec3_add(ambient, vec3_add(diffuse, specular));
-		temp = vec3_mul(obj->color, temp);
+		temp = vec3_mul(obj->mat.color, temp);
 		e->color = vec3_add(e->color, temp);
 		set_shadows(e, obj, tmin, t);
 		vec3_clamp(&e->color, 0.0, 1.0);

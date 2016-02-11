@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 15:01:22 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/10 18:19:13 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/11 12:13:30 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,36 +25,34 @@ void	parse_scene(t_env *e)
 	ft_strdel(&e->arg.file_scene);
 	while (get_next_line(fd, &line) > 0)
 	{
-		!ft_strcmp(line, "camera") ? parse_camera(e, fd) : 0;
-		if (!ft_strcmp(line, "light"))
-		{
-			light->next = create_light(fd);
+		!ft_strcmp(line, "camera") ? create_camera(e, fd) : 0;
+		if (!ft_strcmp(line, "light") && (light->next = create_light(fd)))
 			light = light->next;
-		}
-		if (!ft_strcmp(line, "object"))
-		{
-			obj->next = create_object(fd);
+		if (!ft_strcmp(line, "object") && (obj->next = create_object(fd)))
 			obj = obj->next;
-		}
 		ft_strdel(&line);
 	}
 	ft_strdel(&line);
 	error((close(fd) + 1));
 }
 
-void	parse_camera(t_env *e, int fd)
+void	create_camera(t_env *e, int fd)
 {
 	char	*line;
 
-	get_next_line(fd, &line);
-	e->cam.pos = parse_vector(line);
+	init_camera(e);
+	while (get_next_line(fd, &line) > 0 && !ft_strnstr(line, "}", 1))
+	{
+		if (ft_strstr(line, "pos"))
+			e->cam.pos = parse_vector(line);
+		if (ft_strstr(line, "dir"))
+			e->cam.dir = vec3_norm(parse_vector(line));
+		if (ft_strstr(line, "fov"))
+			e->cam.fov = ft_atof(ft_strstr(line, "=") + 1);
+		ft_strdel(&line);
+	}
 	ft_strdel(&line);
-	get_next_line(fd, &line);
-	e->cam.dir = parse_vector(line);
-	ft_strdel(&line);
-	get_next_line(fd, &line);
-	e->cam.fov = ft_atof(ft_strstr(line, "=") + 1);
-	ft_strdel(&line);
+	e->cam.fov > 160 ? e->cam.fov = 160 : 0;
 }
 
 t_lgt	*create_light(int fd)
@@ -63,77 +61,66 @@ t_lgt	*create_light(int fd)
 	t_lgt	*light;
 
 	error((int)(light = (t_lgt*)malloc(sizeof(t_lgt))));
-	get_next_line(fd, &line);
-	light->pos = parse_vector(line);
+	init_light(light);
+	while (get_next_line(fd, &line) > 0 && !ft_strnstr(line, "}", 1))
+	{
+		if (ft_strstr(line, "pos"))
+			light->pos = parse_vector(line);
+		if (ft_strstr(line, "color"))
+			light->color = hex_to_color(ft_atoi_base(line, 16));
+		ft_strdel(&line);
+	}
 	ft_strdel(&line);
-	get_next_line(fd, &line);
-	light->hex = ft_atoi_base(line, 16);
-	ft_strdel(&line);
-	light->color = hex_to_color(light->hex);
 	light->next = NULL;
 	return (light);
 }
 
-t_vec3	parse_vector(char *line)
-{
-	int		i;
-	int		n;
-	char	**split;
-	t_vec3	vec3;
-
-	i = 0;
-	n = 0;
-	split = ft_strsplit(line, ' ');
-	while (split[i] != NULL && n != 3)
-	{
-		str_digit(split[i]) == 1 ? n++ : 0;
-		n == 1 ? vec3.x = ft_atof(split[i]) : 0;
-		n == 2 ? vec3.y = ft_atof(split[i]) : 0;
-		n == 3 ? vec3.z = ft_atof(split[i]) : 0;
-		ft_strdel(&split[i]);
-		i++;
-	}
-	ft_strdel(split);
-	return (vec3);
-}
-
 t_obj	*create_object(int fd)
 {
-	char		*line;
-	t_obj		*obj;
+	char	*line;
+	t_obj	*obj;
 
 	error((int)(obj = (t_obj*)malloc(sizeof(t_obj))));
-	get_next_line(fd, &line);
-	ft_strstr(line, "cone") ? obj->type = CONE : 0;
-	ft_strstr(line, "plane") ? obj->type = PLANE : 0;
-	ft_strstr(line, "sphere") ? obj->type = SPHERE : 0;
-	ft_strstr(line, "cylinder") ? obj->type = CYLINDER : 0;
-	ft_strdel(&line);
-	get_next_line(fd, &line);
-	obj->pos = parse_vector(line);
-	ft_strdel(&line);
-	get_next_line(fd, &line);
-	obj->dir = parse_vector(line);
-	ft_strdel(&line);
-	get_next_line(fd, &line);
-	obj->scale = ft_atof(ft_strstr(line, "=") + 1);
-	ft_strdel(&line);
-	get_next_line(fd, &line);
-	(obj->hex = ft_atoi_base(line, 16)) ? ft_strdel(&line) : 0;
-	obj->color = hex_to_color(obj->hex);
-	ft_strdel(&line);
-	get_next_line(fd, &line);
-	obj->mat.ambient = ft_atof(ft_strstr(line, "=") + 1);
-	ft_strdel(&line);
-	get_next_line(fd, &line);
-	obj->mat.diffuse = ft_atof(ft_strstr(line, "=") + 1);
-	ft_strdel(&line);
-	get_next_line(fd, &line);
-	obj->mat.specular = ft_atof(ft_strstr(line, "=") + 1);
-	ft_strdel(&line);
-	get_next_line(fd, &line);
-	obj->mat.shininess = ft_atof(ft_strstr(line, "=") + 1);
+	init_object(obj);
+	while (get_next_line(fd, &line) > 0 && !ft_strnstr(line, "}", 1))
+	{
+		if (ft_strstr(line, "type"))
+			obj->type = parse_type(line);
+		if (ft_strstr(line, "pos"))
+			obj->pos = parse_vector(line);
+		if (ft_strstr(line, "dir"))
+			obj->dir = vec3_norm(parse_vector(line));
+		if (ft_strstr(line, "scale"))
+			obj->scale = ft_atof(ft_strstr(line, "=") + 1);
+		if (ft_strstr(line, "material"))
+			obj->mat = create_material(fd);
+		ft_strdel(&line);
+	}
 	ft_strdel(&line);
 	obj->next = NULL;
 	return (obj);
+}
+
+t_mat	create_material(int fd)
+{
+	char	*line;
+	t_mat	mat;
+
+	init_material(&mat);
+	while (get_next_line(fd, &line) > 0 && !ft_strnstr(line, "}", 2))
+	{
+		if (ft_strstr(line, "color"))
+			mat.color = hex_to_color(ft_atoi_base(line, 16));
+		if (ft_strstr(line, "ambient"))
+			mat.ambient = ft_atof(ft_strstr(line, "=") + 1);
+		if (ft_strstr(line, "diffuse"))
+			mat.diffuse = ft_atof(ft_strstr(line, "=") + 1);
+		if (ft_strstr(line, "specular"))
+			mat.specular = ft_atof(ft_strstr(line, "=") + 1);
+		if (ft_strstr(line, "shininess"))
+			mat.shininess = ft_atof(ft_strstr(line, "=") + 1);
+		ft_strdel(&line);
+	}
+	ft_strdel(&line);
+	return (mat);
 }

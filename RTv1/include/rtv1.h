@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 10:54:12 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/10 18:23:36 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/11 12:06:42 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # include <stdio.h> // temporary
 
 # define ABS(x) (x < 0 ? -x : x)
+# define MIN_POS -1000.0
+# define MAX_POS 1000.0
 
 enum { SPHERE, CONE, PLANE, CYLINDER };
 
@@ -44,6 +46,7 @@ typedef struct	s_img
 
 typedef struct	s_mat
 {
+	t_vec3	color;
 	double	ambient;
 	double	diffuse;
 	double	specular;
@@ -55,11 +58,9 @@ typedef struct	s_obj
 	t_vec3			pos;
 	t_vec3			dir;
 	t_vec3			normal;
-	t_vec3			color;
 	t_mat			mat;
 	short			type;
 	double			scale;
-	int				hex;
 	struct s_obj	*next;
 }				t_obj;
 
@@ -80,7 +81,6 @@ typedef struct	s_lgt
 {
 	t_vec3			pos;
 	t_vec3			color;
-	int				hex;
 	struct s_lgt	*next;
 }				t_lgt;
 
@@ -137,16 +137,27 @@ void			error(int err);
 */
 
 void			parse_scene(t_env *e);
-void			parse_camera(t_env *e, int fd);
-t_vec3			parse_vector(char *line);
+void			create_camera(t_env *e, int fd);
 t_lgt			*create_light(int fd);
 t_obj			*create_object(int fd);
+t_mat			create_material(int fd);
+
+/*
+**	set.c functions
+*/
+
+void			init_camera(t_env *e);
+void			init_object(t_obj *obj);
+void			init_material(t_mat *mat);
+void			init_light(t_lgt *light);
 
 /*
 **	utils.c functions
 */
 
 int				str_digit(char *str);
+int				parse_type(char *line);
+t_vec3			parse_vector(char *line);
 
 /*
 **	core.c	functions
@@ -154,7 +165,6 @@ int				str_digit(char *str);
 
 void			core(t_env *e);
 void			env_init(t_env *e);
-void			list_init(t_obj	*obj);
 void			cam_init(t_env *e);
 
 /*
