@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 12:57:27 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/10 18:04:31 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/11 18:09:49 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int		loop_hook(t_env *e)
 
 int		expose_hook(t_env *e)
 {
-	raytracing(e);
-	mlx_clear_window(e->mlx, e->win.adr);
+//	raytracing(e);
+//	mlx_clear_window(e->mlx, e->win.adr);
 	mlx_put_image_to_window(e->mlx, e->win.adr, e->img.adr, 0, 0);
 	return (0);
 }

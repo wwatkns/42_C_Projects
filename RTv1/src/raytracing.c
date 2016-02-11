@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 11:03:23 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/11 14:24:55 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/11 18:17:41 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,9 @@ void	raytracing_color(t_env *e, t_obj *obj, double *tmin, double *t)
 		e->color_t = vec3_add(ambient, vec3_add(diffuse, specular));
 		e->color_t = vec3_fmul(e->color_t, light->intensity);
 		e->color = vec3_add(e->color, vec3_mul(obj->mat.color, e->color_t));
+	//	vec3_rot(&e->ray.dir, Z, -obj->dir.x);
 		set_shadows(e, obj, tmin, t);
+	//	vec3_rot(&e->ray.dir, Z, obj->dir.x);
 		vec3_clamp(&e->color, 0.0, 1.0);
 		current = current->next;
 	}
@@ -78,6 +80,7 @@ void	raytracing_draw(t_env *e)
 	obj = ray_intersect(e, &tmin, &t);
 	if (obj != NULL && tmin != INFINITY)
 	{
+	//	vec3_rot(&e->ray.dir, Z, obj->dir.x);
 		e->ray.hit = vec3_add(e->ray.pos, vec3_fmul(e->ray.dir, tmin));
 		raytracing_color(e, obj, &tmin, &t);
 		img_pixel_put(e, e->ray.x, e->ray.y, e->color);

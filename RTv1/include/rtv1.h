@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 10:54:12 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/11 14:09:48 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/11 18:08:48 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ typedef struct	s_env
 	t_key	key;
 	t_vec3	color;
 	t_vec3	color_t;
+	t_vec3	rot;
 	void	*mlx;
 }				t_env;
 

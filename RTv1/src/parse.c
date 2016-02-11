@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 15:01:22 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/11 14:23:34 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/11 16:21:34 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ t_obj	*create_object(int fd)
 		if (ft_strstr(line, "pos"))
 			obj->pos = parse_vector(line);
 		if (ft_strstr(line, "dir"))
-			obj->dir = vec3_norm(parse_vector(line));
+			obj->dir = parse_vector(line);
 		if (ft_strstr(line, "scale"))
 			obj->scale = ft_atof(ft_strstr(line, "=") + 1);
 		if (ft_strstr(line, "material"))

@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 12:52:47 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/11 15:54:15 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/11 18:07:27 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	core(t_env *e)
 	error((int)(e->win.adr = mlx_new_window(e->mlx, e->win.w, e->win.h,
 					"RTv1")));
 	img_init(e);
+	raytracing(e);
 	mlx_hook(e->win.adr, 2, (1L << 0), key_pressed, e);
 	mlx_hook(e->win.adr, 3, (1L << 1), key_released, e);
 	mlx_expose_hook(e->win.adr, expose_hook, e);

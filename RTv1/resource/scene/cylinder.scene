@@ -1,0 +1,27 @@
+camera
+{
+	pos = { 0, 0.1, 0 }
+	dir = { 0, 0, 1 }
+	fov = 120
+}
+light
+{
+	pos = { 0, 5, 5 }
+	color = 0xFFFFFF
+	intensity = 1.0
+}
+object
+{
+	type = cylinder
+	pos = { 0, 1, 10 }
+	dir = { 10, 0, 0 }
+	scale = 1.0
+	material
+	{
+		color = 0xFF0000
+		ambient = 0.075
+		diffuse = 0.925
+		specular = 50.0
+		shininess = 1024
+	}
+}
