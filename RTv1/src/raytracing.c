@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 11:03:23 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/12 14:50:35 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/12 18:06:09 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,18 @@ void	raytracing_init(t_env *e, double i, double j)
 	vec3_normalize(&e->ray.dir);
 }
 
+void	raytracing_reflect(t_env *e, t_obj *obj, double *tmin)
+{
+	e->ray.hit = vec3_add(e->ray.pos, vec3_fmul(e->ray.dir, *tmin));
+	e->ray.pos = e->ray.hit;
+	set_normal(e, obj);
+	e->ray.dir = vec3_reflect(e->ray.dir, obj->normal);
+	if (e->recursiondepth < 2 && (e->recursiondepth += 1))
+		raytracing_draw(e);
+	else
+		e->recursiondepth = 0;
+}
+
 void	raytracing_color(t_env *e, t_obj *obj, double *tmin, double *t)
 {
 	t_vec3	ambient;
@@ -61,7 +73,8 @@ void	raytracing_color(t_env *e, t_obj *obj, double *tmin, double *t)
 	t_lgt	*light;
 
 	light = e->light;
-	e->color = vec3(0, 0, 0);
+	if (e->recursiondepth == 0)
+		e->color = vec3(0, 0, 0);
 	while ((light = light->next) != NULL)
 	{
 		set_light(e, light);
@@ -88,11 +101,13 @@ void	raytracing_draw(t_env *e)
 	obj = ray_intersect(e, &tmin, &t);
 	if (obj != NULL && tmin != INFINITY)
 	{
-		e->ray.hit = vec3_add(e->ray.pos, vec3_fmul(e->ray.dir, tmin));
+		//e->ray.hit = vec3_add(e->ray.pos, vec3_fmul(e->ray.dir, tmin));
+		raytracing_reflect(e, obj, &tmin);
 		raytracing_color(e, obj, &tmin, &t);
-		e->color_out = vec3_add(e->color_out,
-		vec3_fmul(e->color, e->cam.supersampling_coeff));
 	}
 	else
 		e->color = vec3(0, 0, 0);
+	e->color_out = vec3_add(e->color_out,
+	vec3_fmul(e->color, e->cam.supersampling_coeff));
+	vec3_clamp(&e->color_out, 0, 1);
 }

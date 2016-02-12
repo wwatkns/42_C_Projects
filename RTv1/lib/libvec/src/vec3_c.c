@@ -6,7 +6,7 @@
 /*   By: wwatkins <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/09 18:31:06 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/10 16:22:00 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/12 17:06:50 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,13 @@ t_vec3	vec3_cross(t_vec3 vec3a, t_vec3 vec3b)
 	return (vec3);
 }
 
-t_vec3	vec3_reflect(t_vec3 d, t_vec3 n)
+t_vec3	vec3_reflect(t_vec3 v, t_vec3 n)
 {
-	return (vec3_sub(d, vec3_fmul(n, 2.0 * vec3_dot(d, n))));
+	t_vec3	r;
+
+	r = vec3_fmul(n, -2.0 * vec3_dot(v, n));
+	r = vec3_add(r, v);
+	return (r);
 }
 
 t_vec3	vec3_norm(t_vec3 vec3)

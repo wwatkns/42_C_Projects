@@ -2,7 +2,7 @@ camera
 {
 	pos = { 0, 0.15, 0 }
 	dir = { 0, 0, 1 }
-	fov = 70
+	fov = 40
 }
 light
 {

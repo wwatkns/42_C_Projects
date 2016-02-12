@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 10:54:12 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/12 14:51:18 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/12 17:27:27 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ typedef struct	s_env
 	t_vec3	color;
 	t_vec3	color_t;
 	t_vec3	color_out;
+	int		recursiondepth;
 	double	shadow;
 	void	*mlx;
 }				t_env;
@@ -191,7 +192,7 @@ t_vec3			hex_to_color(int hex);
 
 void			raytracing(t_env *e);
 void			raytracing_init(t_env *e, double i, double j);
-void			raytracing_calc(t_env *e);
+void			raytracing_color(t_env *e, t_obj *obj, double *tmin, double *t);
 void			raytracing_draw(t_env *e);
 
 /*
