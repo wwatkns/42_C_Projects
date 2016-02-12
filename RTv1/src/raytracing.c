@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 11:03:23 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/12 18:52:18 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/12 18:55:40 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ void	raytracing_reflect(t_env *e, t_obj *obj, double *tmin)
 	e->ray.pos = e->ray.hit;
 	set_normal(e, obj);
 	e->ray.dir = vec3_reflect(e->ray.dir, obj->normal);
-	e->ray.pos = vec3_mul(e->ray.pos, vec3(0.1, 0.1, 0.1));
 	if (e->recursiondepth < 2 && (e->recursiondepth += 1))
 		raytracing_draw(e);
 	else
@@ -114,33 +113,3 @@ void	raytracing_draw(t_env *e)
 	vec3_fmul(e->color, e->cam.supersampling_coeff));
 	vec3_clamp(&e->color_out, 0, 1);
 }
-
-/*void	raytracing_draw(t_env *e)
-{
-	t_obj	*obj;
-	double	tmin;
-	double	t;
-
-	tmin = INFINITY;
-	obj = ray_intersect(e, &tmin, &t);
-	if (obj != NULL && tmin != INFINITY)
-	{
-		e->ray.hit = vec3_add(e->ray.pos, vec3_fmul(e->ray.dir, tmin));
-		raytracing_color(e, obj, &tmin, &t);
-		if (e->recursiondepth < 3)
-		{
-			e->recursiondepth++;
-			e->ray.hit = vec3_add(e->ray.pos, vec3_fmul(e->ray.dir, tmin));
-			e->ray.pos = e->ray.hit;
-			set_normal(e, obj);
-			e->ray.dir = vec3_reflect(e->ray.dir, obj->normal);
-		//	e->ray.dir = vec3_fmul(e->ray.dir, INFINITY);
-			raytracing_draw(e);
-			e->color_out = vec3_add(e->color_out,
-			vec3_fmul(e->color, e->cam.supersampling_coeff));
-		}
-	}
-	else
-		e->color = vec3(0, 0, 0);
-	vec3_clamp(&e->color_out, 0, 1);
-}*/
