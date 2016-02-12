@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 11:05:13 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/12 11:25:20 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/12 11:51:18 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ void	args_disp(void)
 {
 	ft_putendl("\nusage:\n./rtv1 [scene] [-w width] [-h height] [--help]");
 	ft_putendl("\noptions");
-	ft_putendl("-w <width>	set specified program window width.");
-	ft_putendl("-h <height>	set specified program window height.");
-	ft_putendl("-s <height>	set specified supersampling value.");
+	ft_putendl("-w <width>	  set specified program window width.");
+	ft_putendl("-h <height>	  set specified program window height.");
+	ft_putendl("-s <sampling> set specified supersampling value.");
 	ft_putendl("--help		show help.\n");
 	exit(0);
 }
