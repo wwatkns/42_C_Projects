@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 11:05:13 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/08 16:54:08 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/12 11:25:20 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,20 @@ void	args_get(t_env *e, int argc, char **argv)
 		e->arg.file_scene = ft_strdup(argv[1]);
 	e->arg.w = 0;
 	e->arg.h = 0;
+	e->arg.s = 0;
 	while (++i < argc)
 	{
 		if (!ft_strcmp(argv[i], "-w") && i + 1 < argc)
 			e->arg.w = ft_atoi(argv[i + 1]);
 		if (!ft_strcmp(argv[i], "-h") && i + 1 < argc)
 			e->arg.h = ft_atoi(argv[i + 1]);
+		if (!ft_strcmp(argv[i], "-s") && i + 1 < argc)
+			e->arg.s = ft_atoi(argv[i + 1]);
 		!ft_strcmp(argv[i], "--help") ? args_disp() : 0;
 	}
 	e->arg.w = (e->arg.w < 320 || e->arg.w > 2560 ? 1000 : e->arg.w);
 	e->arg.h = (e->arg.h < 200 || e->arg.h > 1440 ? 720 : e->arg.h);
+	e->arg.s < 1 ? e->arg.s = 1 : 0;
 }
 
 void	args_disp(void)
@@ -53,6 +57,7 @@ void	args_disp(void)
 	ft_putendl("\noptions");
 	ft_putendl("-w <width>	set specified program window width.");
 	ft_putendl("-h <height>	set specified program window height.");
+	ft_putendl("-s <height>	set specified supersampling value.");
 	ft_putendl("--help		show help.\n");
 	exit(0);
 }

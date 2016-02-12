@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 10:54:12 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/11 18:08:48 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/12 11:24:51 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct	s_arg
 	char	*file_scene;
 	int		w;
 	int		h;
+	int		s;
 }				t_arg;
 
 typedef struct	s_img
@@ -71,6 +72,7 @@ typedef struct	s_cam
 	t_vec3	origin;
 	double	fov;
 	double	dist;
+	double	supersampling;
 	double	w;
 	double	h;
 	double	xi;
@@ -122,8 +124,9 @@ typedef struct	s_env
 	t_ray	ray;
 	t_key	key;
 	t_vec3	color;
+	t_vec3	color_res;
 	t_vec3	color_t;
-	t_vec3	rot;
+	double	shadow;
 	void	*mlx;
 }				t_env;
 
@@ -193,7 +196,7 @@ t_vec3			hex_to_color(int hex);
 */
 
 void			raytracing(t_env *e);
-void			raytracing_init(t_env *e);
+void			raytracing_init(t_env *e, double i, double j);
 void			raytracing_calc(t_env *e);
 void			raytracing_draw(t_env *e);
 

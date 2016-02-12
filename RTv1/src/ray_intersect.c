@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 15:10:36 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/11 18:17:44 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/12 09:18:18 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,10 @@ t_obj	*ray_intersect(t_env *e, double *tmin, double *t)
 	current = e->obj->next;
 	while (current != NULL)
 	{
-	//	vec3_rot(&e->ray.dir, Z, current->dir.x);
 		current->type == CONE ? *t = ray_intersect_cone(e, current) : 0;
 		current->type == PLANE ? *t = ray_intersect_plane(e, current) : 0;
 		current->type == SPHERE ? *t = ray_intersect_sphere(e, current) : 0;
 		current->type == CYLINDER ? *t = ray_intersect_cylinder(e, current) : 0;
-	//	vec3_rot(&e->ray.dir, Z, -current->dir.x);
 		if (*t > 0.0 && *t < *tmin)
 		{
 			obj = current;

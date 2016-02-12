@@ -6,7 +6,7 @@
 /*   By: wwatkins <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/09 17:36:17 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/11 18:08:56 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/12 09:20:19 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,10 @@ void	set_light(t_env *e, t_lgt *light)
 
 void	set_shadows(t_env *e, t_obj *obj, double *tmin, double *t)
 {
+	e->shadow = 1.0;
 	*tmin = INFINITY;
 	if (ray_intersect(e, tmin, t) != obj)
-		e->color = vec3_fmul(e->color, 0.5);
+		e->shadow = 0.5;
 }
 
 t_vec3	set_diffuse(t_env *e, t_obj *obj, t_lgt *light)

@@ -2,7 +2,7 @@ camera
 {
 	pos = { 0, 0.15, 0 }
 	dir = { 0, 0, 1 }
-	fov = 120
+	fov = 70
 }
 light
 {
@@ -131,7 +131,7 @@ object
 {
 	type = cylinder
 	pos = { 0, 4, 76 }
-	dir = { 40, 0, 0 }
+	dir = { 30, 0, 0 }
 	scale = 1.5
 	material
 	{
@@ -146,7 +146,7 @@ object
 {
 	type = cylinder
 	pos = { 13, 4, 40 }
-	dir = { 40, 0, 0 }
+	dir = { -10, 0, 0 }
 	scale = 1.5
 	material
 	{
