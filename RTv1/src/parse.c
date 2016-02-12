@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 15:01:22 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/12 11:18:03 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/12 12:36:18 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	parse_scene(t_env *e)
 	obj = e->obj;
 	light = e->light;
 	error((fd = open(e->arg.file_scene, O_RDWR)));
-	ft_strdel(&e->arg.file_scene);
 	while (get_next_line(fd, &line) > 0)
 	{
 		!ft_strcmp(line, "camera") ? create_camera(e, fd) : 0;

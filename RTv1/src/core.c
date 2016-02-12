@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 12:52:47 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/12 10:13:21 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/12 12:43:27 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ void	core(t_env *e)
 {
 	error((int)(e->mlx = mlx_init()));
 	error((int)(e->win.adr = mlx_new_window(e->mlx, e->win.w, e->win.h,
-					"RTv1")));
+	e->arg.file_scene)));
+	ft_strdel(&e->arg.file_scene);
 	img_init(e);
 	raytracing(e);
 	mlx_hook(e->win.adr, 2, (1L << 0), key_pressed, e);
-	mlx_hook(e->win.adr, 3, (1L << 1), key_released, e);
 	mlx_expose_hook(e->win.adr, expose_hook, e);
 	mlx_loop_hook(e->mlx, loop_hook, e);
 	mlx_loop(e->mlx);
@@ -41,17 +41,13 @@ void	env_init(t_env *e)
 	e->win.h = e->arg.h;
 	e->win.dw = e->arg.w / 2;
 	e->win.dh = e->arg.h / 2;
-	e->key.u = 0;
-	e->key.d = 0;
-	e->key.l = 0;
-	e->key.r = 0;
 }
 
 void	cam_init(t_env *e)
 {
 	double	coeff;
 
-	coeff = e->win.w < e->win.h ? e->win.w : e->win.h;
+	coeff = (e->win.w < e->win.h ? e->win.w : e->win.h);
 	e->cam.w = e->win.w / coeff;
 	e->cam.h = e->win.h / coeff;
 	e->cam.dist = 1.0 / tan(e->cam.fov / 2.0 * DEG2RAD);

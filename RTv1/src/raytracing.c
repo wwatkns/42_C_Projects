@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 11:03:23 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/12 12:07:45 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/12 12:40:57 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ void	raytracing_color(t_env *e, t_obj *obj, double *tmin, double *t)
 	e->color = vec3(0, 0, 0);
 	while ((light = light->next) != NULL)
 	{
-		e->color_t = vec3(0, 0, 0);
 		set_light(e, light);
 		set_normal(e, obj);
 		set_shadows(e, obj, tmin, t);

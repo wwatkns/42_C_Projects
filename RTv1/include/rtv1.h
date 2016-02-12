@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 10:54:12 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/12 11:24:51 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/12 12:41:32 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,14 +105,6 @@ typedef struct	s_win
 	int		dh;
 }				t_win;
 
-typedef struct	s_key
-{
-	short	u;
-	short	d;
-	short	l;
-	short	r;
-}				t_key;
-
 typedef struct	s_env
 {
 	t_win	win;
@@ -122,7 +114,6 @@ typedef struct	s_env
 	t_obj	*obj;
 	t_lgt	*light;
 	t_ray	ray;
-	t_key	key;
 	t_vec3	color;
 	t_vec3	color_res;
 	t_vec3	color_t;
@@ -179,8 +170,7 @@ void			cam_init(t_env *e);
 
 int				loop_hook(t_env *e);
 int				expose_hook(t_env *e);
-int				key_pressed(int keycode, t_env *e);
-int				key_released(int keycode, t_env *e);
+int				key_pressed(int keycode);
 
 /*
 **	draw.c functions
