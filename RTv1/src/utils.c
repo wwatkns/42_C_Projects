@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 17:56:39 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/11 11:30:55 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/12 14:33:47 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,11 @@ t_vec3	parse_vector(char *line)
 	ft_strdel(split);
 	vec3_clamp(&vec3, MIN_POS, MAX_POS);
 	return (vec3);
+}
+
+void	set_gamma(t_env *e)
+{
+	e->color_out.x = powf(e->color_out.x, e->cam.invgamma);
+	e->color_out.y = powf(e->color_out.y, e->cam.invgamma);
+	e->color_out.z = powf(e->color_out.z, e->cam.invgamma);
 }

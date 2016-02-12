@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 12:52:47 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/12 12:43:27 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/12 14:48:43 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	core(t_env *e)
 {
 	error((int)(e->mlx = mlx_init()));
 	error((int)(e->win.adr = mlx_new_window(e->mlx, e->win.w, e->win.h,
-	e->arg.file_scene)));
+	ft_strjoin(e->arg.file_scene, " - RTV1"))));
 	ft_strdel(&e->arg.file_scene);
 	img_init(e);
 	raytracing(e);
@@ -57,4 +57,6 @@ void	cam_init(t_env *e)
 				vec3_fmul(vec3_right(), e->cam.w / 2.0));
 	e->cam.xi = e->cam.w / (double)e->win.w;
 	e->cam.yi = e->cam.h / (double)e->win.h;
+	e->cam.supersampling_inc = 1 / e->cam.supersampling;
+	e->cam.supersampling_coeff = 1 / powf(e->cam.supersampling, 2);
 }

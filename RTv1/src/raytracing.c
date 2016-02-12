@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 11:03:23 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/12 12:40:57 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/12 14:50:35 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	raytracing(t_env *e)
 		e->ray.x = -1;
 		while (++e->ray.x < e->win.w)
 		{
-			e->color_res = vec3(0.0, 0.0, 0.0);
+			e->color_out = vec3(0.0, 0.0, 0.0);
 			i = e->ray.x;
 			while (i < e->ray.x + 1.0)
 			{
@@ -32,11 +32,12 @@ void	raytracing(t_env *e)
 				{
 					raytracing_init(e, i, j);
 					raytracing_draw(e);
-					j += 1 / e->cam.supersampling;
+					j += e->cam.supersampling_inc;
 				}
-				i += 1 / e->cam.supersampling;
+				i += e->cam.supersampling_inc;
 			}
-			img_pixel_put(e, e->ray.x, e->ray.y, e->color_res);
+			e->cam.invgamma != 1.0 ? set_gamma(e) : 0;
+			img_pixel_put(e, e->ray.x, e->ray.y, e->color_out);
 		}
 	}
 }
@@ -73,7 +74,7 @@ void	raytracing_color(t_env *e, t_obj *obj, double *tmin, double *t)
 		e->color_t = vec3_fmul(e->color_t, light->intensity);
 		e->color = vec3_fmul(vec3_add(e->color,
 				vec3_mul(obj->mat.color, e->color_t)), e->shadow);
-		vec3_clamp(&e->color, 0.0, 1.0);
+		vec3_clamp(&e->color, 0, 1);
 	}
 }
 
@@ -89,9 +90,9 @@ void	raytracing_draw(t_env *e)
 	{
 		e->ray.hit = vec3_add(e->ray.pos, vec3_fmul(e->ray.dir, tmin));
 		raytracing_color(e, obj, &tmin, &t);
+		e->color_out = vec3_add(e->color_out,
+		vec3_fmul(e->color, e->cam.supersampling_coeff));
 	}
 	else
-		e->color = vec3(0.0, 0.0, 0.0);
-	e->color_res = vec3_add(e->color_res,
-	vec3_fmul(e->color, 1 / pow(e->cam.supersampling, 2)));
+		e->color = vec3(0, 0, 0);
 }

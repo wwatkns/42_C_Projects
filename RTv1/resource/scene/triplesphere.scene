@@ -2,7 +2,8 @@ camera
 {
 	pos = { 0, 0.1, 0 }
 	dir = { 0, 0, 1 }
-	fov = 70
+	fov = 60
+	gamma = 0.91
 }
 light
 {

@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/11 12:13:56 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/12 11:21:01 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/12 14:25:22 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	init_camera(t_env *e)
 	e->cam.dir = (t_vec3) { 0.0, 0.0, 1.0 };
 	e->cam.fov = 60;
 	e->cam.supersampling = e->arg.s;
+	e->cam.invgamma = 1.0;
 }
 
 void	init_object(t_obj *obj)

@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 11:05:13 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/12 11:51:18 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/12 13:37:32 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ void	args_get(t_env *e, int argc, char **argv)
 	}
 	e->arg.w = (e->arg.w < 320 || e->arg.w > 2560 ? 1000 : e->arg.w);
 	e->arg.h = (e->arg.h < 200 || e->arg.h > 1440 ? 720 : e->arg.h);
-	e->arg.s < 1 ? e->arg.s = 1 : 0;
+	if (e->arg.s != 1 && e->arg.s != 2 && e->arg.s != 4 && e->arg.s != 8)
+		e->arg.s = 1;
 }
 
 void	args_disp(void)

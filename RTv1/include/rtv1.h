@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 10:54:12 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/12 12:41:32 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/12 14:51:18 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,14 @@ typedef struct	s_cam
 	t_vec3	origin;
 	double	fov;
 	double	dist;
-	double	supersampling;
+	double	invgamma;
 	double	w;
 	double	h;
 	double	xi;
 	double	yi;
+	double	supersampling;
+	double	supersampling_coeff;
+	double	supersampling_inc;
 }				t_cam;
 
 typedef struct	s_lgt
@@ -115,8 +118,8 @@ typedef struct	s_env
 	t_lgt	*light;
 	t_ray	ray;
 	t_vec3	color;
-	t_vec3	color_res;
 	t_vec3	color_t;
+	t_vec3	color_out;
 	double	shadow;
 	void	*mlx;
 }				t_env;
@@ -155,6 +158,7 @@ void			init_light(t_lgt *light);
 int				str_digit(char *str);
 int				parse_type(char *line);
 t_vec3			parse_vector(char *line);
+void			set_gamma(t_env *e);
 
 /*
 **	core.c	functions

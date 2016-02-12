@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 15:01:22 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/12 12:36:18 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/12 14:25:51 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ void	create_camera(t_env *e, int fd)
 			e->cam.dir = vec3_norm(parse_vector(line));
 		if (ft_strstr(line, "fov"))
 			e->cam.fov = ft_atof(ft_strstr(line, "=") + 1);
+		if (ft_strstr(line, "gamma"))
+			e->cam.invgamma = 1 / ft_atof(ft_strstr(line, "=") + 1);
 		ft_strdel(&line);
 	}
 	ft_strdel(&line);
