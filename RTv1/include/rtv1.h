@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 10:54:12 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/12 17:27:27 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/13 11:21:08 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define ABS(x) (x < 0 ? -x : x)
 # define MIN_POS -1000.0
 # define MAX_POS 1000.0
+# define EPSILON 1e-9
 
 enum { SPHERE, CONE, PLANE, CYLINDER };
 
@@ -33,6 +34,9 @@ typedef struct	s_arg
 	int		w;
 	int		h;
 	int		s;
+	int		f;
+	int		m;
+	double	g;
 }				t_arg;
 
 typedef struct	s_img
@@ -52,6 +56,7 @@ typedef struct	s_mat
 	double	diffuse;
 	double	specular;
 	double	shininess;
+	double	reflective;
 }				t_mat;
 
 typedef struct	s_obj
@@ -73,6 +78,7 @@ typedef struct	s_cam
 	double	fov;
 	double	dist;
 	double	invgamma;
+	double	maxdepth;
 	double	w;
 	double	h;
 	double	xi;
@@ -87,6 +93,11 @@ typedef struct	s_lgt
 	t_vec3			pos;
 	t_vec3			color;
 	double			intensity;
+	double			constant;
+	double			linear;
+	double			quadratic;
+	double			dist;
+	double			atenuation;
 	struct s_lgt	*next;
 }				t_lgt;
 
@@ -130,6 +141,7 @@ typedef struct	s_env
 */
 
 void			args_get(t_env *e, int argc, char **argv);
+void			args_comp(t_env *e, int argc, char **argv, int i);
 void			args_disp(void);
 void			error(int err);
 

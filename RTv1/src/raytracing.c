@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 11:03:23 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/12 18:55:40 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/13 10:54:08 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,12 @@ void	raytracing_init(t_env *e, double i, double j)
 	vec3_normalize(&e->ray.dir);
 }
 
-void	raytracing_reflect(t_env *e, t_obj *obj, double *tmin)
+void	raytracing_reflect(t_env *e, t_obj *obj)
 {
-	e->ray.hit = vec3_add(e->ray.pos, vec3_fmul(e->ray.dir, *tmin));
 	e->ray.pos = e->ray.hit;
 	set_normal(e, obj);
 	e->ray.dir = vec3_reflect(e->ray.dir, obj->normal);
-	if (e->recursiondepth < 2 && (e->recursiondepth += 1))
+	if (e->recursiondepth < e->cam.maxdepth && (e->recursiondepth += 1))
 		raytracing_draw(e);
 	else
 		e->recursiondepth = 0;
@@ -74,21 +73,27 @@ void	raytracing_color(t_env *e, t_obj *obj, double *tmin, double *t)
 	t_lgt	*light;
 
 	light = e->light;
-	if (e->recursiondepth == 0)
-		e->color = vec3(0, 0, 0);
+	e->color = vec3(0, 0, 0);
 	while ((light = light->next) != NULL)
 	{
 		set_light(e, light);
 		set_normal(e, obj);
 		set_shadows(e, obj, tmin, t);
+
+		light->atenuation = 1.0 / (light->constant + light->linear *
+		*tmin + light->quadratic * (*tmin * *tmin));
+
 		ambient = vec3_fmul(light->color, obj->mat.ambient);
 		diffuse = set_diffuse(e, obj, light);
 		specular = set_specular(e, obj, light);
+
 		e->color_t = vec3_add(ambient, vec3_add(diffuse, specular));
-		e->color_t = vec3_fmul(e->color_t, light->intensity);
-	//	e->color_t = vec3_fmul(e->color_t, 1 / (double)(e->recursiondepth + 1));
-		e->color = vec3_fmul(vec3_add(e->color,
-				vec3_mul(obj->mat.color, e->color_t)), e->shadow);
+		e->color_t = vec3_fmul(e->color_t, light->atenuation);
+		e->color_t = vec3_fmul(e->color_t, e->shadow);
+
+		e->color_t = vec3_fmul(e->color_t, 1.0 - obj->mat.reflective);
+		e->color = vec3_add(e->color, vec3_mul(obj->mat.color, e->color_t));
+		e->color = vec3_fmul(e->color, 1.0 - obj->mat.reflective);
 		vec3_clamp(&e->color, 0, 1);
 	}
 }
@@ -104,7 +109,8 @@ void	raytracing_draw(t_env *e)
 	if (obj != NULL && tmin != INFINITY)
 	{
 		e->ray.hit = vec3_add(e->ray.pos, vec3_fmul(e->ray.dir, tmin));
-		raytracing_reflect(e, obj, &tmin);
+	//	if (obj->mat.reflective > 0.0)
+			raytracing_reflect(e, obj);
 		raytracing_color(e, obj, &tmin, &t);
 	}
 	else

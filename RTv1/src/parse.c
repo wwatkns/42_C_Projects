@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 15:01:22 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/12 14:25:51 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/13 11:21:33 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,15 @@ void	create_camera(t_env *e, int fd)
 			e->cam.fov = ft_atof(ft_strstr(line, "=") + 1);
 		if (ft_strstr(line, "gamma"))
 			e->cam.invgamma = 1 / ft_atof(ft_strstr(line, "=") + 1);
+		if (ft_strstr(line, "maxdepth"))
+			e->cam.maxdepth = ft_atoi(ft_strstr(line, "=") + 1);
 		ft_strdel(&line);
 	}
 	ft_strdel(&line);
-	e->cam.fov > 160 ? e->cam.fov = 160 : 0;
+	e->arg.f != -1 ? e->cam.fov = e->arg.f : 0;
+	e->arg.m != -1 ? e->cam.maxdepth = e->arg.m : 0;
+	e->arg.g != -1 ? e->cam.invgamma = 1.0 / e->arg.g : 0;
+	e->cam.maxdepth < 0 ? e->cam.maxdepth = 0 : 0;
 }
 
 t_lgt	*create_light(int fd)
@@ -71,6 +76,10 @@ t_lgt	*create_light(int fd)
 			light->color = hex_to_color(ft_atoi_base(line, 16));
 		if (ft_strstr(line, "intensity"))
 			light->intensity = ft_atof(ft_strstr(line, "=") + 1);
+		if (ft_strstr(line, "linear"))
+			light->linear = ft_atof(ft_strstr(line, "=") + 1);
+		if (ft_strstr(line, "quadratic"))
+			light->quadratic = ft_atof(ft_strstr(line, "=") + 1);
 		ft_strdel(&line);
 	}
 	ft_strdel(&line);
@@ -122,6 +131,8 @@ t_mat	create_material(int fd)
 			mat.specular = ft_atof(ft_strstr(line, "=") + 1);
 		if (ft_strstr(line, "shininess"))
 			mat.shininess = ft_atof(ft_strstr(line, "=") + 1);
+		if (ft_strstr(line, "reflective"))
+			mat.reflective = ft_atof(ft_strstr(line, "=") + 1);
 		ft_strdel(&line);
 	}
 	ft_strdel(&line);

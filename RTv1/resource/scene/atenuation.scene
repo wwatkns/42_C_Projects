@@ -1,0 +1,114 @@
+camera
+{
+	pos = { 0, 0.1, 0 }
+	dir = { 0, 0, 1 }
+	fov = 60
+	gamma = 1
+	maxdepth = 2
+}
+light
+{
+	pos = { 0, 5, 5 }
+	color = 0xFFFFFF
+	intensity = 1.0
+	linear = 0.027
+	quadratic = 0.0028
+}
+object
+{
+	type = sphere
+	pos = { 3.5, 1, 10 }
+	scale = 1.0
+	material
+	{
+		color = 0xFFFFFF
+		ambient = 0.05
+		diffuse = 0.95
+		specular = 1.0
+		shininess = 256
+	}
+}
+object
+{
+	type = sphere
+	pos = { 4, 1, 20 }
+	scale = 1.0
+	material
+	{
+		color = 0xFFFFFF
+		ambient = 0.05
+		diffuse = 0.95
+		specular = 1.0
+		shininess = 256
+	}
+}
+object
+{
+	type = sphere
+	pos = { 4, 1, 30 }
+	scale = 1.0
+	material
+	{
+		color = 0xFFFFFF
+		ambient = 0.05
+		diffuse = 0.95
+		specular = 1.0
+		shininess = 256
+	}
+}
+object
+{
+	type = sphere
+	pos = { 4, 1, 40 }
+	scale = 1.0
+	material
+	{
+		color = 0xFFFFFF
+		ambient = 0.05
+		diffuse = 0.95
+		specular = 1.0
+		shininess = 256
+	}
+}
+object
+{
+	type = sphere
+	pos = { 4, 1, 50 }
+	scale = 1.0
+	material
+	{
+		color = 0xFFFFFF
+		ambient = 0.05
+		diffuse = 0.95
+		specular = 1.0
+		shininess = 256
+	}
+}
+object
+{
+	type = sphere
+	pos = { 4, 1, 70 }
+	scale = 1.0
+	material
+	{
+		color = 0xFFFFFF
+		ambient = 0.05
+		diffuse = 0.95
+		specular = 1.0
+		shininess = 256
+	}
+}
+object
+{
+	type = sphere
+	pos = { 4, 1, 100 }
+	scale = 1.0
+	material
+	{
+		color = 0xFFFFFF
+		ambient = 0.05
+		diffuse = 0.95
+		specular = 1.0
+		shininess = 256
+	}
+}

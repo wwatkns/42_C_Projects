@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 15:10:36 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/12 18:54:55 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/13 08:46:55 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_obj	*ray_intersect(t_env *e, double *tmin, double *t)
 		obj->type == PLANE ? *t = ray_intersect_plane(e, obj) : 0;
 		obj->type == SPHERE ? *t = ray_intersect_sphere(e, obj) : 0;
 		obj->type == CYLINDER ? *t = ray_intersect_cylinder(e, obj) : 0;
-		if (*t > 0.001 && *t < *tmin)
+		if (*t > EPSILON && *t < *tmin)
 		{
 			out = obj;
 			*tmin = *t;
@@ -39,7 +39,7 @@ double	ray_intersect_plane(t_env *e, t_obj *obj)
 
 	t = -((vec3_dot(obj->dir, e->ray.pos) - vec3_dot(obj->dir, obj->pos)) /
 		vec3_dot(obj->dir, e->ray.dir));
-	if (t < 0.001)
+	if (t < EPSILON)
 		return (-1.0);
 	return (t);
 }
@@ -57,7 +57,7 @@ double	ray_intersect_sphere(t_env *e, t_obj *obj)
 	b = vec3_dot(len, e->ray.dir);
 	c = vec3_dot(len, len) - obj->scale;
 	disc = b * b - a * c;
-	if (disc < 0.001)
+	if (disc < EPSILON)
 		return (-1.0);
 	return ((-b - sqrt(disc)) / a);
 }
@@ -77,7 +77,7 @@ double	ray_intersect_cone(t_env *e, t_obj *obj)
 		e->ray.dir.z * len.z;
 	c = len.x * len.x + len.z * len.z - len.y * len.y;
 	disc = b * b - a * c;
-	if (disc < 0.001)
+	if (disc < EPSILON)
 		return (-1.0);
 	return ((-b - sqrt(disc)) / a);
 }
@@ -95,7 +95,7 @@ double	ray_intersect_cylinder(t_env *e, t_obj *obj)
 	b = (e->ray.dir.x * len.x + e->ray.dir.z * len.z);
 	c = len.x * len.x + len.z * len.z - obj->scale;
 	disc = b * b - a * c;
-	if (disc < 0.001)
+	if (disc < EPSILON)
 		return (-1.0);
 	return ((-b - sqrt(disc)) / a);
 }

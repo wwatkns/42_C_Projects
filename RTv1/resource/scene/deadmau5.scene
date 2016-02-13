@@ -4,12 +4,15 @@ camera
 	dir = { 0, 0, 1 }
 	fov = 90
 	gamma = 1.1
+	maxdepth = 2
 }
 light
 {
 	pos = { -10, 15, 7 }
 	color = 0xFFFFFF
 	intensity = 1.0
+	linear = 0.022
+	quadratic = 0.0019
 }
 light
 {

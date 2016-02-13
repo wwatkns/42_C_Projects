@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 11:05:13 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/12 13:37:32 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/13 11:21:15 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,35 @@ void	args_get(t_env *e, int argc, char **argv)
 	e->arg.w = 0;
 	e->arg.h = 0;
 	e->arg.s = 0;
+	e->arg.g = -1;
+	e->arg.f = -1;
+	e->arg.m = -1;
 	while (++i < argc)
-	{
-		if (!ft_strcmp(argv[i], "-w") && i + 1 < argc)
-			e->arg.w = ft_atoi(argv[i + 1]);
-		if (!ft_strcmp(argv[i], "-h") && i + 1 < argc)
-			e->arg.h = ft_atoi(argv[i + 1]);
-		if (!ft_strcmp(argv[i], "-s") && i + 1 < argc)
-			e->arg.s = ft_atoi(argv[i + 1]);
-		!ft_strcmp(argv[i], "--help") ? args_disp() : 0;
-	}
+		args_comp(e, argc, argv, i);
 	e->arg.w = (e->arg.w < 320 || e->arg.w > 2560 ? 1000 : e->arg.w);
 	e->arg.h = (e->arg.h < 200 || e->arg.h > 1440 ? 720 : e->arg.h);
 	if (e->arg.s != 1 && e->arg.s != 2 && e->arg.s != 4 && e->arg.s != 8)
 		e->arg.s = 1;
+}
+
+void	args_comp(t_env *e, int argc, char **argv, int i)
+{
+	if (i + 1 < argc)
+	{
+		if (!ft_strcmp(argv[i], "-w") || !ft_strcmp(argv[i], "--width"))
+			e->arg.w = ft_atoi(argv[i + 1]);
+		if (!ft_strcmp(argv[i], "-h") || !ft_strcmp(argv[i], "--height"))
+			e->arg.h = ft_atoi(argv[i + 1]);
+		if (!ft_strcmp(argv[i], "-s") || !ft_strcmp(argv[i], "--supersampling"))
+			e->arg.s = ft_atoi(argv[i + 1]);
+		if (!ft_strcmp(argv[i], "-g") || !ft_strcmp(argv[i], "--gamma"))
+			e->arg.g = ft_atof(argv[i + 1]);
+		if (!ft_strcmp(argv[i], "-f") || !ft_strcmp(argv[i], "--fov"))
+			e->arg.f = ft_atoi(argv[i + 1]);
+		if (!ft_strcmp(argv[i], "-d") || !ft_strcmp(argv[i], "--maxdepth"))
+			e->arg.m = ft_atoi(argv[i + 1]);
+	}
+	!ft_strcmp(argv[i], "--help") ? args_disp() : 0;
 }
 
 void	args_disp(void)
