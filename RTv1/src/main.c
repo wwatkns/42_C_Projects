@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 11:05:13 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/13 11:21:15 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/13 15:51:05 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ void	args_get(t_env *e, int argc, char **argv)
 	e->arg.m = -1;
 	while (++i < argc)
 		args_comp(e, argc, argv, i);
-	e->arg.w = (e->arg.w < 320 || e->arg.w > 2560 ? 1000 : e->arg.w);
-	e->arg.h = (e->arg.h < 200 || e->arg.h > 1440 ? 720 : e->arg.h);
+	e->arg.w = (e->arg.w < 320 ? 1000 : e->arg.w);
+	e->arg.h = (e->arg.h < 200 ? 900 : e->arg.h);
 	if (e->arg.s != 1 && e->arg.s != 2 && e->arg.s != 4 && e->arg.s != 8)
 		e->arg.s = 1;
 }
@@ -61,7 +61,7 @@ void	args_comp(t_env *e, int argc, char **argv, int i)
 			e->arg.g = ft_atof(argv[i + 1]);
 		if (!ft_strcmp(argv[i], "-f") || !ft_strcmp(argv[i], "--fov"))
 			e->arg.f = ft_atoi(argv[i + 1]);
-		if (!ft_strcmp(argv[i], "-d") || !ft_strcmp(argv[i], "--maxdepth"))
+		if (!ft_strcmp(argv[i], "-m") || !ft_strcmp(argv[i], "--maxdepth"))
 			e->arg.m = ft_atoi(argv[i + 1]);
 	}
 	!ft_strcmp(argv[i], "--help") ? args_disp() : 0;
@@ -70,11 +70,14 @@ void	args_comp(t_env *e, int argc, char **argv, int i)
 void	args_disp(void)
 {
 	ft_putendl("\nusage:\n./rtv1 [scene] [-w width] [-h height] [--help]");
-	ft_putendl("\noptions");
-	ft_putendl("-w <width>	  set specified program window width.");
-	ft_putendl("-h <height>	  set specified program window height.");
-	ft_putendl("-s <sampling> set specified supersampling value.");
-	ft_putendl("--help		show help.\n");
+	ft_putendl("\noptions:");
+	ft_putendl("-w <width>     set specified program window width.");
+	ft_putendl("-h <height>    set specified program window height.");
+	ft_putendl("-s <sampling>  set specified supersampling value.");
+	ft_putendl("-g <gamma>     set specified gamma value.");
+	ft_putendl("-f <fov>       set specified fov value.");
+	ft_putendl("-m <maxdepth>  set specified max reflection depth value.");
+	ft_putendl("--help         show help.\n");
 	exit(0);
 }
 

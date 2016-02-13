@@ -118,4 +118,18 @@ object
 		shininess = 512
 	}
 }
+object
+{
+	type = sphere
+	pos = { 0, 0, -10 }
+	scale = 10.0
+	material
+	{
+		color = 0xFFFFFF
+		ambient = 0.075
+		diffuse = 0.925
+		specular = 1.0
+		shininess = 512
+	}
+}
 

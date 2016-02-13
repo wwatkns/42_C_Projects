@@ -4,7 +4,6 @@ camera
 	dir = { 0, 0, 1 }
 	fov = 40
 	gamma = 0.985
-	maxdepth = 4
 }
 light
 {

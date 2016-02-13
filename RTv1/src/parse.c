@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 15:01:22 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/13 11:21:33 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/13 17:07:50 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	parse_scene(t_env *e)
 	error((fd = open(e->arg.file_scene, O_RDWR)));
 	while (get_next_line(fd, &line) > 0)
 	{
-		!ft_strcmp(line, "camera") ? create_camera(e, fd) : 0;
+		!ft_strcmp(line, "camera") ? parse_camera(e, fd) : 0;
 		if (!ft_strcmp(line, "light") && (light->next = create_light(fd)))
 			light = light->next;
 		if (!ft_strcmp(line, "object") && (obj->next = create_object(fd)))
@@ -35,7 +35,7 @@ void	parse_scene(t_env *e)
 	error((close(fd) + 1));
 }
 
-void	create_camera(t_env *e, int fd)
+void	parse_camera(t_env *e, int fd)
 {
 	char	*line;
 
@@ -105,7 +105,7 @@ t_obj	*create_object(int fd)
 		if (ft_strstr(line, "scale"))
 			obj->scale = ft_atof(ft_strstr(line, "=") + 1);
 		if (ft_strstr(line, "material"))
-			obj->mat = create_material(fd);
+			obj->mat = parse_material(fd);
 		ft_strdel(&line);
 	}
 	ft_strdel(&line);
@@ -113,7 +113,7 @@ t_obj	*create_object(int fd)
 	return (obj);
 }
 
-t_mat	create_material(int fd)
+t_mat	parse_material(int fd)
 {
 	char	*line;
 	t_mat	mat;
@@ -131,8 +131,6 @@ t_mat	create_material(int fd)
 			mat.specular = ft_atof(ft_strstr(line, "=") + 1);
 		if (ft_strstr(line, "shininess"))
 			mat.shininess = ft_atof(ft_strstr(line, "=") + 1);
-		if (ft_strstr(line, "reflective"))
-			mat.reflective = ft_atof(ft_strstr(line, "=") + 1);
 		ft_strdel(&line);
 	}
 	ft_strdel(&line);

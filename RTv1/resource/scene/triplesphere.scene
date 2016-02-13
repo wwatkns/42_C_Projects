@@ -4,7 +4,6 @@ camera
 	dir = { 0, 0, 1 }
 	fov = 60
 	gamma = 0.91
-	maxdepth = 3
 }
 light
 {
@@ -24,7 +23,7 @@ object
 		diffuse = 0.925
 		specular = 50.0
 		shininess = 1024
-		reflective = 0.5
+		reflective = 1.0
 	}
 }
 object
@@ -39,7 +38,7 @@ object
 		diffuse = 0.925
 		specular = 50.0
 		shininess = 1024
-		reflective = 0.5
+		reflective = 0.25
 	}
 }
 object
@@ -54,6 +53,6 @@ object
 		diffuse = 0.925
 		specular = 50.0
 		shininess = 1024
-		reflective = 0.5
+		reflective = 0
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 12:52:47 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/12 17:41:52 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/13 19:26:52 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,6 @@ void	cam_init(t_env *e)
 	e->cam.yi = e->cam.h / (double)e->win.h;
 	e->cam.supersampling_inc = 1 / e->cam.supersampling;
 	e->cam.supersampling_coeff = 1 / powf(e->cam.supersampling, 2);
+
+
 }

@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 10:54:12 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/13 11:21:08 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/13 18:33:06 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ typedef struct	s_mat
 	double	diffuse;
 	double	specular;
 	double	shininess;
-	double	reflective;
 }				t_mat;
 
 typedef struct	s_obj
@@ -150,10 +149,10 @@ void			error(int err);
 */
 
 void			parse_scene(t_env *e);
-void			create_camera(t_env *e, int fd);
+void			parse_camera(t_env *e, int fd);
 t_lgt			*create_light(int fd);
 t_obj			*create_object(int fd);
-t_mat			create_material(int fd);
+t_mat			parse_material(int fd);
 
 /*
 **	set.c functions

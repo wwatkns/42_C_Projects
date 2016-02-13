@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/11 12:13:56 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/13 11:12:02 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/13 14:46:07 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	init_material(t_mat *mat)
 	mat->diffuse = 0.0;
 	mat->specular = 0.0;
 	mat->shininess = 0.0;
-	mat->reflective = 0.0;
 }
 
 void	init_light(t_lgt *light)

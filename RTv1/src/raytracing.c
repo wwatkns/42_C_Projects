@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 11:03:23 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/13 10:54:08 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/13 19:27:04 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	raytracing(t_env *e)
 		e->ray.x = -1;
 		while (++e->ray.x < e->win.w)
 		{
-			e->color_out = vec3(0.0, 0.0, 0.0);
+			e->color_out = vec3(0, 0, 0);
 			i = e->ray.x;
 			while (i < e->ray.x + 1.0)
 			{
@@ -59,8 +59,11 @@ void	raytracing_reflect(t_env *e, t_obj *obj)
 	e->ray.pos = e->ray.hit;
 	set_normal(e, obj);
 	e->ray.dir = vec3_reflect(e->ray.dir, obj->normal);
-	if (e->recursiondepth < e->cam.maxdepth && (e->recursiondepth += 1))
+	if (e->recursiondepth < e->cam.maxdepth)
+	{
+		e->recursiondepth++;
 		raytracing_draw(e);
+	}
 	else
 		e->recursiondepth = 0;
 }
@@ -79,22 +82,16 @@ void	raytracing_color(t_env *e, t_obj *obj, double *tmin, double *t)
 		set_light(e, light);
 		set_normal(e, obj);
 		set_shadows(e, obj, tmin, t);
-
 		light->atenuation = 1.0 / (light->constant + light->linear *
 		*tmin + light->quadratic * (*tmin * *tmin));
-
 		ambient = vec3_fmul(light->color, obj->mat.ambient);
 		diffuse = set_diffuse(e, obj, light);
 		specular = set_specular(e, obj, light);
-
 		e->color_t = vec3_add(ambient, vec3_add(diffuse, specular));
 		e->color_t = vec3_fmul(e->color_t, light->atenuation);
 		e->color_t = vec3_fmul(e->color_t, e->shadow);
-
-		e->color_t = vec3_fmul(e->color_t, 1.0 - obj->mat.reflective);
-		e->color = vec3_add(e->color, vec3_mul(obj->mat.color, e->color_t));
-		e->color = vec3_fmul(e->color, 1.0 - obj->mat.reflective);
-		vec3_clamp(&e->color, 0, 1);
+		e->color_t = vec3_mul(e->color_t, obj->mat.color);
+		e->color = vec3_add(e->color, e->color_t);
 	}
 }
 
@@ -109,8 +106,7 @@ void	raytracing_draw(t_env *e)
 	if (obj != NULL && tmin != INFINITY)
 	{
 		e->ray.hit = vec3_add(e->ray.pos, vec3_fmul(e->ray.dir, tmin));
-	//	if (obj->mat.reflective > 0.0)
-			raytracing_reflect(e, obj);
+		raytracing_reflect(e, obj);
 		raytracing_color(e, obj, &tmin, &t);
 	}
 	else

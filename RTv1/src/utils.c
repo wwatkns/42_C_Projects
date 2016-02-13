@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 17:56:39 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/12 14:33:47 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/13 15:44:20 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_vec3	parse_vector(char *line)
 
 	i = 0;
 	n = 0;
-	vec3 = (t_vec3) { 0.0, 0.0, 0.0 };
+	vec3 = (t_vec3) { 0, 0, 0 };
 	split = ft_strsplit(line, ' ');
 	while (split[i] != NULL && n != 3)
 	{
@@ -58,7 +58,7 @@ t_vec3	parse_vector(char *line)
 
 void	set_gamma(t_env *e)
 {
-	e->color_out.x = powf(e->color_out.x, e->cam.invgamma);
-	e->color_out.y = powf(e->color_out.y, e->cam.invgamma);
-	e->color_out.z = powf(e->color_out.z, e->cam.invgamma);
+	e->color_out.x = pow(e->color_out.x, e->cam.invgamma);
+	e->color_out.y = pow(e->color_out.y, e->cam.invgamma);
+	e->color_out.z = pow(e->color_out.z, e->cam.invgamma);
 }
