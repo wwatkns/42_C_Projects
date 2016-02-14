@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 12:52:47 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/13 19:26:52 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/14 09:08:12 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	core(t_env *e)
 {
 	error((int)(e->mlx = mlx_init()));
 	error((int)(e->win.adr = mlx_new_window(e->mlx, e->win.w, e->win.h,
-	ft_strjoin(e->arg.file_scene, " - RTV1"))));
+	e->arg.file_scene)));
 	ft_strdel(&e->arg.file_scene);
 	img_init(e);
 	raytracing(e);

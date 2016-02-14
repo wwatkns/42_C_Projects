@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 15:01:22 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/13 17:07:50 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/14 09:45:30 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	parse_camera(t_env *e, int fd)
 	char	*line;
 
 	init_camera(e);
-	while (get_next_line(fd, &line) > 0 && !ft_strnstr(line, "}", 1))
+	while (get_next_line(fd, &line) > 0 && line[0] != '}')
 	{
 		if (ft_strstr(line, "pos"))
 			e->cam.pos = parse_vector(line);
@@ -68,7 +68,7 @@ t_lgt	*create_light(int fd)
 
 	error((int)(light = (t_lgt*)malloc(sizeof(t_lgt))));
 	init_light(light);
-	while (get_next_line(fd, &line) > 0 && !ft_strnstr(line, "}", 1))
+	while (get_next_line(fd, &line) > 0 && line[0] != '}')
 	{
 		if (ft_strstr(line, "pos"))
 			light->pos = parse_vector(line);
@@ -94,7 +94,7 @@ t_obj	*create_object(int fd)
 
 	error((int)(obj = (t_obj*)malloc(sizeof(t_obj))));
 	init_object(obj);
-	while (get_next_line(fd, &line) > 0 && !ft_strnstr(line, "}", 1))
+	while (get_next_line(fd, &line) > 0 && line[0] != '}')
 	{
 		if (ft_strstr(line, "type"))
 			obj->type = parse_type(line);
@@ -119,7 +119,7 @@ t_mat	parse_material(int fd)
 	t_mat	mat;
 
 	init_material(&mat);
-	while (get_next_line(fd, &line) > 0 && !ft_strnstr(line, "}", 5))
+	while (get_next_line(fd, &line) > 0 && line[1] != '}')
 	{
 		if (ft_strstr(line, "color"))
 			mat.color = hex_to_color(ft_atoi_base(line, 16));

@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 17:56:39 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/13 15:44:20 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/14 09:45:48 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ t_vec3	parse_vector(char *line)
 		ft_strdel(&split[i]);
 		i++;
 	}
-	ft_strdel(split);
+	ft_strdel(&split[i]);
+	free(split);
 	vec3_clamp(&vec3, MIN_POS, MAX_POS);
 	return (vec3);
 }
