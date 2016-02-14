@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 12:52:47 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/14 09:08:12 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/14 13:02:42 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	cam_init(t_env *e)
 	e->cam.w = e->win.w / coeff;
 	e->cam.h = e->win.h / coeff;
 	e->cam.dist = 1.0 / tan(e->cam.fov / 2.0 * DEG2RAD);
-	e->cam.origin = vec3_sub(vec3_add(e->cam.pos,
+	e->cam.origin = vec3_sub(vec3_add(vec3(0, 0, 0),
 				vec3_add(vec3_fmul(e->cam.dir, e->cam.dist),
 				vec3_fmul(vec3_up(), e->cam.h / 2.0))),
 				vec3_fmul(vec3_right(), e->cam.w / 2.0));
@@ -61,6 +61,4 @@ void	cam_init(t_env *e)
 	e->cam.yi = e->cam.h / (double)e->win.h;
 	e->cam.supersampling_inc = 1 / e->cam.supersampling;
 	e->cam.supersampling_coeff = 1 / powf(e->cam.supersampling, 2);
-
-
 }

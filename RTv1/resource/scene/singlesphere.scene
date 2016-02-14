@@ -1,7 +1,7 @@
 camera
 {
 	pos = { 0, 0.2, 0 }
-	dir = { 0, 0, 1 }
+	rot = { 0, 0, 0 }
 	fov = 60
 }
 light

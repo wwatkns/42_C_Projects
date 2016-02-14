@@ -1,10 +1,10 @@
 camera
 {
-	pos = { 0, 0.01, 0 }
-	dir = { 0, 0, 1 }
+	pos = { 0, 10.01, 0 }
+	rot = { 35, 40, 35 }
 	fov = 90
-	gamma = 0.95
-	maxdepth = 3
+	gamma = 0.7
+	maxdepth = 4
 }
 light
 {

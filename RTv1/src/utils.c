@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 17:56:39 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/14 09:45:48 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/14 13:44:10 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,15 @@ void	set_gamma(t_env *e)
 	e->color_out.x = pow(e->color_out.x, e->cam.invgamma);
 	e->color_out.y = pow(e->color_out.y, e->cam.invgamma);
 	e->color_out.z = pow(e->color_out.z, e->cam.invgamma);
+}
+
+void	disp_loading(t_env *e)
+{
+	float	progress;
+	float	goal;
+
+	progress = (float)e->ray.x * ((float)e->ray.y + 4.0);
+	goal = (float)e->win.w * (float)e->win.h;
+	ft_putnbr((progress / goal) * 100.0);
+	ft_putstr("%\n");
 }

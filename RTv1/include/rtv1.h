@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 10:54:12 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/14 09:45:15 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/14 13:42:59 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@ typedef struct	s_arg
 	int		f;
 	int		m;
 	double	g;
+	double	x;
+	double	y;
+	double	z;
 }				t_arg;
 
 typedef struct	s_img
@@ -73,6 +76,7 @@ typedef struct	s_cam
 {
 	t_vec3	pos;
 	t_vec3	dir;
+	t_vec3	rot;
 	t_vec3	origin;
 	double	fov;
 	double	dist;
@@ -132,6 +136,8 @@ typedef struct	s_env
 	t_vec3	color_out;
 	int		recursiondepth;
 	double	shadow;
+	double	i;
+	double	j;
 	void	*mlx;
 }				t_env;
 
@@ -171,6 +177,7 @@ int				str_digit(char *str);
 int				parse_type(char *line);
 t_vec3			parse_vector(char *line);
 void			set_gamma(t_env *e);
+void			disp_loading(t_env *e);
 
 /*
 **	core.c	functions
@@ -202,7 +209,7 @@ t_vec3			hex_to_color(int hex);
 */
 
 void			raytracing(t_env *e);
-void			raytracing_init(t_env *e, double i, double j);
+void			raytracing_init(t_env *e);
 void			raytracing_color(t_env *e, t_obj *obj, double *tmin, double *t);
 void			raytracing_draw(t_env *e);
 

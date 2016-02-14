@@ -1,7 +1,6 @@
 camera
 {
 	pos = { 0, 0, 0 }
-	dir = { 0, 0, 1 }
 	fov = 90
 	gamma = 1.1
 }

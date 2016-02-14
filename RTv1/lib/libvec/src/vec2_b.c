@@ -6,51 +6,50 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/27 10:57:57 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/09 08:09:21 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/14 12:36:15 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libvec.h"
 
-t_vec2	vec2_add(t_vec2 vec2a, t_vec2 vec2b)
+t_vec2	vec2_add(t_vec2 va, t_vec2 vb)
 {
-	t_vec2	vec2;
+	t_vec2	v;
 
-	vec2.x = vec2a.x + vec2b.x;
-	vec2.y = vec2a.y + vec2b.y;
-	return (vec2);
+	v.x = va.x + vb.x;
+	v.y = va.y + vb.y;
+	return (v);
 }
 
-t_vec2	vec2_sub(t_vec2 vec2a, t_vec2 vec2b)
+t_vec2	vec2_sub(t_vec2 va, t_vec2 vb)
 {
-	t_vec2	vec2;
+	t_vec2	v;
 
-	vec2.x = vec2a.x - vec2b.x;
-	vec2.y = vec2a.y - vec2b.y;
-	return (vec2);
+	v.x = va.x - vb.x;
+	v.y = va.y - vb.y;
+	return (v);
 }
 
-t_vec2	vec2_mul(t_vec2 vec2a, t_vec2 vec2b)
+t_vec2	vec2_mul(t_vec2 va, t_vec2 vb)
 {
-	t_vec2	vec2;
+	t_vec2	v;
 
-	vec2.x = vec2a.x * vec2b.x;
-	vec2.y = vec2a.y * vec2b.y;
-	return (vec2);
+	v.x = va.x * vb.x;
+	v.y = va.y * vb.y;
+	return (v);
 }
 
-double	vec2_dot(t_vec2 vec2a, t_vec2 vec2b)
+double	vec2_dot(t_vec2 va, t_vec2 vb)
 {
-	return ((vec2a.x * vec2b.x + vec2a.y * vec2b.y));
+	return ((va.x * vb.x + va.y * vb.y));
 }
 
-void	vec2_rot(t_vec2 *vec2, double theta)
+void	vec2_rot(t_vec2 *v, double theta)
 {
-	t_vec2	vec2t;
+	t_vec2	r;
 
 	theta *= DEG2RAD;
-	vec2t.x = vec2->x * cos(theta) - vec2->y * sin(theta);
-	vec2t.y = vec2->x * sin(theta) + vec2->y * cos(theta);
-	vec2->x = vec2t.x;
-	vec2->y = vec2t.y;
+	r.x = v->x * cos(theta) - v->y * sin(theta);
+	r.y = v->x * sin(theta) + v->y * cos(theta);
+	*v = r;
 }

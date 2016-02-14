@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 15:01:22 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/14 09:45:30 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/14 11:00:09 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ void	parse_camera(t_env *e, int fd)
 	{
 		if (ft_strstr(line, "pos"))
 			e->cam.pos = parse_vector(line);
-		if (ft_strstr(line, "dir"))
-			e->cam.dir = vec3_norm(parse_vector(line));
+		if (ft_strstr(line, "rot"))
+			e->cam.rot = parse_vector(line);
 		if (ft_strstr(line, "fov"))
 			e->cam.fov = ft_atof(ft_strstr(line, "=") + 1);
 		if (ft_strstr(line, "gamma"))
@@ -58,6 +58,9 @@ void	parse_camera(t_env *e, int fd)
 	e->arg.f != -1 ? e->cam.fov = e->arg.f : 0;
 	e->arg.m != -1 ? e->cam.maxdepth = e->arg.m : 0;
 	e->arg.g != -1 ? e->cam.invgamma = 1.0 / e->arg.g : 0;
+	e->arg.x != INFINITY ? e->cam.rot.x = e->arg.x : 0;
+	e->arg.y != INFINITY ? e->cam.rot.y = e->arg.y : 0;
+	e->arg.z != INFINITY ? e->cam.rot.z = e->arg.z : 0;
 	e->cam.maxdepth < 0 ? e->cam.maxdepth = 0 : 0;
 }
 

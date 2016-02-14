@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 11:03:23 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/13 19:27:04 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/14 13:43:59 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 void	raytracing(t_env *e)
 {
-	double	i;
-	double	j;
-
 	e->ray.y = -1;
 	while (++e->ray.y < e->win.h)
 	{
@@ -24,33 +21,35 @@ void	raytracing(t_env *e)
 		while (++e->ray.x < e->win.w)
 		{
 			e->color_out = vec3(0, 0, 0);
-			i = e->ray.x;
-			while (i < e->ray.x + 1.0)
+			e->i = e->ray.x;
+			while (e->i < e->ray.x + 1.0)
 			{
-				j = e->ray.y;
-				while (j < e->ray.y + 1.0)
+				e->j = e->ray.y;
+				while (e->j < e->ray.y + 1.0)
 				{
-					raytracing_init(e, i, j);
+					raytracing_init(e);
 					raytracing_draw(e);
-					j += e->cam.supersampling_inc;
+					e->j += e->cam.supersampling_inc;
 				}
-				i += e->cam.supersampling_inc;
+				e->i += e->cam.supersampling_inc;
 			}
 			e->cam.invgamma != 1.0 ? set_gamma(e) : 0;
 			img_pixel_put(e, e->ray.x, e->ray.y, e->color_out);
 		}
+		e->ray.y % 10 == 0 ? disp_loading(e) : 0;
 	}
 }
 
-void	raytracing_init(t_env *e, double i, double j)
+void	raytracing_init(t_env *e)
 {
 	e->recursiondepth = 0;
 	e->ray.pos = e->cam.pos;
 	e->ray.dir = e->cam.origin;
 	e->ray.hit = vec3(0, 0, 0);
 	e->ray.dir = vec3_add(e->cam.origin, vec3_sub(
-				vec3_fmul(vec3_right(), e->cam.xi * i),
-				vec3_fmul(vec3_up(), e->cam.yi * j)));
+				vec3_fmul(vec3_right(), e->cam.xi * e->i),
+				vec3_fmul(vec3_up(), e->cam.yi * e->j)));
+	vec3_rotate(&e->ray.dir, e->cam.rot);
 	vec3_normalize(&e->ray.dir);
 }
 
@@ -83,7 +82,7 @@ void	raytracing_color(t_env *e, t_obj *obj, double *tmin, double *t)
 		set_normal(e, obj);
 		set_shadows(e, obj, tmin, t);
 		light->atenuation = 1.0 / (light->constant + light->linear *
-		*tmin + light->quadratic * (*tmin * *tmin));
+			*tmin + light->quadratic * (*tmin * *tmin));
 		ambient = vec3_fmul(light->color, obj->mat.ambient);
 		diffuse = set_diffuse(e, obj, light);
 		specular = set_specular(e, obj, light);
