@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 10:54:12 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/14 13:42:59 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/15 09:08:22 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,7 @@ typedef struct	s_env
 	double	shadow;
 	double	i;
 	double	j;
+	int		loading;
 	void	*mlx;
 }				t_env;
 

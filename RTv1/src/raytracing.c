@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 11:03:23 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/14 13:43:59 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/15 09:08:32 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	raytracing(t_env *e)
 			e->cam.invgamma != 1.0 ? set_gamma(e) : 0;
 			img_pixel_put(e, e->ray.x, e->ray.y, e->color_out);
 		}
-		e->ray.y % 10 == 0 ? disp_loading(e) : 0;
+		e->ray.y % e->loading == 0 ? disp_loading(e) : 0;
 	}
 }
 

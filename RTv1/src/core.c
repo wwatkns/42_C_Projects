@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 12:52:47 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/14 13:02:42 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/15 09:09:03 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	env_init(t_env *e)
 	e->win.dh = e->arg.h / 2;
 	e->recursiondepth = 0;
 	e->shadow = 1.0;
+	e->loading = e->win.h / 100.0;
 }
 
 void	cam_init(t_env *e)

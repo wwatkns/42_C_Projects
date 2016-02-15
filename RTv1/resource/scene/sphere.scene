@@ -1,0 +1,76 @@
+camera
+{
+	pos = { 0, 0, 0 }
+	rot = { 0, 0, 0 }
+	fov = 60
+}
+light
+{
+	pos = { 0, -2, 0 }
+	color = 0xEA3546
+	intensity = 1.0
+}
+light
+{
+	pos = { 0, 2, 0 }
+	color = 0xF9C80E
+	intensity = 1.0
+}
+object
+{
+	type = plane
+	dir = { -1, 0, 0 }
+	pos = { 5, 0, 0 }
+	scale = 5.0
+	material
+	{
+		color = 0x393E41
+		ambient = 0.005
+		diffuse = 0.995
+		specular = 1.7
+		shininess = 256
+	}
+}
+object
+{
+	type = plane
+	dir = { 1, 0, 0 }
+	pos = { -5, 0, 0 }
+	scale = 5.0
+	material
+	{
+		color = 0x393E41
+		ambient = 0.005
+		diffuse = 0.995
+		specular = 1.7
+		shininess = 256
+	}
+}
+object
+{
+	type = sphere
+	pos = { 0, 0, 4 }
+	scale = 1.0
+	material
+	{
+		color = 0x8E8DBE
+		ambient = 0.005
+		diffuse = 0.995
+		specular = 1.7
+		shininess = 256
+	}
+}
+object
+{
+	type = sphere
+	pos = { 0, 0, -4 }
+	scale = 1.0
+	material
+	{
+		color = 0x8E8DBE
+		ambient = 0.005
+		diffuse = 0.995
+		specular = 1.7
+		shininess = 256
+	}
+}
