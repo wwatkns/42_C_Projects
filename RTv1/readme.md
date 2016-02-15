@@ -1,10 +1,7 @@
 # RTv1
 
-Ce mini-projet est une première étape dans la réalisation d’un programme de
-Raytracing, en vue de calculer entièrement des images de synthèse
-
 _This project is a first step towards the realization of a raytracing program,_
-__
+_in order to create computer generated pictures._
 
 __Installation:__
 
