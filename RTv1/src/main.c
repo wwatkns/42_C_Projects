@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 11:05:13 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/14 13:02:48 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/15 13:59:23 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,11 @@ void	args_get(t_env *e, int argc, char **argv)
 	e->arg.z = INFINITY;
 	while (++i < argc)
 		args_comp(e, argc, argv, i);
-	e->arg.w = (e->arg.w < 320 ? 1000 : e->arg.w);
-	e->arg.h = (e->arg.h < 200 ? 900 : e->arg.h);
+	e->arg.w = (e->arg.w < 320 || e->arg.w > 10000 ? 1000 : e->arg.w);
+	e->arg.h = (e->arg.h < 200 || e->arg.h > 5000 ? 900 : e->arg.h);
 	if (e->arg.s != 1 && e->arg.s != 2 && e->arg.s != 4 && e->arg.s != 8)
 		e->arg.s = 1;
+	e->arg.m = (e->arg.m > 64 ? 64 : e->arg.m);
 }
 
 void	args_comp(t_env *e, int argc, char **argv, int i)

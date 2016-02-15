@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 10:54:12 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/15 09:08:22 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/15 13:45:42 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 # include <mlx.h>
 # include <math.h>
 # include <stdlib.h>
-
-# include <stdio.h> // temporary
 
 # define ABS(x) (x < 0 ? -x : x)
 # define MIN_POS -1000.0
@@ -211,8 +209,9 @@ t_vec3			hex_to_color(int hex);
 
 void			raytracing(t_env *e);
 void			raytracing_init(t_env *e);
-void			raytracing_color(t_env *e, t_obj *obj, double *tmin, double *t);
 void			raytracing_draw(t_env *e);
+void			raytracing_reflect(t_env *e, t_obj *obj);
+void			raytracing_color(t_env *e, t_obj *obj, double *tmin, double *t);
 
 /*
 **	ray_intersect.c functions

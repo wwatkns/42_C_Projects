@@ -13,7 +13,7 @@ object
 {
 	type = cylinder
 	pos = { 0, 1, 10 }
-	dir = { 10, 0, 0 }
+	dir = { 0, 0, 45 }
 	scale = 1.0
 	material
 	{
