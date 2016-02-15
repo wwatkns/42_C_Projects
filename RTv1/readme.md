@@ -19,11 +19,11 @@ __Installation:__
 * `-h` [`window_height`]  loads with defined window height.
 * `-s` [`supersampling`] set specified supersampling value.
 * `-g` [`gamma`] set specified gamma value.
-* `-f` [`fov`] set defined fov value.
-* `-m` [`max_depth`] set defined maximum reflection depth value.
-* `-x` [`angle(deg)`] set defined camera angle on x axis.
-* `-y` [`angle(deg)`] set defined camera angle on y axis.
-* `-z` [`angle(deg)`] set defined camera angle on z axis.
+* `-f` [`fov`] set specified field of view value.
+* `-m` [`max_depth`] set specified maximum reflection depth value.
+* `-x` [`angle(deg)`] set specified camera angle on x axis.
+* `-y` [`angle(deg)`] set specified camera angle on y axis.
+* `-z` [`angle(deg)`] set specified camera angle on z axis.
 * `--help`  display help text.
 
 **Example:**
