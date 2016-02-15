@@ -6,7 +6,7 @@
 #    By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/27 14:31:06 by wwatkins          #+#    #+#              #
-#    Updated: 2016/02/09 18:33:09 by wwatkins         ###   ########.fr        #
+#    Updated: 2016/02/15 15:32:50 by wwatkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,12 @@ NAME = libvec.a
 CC = gcc
 CFGLAGS = -Werror -Wextra -Wall
 
-SRC_NAME  = vec2_a.c vec2_b.c vec3_a.c vec3_b.c vec3_c.c vec.c
+SRC_NAME = vec2.c vec2i.c vec2_add.c vec2_sub.c vec2_mul.c vec2_fmul.c \
+		   vec2_dot.c vec2_rot.c vec2_magnitude.c vec2_normalize.c vec2_scale.c \
+		   vec3_zero.c vec3_up.c vec3_right.c vec3_forward.c vec3.c vec3i.c \
+		   vec3_add.c vec3_sub.c vec3_mul.c vec3_fmul.c vec3_dot.c vec3_rot.c \
+		   vec3_clamp.c vec3_rotate.c vec3_cross.c vec3_norm.c vec3_reflect.c \
+		   vec3_scale.c vec3_magnitude.c vec3_normalize.c
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 
