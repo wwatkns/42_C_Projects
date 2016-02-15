@@ -1,7 +1,6 @@
 # RTv1
 
-_This project is a first step towards the realization of a raytracing program,_
-_in order to create computer generated pictures._
+_This project is a first step towards the realization of a raytracing program, in order to create computer generated pictures._
 
 __Installation:__
 
