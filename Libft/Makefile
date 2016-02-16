@@ -6,7 +6,7 @@
 #    By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 14:56:55 by wwatkins          #+#    #+#              #
-#    Updated: 2016/01/29 10:36:05 by wwatkins         ###   ########.fr        #
+#    Updated: 2016/02/16 09:24:09 by wwatkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ ft_strsplit.c ft_itoa.c ft_putchar.c ft_putstr.c ft_putendl.c ft_putnbr.c \
 ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_lstnew.c \
 ft_lstdelone.c ft_lstdel.c ft_lstadd.c ft_lstiter.c ft_lstmap.c \
 ft_nbrlen.c ft_strrev.c ft_wordcount.c ft_isblank.c ft_itoa_base.c \
-ft_atoi_base.c ft_atof.c get_next_line.c
+ft_atoi_base.c ft_atof.c ft_clamp.c get_next_line.c
 OBJ= $(SRC:.c=.o)
 
 all: $(NAME)
