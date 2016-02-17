@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 14:57:50 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/17 14:37:11 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/17 14:38:13 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int		print_base(int n, const int base, int f);
 int		print_mem(unsigned int p);
 
 int		nbr_len(long long int n);
-int		nbr_len_base(long long int n);
+int		nbr_len_base(long long int n, const int base);
 int		str_len(char *s);
 
 #endif
