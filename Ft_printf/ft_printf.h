@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 14:57:50 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/17 14:01:17 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/17 14:37:11 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,29 @@ typedef struct	s_e
 	int		plen;
 	int		tlen;
 }				t_e;
+
+/*
+**
+*/
+
+int		ft_printf(const char *restrict format, ...);
+
+int		print_short(const short n);
+int		print_int(const int n);
+int		print_long_int(const long int n);
+int		print_long_long_int(const long long int n);
+
+int		print_char(const char c);
+int		print_wchar_t(const wchar_t c);
+
+int		print_str(const char *s);
+int		print_str_wchar_t(const wchar_t *s);
+
+int		print_base(int n, const int base, int f);
+int		print_mem(unsigned int p);
+
+int		nbr_len(long long int n);
+int		nbr_len_base(long long int n);
+int		str_len(char *s);
 
 #endif
