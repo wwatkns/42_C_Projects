@@ -1,0 +1,32 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2016/02/17 13:22:20 by wwatkins          #+#    #+#              #
+#    Updated: 2016/02/17 13:23:24 by wwatkins         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME= ft_printf.a
+FLAG= -Wall -Werror -Wextra
+INCL= /ft_printf.h
+SRC= ft_printf.c
+OBJ= $(SRC:.c=.o)
+
+all: $(NAME)
+
+$(NAME):
+	gcc $(FLAG) -I$(INCL) -c $(SRC)
+	ar rc $(NAME) $(OBJ)
+	ranlib $(NAME)
+
+clean:
+	rm -rf $(OBJ)
+
+fclean: clean
+	rm -rf $(NAME)
+
+re: fclean all

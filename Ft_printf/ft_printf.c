@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memccpy.c                                       :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/25 10:02:39 by wwatkins          #+#    #+#             */
-/*   Updated: 2015/11/29 18:00:12 by wwatkins         ###   ########.fr       */
+/*   Created: 2016/02/17 13:24:21 by wwatkins          #+#    #+#             */
+/*   Updated: 2016/02/17 14:01:19 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
+int		ft_printf(const char *restrict format, ...)
 {
-	size_t			i;
-	unsigned char	*dstt;
-	unsigned char	*srct;
+	t_e		e;
 
-	i = 0;
-	dstt = (unsigned char*)dst;
-	srct = (unsigned char*)src;
-	while (i < n)
+	va_start(e.ap, format);
+	while (*format != '\0')
 	{
-		if ((*dstt++ = *srct++) == (unsigned char)c)
-			return (dstt);
-		i++;
+
+		format++;
 	}
-	return (NULL);
+	va_end(e.ap);
+	return (e.plen);
 }
