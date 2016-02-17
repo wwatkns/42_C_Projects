@@ -6,14 +6,14 @@
 #    By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/17 13:22:20 by wwatkins          #+#    #+#              #
-#    Updated: 2016/02/17 16:10:49 by wwatkins         ###   ########.fr        #
+#    Updated: 2016/02/17 17:09:55 by wwatkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME= ft_printf.a
 FLAG= -Wall -Werror -Wextra
 INCL= /ft_printf.h
-SRC= ft_printf.c print_base.c
+SRC= ft_printf.c print_base.c print_str.c print_int.c str_len.c
 OBJ= $(SRC:.c=.o)
 
 all: $(NAME)

@@ -1,33 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_base.c                                       :+:      :+:    :+:   */
+/*   print_str.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/17 15:54:56 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/17 16:46:45 by wwatkins         ###   ########.fr       */
+/*   Created: 2016/02/17 16:47:27 by wwatkins          #+#    #+#             */
+/*   Updated: 2016/02/17 17:09:21 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		print_base(long n, const int base, char maj)
+int		print_str(const char *s, int max)
 {
 	int		len;
-	int		cal;
-	char	c;
 
-	if (base < 2 || base > 16)
-		return (-1);
-	n < 0 ? n = -n : 0;
-	if (n > 0)
-	{
-		len = 1;
-		cal = n % base;
-		c = (cal > 9 ? cal - 10 + maj : cal + '0');
-		len += print_base(n / base, base, maj);
-		write(1, &c, 1);
-	}
+	len = str_len(s);
+	max > 0 && max < len ? len = max : 0;
+	write(1, s, len);
 	return (len);
 }
