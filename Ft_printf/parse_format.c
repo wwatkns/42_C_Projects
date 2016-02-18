@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   parse_format.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/17 13:24:21 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/18 10:38:56 by wwatkins         ###   ########.fr       */
+/*   Created: 2016/02/18 10:29:22 by wwatkins          #+#    #+#             */
+/*   Updated: 2016/02/18 10:55:16 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_printf(const char *restrict format, ...)
+int	parse_format(t_global *e, const char *format)
 {
-	t_global	e;
+	int	i;
 
-	va_start(e.ap, format);
-	while (*format != '\0')
-	{
-		if (*format == '%')
-			format += parse_format(format, &e);
-		write(1, format, 1);
-		format++;
-	}
-	va_end(e.ap);
-	return (e.plen);
+	i = 0;
+	if (*(format + 1) == '%')
+		return (1);
+	i += get_flags(e, format, i);
+	i += get_width(e, format, i);
+	i += get_prec(e, format, i);
+	i += get_mod(e, format, i);
+	i += get_type(e, format, i);
+	return (i);
 }
