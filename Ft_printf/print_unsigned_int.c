@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   print_unsigned_int.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/17 13:24:21 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/18 10:09:14 by wwatkins         ###   ########.fr       */
+/*   Created: 2016/02/18 10:07:59 by wwatkins          #+#    #+#             */
+/*   Updated: 2016/02/18 10:08:37 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_printf(const char *restrict format, ...)
+int		print_unsigned_int(unsigned long long int n)
 {
-	t_e		e;
+	int	len;
 
-	va_start(e.ap, format);
-	while (*format != '\0')
-	{
-		if (*format == '%')
-			parse_format(e);
-		format++;
-	}
-	va_end(e.ap);
-	return (e.plen);
+	len = 1;
+	n > 9 ? len += print_unsigned_int(n / 10) : 0;
+	print_char(n % 10 + '0');
+	return (len);
 }

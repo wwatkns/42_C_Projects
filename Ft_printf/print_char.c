@@ -1,28 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   print_char.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/17 13:24:21 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/18 10:09:14 by wwatkins         ###   ########.fr       */
+/*   Created: 2016/02/18 09:37:31 by wwatkins          #+#    #+#             */
+/*   Updated: 2016/02/18 10:05:16 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_printf(const char *restrict format, ...)
+int		print_char(const char c)
 {
-	t_e		e;
-
-	va_start(e.ap, format);
-	while (*format != '\0')
-	{
-		if (*format == '%')
-			parse_format(e);
-		format++;
-	}
-	va_end(e.ap);
-	return (e.plen);
+	write(1, &c, 1);
+	return (1);
 }

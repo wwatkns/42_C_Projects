@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 14:57:50 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/17 17:16:47 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/18 10:07:27 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdarg.h>
 # include <wchar.h>
 
-typedef struct	s_a
+typedef struct	s_arg
 {
 	char	flag;
 	char	width;
@@ -26,11 +26,12 @@ typedef struct	s_a
 	char	mod;
 	char	type;
 	int		tlen;
-	void	*arg;
-}				t_a;
+	void	*p;
+}				t_arg;
 
 typedef struct	s_e
 {
+	t_arg	arg;
 	va_list	ap;
 	int		plen;
 	int		tlen;
@@ -38,9 +39,8 @@ typedef struct	s_e
 
 int		ft_printf(const char *restrict format, ...);
 
-int		print_int(const int n);
-int		print_long_int(const long int n);
-int		print_long_long_int(const long long int n);
+int		print_int(long long int n);
+int		print_unsigned_int(unsigned long long int n);
 
 int		print_char(const char c);
 int		print_wchar_t(const wchar_t c);
@@ -53,5 +53,7 @@ int		print_mem(unsigned int p);
 
 int		nbr_len(long long int n);
 int		str_len(const char *s);
+
+int		parse_format();
 
 #endif

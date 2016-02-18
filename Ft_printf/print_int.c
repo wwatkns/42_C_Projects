@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   print_int.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/17 13:24:21 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/18 10:09:14 by wwatkins         ###   ########.fr       */
+/*   Created: 2016/02/18 09:40:27 by wwatkins          #+#    #+#             */
+/*   Updated: 2016/02/18 10:05:59 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_printf(const char *restrict format, ...)
+int		print_int(long long int n)
 {
-	t_e		e;
+	int	len;
 
-	va_start(e.ap, format);
-	while (*format != '\0')
+	len = 1;
+	if (n < 0)
 	{
-		if (*format == '%')
-			parse_format(e);
-		format++;
+		n = -n;
+		len++;
+		write(1, "-", 1);
 	}
-	va_end(e.ap);
-	return (e.plen);
+	n > 9 ? len += print_int(n / 10) : 0;
+	print_char(n % 10 + '0');
+	return (len);
 }

@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   print_mem.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/17 13:24:21 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/18 10:09:14 by wwatkins         ###   ########.fr       */
+/*   Created: 2016/02/18 10:09:22 by wwatkins          #+#    #+#             */
+/*   Updated: 2016/02/18 10:26:56 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_printf(const char *restrict format, ...)
+int		print_mem(unsigned int p)
 {
-	t_e		e;
+	int	len;
 
-	va_start(e.ap, format);
-	while (*format != '\0')
-	{
-		if (*format == '%')
-			parse_format(e);
-		format++;
-	}
-	va_end(e.ap);
-	return (e.plen);
+	write(1, "0x", 2);
+	len = print_base(p, 16, 'a') + 2;
+	return (len);
 }
