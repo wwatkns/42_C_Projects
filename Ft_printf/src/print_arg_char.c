@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   print_arg_char.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/17 13:24:21 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/18 10:38:56 by wwatkins         ###   ########.fr       */
+/*   Created: 2016/02/19 17:52:21 by wwatkins          #+#    #+#             */
+/*   Updated: 2016/02/19 18:03:54 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libftprintf.h"
 
-int		ft_printf(const char *restrict format, ...)
+void	print_arg_char(t_e *e, t_a *arg, int *i)
 {
-	t_global	e;
-
-	va_start(e.ap, format);
-	while (*format != '\0')
+	while (--arg->width > 0)
 	{
-		if (*format == '%')
-			format += parse_format(format, &e);
-		write(1, format, 1);
-		format++;
+		write(1, " ", 1);
+		*i += 1;
 	}
-	va_end(e.ap);
-	return (e.plen);
+	if (arg->mod.l || arg->type == 'C')
+		*i = print_char(va_arg(e->ap, wchar_t));
+	else
+		*i = print_char(va_arg(e->ap, int));
 }

@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_str.c                                        :+:      :+:    :+:   */
+/*   get_flags.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/17 16:47:27 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/17 17:09:21 by wwatkins         ###   ########.fr       */
+/*   Created: 2016/02/19 17:48:57 by wwatkins          #+#    #+#             */
+/*   Updated: 2016/02/19 17:49:13 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libftprintf.h"
 
-int		print_str(const char *s, int max)
+int	get_flags(const char *format, int i, t_a *arg)
 {
-	int		len;
-
-	len = str_len(s);
-	max > 0 && max < len ? len = max : 0;
-	write(1, s, len);
-	return (len);
+	while (is_flag(format[i]))
+	{
+		format[i] == ' ' ? arg->flag.sp = 1 : 0;
+		format[i] == '+' ? arg->flag.pl = 1 : 0;
+		format[i] == '-' ? arg->flag.mn = 1 : 0;
+		format[i] == '#' ? arg->flag.di = 1 : 0;
+		format[i] == '0' ? arg->flag.zr = 1 : 0;
+		i++;
+	}
+	return (i);
 }

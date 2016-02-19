@@ -1,22 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_width.c                                        :+:      :+:    :+:   */
+/*   get_prec.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/18 11:11:27 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/18 11:16:45 by wwatkins         ###   ########.fr       */
+/*   Created: 2016/02/19 17:49:44 by wwatkins          #+#    #+#             */
+/*   Updated: 2016/02/19 17:49:58 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libftprintf.h"
 
-static int	is_nbr(char c)
+int	get_prec(const char *format, int i, t_a *arg)
 {
-	return (c >= 0 && c <= 9);
-}
+	int	tmp;
+	int	mult;
+	int	re;
 
-int		get_width(t_global *e, const char *format, int i)
-{
+	mult = 1;
+	re = 0;
+	if (format[i] == '.')
+		i++;
+	tmp = i;
+	while (format[i] >= '0' && format[i] <= '9')
+		i++;
+	while (i > tmp)
+	{
+		re++;
+		arg->prec.prec = arg->prec.prec + (format[--i] - '0') * mult;
+		mult *= 10;
+	}
+	return (i + re);
 }

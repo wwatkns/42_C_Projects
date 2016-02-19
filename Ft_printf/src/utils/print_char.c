@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_mem.c                                        :+:      :+:    :+:   */
+/*   print_char.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/18 10:09:22 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/18 10:26:56 by wwatkins         ###   ########.fr       */
+/*   Created: 2016/02/19 17:58:00 by wwatkins          #+#    #+#             */
+/*   Updated: 2016/02/19 17:58:07 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libftprintf.h"
 
-int		print_mem(unsigned int p)
+int	print_char(char c)
 {
-	int	len;
-
-	write(1, "0x", 2);
-	len = print_base(p, 16, 'a') + 2;
-	return (len);
+	write(1, &c, 1);
+	return (1);
 }

@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_format.c                                     :+:      :+:    :+:   */
+/*   print_arg_base.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/18 10:29:22 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/18 10:55:16 by wwatkins         ###   ########.fr       */
+/*   Created: 2016/02/19 17:51:45 by wwatkins          #+#    #+#             */
+/*   Updated: 2016/02/19 17:52:15 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libftprintf.h"
 
-int	parse_format(t_global *e, const char *format)
+void	print_arg_base(t_e *e, t_a *arg, int *i)
 {
-	int	i;
-
-	i = 0;
-	if (*(format + 1) == '%')
-		return (1);
-	i += get_flags(e, format, i);
-	i += get_width(e, format, i);
-	i += get_prec(e, format, i);
-	i += get_mod(e, format, i);
-	i += get_type(e, format, i);
-	return (i);
+	if (arg->type == 'o' || arg->type == 'O')
+		*i = print_base(va_arg(e->ap, int), 8, 'a');
+	else if (arg->type == 'x')
+		*i = print_base(va_arg(e->ap, int), 16, 'a');
+	else if (arg->type == 'X')
+		*i = print_base(va_arg(e->ap, int), 16, 'A');
 }

@@ -5,17 +5,19 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/17 17:08:41 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/17 17:09:16 by wwatkins         ###   ########.fr       */
+/*   Created: 2016/02/19 18:00:54 by wwatkins          #+#    #+#             */
+/*   Updated: 2016/02/19 18:01:08 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		str_len(const char *s)
-{
-	int	len;
+#include "libftprintf.h"
 
-	len = 0;
-	while (s[len])
-		len++;
-	return (len);
+int	str_len(const char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
 }

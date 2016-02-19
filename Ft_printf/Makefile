@@ -5,30 +5,45 @@
 #                                                     +:+ +:+         +:+      #
 #    By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2016/02/17 13:22:20 by wwatkins          #+#    #+#              #
-#    Updated: 2016/02/18 11:17:41 by wwatkins         ###   ########.fr        #
+#    Created: 2016/02/19 17:43:51 by wwatkins          #+#    #+#              #
+#    Updated: 2016/02/19 17:44:15 by wwatkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME= ft_printf.a
-FLAG= -Wall -Werror -Wextra
-INCL= /ft_printf.h
-SRC= ft_printf.c print_base.c print_str.c print_char.c print_int.c str_len.c \
-	 print_unsigned_int.c print_mem.c parse_format.c get_flags.c get_width.c \
-	 get_prec.c get_mod.c get_type.c
-OBJ= $(SRC:.c=.o)
+SRC_PATH = ./src/
+OBJ_PATH = ./obj/
+LIB_PATH = ./libft/
+INC_PATH = ./include/
+
+NAME = libftprintf.a
+CC = clang
+CFGLAGS = -Werror -Wextra -Wall
+
+SRC_NAME  = ft_printf.c
+
+OBJ_NAME = $(SRC_NAME:.c=.o)
+
+SRC = $(addprefix $(SRC_PATH), $(SRC_NAME))
+OBJ = $(addprefix $(OBJ_PATH), $(OBJ_NAME))
+INC = $(addprefix -I,$(INC_PATH))
 
 all: $(NAME)
 
-$(NAME):
-	gcc $(FLAG) -I$(INCL) -c $(SRC)
-	ar rc $(NAME) $(OBJ)
-	ranlib $(NAME)
+$(NAME): $(OBJ)
+	@ar rc $(NAME) $(OBJ)
+	@ranlib $(NAME)
+
+$(OBJ_PATH)%.o: $(SRC_PATH)%.c
+	@mkdir $(OBJ_PATH) 2>/dev/null || echo "" > /dev/null
+	$(CC) $(CFLAGS) $(INC) -o $@ -c $<
+
+.PHONY: clean fclean re
 
 clean:
-	rm -rf $(OBJ)
+	rm -f $(OBJ)
+	@rmdir $(OBJ_PATH) 2> /dev/null || echo "" > /dev/null
 
 fclean: clean
-	rm -rf $(NAME)
+	rm -f $(NAME)
 
 re: fclean all
