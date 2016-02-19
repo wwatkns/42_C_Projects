@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libftprintf.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/18 15:05:49 by scollon           #+#    #+#             */
-/*   Updated: 2016/02/19 17:36:32 by scollon          ###   ########.fr       */
+/*   Created: 2016/02/19 17:44:38 by wwatkins          #+#    #+#             */
+/*   Updated: 2016/02/19 18:26:06 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <wchar.h>
+# include <locale.h>
 
 typedef struct	s_flg
 {
