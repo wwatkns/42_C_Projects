@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:48:34 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/19 18:11:24 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/19 18:19:37 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		ft_printf(const char *restrict format, ...)
 	va_start(e.ap, format);
 	while (format[e.alen] != 0)
 	{
-		if (format[e.alen] == '%' && !(e.alen > 0 && format[e.alen - 1] == '%'))
+		if (format[e.alen] == '%')
 		{
 			if (format[++e.alen] != '%')
 			{
@@ -31,7 +31,7 @@ int		ft_printf(const char *restrict format, ...)
 					return (-1);
 				e.plen += print_arg(&e, &arg);
 			}
-			else if (e.plen++)
+			else if (format[e.alen] == '%' && (e.plen++))
 				write(1, &format[e.alen++], 1);
 		}
 		else if (e.plen++)
@@ -43,7 +43,7 @@ int		ft_printf(const char *restrict format, ...)
 
 int		main(void)
 {
-	ft_printf("%dtoto %%p\n", 10);
-	printf("%dtoto %%p\n", 10);
+	printf("\n%d\n", ft_printf("%dtoto %%p\n", 10));
+	printf("\n%d\n", printf("%dtoto %%p\n", 10));
 	return (0);
 }
