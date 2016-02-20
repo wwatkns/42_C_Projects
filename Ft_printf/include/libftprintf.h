@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:44:38 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/20 11:16:22 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/20 12:57:13 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct	s_flg
 
 typedef struct	s_prc
 {
+	int			pt;
 	int			prec;
 }				t_prc;
 
@@ -109,9 +110,9 @@ int				print_int(long long int n, char pad, t_a *arg);
 int				print_unsigned_int(unsigned long long int n,
 				char pad, t_a *arg);
 int				print_char(char c);
-int				print_str(const char *s, int r, int l);
+int				print_str(const char *s, t_a *arg);
 int				print_wchar_t(wchar_t c);
-int				print_str_wchar_t(const wchar_t *s, int f);
+int				print_str_wchar_t(const wchar_t *s, t_a *arg);
 int				print_base(unsigned long long n, const int base, char maj);
 int				print_mem(void *p, t_a *arg);
 

@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/20 11:26:12 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/20 11:53:23 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/20 12:07:53 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,13 +76,11 @@ static int	nbr_binary(unsigned int v)
 	return (i);
 }
 
-#include <stdio.h>
 int			print_wchar_t(wchar_t c)
 {
 	unsigned int	mask[4];
 	unsigned int	v;
 	int				size;
-	int				res;
 	unsigned char	octet;
 
 	v = c;

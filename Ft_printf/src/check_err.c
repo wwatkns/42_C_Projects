@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:46:46 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/19 17:55:47 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/20 12:41:09 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int			check_err(t_a *arg)
 		return (-1);
 	if (check_mod(arg) == -1)
 		return (-1);
-	if ((arg->type == 'p' || arg->type == 's' || arg->type == 'S' ||
+	if ((arg->type == 'p' || arg->type == 'S' ||
 		arg->type == 'c' || arg->type == 'C') && arg->prec.prec > 0)
 		return (-1);
 	return (0);

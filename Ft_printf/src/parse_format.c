@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:50:37 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/19 17:51:56 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/20 12:54:11 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static void	init_arg(t_a *arg)
 	arg->flag.di = 0;
 	arg->flag.zr = 0;
 	arg->width = 0;
+	arg->prec.pt = 0;
 	arg->prec.prec = 0;
 	arg->mod.h = 0;
 	arg->mod.hh = 0;
