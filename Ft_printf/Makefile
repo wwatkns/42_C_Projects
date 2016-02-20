@@ -6,7 +6,7 @@
 #    By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/19 17:43:51 by wwatkins          #+#    #+#              #
-#    Updated: 2016/02/19 17:44:15 by wwatkins         ###   ########.fr        #
+#    Updated: 2016/02/20 10:40:45 by wwatkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,12 +19,17 @@ NAME = libftprintf.a
 CC = clang
 CFGLAGS = -Werror -Wextra -Wall
 
-SRC_NAME  = ft_printf.c
+SRC_NAME  = ft_printf.c check_err.c check_flags.c get_flags.c get_mods.c \
+			get_prec.c get_type.c get_width.c parse_format.c print_arg.c \
+			print_arg_base.c print_arg_char.c print_arg_int.c print_arg_ptr.c \
+			print_arg_str.c print_arg_unsigned.c specify.c nbr_len.c \
+			nbr_len_base.c print_base.c print_char.c print_int.c print_mem.c \
+			print_str.c print_unsigned_int.c str_len.c
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 
-SRC = $(addprefix $(SRC_PATH), $(SRC_NAME))
-OBJ = $(addprefix $(OBJ_PATH), $(OBJ_NAME))
+SRC = $(addprefix $(SRC_PATH),$(SRC_NAME))
+OBJ = $(addprefix $(OBJ_PATH),$(OBJ_NAME))
 INC = $(addprefix -I,$(INC_PATH))
 
 all: $(NAME)

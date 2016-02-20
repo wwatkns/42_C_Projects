@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:48:34 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/19 18:25:54 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/20 09:58:13 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ int		ft_printf(const char *restrict format, ...)
 					return (-1);
 				e.plen += print_arg(&e, &arg);
 			}
-			else if (format[e.alen] == '%' && (e.plen++))
-				write(1, &format[e.alen++], 1);
+			else if (format[e.alen] == '%' && (write(1, &format[e.alen++], 1)))
+				e.plen++;
 		}
 		else if (e.plen++)
 			write(1, &format[e.alen++], 1);
@@ -44,7 +44,7 @@ int		ft_printf(const char *restrict format, ...)
 
 int		main(void)
 {
-	printf("\n%d\n", ft_printf("%S\n", L"toto"));
-	printf("\n%d\n", printf("%S\n", L"toto"));
+	printf("\n%d\n", ft_printf("%%%p\n", "toto"));
+	printf("\n%d\n", printf("%%%p\n", "toto"));
 	return (0);
 }
