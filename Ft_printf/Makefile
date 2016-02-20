@@ -6,7 +6,7 @@
 #    By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/19 17:43:51 by wwatkins          #+#    #+#              #
-#    Updated: 2016/02/20 10:40:45 by wwatkins         ###   ########.fr        #
+#    Updated: 2016/02/20 11:39:57 by wwatkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ SRC_NAME  = ft_printf.c check_err.c check_flags.c get_flags.c get_mods.c \
 			print_arg_base.c print_arg_char.c print_arg_int.c print_arg_ptr.c \
 			print_arg_str.c print_arg_unsigned.c specify.c nbr_len.c \
 			nbr_len_base.c print_base.c print_char.c print_int.c print_mem.c \
-			print_str.c print_unsigned_int.c str_len.c
+			print_str.c print_unsigned_int.c str_len.c print_wchar_t.c
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 

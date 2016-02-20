@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:48:34 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/20 09:58:13 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/20 11:59:53 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int		ft_printf(const char *restrict format, ...)
 
 int		main(void)
 {
-	printf("\n%d\n", ft_printf("%%%p\n", "toto"));
-	printf("\n%d\n", printf("%%%p\n", "toto"));
+	printf("\n%d\n", ft_printf("%C\n", L'©'));
+	printf("\n%d\n", printf("%C\n", L'©'));
 	return (0);
 }

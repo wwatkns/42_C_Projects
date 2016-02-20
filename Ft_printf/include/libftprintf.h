@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:44:38 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/20 10:10:43 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/20 11:16:22 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,27 +46,25 @@ typedef struct	s_mod
 typedef struct	s_a
 {
 	t_flg		flag;
-	long int	width;
 	t_prc		prec;
 	t_mod		mod;
+	long int	width;
 	char		type;
 }				t_a;
 
 typedef struct	s_e
 {
+	va_list		ap;
 	int			alen;
 	int			plen;
-	va_list		ap;
 }				t_e;
 
-/*
-**		MAIN FUNCTIONS
-*/
 int				ft_printf(const char *restrict format, ...);
 
 /*
-**				functions used to parse format
+**	parse format functions
 */
+
 int				parse_format(const char *format, t_a *arg, t_e *e);
 int				get_flags(const char *format, int i, t_a *arg);
 int				get_mod(const char *format, int i, t_a *arg);
@@ -78,8 +76,9 @@ int				is_flag(char fl);
 int				is_type(char ty);
 
 /*
-**				functions used to print arg
+**	print arg functions
 */
+
 int				print_arg(t_e *e, t_a *arg);
 void			print_arg_int(t_e *e, t_a *arg, int *i);
 void			print_arg_unsigned(t_e *e, t_a *arg, int *i);
@@ -89,8 +88,9 @@ void			print_arg_base(t_e *e, t_a *arg, int *i);
 void			print_arg_ptr(t_e *e, t_a *arg, int *i);
 
 /*
-**				errors parse
+**	errors check functions
 */
+
 int				check_err(t_a *arg);
 int				check_zero(t_a *arg);
 int				check_space(t_a *arg);
@@ -98,8 +98,9 @@ int				check_diez(t_a *arg);
 int				check_plus(t_a *arg);
 
 /*
-**		UTILS
+**	utils functions
 */
+
 int				nbr_len(long long int n);
 int				nbr_len_unsigned(unsigned long long int n);
 int				nbr_len_base(long n, const int base);
