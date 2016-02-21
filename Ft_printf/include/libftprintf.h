@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:44:38 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/20 12:57:13 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/21 11:04:26 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <unistd.h>
 # include <wchar.h>
 # include <locale.h>
+# include <limits.h>
 
 typedef struct	s_flg
 {

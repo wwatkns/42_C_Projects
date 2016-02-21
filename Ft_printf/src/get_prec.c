@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:49:44 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/20 12:54:00 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/21 12:14:46 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,11 @@ int	get_prec(const char *format, int i, t_a *arg)
 		re++;
 		arg->prec.prec = arg->prec.prec + (format[--i] - '0') * mult;
 		mult *= 10;
+	}
+	if (arg->prec.prec > INT_MAX || arg->prec.prec < 0)
+	{
+		arg->prec.pt = 0;
+		arg->prec.prec = 0;
 	}
 	return (i + re);
 }

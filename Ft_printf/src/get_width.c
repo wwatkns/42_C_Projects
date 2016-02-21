@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:50:20 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/20 13:07:55 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/21 11:42:05 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,7 @@ int	get_width(const char *format, int i, t_a *arg)
 		arg->width = arg->width + (format[--i] - '0') * mult;
 		mult *= 10;
 	}
+	if (arg->width > INT_MAX || arg->width < 0)
+		arg->width = 0;
 	return (i + re);
 }
