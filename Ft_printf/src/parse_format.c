@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:50:37 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/21 16:53:53 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/21 17:20:35 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,18 @@ static int	check_arg(t_e *e, t_a *arg)
 	{
 		if ((va_arg(copy, char *)) == NULL)
 		{
-			write(1, "(null)", 6);
-			e->plen += 6;
+			arg->prec.prec = (arg->prec.prec == 0 || arg->prec.prec > e->plen ?
+					e->plen : arg->prec.prec);
+			e->plen += arg->prec.prec;
+			arg->width -= arg->prec.prec;
+			while (!arg->flag.mn && arg->width-- > 0 && (write(1, " ", 1)))
+				e->plen++;
+			arg->prec.prec > 6 ? arg->prec.prec = 6 : 0;
+			write(1, "(null)", arg->prec.prec);
+			while (arg->flag.mn && arg->width-- > 0 && (write(1, " ", 1)))
+				e->plen++;
+			write(1, "\n", 1);
+			e->plen++;
 			return (-1);
 		}
 	}
@@ -64,7 +74,7 @@ int			parse_format(const char *format, t_a *arg, t_e *e)
 	if ((check_err(arg) == -1))
 		return (-1);
 	if (check_arg(e, arg) == -1)
-		return (0);
+		return (-1);
 	e->alen += i;
 	return (0);
 }
