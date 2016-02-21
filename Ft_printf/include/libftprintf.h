@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:44:38 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/21 12:47:54 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/21 16:55:32 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <wchar.h>
 # include <locale.h>
 # include <limits.h>
+
 
 typedef struct	s_flg
 {
@@ -61,7 +62,7 @@ typedef struct	s_e
 	int			plen;
 }				t_e;
 
-int				ft_printf(const char *restrict format, ...);
+int				ft_printf(const char *restrict format, ...)__attribute__((format(printf, 1, 2)));
 
 /*
 **	parse format functions
@@ -106,6 +107,7 @@ int				check_plus(t_a *arg);
 int				nbr_len(long long int n);
 int				nbr_len_unsigned(unsigned long long int n);
 int				nbr_len_base(long n, const int base);
+int				nbr_binary(unsigned int v);
 int				str_len(const char *s);
 int				print_int(long long int n, char pad, t_a *arg);
 int				print_unsigned_int(unsigned long long int n,
@@ -114,7 +116,8 @@ int				print_char(char c);
 int				print_str(const char *s, t_a *arg);
 int				print_wchar_t(wchar_t c);
 int				print_str_wchar_t(const wchar_t *s, t_a *arg);
-int				print_base(unsigned long long n, const int base, char maj);
+int				print_base(t_a *arg, unsigned long long n, const int base,
+				char maj);
 int				print_mem(void *p, t_a *arg);
 
 #endif

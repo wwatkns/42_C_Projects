@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:47:02 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/19 17:48:27 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/21 14:13:08 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ int	check_plus(t_a *arg)
 
 int	check_diez(t_a *arg)
 {
-	if (arg->flag.di == 1 && (arg->type != 'o' || arg->type != 'O' ||
-		arg->type != 'x' || arg->type != 'X'))
+	if (arg->flag.di == 1 && !(arg->type == 'o' || arg->type == 'O' ||
+		arg->type == 'x' || arg->type == 'X'))
 		return (-1);
 	return (0);
 }

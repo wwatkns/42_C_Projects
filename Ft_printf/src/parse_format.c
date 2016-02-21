@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:50:37 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/21 11:38:34 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/21 16:53:53 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,24 @@ static void	init_arg(t_a *arg)
 	arg->type = '\0';
 }
 
+static int	check_arg(t_e *e, t_a *arg)
+{
+	va_list	copy;
+
+	va_copy(copy, e->ap);
+	if (arg->type == 's')
+	{
+		if ((va_arg(copy, char *)) == NULL)
+		{
+			write(1, "(null)", 6);
+			e->plen += 6;
+			return (-1);
+		}
+	}
+	va_end(copy);
+	return (0);
+}
+
 int			parse_format(const char *format, t_a *arg, t_e *e)
 {
 	int	i;
@@ -45,6 +63,8 @@ int			parse_format(const char *format, t_a *arg, t_e *e)
 		return (-1);
 	if ((check_err(arg) == -1))
 		return (-1);
+	if (check_arg(e, arg) == -1)
+		return (0);
 	e->alen += i;
 	return (0);
 }

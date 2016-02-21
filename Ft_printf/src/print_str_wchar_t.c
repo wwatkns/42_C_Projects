@@ -6,21 +6,11 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/20 12:04:27 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/21 12:54:41 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/21 15:29:39 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-
-static int	nbr_binary(unsigned int v)
-{
-	int i;
-
-	i = 1;
-	while (v >>= 1)
-		i++;
-	return (i / 4);
-}
 
 static int	wchar_t_str_len(const wchar_t *s)
 {
@@ -59,7 +49,7 @@ int			print_str_wchar_t(const wchar_t *s, t_a *arg)
 	arg->prec.pt == 0 ? len = wchar_t_str_len(s) : 0;
 	arg->width -= len_unicode;
 	while (!arg->flag.mn && arg->width-- > 0)
-		write(1, " ", 1);
+		arg->flag.zr ? write(1, "0", 1) : write(1, " ", 1);
 	while (*s != 0 && arg->prec.prec > 1)
 	{
 		print_wchar_t(*s);
@@ -67,6 +57,6 @@ int			print_str_wchar_t(const wchar_t *s, t_a *arg)
 		s++;
 	}
 	while (arg->flag.mn && arg->width-- > 0)
-		write(1, " ", 1);
+		arg->flag.zr ? write(1, "0", 1) : write(1, " ", 1);
 	return (len);
 }

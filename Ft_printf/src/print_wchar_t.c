@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/20 11:26:12 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/21 12:47:29 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/21 14:00:02 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,7 @@ static void	print_mask_3(unsigned int *mask, unsigned int v)
 	octet = ((mask[3] << 24) >> 24) | o4;
 	write(1, &octet, 1);
 }
-
-static int	nbr_binary(unsigned int v)
+static int	nbr_binary_b(unsigned int v)
 {
 	int i;
 
@@ -84,7 +83,7 @@ int			print_wchar_t(wchar_t c)
 	unsigned char	octet;
 
 	v = c;
-	size = nbr_binary(c);
+	size = nbr_binary_b(c);
 	mask[0] = 0;
 	mask[1] = 49280;
 	mask[2] = 14712960;
