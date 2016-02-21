@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:48:34 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/20 13:04:27 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/21 10:53:31 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,11 @@ int		ft_printf(const char *restrict format, ...)
 			else if (format[e.alen] == '%' && (write(1, &format[e.alen++], 1)))
 				e.plen++;
 		}
-		else if (e.plen++)
+		else
+		{
 			write(1, &format[e.alen++], 1);
+			e.plen++;
+		}
 	}
 	va_end(e.ap);
 	return (e.plen);
