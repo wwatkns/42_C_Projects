@@ -1,4 +1,6 @@
-# 42 Projects
+# 42 Projects (C)
+
+_Github repository for projects done at school 42 in C._
 
 __Install repository:__
 
