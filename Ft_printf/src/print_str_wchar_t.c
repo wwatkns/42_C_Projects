@@ -6,13 +6,13 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/20 12:04:27 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/21 12:11:20 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/21 12:54:41 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-static int  nbr_binary(unsigned int v)
+static int	nbr_binary(unsigned int v)
 {
 	int i;
 
@@ -42,7 +42,7 @@ static int	wstr_len(const wchar_t *s)
 	return (len);
 }
 
-int		print_str_wchar_t(const wchar_t *s, t_a *arg)
+int			print_str_wchar_t(const wchar_t *s, t_a *arg)
 {
 	int	len_unicode;
 	int	len;

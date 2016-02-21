@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:48:34 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/21 12:25:05 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/21 12:53:16 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int		main(void)
 {
 //	printf("%d\n", ft_printf("%40.8s\n", L"xavierÕÕÕ"));
 //	printf("%d\n", printf("%40.8s\n", L"xavierÕÕÕ"));
-	printf("%d\n", ft_printf("%s\n", "xavier"));
-	printf("%d\n", printf("%s\n", "xavier"));
+	printf("%d\n", ft_printf("%c\n", 'x'));
+	printf("%d\n", printf("%c\n", 'x'));
 	return (0);
 }
