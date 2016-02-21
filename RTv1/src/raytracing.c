@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 11:03:23 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/15 13:44:13 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/21 10:13:23 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	raytracing(t_env *e)
 		e->ray.x = -1;
 		while (++e->ray.x < e->win.w)
 		{
-			e->color_out = vec3(0, 0, 0);
+			e->color_out = vec3_zero();
 			e->i = e->ray.x;
 			while (e->i < e->ray.x + 1.0)
 			{
@@ -45,7 +45,7 @@ void	raytracing_init(t_env *e)
 	e->recursiondepth = 0;
 	e->ray.pos = e->cam.pos;
 	e->ray.dir = e->cam.origin;
-	e->ray.hit = vec3(0, 0, 0);
+	e->ray.hit = vec3_zero();
 	e->ray.dir = vec3_add(e->cam.origin, vec3_sub(
 				vec3_fmul(vec3_right(), e->cam.xi * e->i),
 				vec3_fmul(vec3_up(), e->cam.yi * e->j)));
@@ -68,7 +68,7 @@ void	raytracing_draw(t_env *e)
 		raytracing_color(e, obj, &tmin, &t);
 	}
 	else
-		e->color = vec3(0, 0, 0);
+		e->color = vec3_zero();
 	e->color_out = vec3_add(e->color_out,
 	vec3_fmul(e->color, e->cam.supersampling_coeff));
 	vec3_clamp(&e->color_out, 0, 1);
@@ -76,11 +76,9 @@ void	raytracing_draw(t_env *e)
 
 void	raytracing_reflect(t_env *e, t_obj *obj)
 {
-	e->ray.pos = e->ray.hit;
-	set_normal(e, obj);
-	e->ray.dir = vec3_reflect(e->ray.dir, obj->normal);
 	if (e->recursiondepth < e->cam.maxdepth)
 	{
+		e->ray.dir = vec3_reflect(e->ray.dir, obj->normal);
 		e->recursiondepth++;
 		raytracing_draw(e);
 	}
@@ -96,7 +94,7 @@ void	raytracing_color(t_env *e, t_obj *obj, double *tmin, double *t)
 	t_lgt	*light;
 
 	light = e->light;
-	e->color = vec3(0, 0, 0);
+	e->color = vec3_zero();
 	while ((light = light->next) != NULL)
 	{
 		set_light(e, light);
