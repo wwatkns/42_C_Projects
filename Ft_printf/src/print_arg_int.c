@@ -6,13 +6,13 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:52:38 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/22 14:41:20 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/22 15:39:22 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-static unsigned long long	int_mod(t_e *e, t_a *arg)
+static long long int	int_mod(t_e *e, t_a *arg)
 {
 	if ((arg->type == 'd' || arg->type == 'i') && arg->mod.hh)
 		return ((char)va_arg(e->ap, int));
@@ -33,7 +33,7 @@ static unsigned long long	int_mod(t_e *e, t_a *arg)
 
 void	print_arg_int(t_e *e, t_a *arg, int *i)
 {
-	unsigned long long	va;
+	long long int	va;
 
 	va = int_mod(e, arg);
 	*i = print_int(va, arg);

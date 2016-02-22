@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:51:45 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/22 13:54:50 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/22 16:44:56 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,9 @@ void	print_arg_base(t_e *e, t_a *arg, int *i)
 		*i = print_base(arg, va, 16, 'a');
 	else if (arg->type == 'X')
 		*i = print_base(arg, va, 16, 'A');
-	while (arg->flag.mn && arg->width-- > 0 && (write(1, " ", 1)))
+	while (arg->flag.mn && arg->width > 0 && (arg->width--))
+	{
+		write(1, " ", 1);
 		e->plen++;
+	}
 }
