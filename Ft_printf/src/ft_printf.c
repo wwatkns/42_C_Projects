@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:48:34 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/22 11:06:50 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/22 11:14:38 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int		ft_printf(const char *restrict format, ...)
 	va_end(e.ap);
 	return (e.plen);
 }
-
+/*
 int		main(void)
 {
 //	printf("%d\n", ft_printf("%40.8s\n", L"xavierÕÕÕ"));
@@ -56,4 +56,4 @@ int		main(void)
 	printf("%d\n", ft_printf("%#-8x", 42));
 	printf("%d\n", printf("%#-8x", 42));
 	return (0);
-}
+}*/

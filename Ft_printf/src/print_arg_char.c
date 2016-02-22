@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:52:21 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/21 16:26:23 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/22 11:33:40 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	print_arg_char(t_e *e, t_a *arg, int *i)
 	}
 	else
 		arg->width--;
-	while (!arg->flag.mn && arg->width--)
+	while (!arg->flag.mn && arg->width-- > 0)
 	{
 		write(1, " ", 1);
 		e->plen++;
@@ -32,7 +32,7 @@ void	print_arg_char(t_e *e, t_a *arg, int *i)
 		*i = print_wchar_t(c);
 	else
 		*i = print_char(va_arg(e->ap, int));
-	while (arg->flag.mn && arg->width--)
+	while (arg->flag.mn && arg->width-- > 0)
 	{
 		write(1, " ", 1);
 		e->plen++;
