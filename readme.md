@@ -6,6 +6,7 @@ __Install repository:__
 
 * `git clone https://github.com/wwatkins42/42Projects`
 
+-
 Projects are written as such and can contain visually disturbing code atrocities due to a beast called 'La norme' which is
 a strict rulebook that teaches us how to cleanly code at first but restricts greatly our freedom in the long term.
 
