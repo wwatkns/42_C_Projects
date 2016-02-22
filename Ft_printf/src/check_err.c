@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:46:46 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/22 10:48:25 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/22 13:47:17 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,6 @@ static int	check_mod(t_a *arg)
 
 int			check_err(t_a *arg)
 {
-	if (arg->type != 's' && arg->type != 'S' && arg->type != 'p' &&
-		arg->type != 'd' && arg->type != 'D' && arg->type != 'i' &&
-		arg->type != 'o' && arg->type != 'O' && arg->type != 'u' &&
-		arg->type != 'U' && arg->type != 'x' && arg->type != 'X' &&
-		arg->type != 'c' && arg->type != 'C' && arg->type != '%')
-		return (-1);
 	if (check_zero(arg) == -1)
 		return (-1);
 	if (check_space(arg) == -1)

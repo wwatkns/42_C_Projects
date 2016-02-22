@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:50:37 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/22 10:43:35 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/22 13:46:47 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,7 @@ int			parse_format(const char *format, t_a *arg, t_e *e)
 	i = get_width(format, i, arg);
 	i = get_prec(format, i, arg);
 	i = get_mod(format, i, arg);
-	if ((i = get_type(format, i, arg)) == -1)
-		return (-1);
+	i = get_type(format, i, arg);
 	if ((check_err(arg) == -1))
 		return (-1);
 	if (check_arg(e, arg) == -1)

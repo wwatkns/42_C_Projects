@@ -6,12 +6,18 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:58:13 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/22 12:31:00 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/22 14:02:51 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
+int		print_int(long long int n, char pad, t_a *arg)
+{
+
+}
+
+/*
 static int	print_prec(long long int *n, char pad, t_a *arg)
 {
 	int	i;
@@ -44,4 +50,4 @@ int			print_int(long long int n, char pad, t_a *arg)
 	n > 9 ? len += print_int(n / 10, '\0', arg) : 0;
 	print_char(n % 10 + '0');
 	return (len);
-}
+}*/

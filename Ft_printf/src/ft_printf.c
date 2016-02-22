@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:48:34 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/22 12:28:34 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/22 14:05:38 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,22 @@ int		ft_printf(const char *restrict format, ...)
 
 int		main(void)
 {
-//	printf("%d\n", ft_printf("%40.8s\n", L"xavierÕÕÕ"));
-//	printf("%d\n", printf("%40.8s\n", L"xavierÕÕÕ"));
+//	printf("%d\n", ft_printf("%40.8ls\n", L"xavierÕÕÕ"));
+//	printf("%d\n", printf("%40.8ls\n", L"xavierÕÕÕ"));
 //	printf("%d\n", ft_printf("%40.12s %-8.5s\n", "totot", NULL));
 //	printf("%d\n", printf("%40.12s %-8.5s\n", "totot", NULL));
 //	printf("%d\n", ft_printf("%llx\n", (unsigned long long)42949672964848999));
 //	printf("%d\n", printf("%llx\n", (unsigned long long)42949672964848999));
+	printf("------------ TEST1 -------------\n");
+	printf("\n%d\n", ft_printf("%d %d", 1, -29));
+	printf("\n%d\n", printf("%d %d", 1, -29));
+	printf("------------ TEST2 -------------\n");
+	printf("\n%d\n", ft_printf("%10.3d % .8d", 4859, -29888));
+	printf("\n%d\n", printf("%10.3d % .8d", 4859, -29888));
+	printf("------------ TEST3 -------------\n");
+	printf("\n%d\n", ft_printf("%021d %-3.2d", 486135168, 4159));
+	printf("\n%d\n", printf("%021d %-3.2d", 486135168, 4159));
+	printf("------------ TEST4 -------------\n");
 	printf("\n%d\n", ft_printf("%d %d", 1, -29));
 	printf("\n%d\n", printf("%d %d", 1, -29));
 	return (0);
