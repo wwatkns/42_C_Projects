@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:58:13 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/20 10:08:19 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/22 12:31:00 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,16 @@ static int	print_prec(long long int *n, char pad, t_a *arg)
 	int	len;
 
 	len = arg->prec.prec - nbr_len(*n);
-	arg->width -= len + 2;
 	i = len + arg->width;
-	while ((arg->width-- - len) > 0)
+	while (arg->width-- > 0)
 		write(1, " ", 1);
 	if (pad != '\0' && *n > 0 && (i++))
 		write(1, &pad, 1);
-	if (*n < 0 && (i++))
+	if (*n < 0)
 	{
-		*n *= -1;
+		*n = -*n;
 		write(1, "-", 1);
+		i++;
 	}
 	while (--len >= -1)
 		write(1, "0", 1);
@@ -40,7 +40,7 @@ int			print_int(long long int n, char pad, t_a *arg)
 	int	len;
 
 	len = 1;
-	arg->prec.prec > 0 ? len += print_prec(&n, pad, arg) : 0;
+	len += print_prec(&n, pad, arg);
 	n > 9 ? len += print_int(n / 10, '\0', arg) : 0;
 	print_char(n % 10 + '0');
 	return (len);
