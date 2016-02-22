@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:52:38 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/22 13:57:14 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/22 14:41:20 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,12 @@ static unsigned long long	int_mod(t_e *e, t_a *arg)
 void	print_arg_int(t_e *e, t_a *arg, int *i)
 {
 	unsigned long long	va;
-	char				pad;
 
 	va = int_mod(e, arg);
-	pad = arg->flag.sp == 1 ? ' ' : '\0';
-	pad = arg->flag.pl == 1 ? '+' : pad;
-	*i = print_int(va, pad, arg);
+	*i = print_int(va, arg);
+	while (arg->flag.mn && arg->width > 0 && (arg->width--))
+	{
+		write(1, " ", 1);
+		(*i)++;
+	}
 }
