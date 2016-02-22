@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:51:50 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/21 14:09:04 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/22 10:48:33 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@ int	print_arg(t_e *e, t_a *arg)
 	int		i;
 
 	i = 0;
-	if (arg->type == 'd' || arg->type == 'i' || arg->type == 'D')
+	if (arg->type == '%')
+		print_arg_percent(e, arg, &i);
+	else if (arg->type == 'd' || arg->type == 'i' || arg->type == 'D')
 		print_arg_int(e, arg, &i);
 	else if (arg->type == 'c' || arg->type == 'C')
 		print_arg_char(e, arg, &i);

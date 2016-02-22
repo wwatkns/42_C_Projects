@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:48:34 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/21 17:20:33 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/22 10:55:40 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,9 @@ int		main(void)
 //	printf("%d\n", printf("%40.8s\n", L"xavierÕÕÕ"));
 //	printf("%d\n", ft_printf("%40.12s %-8.5s\n", "totot", NULL));
 //	printf("%d\n", printf("%40.12s %-8.5s\n", "totot", NULL));
-	printf("%d\n", ft_printf("%d\n", 255));
-	printf("%d\n", printf("%d\n", 255));
+//	printf("%d\n", ft_printf("%llx\n", (unsigned long long)42949672964848999));
+//	printf("%d\n", printf("%llx\n", (unsigned long long)42949672964848999));
+	printf("%d\n", ft_printf("%.1%", NULL));
+	printf("%d\n", printf("%.1%", NULL));
 	return (0);
 }

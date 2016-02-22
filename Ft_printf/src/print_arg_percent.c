@@ -1,32 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   specify.c                                          :+:      :+:    :+:   */
+/*   print_arg_percent.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/19 17:54:30 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/22 10:47:04 by wwatkins         ###   ########.fr       */
+/*   Created: 2016/02/22 10:41:20 by wwatkins          #+#    #+#             */
+/*   Updated: 2016/02/22 10:54:50 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int	is_mod(char md)
+void	print_arg_percent(t_e *e, t_a *arg, int *i)
 {
-	return (md == 'l' || md == 'h' || md == 'j' || md == 'z');
-}
-
-int	is_flag(char fl)
-{
-	return (fl == ' ' || fl == '+' || fl == '-' || fl == '#' || fl == '0');
-}
-
-int	is_type(char ty)
-{
-	if (ty == 'd' || ty == 'D' || ty == 's' || ty == 'S' || ty == 'x' ||
-		ty == 'X' || ty == 'p' || ty == 'o' || ty == 'O' || ty == 'c' ||
-		ty == 'C' || ty == 'u' || ty == 'U' || ty == 'i' || ty == '%')
-		return (1);
-	return (0);
+	if (arg->prec.pt && arg->width == 0)
+	{
+		write(1, "%", 1);
+		*i += 1;
+		return ;
+	}
+	arg->width--;
+	while (!arg->flag.mn && arg->width--)
+	{
+		write(1, " ", 1);
+		e->plen++;
+	}
+	write(1, "%", 1);
+	*i += 1;
+	while (arg->flag.mn && arg->width--)
+	{
+		write(1, " ", 1);
+		e->plen++;
+	}
 }

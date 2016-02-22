@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:57:31 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/21 15:27:00 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/22 10:26:35 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static int	print_prefix(t_a *arg)
 {
 	int	len;
 
+	len = 0;
 	if (arg->type == 'o')
 	{
 		write(1, "0", 1);
@@ -62,8 +63,8 @@ int	print_base(t_a *arg, unsigned long long n, const int base, char maj)
 	static short	depth = 0;
 
 	len = 0;
-	if (base < 2 || base > 16)
-		return (-1);
+	if (n == 0 && depth == 0 && (write(1, "0", 1)))
+		return (1);
 	if (n > 0)
 	{
 		depth++;
@@ -75,8 +76,8 @@ int	print_base(t_a *arg, unsigned long long n, const int base, char maj)
 	}
 	if (n <= 0)
 	{
-		arg->width != 0 ? len += print_spaces(arg, depth) : 0;
 		arg->flag.di ? len += print_prefix(arg) : 0;
+		arg->width != 0 ? len += print_spaces(arg, depth) : 0;
 	}
 	return (len);
 }

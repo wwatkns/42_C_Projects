@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:44:38 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/21 16:55:32 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/22 10:42:32 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include <wchar.h>
 # include <locale.h>
 # include <limits.h>
-
 
 typedef struct	s_flg
 {
@@ -62,7 +61,8 @@ typedef struct	s_e
 	int			plen;
 }				t_e;
 
-int				ft_printf(const char *restrict format, ...)__attribute__((format(printf, 1, 2)));
+int				ft_printf(const char *restrict format,
+				...) __attribute__((format(printf,1,2)));
 
 /*
 **	parse format functions
@@ -83,6 +83,7 @@ int				is_type(char ty);
 */
 
 int				print_arg(t_e *e, t_a *arg);
+void			print_arg_percent(t_e *e, t_a *arg, int *i);
 void			print_arg_int(t_e *e, t_a *arg, int *i);
 void			print_arg_unsigned(t_e *e, t_a *arg, int *i);
 void			print_arg_char(t_e *e, t_a *arg, int *i);

@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:46:46 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/21 14:10:28 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/22 10:48:25 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int			check_err(t_a *arg)
 		arg->type != 'd' && arg->type != 'D' && arg->type != 'i' &&
 		arg->type != 'o' && arg->type != 'O' && arg->type != 'u' &&
 		arg->type != 'U' && arg->type != 'x' && arg->type != 'X' &&
-		arg->type != 'c' && arg->type != 'C')
+		arg->type != 'c' && arg->type != 'C' && arg->type != '%')
 		return (-1);
 	if (check_zero(arg) == -1)
 		return (-1);
