@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:48:34 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/23 10:06:19 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/23 10:39:47 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,13 @@ int		ft_printf(const char *restrict format, ...)
 	va_end(e.ap);
 	return (e.plen);
 }
-
+/*
 int	main(void)
 {
-	printf("\n%d\n", ft_printf("%5.ll%"));
-	printf("\n%d\n", printf("%5.ll%"));
+	printf("%.o", 0);
+	printf("\n%d\n", ft_printf("@moulitest: %5.d, %5.0d", 0, 0));
+	printf("\n%d\n", printf("@moulitest: %5.d, %5.0d", 0, 0));
 //	printf("\n%d\n", ft_printf("%.s", "str"));
 //	printf("\n%d\n", printf("%.s", "str"));
 	return (0);
-}
+}*/
