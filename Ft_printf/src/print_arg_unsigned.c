@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:53:53 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/22 15:41:45 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/23 09:55:18 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,12 @@ static unsigned long long	unsigned_mod(t_e *e, t_a *arg)
 	return (va_arg(e->ap, unsigned int));
 }
 
-void	print_arg_unsigned(t_e *e, t_a *arg, int *i)
+void						print_arg_unsigned(t_e *e, t_a *arg, int *i)
 {
 	unsigned long long	va;
 
+	if (arg->prec.pt && arg->prec.prec == 0)
+	    return ;
 	va = unsigned_mod(e, arg);
 	*i = print_unsigned_int(va, arg);
 	while (arg->flag.mn && arg->width > 0 && (arg->width--))

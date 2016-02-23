@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 18:00:15 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/22 15:54:27 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/22 17:10:32 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	print_spaces(t_a *arg, int nbrlen)
 	return (len);
 }
 
-int		print_unsigned_int(unsigned long long int n, t_a *arg)
+int			print_unsigned_int(unsigned long long int n, t_a *arg)
 {
 	int						len;
 	static long long int	depth = 0;

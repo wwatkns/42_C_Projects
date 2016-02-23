@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:52:38 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/22 15:39:22 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/23 09:53:27 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,12 @@ static long long int	int_mod(t_e *e, t_a *arg)
 	return (va_arg(e->ap, int));
 }
 
-
-void	print_arg_int(t_e *e, t_a *arg, int *i)
+void					print_arg_int(t_e *e, t_a *arg, int *i)
 {
 	long long int	va;
 
+	if (arg->prec.pt && arg->prec.prec == 0)
+		return ;
 	va = int_mod(e, arg);
 	*i = print_int(va, arg);
 	while (arg->flag.mn && arg->width > 0 && (arg->width--))

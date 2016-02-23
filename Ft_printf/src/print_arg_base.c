@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:51:45 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/22 16:44:56 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/23 09:55:33 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,12 @@ static unsigned long long	base_mod(t_e *e, t_a *arg)
 	return (va_arg(e->ap, unsigned int));
 }
 
-void	print_arg_base(t_e *e, t_a *arg, int *i)
+void						print_arg_base(t_e *e, t_a *arg, int *i)
 {
 	unsigned long long	va;
 
+	if (arg->prec.pt && arg->prec.prec == 0)
+		return ;
 	va = base_mod(e, arg);
 	if (arg->type == 'o' || arg->type == 'O')
 		*i = print_base(arg, va, 8, 'a');

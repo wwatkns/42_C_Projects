@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/20 11:26:12 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/21 14:00:02 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/22 17:10:12 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ static void	print_mask_3(unsigned int *mask, unsigned int v)
 	octet = ((mask[3] << 24) >> 24) | o4;
 	write(1, &octet, 1);
 }
+
 static int	nbr_binary_b(unsigned int v)
 {
 	int i;
