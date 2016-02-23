@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:44:38 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/22 17:13:11 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/23 13:00:49 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct	s_a
 	t_mod		mod;
 	long int	width;
 	char		type;
+	int			null;
 }				t_a;
 
 typedef struct	s_e

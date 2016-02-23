@@ -6,13 +6,13 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:50:37 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/23 09:59:06 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/23 13:17:30 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-static void	init_arg(t_a *arg)
+static void		init_arg(t_a *arg)
 {
 	arg->flag.pl = 0;
 	arg->flag.mn = 0;
@@ -29,37 +29,57 @@ static void	init_arg(t_a *arg)
 	arg->mod.j = 0;
 	arg->mod.z = 0;
 	arg->type = '\0';
+	arg->null = 0;
 }
 
-static int	check_arg(t_e *e, t_a *arg)
+static	void	print_before(t_a *arg, t_e *e)
 {
-	va_list	copy;
+	if (arg->flag.mn == 0)
+	{
+		while (arg->width - arg->prec.prec > 0)
+		{
+			write(1, " ", 1);
+			arg->width--;
+			e->plen++;
+		}
+	}
+}
+
+static	void	print_after(t_a *arg, t_e *e)
+{
+	if (arg->flag.mn == 1)
+	{
+		while (arg->width - arg->prec.prec > 0)
+		{
+			write(1, " ", 1);
+			arg->width--;
+			e->plen++;
+		}
+	}
+}
+
+static void		check_arg(t_e *e, t_a *arg)
+{
+	va_list copy;
 
 	va_copy(copy, e->ap);
 	if (arg->type == 's')
 	{
 		if ((va_arg(copy, char *)) == NULL)
 		{
-			arg->prec.prec = (arg->prec.prec == 0 || arg->prec.prec > e->plen ?
-					e->plen : arg->prec.prec);
-			e->plen += arg->prec.prec;
-			arg->width -= arg->prec.prec;
-			while (!arg->flag.mn && arg->width-- > 0 && (write(1, " ", 1)))
-				e->plen++;
+			arg->null = 1;
+			(arg->prec.pt == 0 && arg->prec.prec < 6) ? arg->prec.prec = 6 : 0;
 			arg->prec.prec > 6 ? arg->prec.prec = 6 : 0;
+			print_before(arg, e);
 			write(1, "(null)", arg->prec.prec);
-			while (arg->flag.mn && arg->width-- > 0 && (write(1, " ", 1)))
-				e->plen++;
-			write(1, "\n", 1);
-			e->plen++;
-			return (-1);
+			e->plen += arg->prec.prec;
+			print_after(arg, e);
 		}
 	}
 	va_end(copy);
-	return (0);
 }
 
-int			parse_format(const char *format, t_a *arg, t_e *e)
+int				parse_format(const char *format, t_a *arg, t_e *e)
 {
 	int	i;
 
@@ -72,8 +92,7 @@ int			parse_format(const char *format, t_a *arg, t_e *e)
 	i = get_type(format, i, arg);
 	if ((check_err(arg) == -1))
 		return (-1);
-	if (check_arg(e, arg) == -1)
-		return (-1);
+	check_arg(e, arg);
 	e->alen += i;
 	return (0);
 }

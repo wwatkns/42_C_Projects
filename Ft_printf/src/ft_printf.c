@@ -6,13 +6,19 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:48:34 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/23 10:39:47 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/23 13:23:31 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int		ft_printf(const char *restrict format, ...)
+static void	write_else(t_e *e, t_a *arg, const char *format)
+{
+	write(1, &format[e->alen++], 1);
+	e->plen++;
+}
+
+int			ft_printf(const char *restrict format, ...)
 {
 	t_e		e;
 	t_a		arg;
@@ -28,27 +34,14 @@ int		ft_printf(const char *restrict format, ...)
 			{
 				if (parse_format(&format[e.alen], &arg, &e) == -1)
 					return (e.plen);
-				e.plen += print_arg(&e, &arg);
+				arg.null == 0 ? e.plen += print_arg(&e, &arg) : 0;
 			}
 			else if (format[e.alen] == '%' && (write(1, &format[e.alen++], 1)))
 				e.plen++;
 		}
 		else
-		{
-			write(1, &format[e.alen++], 1);
-			e.plen++;
-		}
+			write_else(&e, &arg, format);
 	}
 	va_end(e.ap);
 	return (e.plen);
 }
-/*
-int	main(void)
-{
-	printf("%.o", 0);
-	printf("\n%d\n", ft_printf("@moulitest: %5.d, %5.0d", 0, 0));
-	printf("\n%d\n", printf("@moulitest: %5.d, %5.0d", 0, 0));
-//	printf("\n%d\n", ft_printf("%.s", "str"));
-//	printf("\n%d\n", printf("%.s", "str"));
-	return (0);
-}*/
