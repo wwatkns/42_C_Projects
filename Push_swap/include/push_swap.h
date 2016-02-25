@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/25 10:36:15 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/25 11:55:10 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/25 13:56:34 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h> // temporary
+
+enum { ONE, BOTH };
 
 typedef struct	s_stack
 {
@@ -40,5 +42,43 @@ void			check_args(int argc, char **argv);
 void			init_stacks(t_env *e);
 void			create_stacks(t_env *e, int argc, char **argv);
 void			error(int err);
+
+/*
+**	move_swap.c
+*/
+
+int				move_swap_a(t_env *e, int move);
+int				move_swap_b(t_env *e, int move);
+void			move_swap_both(t_env *e);
+
+/*
+**	move_push.c
+*/
+
+void			move_push_a(t_env *e);
+void			move_push_b(t_env *e);
+
+/*
+**	move_rotate.c
+*/
+
+void			move_rotate_a(t_env *e);
+void			move_rotate_b(t_env *e);
+void			move_rotate_both(t_env *e);
+
+/*
+**	move_reverse_rotate.c
+*/
+
+void			move_reverse_rotate_a(t_env *e);
+void			move_reverse_rotate_b(t_env *e);
+void			move_reverse_rotate_both(t_env *e);
+
+/*
+**	utils.c
+*/
+
+void			add_move(t_env *e, const char *move);
+void			disp_stack(t_stack *stack);
 
 #endif

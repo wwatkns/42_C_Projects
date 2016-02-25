@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/25 11:04:14 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/25 11:59:23 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/25 14:17:45 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,28 @@ int		main(int argc, char **argv)
 	check_args(argc, argv);
 	init_stacks(&e);
 	create_stacks(&e, argc, argv);
-	while (e.stack_a->next != NULL)
-	{
-		printf("%d\n", e.stack_a->value);
-		e.stack_a = e.stack_a->next;
-	}
+
+	disp_stack(e.stack_a);
+	disp_stack(e.stack_b);
+	move_push_b(&e);
+	disp_stack(e.stack_a);
+	disp_stack(e.stack_b);
+
 	return (0);
 }
 
 void	check_args(int argc, char **argv)
 {
+	int	i;
+	int	j;
+
+	i = 0;
+	while (++i < argc)
+	{
+		j = i;
+		while (++j < argc)
+			error(!(ft_strcmp(argv[j], argv[i]) == 0));
+	}
 }
 
 void	init_stacks(t_env *e)
@@ -56,10 +68,13 @@ void	create_stacks(t_env *e, int argc, char **argv)
 	current = head;
 	while (++i < argc)
 	{
-		error((int)(new = (t_stack*)malloc(sizeof(t_stack))));
-		current->next = new;
 		current->value = ft_atoi(argv[i]);
-		current = current->next;
+		if (i + 1 < argc)
+		{
+			error((int)(new = (t_stack*)malloc(sizeof(t_stack))));
+			current->next = new;
+			current = current->next;
+		}
 	}
 	current->next = NULL;
 	e->stack_end_a = current;
