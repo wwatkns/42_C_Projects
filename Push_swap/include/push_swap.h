@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/25 10:36:15 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/25 15:14:33 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/25 15:24:00 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,16 +61,16 @@ void			move_push_b(t_env *e);
 **	move_rotate.c
 */
 
-void			move_rotate_a(t_env *e);
-void			move_rotate_b(t_env *e);
+int				move_rotate_a(t_env *e, int move);
+int				move_rotate_b(t_env *e, int move);
 void			move_rotate_both(t_env *e);
 
 /*
 **	move_reverse_rotate.c
 */
 
-void			move_reverse_rotate_a(t_env *e);
-void			move_reverse_rotate_b(t_env *e);
+int				move_reverse_rotate_a(t_env *e, int move);
+int				move_reverse_rotate_b(t_env *e, int move);
 void			move_reverse_rotate_both(t_env *e);
 
 /*

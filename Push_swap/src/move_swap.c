@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/25 13:01:32 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/25 13:56:06 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/25 16:10:15 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,10 @@ int		move_swap_b(t_env *e, int move)
 
 void	move_swap_both(t_env *e)
 {
-	if (move_swap_a(e, BOTH) || move_swap_b(e, BOTH))
-		add_move(e, "ss");
+	int	c;
+
+	c = 0;
+	c += move_swap_a(e, BOTH);
+	c += move_swap_b(e, BOTH);
+	c != 0 ? add_move(e, "ss") : 0;
 }
