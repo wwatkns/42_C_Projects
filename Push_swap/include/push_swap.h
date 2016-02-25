@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/25 10:36:15 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/25 15:24:00 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/25 17:18:26 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,20 @@ typedef struct	s_stack
 	struct s_stack	*next;
 }				t_stack;
 
+typedef struct	s_move
+{
+	char			*name;
+	struct s_move	*next;
+}				t_move;
+
 typedef struct	s_env
 {
 	t_stack	*stack_a;
 	t_stack	*stack_b;
 	t_stack	*stack_end_a;
 	t_stack	*stack_end_b;
+	t_move	*move;
+	t_move	*move_end;
 }				t_env;
 
 /*
@@ -77,7 +85,8 @@ void			move_reverse_rotate_both(t_env *e);
 **	utils.c
 */
 
-void			add_move(t_env *e, const char *move);
+void			add_move(t_env *e, char *move);
+void			disp_moves(t_env *e);
 void			disp_stack(t_stack *stack);
 
 #endif

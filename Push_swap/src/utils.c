@@ -6,16 +6,39 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/25 13:15:50 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/25 14:00:33 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/25 17:22:35 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	add_move(t_env *e, const char *move)
+void	add_move(t_env *e, char *move)
 {
-	(void)e;
-	ft_putstr(move);
+	if (e->move == NULL)
+	{
+		error((int)(e->move = (t_move*)malloc(sizeof(t_move))));
+		e->move_end = e->move;
+	}
+	else
+	{
+		error((int)(e->move_end->next = (t_move*)malloc(sizeof(t_move))));
+		e->move_end = e->move_end->next;
+	}
+	e->move_end->name = move;
+	e->move_end->next = NULL;
+}
+
+void	disp_moves(t_env *e)
+{
+	t_move	*current;
+
+	current = e->move;
+	while (current != NULL)
+	{
+		ft_putstr(current->name);
+		current->next != NULL ? ft_putchar(' ') : 0;
+		current = current->next;
+	}
 	ft_putchar('\n');
 }
 
@@ -28,9 +51,9 @@ void	disp_stack(t_stack *stack)
 	while (current != NULL)
 	{
 		if (current->next != NULL)
-			printf("[%d], ", current->value);
+			printf("%d, ", current->value);
 		else
-			printf("[%d]", current->value);
+			printf("%d", current->value);
 		current = current->next;
 	}
 	printf(")\n");

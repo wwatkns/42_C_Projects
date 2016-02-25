@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/25 11:04:14 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/25 16:39:31 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/25 17:23:36 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int		main(int argc, char **argv)
 	disp_stack(e.stack_a);
 	disp_stack(e.stack_b);
 
+	disp_moves(&e);
 	return (0);
 }
 
@@ -54,24 +55,24 @@ void	check_args(int argc, char **argv)
 void	create_stacks(t_env *e, int argc, char **argv)
 {
 	int		i;
-	t_stack *head;
 	t_stack	*current;
 
 	i = 0;
-	current = (t_stack*)malloc(sizeof(t_stack));
-	head = current;
+	e->move = NULL;
+	e->stack_b = NULL;
+	error((int)(current = (t_stack*)malloc(sizeof(t_stack))));
+	e->stack_a = current;
 	while (++i < argc)
 	{
 		current->value = ft_atoi(argv[i]);
 		current->next = NULL;
 		if (i + 1 < argc)
 		{
-			current->next = (t_stack*)malloc(sizeof(t_stack));
+			error((int)(current->next = (t_stack*)malloc(sizeof(t_stack))));
 			current = current->next;
 		}
 	}
 	e->stack_end_a = current;
-	e->stack_a = head;
 }
 
 void	error(int err)
