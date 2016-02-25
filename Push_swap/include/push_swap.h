@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/25 10:36:15 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/25 13:56:34 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/25 15:14:33 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ typedef struct	s_env
 */
 
 void			check_args(int argc, char **argv);
-void			init_stacks(t_env *e);
 void			create_stacks(t_env *e, int argc, char **argv);
 void			error(int err);
 
