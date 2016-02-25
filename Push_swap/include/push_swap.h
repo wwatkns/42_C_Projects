@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/25 10:36:15 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/25 17:18:26 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/25 17:52:28 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdio.h> // temporary
 
 enum { ONE, BOTH };
+enum { INC, DEC };
 
 typedef struct	s_stack
 {
@@ -43,12 +44,19 @@ typedef struct	s_env
 }				t_env;
 
 /*
-**	main.c functions
+**	main.c
 */
 
 void			check_args(int argc, char **argv);
 void			create_stacks(t_env *e, int argc, char **argv);
 void			error(int err);
+
+/*
+**	resolve.c
+*/
+
+int				resolve(t_env *e);
+int				check_sorted(t_stack *stack, int mode);
 
 /*
 **	move_swap.c

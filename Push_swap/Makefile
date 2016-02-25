@@ -6,7 +6,7 @@
 #    By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/25 10:30:40 by wwatkins          #+#    #+#              #
-#    Updated: 2016/02/25 13:20:16 by wwatkins         ###   ########.fr        #
+#    Updated: 2016/02/25 17:46:07 by wwatkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ FNCTION = $(shell ls -l $(LIB_PATH)/src | grep ft_ | sed 's/^.*ft_//' | sed 's/.
 FORBID = printf $(FNCTION)
 
 SRC_NAME = main.c move_swap.c move_push.c move_rotate.c move_reverse_rotate.c \
-		   utils.c
+		   utils.c resolve.c
 OBJ_NAME = $(SRC_NAME.c=.o)
 LIB_NAME = libft.a
 

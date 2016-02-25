@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/25 11:04:14 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/25 17:23:36 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/25 17:52:42 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int		main(int argc, char **argv)
 	move_reverse_rotate_both(&e);
 	disp_stack(e.stack_a);
 	disp_stack(e.stack_b);
+
+	printf("%d\n", check_sorted(e.stack_a, DEC));
 
 	disp_moves(&e);
 	return (0);
