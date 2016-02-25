@@ -6,13 +6,13 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:48:34 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/23 13:23:31 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/25 10:11:47 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-static void	write_else(t_e *e, t_a *arg, const char *format)
+static void	write_else(t_e *e, const char *format)
 {
 	write(1, &format[e->alen++], 1);
 	e->plen++;
@@ -40,7 +40,7 @@ int			ft_printf(const char *restrict format, ...)
 				e.plen++;
 		}
 		else
-			write_else(&e, &arg, format);
+			write_else(&e, format);
 	}
 	va_end(e.ap);
 	return (e.plen);
