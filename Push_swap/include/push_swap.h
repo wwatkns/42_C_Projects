@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/25 10:36:15 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/26 16:13:49 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/26 16:17:45 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct	s_env
 	int		count_min;
 	int		count;
 	int		min;
+	int		max;
 	int		m;
 }				t_env;
 
@@ -64,7 +65,7 @@ void			error(int err);
 */
 
 int				sort(t_env *e);
-int				get_min(t_env *e);
+int				get_minmax(t_env *e);
 int				check_sorted(t_stack *stack, int mode);
 
 /*

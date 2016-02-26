@@ -6,31 +6,31 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/25 17:39:03 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/26 16:14:56 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/26 17:50:42 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		get_min(t_env *e)
+int		get_minmax(t_env *e)
 {
-	int		tmp;
 	int		count;
 	int		count_min;
 	t_stack	*current;
 
-	tmp = MAX_INT;
+	e->min = MAX_INT;
+	e->max = MIN_INT;
 	count = 1;
 	count_min = 1;
 	current = e->stack_a;
 	while (current != NULL)
 	{
-		tmp > current->value ? count_min = count : 0;
-		tmp > current->value ? tmp = current->value : 0;
+		e->min > current->value ? count_min = count : 0;
+		e->min > current->value ? e->min = current->value : 0;
+		e->max < current->value ? e->max = current->value : 0;
 		current = current->next;
 		count++;
 	}
-	e->min = tmp;
 	e->count_min = count_min;
 	count_min > (count / 2) ? e->count_min = ABS((count - count_min + 1)) : 0;
 	count /= 2;
@@ -43,7 +43,7 @@ int		sort(t_env *e)
 		return (0);
 	while (check_sorted(e->stack_a, INC) != 0 || e->stack_b == NULL)
 	{
-		e->m = get_min(e);
+		e->m = get_minmax(e);
 		if (e->min == e->stack_a->next->value)
 			move_swap_a(e, ONE);
 		else

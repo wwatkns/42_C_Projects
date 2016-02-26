@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/25 11:04:14 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/26 16:02:00 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/26 16:55:14 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int		main(int argc, char **argv)
 {
 	t_env	e;
 
+	if (argc == 1)
+		return (0);
 	check_args(argc, argv);
 	create_stacks(&e, argc, argv);
 	sort(&e);
@@ -31,7 +33,6 @@ void	check_args(int argc, char **argv)
 	double	val;
 
 	i = 0;
-	error(!(argc == 1));
 	while (++i < argc)
 	{
 		k = -1;

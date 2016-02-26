@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/25 16:10:54 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/26 16:14:04 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/26 16:16:26 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	move_rev_rotate_both(t_env *e)
 	int	c;
 
 	c = 0;
-	c += move_reverse_rotate_a(e, BOTH);
-	c += move_reverse_rotate_b(e, BOTH);
+	c += move_rev_rotate_a(e, BOTH);
+	c += move_rev_rotate_b(e, BOTH);
 	c != 0 ? add_move(e, "rrr") : 0;
 }
