@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/25 17:39:03 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/26 13:32:45 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/26 15:04:39 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,32 +40,33 @@ int		get_min(t_env *e)
 	}
 	e->min = tmp;
 	e->count_min = count_min;
-	return ((count / 2) - count_min);
+	count_min > (count / 2) ? e->count_min = ABS((count - count_min + 1)) : 0;
+	count /= 2;
+	return (count_min > count ? 1 : -1);
 }
 
 int		sort(t_env *e)
 {
-	while (1)
+	while (check_sorted(e->stack_a, INC) != 0)
 	{
-		if (e->stack_b != NULL && check_sorted(e->stack_a, INC) &&
-			check_sorted(e->stack_b, DEC))
+		if (e->stack_a == NULL && e->stack_b != NULL &&
+			check_sorted(e->stack_b, DEC) == 0)
 			break ;
-		if (get_min(e) <= 0)
-		{
-			e->count_min--;
-			while (e->count_min-- > 0)
-				move_rotate_a(e, ONE);
-			move_push_b(e);
-		}
+		e->m = get_min(e);
+
+		if (e->min == e->stack_a->next->value)
+			move_swap_a(e, ONE);
 		else
 		{
-			e->count_min--;
-			while (e->count_min-- > 0)
-				move_reverse_rotate_a(e, ONE);
-			move_push_b(e);
+			while (e->count_min-- - 1 > 0)
+				e->m == -1 ? move_rotate_a(e, ONE) : move_reverse_rotate_a(e, ONE);
 		}
-		break ;
+		if (check_sorted(e->stack_a, INC) == 0 && e->stack_b == NULL)
+			break ;
+		move_push_b(e);
 	}
+	while (e->stack_b != NULL)
+		move_push_a(e);
 	return (0);
 }
 

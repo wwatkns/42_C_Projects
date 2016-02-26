@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/25 10:36:15 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/26 13:17:07 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/26 14:56:40 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h> // temporary
+
+# define ABS(x) (x < 0 ? -x : x)
 
 enum { ONE, BOTH };
 enum { INC, DEC };
@@ -44,6 +46,7 @@ typedef struct	s_env
 	int		count;
 	int		min;
 	int		count_min;
+	int		m;
 }				t_env;
 
 /*
