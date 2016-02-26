@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/25 13:01:32 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/25 16:10:15 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/26 10:48:02 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		move_swap_a(t_env *e, int move)
 		temp = e->stack_a->value;
 		e->stack_a->value = e->stack_a->next->value;
 		e->stack_a->next->value = temp;
-		move == ONE ? add_move(e, "sb") : 0;
+		move == ONE ? add_move(e, "sa") : 0;
 		return (1);
 	}
 	return (0);

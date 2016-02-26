@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/25 17:39:03 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/25 17:53:08 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/26 13:32:45 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,80 @@
 
 int		resolve(t_env *e)
 {
-	(void)e;
+	sort(e);
+	disp_moves(e);
+	printf("[%d]\n", e->count);
+	return (0);
+}
+
+int		get_min(t_env *e)
+{
+	int		tmp;
+	int		count;
+	int		count_min;
+	t_stack	*current;
+
+	tmp = 2147483647;
+	count = 1;
+	count_min = 1;
+	current = e->stack_a;
+	while (current != NULL)
+	{
+		tmp > current->value ? count_min = count : 0;
+		tmp > current->value ? tmp = current->value : 0;
+		current = current->next;
+		count++;
+	}
+	e->min = tmp;
+	e->count_min = count_min;
+	return ((count / 2) - count_min);
+}
+
+int		sort(t_env *e)
+{
+	while (1)
+	{
+		if (e->stack_b != NULL && check_sorted(e->stack_a, INC) &&
+			check_sorted(e->stack_b, DEC))
+			break ;
+		if (get_min(e) <= 0)
+		{
+			e->count_min--;
+			while (e->count_min-- > 0)
+				move_rotate_a(e, ONE);
+			move_push_b(e);
+		}
+		else
+		{
+			e->count_min--;
+			while (e->count_min-- > 0)
+				move_reverse_rotate_a(e, ONE);
+			move_push_b(e);
+		}
+		break ;
+	}
+	return (0);
+}
+
+int		bubble_sort(t_env *e)
+{
+	while (check_sorted(e->stack_a, INC) != 0)
+	{
+		while (e->stack_a != NULL)
+		{
+			if (e->stack_a->next != NULL &&
+				e->stack_a->value > e->stack_a->next->value)
+				move_swap_a(e, ONE);
+			move_push_b(e);
+		}
+		while (e->stack_b != NULL)
+		{
+			if (e->stack_b->next != NULL &&
+				e->stack_b->value < e->stack_b->next->value)
+				move_swap_b(e, ONE);
+			move_push_a(e);
+		}
+	}
 	return (0);
 }
 

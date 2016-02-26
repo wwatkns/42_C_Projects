@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/25 10:36:15 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/25 17:52:28 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/26 13:17:07 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,9 @@ typedef struct	s_env
 	t_stack	*stack_end_b;
 	t_move	*move;
 	t_move	*move_end;
+	int		count;
+	int		min;
+	int		count_min;
 }				t_env;
 
 /*
@@ -56,6 +59,8 @@ void			error(int err);
 */
 
 int				resolve(t_env *e);
+int				sort(t_env *e);
+int				bubble_sort(t_env *e);
 int				check_sorted(t_stack *stack, int mode);
 
 /*

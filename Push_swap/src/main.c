@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/25 11:04:14 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/25 17:52:42 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/26 10:29:16 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		main(int argc, char **argv)
 	check_args(argc, argv);
 	create_stacks(&e, argc, argv);
 
-	disp_stack(e.stack_a);
+/*	disp_stack(e.stack_a);
 	disp_stack(e.stack_b);
 	move_push_b(&e);
 	disp_stack(e.stack_a);
@@ -34,9 +34,10 @@ int		main(int argc, char **argv)
 	disp_stack(e.stack_a);
 	disp_stack(e.stack_b);
 
-	printf("%d\n", check_sorted(e.stack_a, DEC));
+//	printf("%d\n", check_sorted(e.stack_a, DEC));
 
-	disp_moves(&e);
+	disp_moves(&e);*/
+	resolve(&e);
 	return (0);
 }
 
