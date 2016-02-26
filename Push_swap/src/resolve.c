@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/25 17:39:03 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/26 15:20:55 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/26 16:14:56 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		get_min(t_env *e)
 	int		count_min;
 	t_stack	*current;
 
-	tmp = 2147483647;
+	tmp = MAX_INT;
 	count = 1;
 	count_min = 1;
 	current = e->stack_a;
@@ -43,16 +43,17 @@ int		sort(t_env *e)
 		return (0);
 	while (check_sorted(e->stack_a, INC) != 0 || e->stack_b == NULL)
 	{
-		if (e->stack_a == NULL && e->stack_b != NULL &&
-			check_sorted(e->stack_b, DEC) == 0)
-			break ;
 		e->m = get_min(e);
 		if (e->min == e->stack_a->next->value)
 			move_swap_a(e, ONE);
 		else
 			while (e->count_min-- - 1 > 0)
-				e->m == -1 ? move_rotate_a(e, ONE) : move_reverse_rotate_a(e, ONE);
+				e->m == -1 ? move_rotate_a(e, ONE) : move_rev_rotate_a(e, ONE);
 		if (check_sorted(e->stack_a, INC) == 0 && e->stack_b == NULL)
+			break ;
+		if (e->stack_b != NULL &&
+			check_sorted(e->stack_a, INC) == 0 &&
+			check_sorted(e->stack_b, DEC) == 0)
 			break ;
 		move_push_b(e);
 	}

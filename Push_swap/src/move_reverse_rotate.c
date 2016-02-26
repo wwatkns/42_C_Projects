@@ -6,13 +6,13 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/25 16:10:54 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/25 16:38:40 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/26 16:14:04 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		move_reverse_rotate_a(t_env *e, int move)
+int		move_rev_rotate_a(t_env *e, int move)
 {
 	t_stack	*tmp;
 	t_stack	*tmp_end;
@@ -33,7 +33,7 @@ int		move_reverse_rotate_a(t_env *e, int move)
 	return (0);
 }
 
-int		move_reverse_rotate_b(t_env *e, int move)
+int		move_rev_rotate_b(t_env *e, int move)
 {
 	t_stack	*tmp;
 	t_stack	*tmp_end;
@@ -54,7 +54,7 @@ int		move_reverse_rotate_b(t_env *e, int move)
 	return (0);
 }
 
-void	move_reverse_rotate_both(t_env *e)
+void	move_rev_rotate_both(t_env *e)
 {
 	int	c;
 

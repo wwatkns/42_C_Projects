@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/25 11:04:14 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/26 15:48:46 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/26 16:02:00 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	check_args(int argc, char **argv)
 	double	val;
 
 	i = 0;
+	error(!(argc == 1));
 	while (++i < argc)
 	{
 		k = -1;
