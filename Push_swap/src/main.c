@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/25 11:04:14 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/26 10:29:16 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/26 15:48:46 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,40 +18,29 @@ int		main(int argc, char **argv)
 
 	check_args(argc, argv);
 	create_stacks(&e, argc, argv);
-
-/*	disp_stack(e.stack_a);
-	disp_stack(e.stack_b);
-	move_push_b(&e);
-	disp_stack(e.stack_a);
-	disp_stack(e.stack_b);
-	move_push_b(&e);
-	disp_stack(e.stack_a);
-	disp_stack(e.stack_b);
-	move_rotate_a(&e, ONE);
-	disp_stack(e.stack_a);
-	disp_stack(e.stack_b);
-	move_reverse_rotate_both(&e);
-	disp_stack(e.stack_a);
-	disp_stack(e.stack_b);
-
-//	printf("%d\n", check_sorted(e.stack_a, DEC));
-
-	disp_moves(&e);*/
-	resolve(&e);
+	sort(&e);
+	disp_moves(&e);
 	return (0);
 }
 
 void	check_args(int argc, char **argv)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
+	int		k;
+	double	val;
 
 	i = 0;
 	while (++i < argc)
 	{
+		k = -1;
+		while (argv[i][++k])
+			error(!(!ft_isdigit(argv[i][k]) && argv[i][k] != '-'));
 		j = i;
 		while (++j < argc)
 			error(!(ft_strcmp(argv[j], argv[i]) == 0));
+		val = ft_atof(argv[i]);
+		error(!(val > MAX_INT || val < MIN_INT));
 	}
 }
 

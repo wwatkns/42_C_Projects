@@ -6,19 +6,11 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/25 17:39:03 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/26 15:04:39 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/26 15:20:55 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int		resolve(t_env *e)
-{
-	sort(e);
-	disp_moves(e);
-	printf("[%d]\n", e->count);
-	return (0);
-}
 
 int		get_min(t_env *e)
 {
@@ -47,48 +39,25 @@ int		get_min(t_env *e)
 
 int		sort(t_env *e)
 {
-	while (check_sorted(e->stack_a, INC) != 0)
+	if (e->stack_a->next == NULL)
+		return (0);
+	while (check_sorted(e->stack_a, INC) != 0 || e->stack_b == NULL)
 	{
 		if (e->stack_a == NULL && e->stack_b != NULL &&
 			check_sorted(e->stack_b, DEC) == 0)
 			break ;
 		e->m = get_min(e);
-
 		if (e->min == e->stack_a->next->value)
 			move_swap_a(e, ONE);
 		else
-		{
 			while (e->count_min-- - 1 > 0)
 				e->m == -1 ? move_rotate_a(e, ONE) : move_reverse_rotate_a(e, ONE);
-		}
 		if (check_sorted(e->stack_a, INC) == 0 && e->stack_b == NULL)
 			break ;
 		move_push_b(e);
 	}
 	while (e->stack_b != NULL)
 		move_push_a(e);
-	return (0);
-}
-
-int		bubble_sort(t_env *e)
-{
-	while (check_sorted(e->stack_a, INC) != 0)
-	{
-		while (e->stack_a != NULL)
-		{
-			if (e->stack_a->next != NULL &&
-				e->stack_a->value > e->stack_a->next->value)
-				move_swap_a(e, ONE);
-			move_push_b(e);
-		}
-		while (e->stack_b != NULL)
-		{
-			if (e->stack_b->next != NULL &&
-				e->stack_b->value < e->stack_b->next->value)
-				move_swap_b(e, ONE);
-			move_push_a(e);
-		}
-	}
 	return (0);
 }
 

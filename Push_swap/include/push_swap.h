@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/25 10:36:15 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/26 14:56:40 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/02/26 15:48:11 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <stdio.h> // temporary
 
 # define ABS(x) (x < 0 ? -x : x)
+# define MAX_INT 2147483647
+# define MIN_INT -2147483648
 
 enum { ONE, BOTH };
 enum { INC, DEC };
@@ -43,9 +45,9 @@ typedef struct	s_env
 	t_stack	*stack_end_b;
 	t_move	*move;
 	t_move	*move_end;
+	int		count_min;
 	int		count;
 	int		min;
-	int		count_min;
 	int		m;
 }				t_env;
 
@@ -61,9 +63,8 @@ void			error(int err);
 **	resolve.c
 */
 
-int				resolve(t_env *e);
 int				sort(t_env *e);
-int				bubble_sort(t_env *e);
+int				get_min(t_env *e);
 int				check_sorted(t_stack *stack, int mode);
 
 /*
