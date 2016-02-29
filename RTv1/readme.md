@@ -25,7 +25,7 @@ __Installation:__
 * `--help`  display help text.
 
 **Example:**
-* `./rtv1 resource/scene/circlebox.scene -w 1920 -h 1080 -g 0.7 -f 70 -x 38 -y 34 -z 30 -s 2`
+* `./rtv1 resource/scene/circlebox.scene -w 1920 -h 1080 -g 0.71 -f 70 -x 38 -y 34 -z 30 -s 2`
 
 **Keys:**
 * `esc` quit program.
