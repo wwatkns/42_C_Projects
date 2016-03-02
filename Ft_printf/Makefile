@@ -6,7 +6,7 @@
 #    By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/19 17:43:51 by wwatkins          #+#    #+#              #
-#    Updated: 2016/02/22 11:01:35 by wwatkins         ###   ########.fr        #
+#    Updated: 2016/03/02 16:03:00 by wwatkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,14 +41,14 @@ $(NAME): $(OBJ)
 	@ranlib $(NAME)
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
-	@mkdir $(OBJ_PATH) 2>/dev/null || echo "" > /dev/null
+	@mkdir -p $(OBJ_PATH)
 	$(CC) $(CFLAGS) $(INC) -o $@ -c $<
 
 .PHONY: clean fclean re
 
 clean:
 	rm -f $(OBJ)
-	@rmdir $(OBJ_PATH) 2> /dev/null || echo "" > /dev/null
+	@rm -rf $(OBJ_PATH)
 
 fclean: clean
 	rm -f $(NAME)

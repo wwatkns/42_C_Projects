@@ -6,7 +6,7 @@
 #    By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/15 09:15:55 by wwatkins          #+#    #+#              #
-#    Updated: 2016/01/07 10:41:56 by wwatkins         ###   ########.fr        #
+#    Updated: 2016/03/02 16:00:39 by wwatkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ $(NAME): $(OBJ)
 	@echo "done."
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
-	@mkdir $(OBJ_PATH) 2>/dev/null || echo "" > /dev/null
+	@mkdir -p $(OBJ_PATH)
 	$(CC) $(CFLAGS) $(LIB) $(INC) -o $@ -c $<
 
 norme:
@@ -55,7 +55,7 @@ norme:
 
 clean:
 	rm -f $(OBJ)
-	@rmdir $(OBJ_PATH) 2> /dev/null || echo "" > /dev/null
+	@rm -rf $(OBJ_PATH)
 
 fclean: clean
 	rm -f $(NAME)

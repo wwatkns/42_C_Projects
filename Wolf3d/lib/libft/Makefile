@@ -6,7 +6,7 @@
 #    By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/15 09:15:55 by wwatkins          #+#    #+#              #
-#    Updated: 2016/01/19 15:59:50 by wwatkins         ###   ########.fr        #
+#    Updated: 2016/03/02 16:05:38 by wwatkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,15 +47,15 @@ $(NAME): $(OBJ)
 	@echo "done."
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
-	@mkdir $(OBJ_PATH) 2>/dev/null || echo "" > /dev/null
-	$(CC) $(CFLAGS) $(LIB) $(INC) -o $@ -c $<
+	@mkdir -p $(OBJ_PATH)
+	$(CC) $(CFLAGS) $(INC) -o $@ -c $<
 
 norme:
 	norminette $(SRC) $(INC_PATH)libft.h
 
 clean:
 	rm -f $(OBJ)
-	@rmdir $(OBJ_PATH) 2> /dev/null || echo "" > /dev/null
+	@rm -rf $(OBJ_PATH)
 
 fclean: clean
 	rm -f $(NAME)
