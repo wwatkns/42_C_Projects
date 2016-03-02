@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 11:03:23 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/21 10:13:23 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/03/02 11:30:14 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ void	raytracing_reflect(t_env *e, t_obj *obj)
 {
 	if (e->recursiondepth < e->cam.maxdepth)
 	{
+		e->ray.pos = e->ray.hit;
+		set_normal(e, obj);
 		e->ray.dir = vec3_reflect(e->ray.dir, obj->normal);
 		e->recursiondepth++;
 		raytracing_draw(e);
