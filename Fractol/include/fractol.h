@@ -6,7 +6,7 @@
 /*   By: wwatkins <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 09:25:57 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/13 15:35:56 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/03/02 14:15:02 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <mlx.h>
+# include <pthread.h>
 
 # define ABS(x) (x < 0 ? -x : x)
+# define THREADS_NUM 8
 
 typedef struct	s_mouse
 {
@@ -76,17 +78,18 @@ typedef struct	s_fract
 
 typedef struct	s_env
 {
-	t_key	key;
-	t_mouse	mouse;
-	t_img	img;
-	t_arg	arg;
-	t_fract	f;
-	void	*mlx;
-	void	*win;
-	int		win_w;
-	int		win_h;
-	int		hwin_w;
-	int		hwin_h;
+	t_key		key;
+	t_mouse		mouse;
+	t_img		img;
+	t_arg		arg;
+	t_fract		f;
+	void		*mlx;
+	void		*win;
+	int			win_w;
+	int			win_h;
+	int			hwin_w;
+	int			hwin_h;
+	int			thread_id;
 }				t_env;
 
 /*
@@ -103,6 +106,7 @@ void			ft_error(int err);
 
 void			ft_core(t_env *e);
 void			ft_displayfract(t_env *e);
+void			ft_displayfract_thread(t_env *e);
 void			ft_initenv(t_env *e);
 
 /*

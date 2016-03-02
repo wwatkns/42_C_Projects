@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 09:35:22 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/01/14 10:38:41 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/03/02 14:16:28 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,28 @@ void	ft_core(t_env *e)
 
 void	ft_displayfract(t_env *e)
 {
+	pthread_t	threads[THREADS_NUM];
+	int			t;
+
+	t = 0;
+	while (t < THREADS_NUM)
+	{
+		e->thread_id = t;
+		pthread_create(&threads[t], NULL, (void*)ft_displayfract_thread, e);
+		pthread_join(threads[t], NULL);
+		t++;
+	}
+}
+
+void	ft_displayfract_thread(t_env *e)
+{
 	int	x;
 	int	y;
 
-	y = -1;
+	y = e->thread_id;
 	e->f.zwin_w = e->f.zoom * e->win_w;
 	e->f.zwin_h = e->f.zoom * e->win_h;
-	while (++y < e->win_h)
+	while (y < e->win_h)
 	{
 		x = -1;
 		while (++x < e->win_w)
@@ -48,7 +63,9 @@ void	ft_displayfract(t_env *e)
 			e->f.n == 2 ? ft_burningship(e, x, y) : 0;
 			e->f.n == 3 ? ft_tricorn(e, x, y) : 0;
 		}
+		y += THREADS_NUM;
 	}
+	pthread_exit(NULL);
 }
 
 void	ft_initenv(t_env *e)
