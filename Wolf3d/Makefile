@@ -6,7 +6,7 @@
 #    By: wwatkins <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/11 09:24:09 by wwatkins          #+#    #+#              #
-#    Updated: 2016/01/29 16:05:01 by wwatkins         ###   ########.fr        #
+#    Updated: 2016/03/02 14:21:25 by wwatkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ MLX_PATH = ./lib/minilibx_macos
 
 NAME = wolf3d
 CC = gcc
-CFLGS = -Werror -Wextra -Wall
+CFLGS = -Werror -Wextra -Wall -Ofast
 MLXFLGS = -L$(MLX_PATH) -I$(MLX_PATH) -lmlx \
 		  -framework OpenGL -framework AppKit
 FNCTION = $(shell ls -l $(LIB_PATH)/src | grep ft_ | sed 's/^.*ft_//' | sed 's/..$$//')
