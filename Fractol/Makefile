@@ -6,14 +6,14 @@
 #    By: wwatkins <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/11 09:24:09 by wwatkins          #+#    #+#              #
-#    Updated: 2016/03/02 14:14:20 by wwatkins         ###   ########.fr        #
+#    Updated: 2016/03/02 15:07:17 by wwatkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC_PATH = ./src/
 OBJ_PATH = ./obj/
 INC_PATH = ./include/ ./lib/libft/include/
-LIB_PATH = ./lib/libft
+LIB_PATH = ./lib/libft/
 MLX_PATH = ./lib/minilibx_macos
 
 NAME = fractol
@@ -25,7 +25,7 @@ FNCTION = $(shell ls -l $(LIB_PATH)/src | grep ft_ | sed 's/^.*ft_//' | sed 's/.
 FORBID = printf $(FNCTION)
 
 SRC_NAME  = main.c hook.c mousehook.c core.c draw.c fractal.c
-OBJ_NAME = $(SRC_NAME.c=.o)
+OBJ_NAME = $(SRC_NAME:.c=.o)
 LIB_NAME = libft.a
 
 SRC = $(addprefix $(SRC_PATH), $(SRC_NAME))
@@ -42,14 +42,14 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	make -C $(MLX_PATH) re
 	make -C $(LIB_PATH) re
-	$(CC) $(CFLGS) -L$(LIB_PATH) -lft $(SRC) $(INC) -o $(NAME) $(OBJ) $(MLXFLGS)
+	$(CC) $(CFLGS) $(LIB) $(INC) $(OBJ) $(MLXFLGS) -o $(NAME)
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
-	@mkdir $(OBJ_PATH) 2>/dev/null || echo "" > /dev/null
-	$(CC) $(CFLGS) $(LIB) $(INC) -o $@ -c $<
+	mkdir -p $(OBJ_PATH)
+	$(CC) $(CFLGS) $(INC) -o $@ -c $<
 
 nolib:
-	$(CC) $(CFLGS) -L$(LIB_PATH) -lft $(SRC) $(INC) -o $(NAME) $(OBJ) $(MLXFLGS)
+	$(CC) $(CFLGS) $(LIB) $(INC) $(OBJ) $(MLXFLGS) -o $(NAME)
 
 cleanmlx:
 	make -C $(MLX_PATH) clean
@@ -62,7 +62,7 @@ fcleanlib:
 
 clean: cleanmlx cleanlib
 	rm -fv $(OBJ)
-	@rmdir $(OBJ_PATH) 2> /dev/null || echo "" > /dev/null
+	rm -rf $(OBJ_PATH)
 
 fclean: clean fcleanlib
 	rm -fv $(NAME)

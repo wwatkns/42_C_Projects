@@ -6,14 +6,14 @@
 #    By: wwatkins <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/11 09:24:09 by wwatkins          #+#    #+#              #
-#    Updated: 2016/03/02 14:21:25 by wwatkins         ###   ########.fr        #
+#    Updated: 2016/03/02 15:09:53 by wwatkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC_PATH = ./src/
 OBJ_PATH = ./obj/
 INC_PATH = ./include/ ./lib/libft/include/
-LIB_PATH = ./lib/libft
+LIB_PATH = ./lib/libft/
 MLX_PATH = ./lib/minilibx_macos
 
 NAME = wolf3d
@@ -26,7 +26,7 @@ FORBID = printf $(FNCTION)
 
 SRC_NAME = main.c draw.c core.c hook.c vector.c vector_op.c map.c raycast.c \
 		   mouse_hook.c movement.c raycast_texture.c
-OBJ_NAME = $(SRC_NAME.c=.o)
+OBJ_NAME = $(SRC_NAME:.c=.o)
 LIB_NAME = libft.a
 
 SRC = $(addprefix $(SRC_PATH), $(SRC_NAME))
@@ -43,14 +43,14 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	make -C $(MLX_PATH) re
 	make -C $(LIB_PATH) re
-	$(CC) $(CFLGS) -L$(LIB_PATH) -lft $(SRC) $(INC) -o $(NAME) $(OBJ) $(MLXFLGS)
+	$(CC) $(CFLGS) $(LIB) $(INC) $(OBJ) $(MLXFLGS) -o $(NAME)
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
-	@mkdir $(OBJ_PATH) 2>/dev/null || echo "" > /dev/null
-	$(CC) $(CFLGS) $(LIB) $(INC) -o $@ -c $<
+	mkdir -p $(OBJ_PATH)
+	$(CC) $(CFLGS) $(INC) -o $@ -c $<
 
 nolib:
-	$(CC) $(CFLGS) -L$(LIB_PATH) -lft $(SRC) $(INC) -o $(NAME) $(OBJ) $(MLXFLGS)
+	$(CC) $(CFLGS) $(LIB) $(INC) $(OBJ) $(MLXFLGS) -o $(NAME)
 
 cleanmlx:
 	make -C $(MLX_PATH) clean
@@ -63,7 +63,7 @@ fcleanlib:
 
 clean: cleanmlx cleanlib
 	rm -fv $(OBJ)
-	@rmdir $(OBJ_PATH) 2> /dev/null || echo "" > /dev/null
+	rm -rf $(OBJ_PATH)
 
 fclean: clean fcleanlib
 	rm -fv $(NAME)

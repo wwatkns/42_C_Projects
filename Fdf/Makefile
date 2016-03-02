@@ -6,24 +6,25 @@
 #    By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/22 19:20:08 by wwatkins          #+#    #+#              #
-#    Updated: 2016/01/29 16:08:48 by wwatkins         ###   ########.fr        #
+#    Updated: 2016/03/02 15:04:08 by wwatkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC_PATH = ./src/
 OBJ_PATH = ./obj/
 INC_PATH = ./include/ ./lib/libft/include/
-LIB_PATH = ./lib/libft
+LIB_PATH = ./lib/libft/
 MLX_PATH = ./lib/minilibx_macos
 
 NAME = fdf
 CC = gcc
-CFLGS = -Werror -Wextra -Wall -o2
+CFLGS = -Werror -Wextra -Wall -Ofast
 MLXFLGS = -L$(MLX_PATH) -I$(MLX_PATH) -lmlx \
 		  -framework OpenGL -framework AppKit
 
 SRC_NAME  = main.c core.c draw.c triangle.c parse.c hook.c
-OBJ_NAME = $(SRC_NAME.c=.o)
+
+OBJ_NAME = $(SRC_NAME:.c=.o)
 LIB_NAME = libft.a
 
 SRC = $(addprefix $(SRC_PATH), $(SRC_NAME))
@@ -38,15 +39,14 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	make -C $(MLX_PATH) re
 	make -C $(LIB_PATH) re
-	$(CC) $(CFLGS) -L$(LIB_PATH) -lft $(SRC) $(INC) -o $(NAME) $(OBJ) $(MLXFLGS)
-	@ls | grep auteur && echo "auteur [OK]" || echo "auteur [KO]"
+	$(CC) $(CFLGS) $(LIB) $(INC) $(OBJ) $(MLXFLGS) -o $(NAME)
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
-	@mkdir $(OBJ_PATH) 2>/dev/null || echo "" > /dev/null
-	$(CC) $(CFLGS) $(LIB) $(INC) -o $@ -c $<
+	mkdir -p $(OBJ_PATH)
+	$(CC) $(CFLGS) $(INC) -o $@ -c $<
 
 nolib:
-	$(CC) $(CFLGS) -L$(LIB_PATH) -lft $(SRC) $(INC) -o $(NAME) $(OBJ) $(MLXFLGS)
+	$(CC) $(CFLGS) -L$(LIB_PATH) -lft $(SRC) $(INC) $(OBJ) $(MLXFLGS) -o $(NAME)
 
 cleanmlx:
 	make -C $(MLX_PATH) clean
@@ -59,7 +59,7 @@ fcleanlib:
 
 clean: cleanmlx cleanlib
 	rm -fv $(OBJ)
-	@rmdir $(OBJ_PATH) 2> /dev/null || echo "" > /dev/null
+	rm -rf $(OBJ_PATH)
 
 fclean: clean fcleanlib
 	rm -fv $(NAME)
@@ -69,7 +69,3 @@ re: fclean all
 norme:
 	make -C $(LIB_PATH) norme
 	norminette $(SRC) ./include/fdf.h
-
-
-
-

@@ -6,7 +6,7 @@
 #    By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/28 10:58:16 by wwatkins          #+#    #+#              #
-#    Updated: 2016/02/15 13:48:27 by wwatkins         ###   ########.fr        #
+#    Updated: 2016/03/02 15:12:32 by wwatkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ MLX_PATH = ./lib/minilibx_macos
 
 NAME = rtv1
 CC = gcc
-CFLGS = -Werror -Wextra -Wall
+CFLGS = -Werror -Wextra -Wall -Ofast
 MLXFLGS = -L$(MLX_PATH) -I$(MLX_PATH) -lmlx \
 		  -framework OpenGL -framework AppKit
 FNCTION = $(shell ls -l $(LIB_PATH)/src | grep ft_ | sed 's/^.*ft_//' | sed 's/..$$//')
@@ -27,7 +27,7 @@ FORBID = printf $(FNCTION)
 
 SRC_NAME = main.c parse.c utils.c core.c hook.c draw.c raytracing.c \
 		   rayintersect.c light.c init.c
-OBJ_NAME = $(SRC_NAME.c=.o)
+OBJ_NAME = $(SRC_NAME:.c=.o)
 LIB_NAME = libft.a
 VEC_NAME = libvec.a
 
@@ -48,14 +48,14 @@ $(NAME): $(OBJ)
 	make -C $(MLX_PATH) re
 	make -C $(VEC_PATH) re
 	make -C $(LIB_PATH) re
-	$(CC) $(CFLGS) -L$(LIB_PATH) -L$(VEC_PATH) $(LIB) $(VEC) $(SRC) $(INC) -o $(NAME) $(OBJ) $(MLXFLGS)
+	$(CC) $(CFLGS) $(LIB) $(VEC) $(LIB) $(VEC) $(INC) $(OBJ) $(MLXFLGS) -o $(NAME)
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
-	@mkdir $(OBJ_PATH) 2>/dev/null || echo "" > /dev/null
-	$(CC) $(CFLGS) $(LIB) $(VEC) $(INC) -o $@ -c $<
+	mkdir -p $(OBJ_PATH)
+	$(CC) $(CFLGS) $(INC) -o $@ -c $<
 
 nolib:
-	$(CC) $(CFLGS) -L$(LIB_PATH) -L$(VEC_PATH) $(LIB) $(VEC) $(SRC) $(INC) -o $(NAME) $(OBJ) $(MLXFLGS)
+	$(CC) $(CFLGS) $(LIB) $(VEC) $(LIB) $(VEC) $(INC) $(OBJ) $(MLXFLGS) -o $(NAME)
 
 cleanmlx:
 	make -C $(MLX_PATH) clean
@@ -74,7 +74,7 @@ fcleanlib:
 
 clean: cleanmlx cleanlib cleanvec
 	rm -fv $(OBJ)
-	@rmdir $(OBJ_PATH) 2> /dev/null || echo "" > /dev/null
+	rm -rf $(OBJ_PATH)
 
 fclean: clean fcleanlib fcleanvec
 	rm -fv $(NAME)
