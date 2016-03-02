@@ -6,7 +6,7 @@
 #    By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/25 10:30:40 by wwatkins          #+#    #+#              #
-#    Updated: 2016/03/02 16:04:26 by wwatkins         ###   ########.fr        #
+#    Updated: 2016/03/02 17:18:57 by wwatkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@mkdir -p $(OBJ_PATH)
 	$(CC) $(CFLGS) $(INC) -o $@ -c $<
 
-nolib:
+nolib: $(OBJ)
 	$(CC) $(CFLGS) $(LIB) $(INC) $(OBJ) -o $(NAME)
 
 cleanlib:

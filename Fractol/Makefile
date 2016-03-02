@@ -6,7 +6,7 @@
 #    By: wwatkins <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/11 09:24:09 by wwatkins          #+#    #+#              #
-#    Updated: 2016/03/02 15:59:51 by wwatkins         ###   ########.fr        #
+#    Updated: 2016/03/02 17:17:19 by wwatkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,7 @@ $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@mkdir -p $(OBJ_PATH)
 	$(CC) $(CFLGS) $(INC) -o $@ -c $<
 
-nolib:
+nolib: $(OBJ)
 	$(CC) $(CFLGS) $(LIB) $(INC) $(OBJ) $(MLXFLGS) -o $(NAME)
 
 cleanmlx:
