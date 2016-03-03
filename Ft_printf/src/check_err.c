@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:46:46 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/03/03 18:52:15 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/03/03 19:32:38 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@ int			check_err(t_a *arg)
 	if (check_diez(arg) == -1)
 		return (-1);
 	if (check_mod(arg) == -1)
-		return (-1);
-	if ((arg->type == 'S') && arg->prec.pt)
 		return (-1);
 	return (0);
 }

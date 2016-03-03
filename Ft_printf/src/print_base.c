@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:57:31 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/03/03 18:57:17 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/03/03 19:17:31 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,10 @@ static int	print_spaces(t_a *arg, int len)
 		arg->width--;
 		sp++;
 	}
-	while ((arg->prec.prec - len) > 0 && (arg->prec.prec--))
+	while ((arg->prec.prec - len) > 0)
 	{
 		write(1, "0", 1);
+		arg->prec.prec--;
 		sp++;
 	}
 	arg->width -= sp;

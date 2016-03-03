@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/20 12:04:27 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/03/03 18:47:37 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/03/03 19:36:21 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	wchar_t_str_len(const wchar_t *s)
 {
 	int	len;
 
-	len = 1;
+	len = 0;
 	while (*s)
 		len += nbr_binary(*s++);
 	return (len);
@@ -50,7 +50,7 @@ int			print_str_wchar_t(const wchar_t *s, t_a *arg)
 	arg->width -= len_unicode;
 	while (!arg->flag.mn && arg->width-- > 0)
 		arg->flag.zr ? write(1, "0", 1) : write(1, " ", 1);
-	while (*s != 0 && arg->prec.prec > 1)
+	while (*s != 0 && arg->prec.prec > 0)
 	{
 		print_wchar_t(*s);
 		arg->prec.prec -= nbr_binary(*s);
@@ -58,5 +58,5 @@ int			print_str_wchar_t(const wchar_t *s, t_a *arg)
 	}
 	while (arg->flag.mn && arg->width-- > 0)
 		arg->flag.zr ? write(1, "0", 1) : write(1, " ", 1);
-	return (len - 1);
+	return (len);
 }

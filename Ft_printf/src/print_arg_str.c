@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 18:03:02 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/23 10:58:32 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/03/03 19:30:55 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,12 @@
 
 void	print_arg_str(t_e *e, t_a *arg, int *i)
 {
-	if (arg->prec.pt && arg->prec.prec == 0)
-		return ;
+	while (arg->prec.pt && arg->prec.prec == 0 && arg->width > 0)
+	{
+		write(1, " ", 1);
+		arg->width--;
+		e->plen++;
+	}
 	if (arg->mod.l || arg->type == 'S')
 		*i = print_str_wchar_t(va_arg(e->ap, wchar_t *), arg);
 	else

@@ -6,11 +6,16 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:47:02 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/03/03 18:59:21 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/03/03 19:06:08 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
+
+static int	ft_isdigit(char c)
+{
+	return (('a' <= c && c <= 'z') || ('A' <= c && c <= 'Z'));
+}
 
 int	check_zero(t_a *arg)
 {
@@ -27,10 +32,7 @@ int	check_zero(t_a *arg)
 
 int	check_space(t_a *arg)
 {
-	if (arg->flag.sp == 1 && !(arg->type == 'i' || arg->type == 'd' ||
-		arg->type == 'D' || arg->type == '%' || arg->type == 'R' ||
-		arg->type == 'u' || arg->type == 'c' || arg->type == 'C' ||
-		arg->type == 's' || arg->type == 'S'))
+	if (arg->flag.sp == 1 && !(arg->type == '%' || ft_isdigit(arg->type)))
 		return (-1);
 	if (arg->flag.sp == 1 && arg->flag.di == 1 && arg->type != '%' &&
 		arg->type != 'R')
@@ -45,7 +47,8 @@ int	check_plus(t_a *arg)
 {
 	if (arg->flag.pl == 1 && !(arg->type == 'd' || arg->type == 'D' ||
 		arg->type == 'i' || arg->type == '%' || arg->type == 'R' ||
-		arg->type == 'u' || arg->type == 'o' || arg->type == 'O'))
+		arg->type == 'u' || arg->type == 'o' || arg->type == 'O' ||
+		arg->type == 's' || arg->type == 'S'))
 		return (-1);
 	return (0);
 }
