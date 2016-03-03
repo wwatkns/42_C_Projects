@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/20 12:04:27 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/23 11:56:16 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/03/03 17:19:43 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	wchar_t_str_len(const wchar_t *s)
 	int	len;
 
 	len = 0;
-	while (*s != '\0')
+	while (*s)
 		len += nbr_binary(*s++);
 	return (len);
 }

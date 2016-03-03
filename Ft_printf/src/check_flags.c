@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:47:02 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/23 10:04:35 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/03/03 16:47:15 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,13 @@ int	check_zero(t_a *arg)
 int	check_space(t_a *arg)
 {
 	if (arg->flag.sp == 1 && !(arg->type == 'i' || arg->type == 'd' ||
-		arg->type == 'D' || arg->type == '%'))
+		arg->type == 'D' || arg->type == '%' || arg->type == 'R')) // TEMP
 		return (-1);
-	if (arg->flag.sp == 1 && arg->flag.di == 1)
+	if (arg->flag.sp == 1 && arg->flag.di == 1 && arg->type != '%' &&
+		arg->type != 'R')
 		return (-1);
-	if (arg->flag.sp == 1 && arg->flag.pl == 1)
+	if (arg->flag.sp == 1 && arg->flag.pl == 1 && arg->type != '%' &&
+		arg->type != 'R')
 		arg->flag.sp = 0;
 	return (0);
 }
@@ -41,7 +43,7 @@ int	check_space(t_a *arg)
 int	check_plus(t_a *arg)
 {
 	if (arg->flag.pl == 1 && !(arg->type == 'd' || arg->type == 'D' ||
-		arg->type == 'i' || arg->type == '%'))
+		arg->type == 'i' || arg->type == '%' || arg->type == 'R'))
 		return (-1);
 	return (0);
 }
@@ -49,7 +51,8 @@ int	check_plus(t_a *arg)
 int	check_diez(t_a *arg)
 {
 	if (arg->flag.di == 1 && !(arg->type == 'o' || arg->type == 'O' ||
-		arg->type == 'x' || arg->type == 'X' || arg->type == '%'))
+		arg->type == 'x' || arg->type == 'X' || arg->type == '%' ||
+		arg->type == 'R'))
 		return (-1);
 	return (0);
 }

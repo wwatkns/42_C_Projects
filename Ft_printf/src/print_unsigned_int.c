@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 18:00:15 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/22 17:10:32 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/03/03 16:51:06 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,6 @@ int			print_unsigned_int(unsigned long long int n, t_a *arg)
 	if (n <= 9)
 		len += print_spaces(arg, depth);
 	print_char(n % 10 + '0');
+	depth = 0;
 	return (len);
 }

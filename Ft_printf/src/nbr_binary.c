@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/21 13:57:26 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/21 13:58:06 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/03/03 16:43:15 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,7 @@ int	nbr_binary(unsigned int v)
 	i = 1;
 	while (v >>= 1)
 		i++;
-	return (i / 4);
+	i /= 4;
+	i == 0 ? i = 1 : 0;
+	return (i);
 }

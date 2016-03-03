@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:54:30 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/22 10:47:04 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/03/03 16:42:12 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ int	is_type(char ty)
 {
 	if (ty == 'd' || ty == 'D' || ty == 's' || ty == 'S' || ty == 'x' ||
 		ty == 'X' || ty == 'p' || ty == 'o' || ty == 'O' || ty == 'c' ||
-		ty == 'C' || ty == 'u' || ty == 'U' || ty == 'i' || ty == '%')
+		ty == 'C' || ty == 'u' || ty == 'U' || ty == 'i' || ty == '%' ||
+		ty == 'R')
 		return (1);
 	return (0);
 }

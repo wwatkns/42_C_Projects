@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:57:31 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/22 17:04:32 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/03/03 16:50:46 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,6 @@ int			print_base(t_a *arg, unsigned long long n, const int base, char maj)
 		len += print_spaces(arg, depth);
 		!arg->flag.zr && arg->flag.di ? len += print_prefix(arg) : 0;
 	}
+	depth = 0;
 	return (len);
 }
