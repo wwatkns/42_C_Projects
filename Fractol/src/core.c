@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 09:35:22 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/03/03 12:04:22 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/03/03 12:51:27 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,6 @@ void	ft_displayfract(t_env *e)
 	{
 		e->thread_id = t;
 		pthread_create(&e->threads[t], NULL, (void*)ft_displayfract_thread, e);
-		t++;
-	}
-	t = 0;
-	while (t < THREADS_NUM)
-	{
 		pthread_join(e->threads[t], NULL);
 		t++;
 	}
