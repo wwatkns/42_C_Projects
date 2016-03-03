@@ -6,7 +6,7 @@
 #    By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/28 10:58:16 by wwatkins          #+#    #+#              #
-#    Updated: 2016/03/02 17:17:58 by wwatkins         ###   ########.fr        #
+#    Updated: 2016/03/03 15:19:29 by wwatkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,14 +48,14 @@ $(NAME): $(OBJ)
 	make -C $(MLX_PATH) re
 	make -C $(VEC_PATH) re
 	make -C $(LIB_PATH) re
-	$(CC) $(CFLGS) $(LIB) $(VEC) $(LIB) $(VEC) $(INC) $(OBJ) $(MLXFLGS) -o $(NAME)
+	$(CC) $(CFLGS) $(LIB) $(VEC) $(INC) $(OBJ) $(MLXFLGS) -o $(NAME)
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@mkdir -p $(OBJ_PATH)
 	$(CC) $(CFLGS) $(INC) -o $@ -c $<
 
 nolib: $(OBJ)
-	$(CC) $(CFLGS) $(LIB) $(VEC) $(LIB) $(VEC) $(INC) $(OBJ) $(MLXFLGS) -o $(NAME)
+	$(CC) $(CFLGS) $(LIB) $(VEC) $(INC) $(OBJ) $(MLXFLGS) -o $(NAME)
 
 cleanmlx:
 	make -C $(MLX_PATH) clean
