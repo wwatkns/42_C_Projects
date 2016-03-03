@@ -9,5 +9,3 @@ __You must handle:__
 > - The minimum field size.
 > - The accuracy.
 > - The following modifiers: `hh``h``l``ll``j``z`.
-
-Undefined behavior are not handled, if string in ft_printf does not respect printf format, function may encounter floating point exceptions or worst.
