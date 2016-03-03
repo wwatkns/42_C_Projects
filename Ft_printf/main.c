@@ -4,7 +4,7 @@
 int	main(void)
 {
 	setlocale(LC_ALL, "en_US.UTF-8");
-	printf("\n%d\n", ft_printf("%.4S", L"ÊM-^HM-^QÊM-^XØ‰∏M-ÂM-^O™ÁM-^L´„M-M-^B"));
-	printf("\n%d\n", printf("%.4S", L"ÊM-^HM-^QÊM-^XØ‰∏M-ÂM-^O™ÁM-^L´„M-M-^B"));
+	printf("\n%d\n", ft_printf("%.0p, %.p", 0, 0));
+	printf("\n%d\n", printf("%.0p, %.p", 0, 0));
 	return (0);
 }
