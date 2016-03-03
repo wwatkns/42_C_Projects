@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:58:13 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/03/03 17:11:51 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/03/03 17:58:07 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,21 @@ static int	print_spaces(t_a *arg, int nbrlen, int sign)
 	return (len);
 }
 
-int			print_int(long long int n, t_a *arg)
+int			print_int(long long n, t_a *arg)
 {
-	int						len;
-	static int				sign = 0;
-	static long long int	depth = 0;
+	int			len;
+	static int	sign = 0;
+	static int	depth = 0;
 
 	depth++;
 	len = 1;
 	if (n < 0)
 	{
+		if (n == LLONG_MIN)
+		{
+			len = print_str("-9223372036854775808", arg);
+			return (len);
+		}
 		n = -n;
 		len++;
 		sign = -1;

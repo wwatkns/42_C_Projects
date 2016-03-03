@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:44:38 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/23 13:00:49 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/03/03 17:39:38 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ int				nbr_len_unsigned(unsigned long long int n);
 int				nbr_len_base(long n, const int base);
 int				nbr_binary(unsigned int v);
 int				str_len(const char *s);
-int				print_int(long long int n, t_a *arg);
+int				print_int(long long n, t_a *arg);
 int				print_unsigned_int(unsigned long long int n, t_a *arg);
 int				print_char(char c);
 int				print_str(const char *s, t_a *arg);
