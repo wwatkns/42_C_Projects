@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:50:37 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/23 13:17:30 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/03/03 18:55:15 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static void		check_arg(t_e *e, t_a *arg)
 	va_list copy;
 
 	va_copy(copy, e->ap);
-	if (arg->type == 's')
+	if (arg->type == 's' || arg->type == 'S')
 	{
 		if ((va_arg(copy, char *)) == NULL)
 		{

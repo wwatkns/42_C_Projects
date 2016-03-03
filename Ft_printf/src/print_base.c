@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:57:31 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/03/03 16:50:46 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/03/03 18:57:17 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	print_prefix(t_a *arg)
 	int	len;
 
 	len = 0;
-	if (arg->type == 'o')
+	if (arg->type == 'o' || arg->type == 'O')
 	{
 		write(1, "0", 1);
 		len = 1;

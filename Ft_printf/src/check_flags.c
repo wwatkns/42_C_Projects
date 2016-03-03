@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:47:02 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/03/03 18:06:00 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/03/03 18:59:21 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 int	check_zero(t_a *arg)
 {
-	if (arg->flag.zr == 1 && (arg->type == 's' || arg->type == 'S' ||
-		arg->type == 'p'))
+	if (arg->flag.zr == 1 && arg->type == 'p')
 		return (-1);
 	if (arg->flag.zr == 1 && arg->flag.mn == 1)
 		arg->flag.zr = 0;
@@ -30,7 +29,8 @@ int	check_space(t_a *arg)
 {
 	if (arg->flag.sp == 1 && !(arg->type == 'i' || arg->type == 'd' ||
 		arg->type == 'D' || arg->type == '%' || arg->type == 'R' ||
-		arg->type == 'u')) // TEMP
+		arg->type == 'u' || arg->type == 'c' || arg->type == 'C' ||
+		arg->type == 's' || arg->type == 'S'))
 		return (-1);
 	if (arg->flag.sp == 1 && arg->flag.di == 1 && arg->type != '%' &&
 		arg->type != 'R')
@@ -45,7 +45,7 @@ int	check_plus(t_a *arg)
 {
 	if (arg->flag.pl == 1 && !(arg->type == 'd' || arg->type == 'D' ||
 		arg->type == 'i' || arg->type == '%' || arg->type == 'R' ||
-		arg->type == 'u'))
+		arg->type == 'u' || arg->type == 'o' || arg->type == 'O'))
 		return (-1);
 	return (0);
 }
