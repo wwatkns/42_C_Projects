@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/20 12:04:27 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/03/04 11:58:30 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/03/04 12:13:41 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,8 @@ int			print_str_wchar_t(const wchar_t *s, t_a *arg)
 	while (!arg->flag.mn && arg->width-- > 0)
 		arg->flag.zr ? write(1, "0", 1) : write(1, " ", 1);
 	len_unicode = nbr_binary(*s);
-	while (*s != 0 && arg->prec.prec >= len_unicode)
-	{
-		print_wchar_t(*s++);
+	while (*s != 0 && arg->prec.prec >= len_unicode && (print_wchar_t(*s++)))
 		len_unicode += nbr_binary(*s);
-	}
 	while (arg->flag.mn && arg->width-- > 0 && (len++))
 		arg->flag.zr ? write(1, "0", 1) : write(1, " ", 1);
 	return (ret > len ? ret : len);

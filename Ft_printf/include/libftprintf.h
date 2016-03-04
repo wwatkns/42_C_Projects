@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:44:38 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/03/03 17:39:38 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/03/04 12:14:35 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ int				print_int(long long n, t_a *arg);
 int				print_unsigned_int(unsigned long long int n, t_a *arg);
 int				print_char(char c);
 int				print_str(const char *s, t_a *arg);
-int				print_wchar_t(wchar_t c);
+int				print_wchar_t(unsigned int c);
 int				print_str_wchar_t(const wchar_t *s, t_a *arg);
 int				print_base(t_a *arg, unsigned long long n, const int base,
 				char maj);

@@ -6,13 +6,13 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:57:31 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/03/04 11:41:06 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/03/04 12:19:55 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-static int	print_prefix(t_a *arg)
+static int	prfx(t_a *arg)
 {
 	int	len;
 
@@ -72,11 +72,8 @@ int			print_base(t_a *arg, unsigned long long n, const int base, char maj)
 	static short	depth = 0;
 
 	len = 0;
-	if (n == 0 && depth == 0)
-	{
-		write(1, "0", 1);
+	if (n == 0 && depth == 0 && (write(1, "0", 1)))
 		return (1);
-	}
 	if (n > 0)
 	{
 		depth++;
@@ -88,11 +85,9 @@ int			print_base(t_a *arg, unsigned long long n, const int base, char maj)
 	}
 	if (n == 0)
 	{
-		(arg->flag.zr || arg->prec.pt) && arg->flag.di ?
-		len += print_prefix(arg) : 0;
+		(arg->flag.zr || arg->prec.pt) && arg->flag.di ? len += prfx(arg) : 0;
 		len += print_spaces(arg, depth);
-		!(arg->flag.zr || arg->prec.pt) && arg->flag.di ?
-		len += print_prefix(arg) : 0;
+		!(arg->flag.zr || arg->prec.pt) && arg->flag.di ? len += prfx(arg) : 0;
 	}
 	depth = 0;
 	return (len);
