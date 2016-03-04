@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/25 11:04:14 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/03/04 16:08:08 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/03/04 16:44:21 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	error(int err)
 {
 	if (err == 0 || err == -1)
 	{
-		ft_putstr("error\n");
+		ft_putstr("Error\n");
 		exit(0);
 	}
 	return ;
