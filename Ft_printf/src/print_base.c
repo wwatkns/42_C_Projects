@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:57:31 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/03/04 09:58:42 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/03/04 10:46:21 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ static int	print_spaces(t_a *arg, int len)
 	arg->flag.di && arg->type == 'o' ? prefix_len = 1 : 0;
 	arg->flag.di && arg->type == 'x' ? prefix_len = 2 : 0;
 	arg->flag.di && arg->type == 'X' ? prefix_len = 2 : 0;
-	arg->width -= len + prefix_len;
+	arg->prec.prec = (arg->prec.prec > len ? arg->prec.prec : len);
+	arg->width -= arg->prec.prec + prefix_len;
 	while (!arg->flag.mn && arg->width > 0)
 	{
 		arg->flag.zr ? write(1, "0", 1) : write(1, " ", 1);
@@ -58,7 +59,6 @@ static int	print_spaces(t_a *arg, int len)
 		arg->prec.prec--;
 		sp++;
 	}
-	arg->width -= sp;
 	return (sp);
 }
 
