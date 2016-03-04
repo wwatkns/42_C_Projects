@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:57:31 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/03/03 19:17:31 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/03/04 09:58:42 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,11 @@ int			print_base(t_a *arg, unsigned long long n, const int base, char maj)
 	static short	depth = 0;
 
 	len = 0;
-	if (n == 0 && depth == 0 && (write(1, "0", 1)))
+	if (n == 0 && depth == 0)
+	{
+		write(1, "0", 1);
 		return (1);
+	}
 	if (n > 0)
 	{
 		depth++;

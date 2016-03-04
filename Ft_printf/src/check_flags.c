@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:47:02 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/03/03 19:39:55 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/03/04 09:43:34 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ static int	ft_isdigit(char c)
 
 int	check_zero(t_a *arg)
 {
-	if (arg->flag.zr == 1 && arg->type == 'p')
-		return (-1);
 	if (arg->flag.zr == 1 && arg->flag.mn == 1)
 		arg->flag.zr = 0;
 	if (arg->flag.zr == 1 && arg->prec.pt == 1 && (arg->type == 'd' ||
