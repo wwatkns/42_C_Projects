@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 09:35:22 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/03/03 12:51:27 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/03/04 12:55:24 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ void	ft_displayfract_thread(t_env *e)
 		}
 		y += THREADS_NUM;
 	}
-//	pthread_exit(NULL);
 }
 
 void	ft_initenv(t_env *e)

@@ -6,7 +6,7 @@
 /*   By: wwatkins <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 09:25:57 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/03/03 12:51:29 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/03/04 12:55:28 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <pthread.h>
 
 # define ABS(x) (x < 0 ? -x : x)
-# define THREADS_NUM 600
+# define THREADS_NUM 4
 
 typedef struct	s_mouse
 {
