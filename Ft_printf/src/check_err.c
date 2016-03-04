@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:46:46 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/03/03 19:39:39 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/03/04 10:27:57 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ static int	check_mod(t_a *arg)
 	if (arg->mod.h == 1 && (arg->type == 'c' || arg->type == 'C' ||
 		arg->type == 's' || arg->type == 'S' || arg->type == 'p'))
 		return (-1);
-	if (arg->mod.hh == 1 && (arg->type == 'c' || arg->type == 'C' ||
-		arg->type == 's' || arg->type == 'S' || arg->type == 'p'))
+	if (arg->mod.hh == 1 && (arg->type == 'c' ||
+		arg->type == 's' || arg->type == 'p'))
 		return (-1);
 	if (arg->mod.l == 1 && (arg->type == 'C' || arg->type == 'S'))
 		return (-1);

@@ -6,7 +6,7 @@
 int	main(void)
 {
 	setlocale(LC_ALL, "en_US.UTF-8");
-	printf("\n%d\n", ft_printf("%hhO, %hhO", 0, USHRT_MAX));
-	printf("\n%d\n", printf("%hhO, %hhO", 0, USHRT_MAX));
+	printf("\n%d\n", ft_printf("%15.4o", 42));
+	printf("\n%d\n", printf("%15.4o", 42));
 	return (0);
 }

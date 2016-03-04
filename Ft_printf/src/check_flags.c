@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:47:02 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/03/04 09:43:34 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/03/04 10:24:31 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ int	check_plus(t_a *arg)
 	if (arg->flag.pl == 1 && !(arg->type == 'd' || arg->type == 'D' ||
 		arg->type == 'i' || arg->type == '%' || arg->type == 'R' ||
 		arg->type == 'u' || arg->type == 'o' || arg->type == 'O' ||
-		arg->type == 's' || arg->type == 'S' || arg->type == 'p'))
+		arg->type == 's' || arg->type == 'S' || arg->type == 'p' ||
+		arg->type == 'x' || arg->type == 'X'))
 		return (-1);
 	return (0);
 }
