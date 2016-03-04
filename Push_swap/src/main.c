@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/25 11:04:14 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/26 16:55:14 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/03/04 15:21:23 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ int		main(int argc, char **argv)
 
 	if (argc == 1)
 		return (0);
-	check_args(argc, argv);
+	check_args(&e, argc, argv);
 	create_stacks(&e, argc, argv);
 	sort(&e);
 	disp_moves(&e);
 	return (0);
 }
 
-void	check_args(int argc, char **argv)
+void	check_args(t_env *e, int argc, char **argv)
 {
 	int		i;
 	int		j;
@@ -33,6 +33,15 @@ void	check_args(int argc, char **argv)
 	double	val;
 
 	i = 0;
+	j = 0;
+	e->arg.verbose = 0;
+	e->arg.color = 0;
+	while (++j <= 2)
+	{
+		!ft_strcmp(argv[j], "-v") && (e->arg.verbose = 1) ? i++ : 0;
+		!ft_strcmp(argv[j], "-c") && (e->arg.color = 1) ? i++ : 0;
+	}
+	j = 0;
 	while (++i < argc)
 	{
 		k = -1;
@@ -51,11 +60,11 @@ void	create_stacks(t_env *e, int argc, char **argv)
 	int		i;
 	t_stack	*current;
 
-	i = 0;
 	e->move = NULL;
 	e->stack_b = NULL;
 	error((int)(current = (t_stack*)malloc(sizeof(t_stack))));
 	e->stack_a = current;
+	i = e->arg.verbose + e->arg.color;
 	while (++i < argc)
 	{
 		current->value = ft_atoi(argv[i]);
