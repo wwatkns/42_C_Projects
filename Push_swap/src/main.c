@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/25 11:04:14 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/03/04 15:21:23 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/03/04 16:08:08 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,11 @@ void	check_args(t_env *e, int argc, char **argv)
 	j = 0;
 	e->arg.verbose = 0;
 	e->arg.color = 0;
-	while (++j <= 2)
+	while (++j <= 2 && j < argc)
 	{
 		!ft_strcmp(argv[j], "-v") && (e->arg.verbose = 1) ? i++ : 0;
 		!ft_strcmp(argv[j], "-c") && (e->arg.color = 1) ? i++ : 0;
 	}
-	j = 0;
 	while (++i < argc)
 	{
 		k = -1;
@@ -65,6 +64,7 @@ void	create_stacks(t_env *e, int argc, char **argv)
 	error((int)(current = (t_stack*)malloc(sizeof(t_stack))));
 	e->stack_a = current;
 	i = e->arg.verbose + e->arg.color;
+	error(!(i >= argc - 1));
 	while (++i < argc)
 	{
 		current->value = ft_atoi(argv[i]);

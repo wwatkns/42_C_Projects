@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/25 10:36:15 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/03/04 15:55:02 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/03/04 16:08:36 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@
 # define COLOR_BLUE "\e[34m"
 # define COLOR_MAGENTA "\e[35m"
 # define COLOR_CYAN "\e[36m"
-# define COLOR_WHITE "\e[37m"
 # define COLOR_GREY "\e[90m"
 # define COLOR_YELLOW "\e[93m"
 # define COLOR_END "\e[0m"
