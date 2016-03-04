@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:47:02 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/03/04 10:24:31 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/03/04 11:53:47 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	ft_isdigit(char c)
 	return (('a' <= c && c <= 'z') || ('A' <= c && c <= 'Z'));
 }
 
-int	check_zero(t_a *arg)
+int			check_zero(t_a *arg)
 {
 	if (arg->flag.zr == 1 && arg->flag.mn == 1)
 		arg->flag.zr = 0;
@@ -28,7 +28,7 @@ int	check_zero(t_a *arg)
 	return (0);
 }
 
-int	check_space(t_a *arg)
+int			check_space(t_a *arg)
 {
 	if (arg->flag.sp == 1 && !(arg->type == '%' || ft_isdigit(arg->type)))
 		return (-1);
@@ -41,7 +41,7 @@ int	check_space(t_a *arg)
 	return (0);
 }
 
-int	check_plus(t_a *arg)
+int			check_plus(t_a *arg)
 {
 	if (arg->flag.pl == 1 && !(arg->type == 'd' || arg->type == 'D' ||
 		arg->type == 'i' || arg->type == '%' || arg->type == 'R' ||
@@ -52,7 +52,7 @@ int	check_plus(t_a *arg)
 	return (0);
 }
 
-int	check_diez(t_a *arg)
+int			check_diez(t_a *arg)
 {
 	if (arg->flag.di == 1 && !(arg->type == 'o' || arg->type == 'O' ||
 		arg->type == 'x' || arg->type == 'X' || arg->type == '%' ||

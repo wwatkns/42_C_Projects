@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:50:37 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/03/04 11:14:47 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/03/04 12:09:53 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static void		check_arg(t_e *e, t_a *arg)
 	va_list copy;
 
 	va_copy(copy, e->ap);
-	if (arg->type == 's' || arg->type == 'S')
+	if (arg->type == 's' || (arg->type == 'S'))
 	{
 		if ((va_arg(copy, char *)) == NULL)
 		{
@@ -73,6 +73,7 @@ static void		check_arg(t_e *e, t_a *arg)
 			print_before(arg, e);
 			write(1, "(null)", arg->prec.prec);
 			e->plen += arg->prec.prec;
+			va_arg(e->ap, wchar_t*);
 			print_after(arg, e);
 		}
 	}

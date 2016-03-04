@@ -6,7 +6,7 @@
 int	main(void)
 {
 	setlocale(LC_ALL, "en_US.UTF-8");
-	printf("\n%d\n", ft_printf("{%05.S}", L"42 c est cool"));
-	printf("\n%d\n", printf("{%05.S}", L"42 c est cool"));
+	printf("\n%d\n", ft_printf("%hhS, %i", 0, 255));
+	printf("\n%d\n", printf("%hhS, %i", 0, 255));
 	return (0);
 }

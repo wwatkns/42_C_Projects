@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:58:13 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/03/04 11:06:05 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/03/04 11:53:20 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	print_spaces(t_a *arg, int nbrlen, int sign)
 		write(1, "0", 1);
 		len++;
 	}
-	return (len	+= arg->flag.sp && sign == 0 && arg->width == 0 ? 1 : 0);
+	return (len += (arg->flag.sp && sign == 0 && arg->width == 0 ? 1 : 0));
 }
 
 int			print_int(long long n, t_a *arg)
