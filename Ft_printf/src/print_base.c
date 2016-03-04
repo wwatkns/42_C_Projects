@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:57:31 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/03/04 10:48:51 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/03/04 11:41:06 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ static int	print_spaces(t_a *arg, int len)
 	arg->flag.di && arg->type == 'x' ? prefix_len = 2 : 0;
 	arg->flag.di && arg->type == 'X' ? prefix_len = 2 : 0;
 	arg->prec.prec = (arg->prec.prec > len ? arg->prec.prec : len);
+	arg->type == 'o' && arg->flag.di && arg->prec.pt ?
+	arg->prec.prec -= prefix_len : 0;
 	arg->width -= arg->prec.prec + prefix_len;
 	while (!arg->flag.mn && arg->width > 0)
 	{
@@ -86,9 +88,11 @@ int			print_base(t_a *arg, unsigned long long n, const int base, char maj)
 	}
 	if (n == 0)
 	{
-		arg->flag.zr && arg->flag.di ? len += print_prefix(arg) : 0;
+		(arg->flag.zr || arg->prec.pt) && arg->flag.di ?
+		len += print_prefix(arg) : 0;
 		len += print_spaces(arg, depth);
-		!arg->flag.zr && arg->flag.di ? len += print_prefix(arg) : 0;
+		!(arg->flag.zr || arg->prec.pt) && arg->flag.di ?
+		len += print_prefix(arg) : 0;
 	}
 	depth = 0;
 	return (len);

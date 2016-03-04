@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 18:03:02 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/03/04 10:29:49 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/03/04 11:44:10 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	print_arg_str(t_e *e, t_a *arg, int *i)
 {
 	while (arg->prec.pt && arg->prec.prec == 0 && arg->width > 0)
 	{
-		write(1, " ", 1);
+		arg->flag.zr ? write(1, "0", 1) : write(1, " ", 1);
 		arg->width--;
 		e->plen++;
 	}

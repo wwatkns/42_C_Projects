@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:50:37 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/03/04 10:34:19 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/03/04 11:14:47 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static	void	print_before(t_a *arg, t_e *e)
 	{
 		while (arg->width - arg->prec.prec > 0)
 		{
-			write(1, " ", 1);
+			arg->flag.zr ? write(1, "0", 1) : write(1, " ", 1);
 			arg->width--;
 			e->plen++;
 		}
@@ -51,7 +51,7 @@ static	void	print_after(t_a *arg, t_e *e)
 	{
 		while (arg->width - arg->prec.prec > 0)
 		{
-			write(1, " ", 1);
+			arg->flag.zr ? write(1, "0", 1) : write(1, " ", 1);
 			arg->width--;
 			e->plen++;
 		}
