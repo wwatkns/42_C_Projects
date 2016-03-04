@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:48:34 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/03/03 17:43:08 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/03/04 16:37:07 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int			ft_printf(const char *restrict format, ...)
 	e.alen = 0;
 	e.plen = 0;
 	va_start(e.ap, format);
-	while (format[e.alen] != 0)
+	while (format && format[e.alen] != 0)
 	{
 		if (format[e.alen] == '%')
 		{

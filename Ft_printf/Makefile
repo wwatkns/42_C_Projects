@@ -6,7 +6,7 @@
 #    By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/19 17:43:51 by wwatkins          #+#    #+#              #
-#    Updated: 2016/03/02 16:03:00 by wwatkins         ###   ########.fr        #
+#    Updated: 2016/03/04 16:24:59 by wwatkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ LIB_PATH = ./libft/
 INC_PATH = ./include/
 
 NAME = libftprintf.a
-CC = clang
+CC = gcc
 CFGLAGS = -Werror -Wextra -Wall
 
 SRC_NAME  = ft_printf.c check_err.c check_flags.c get_flags.c get_mods.c \
