@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/25 11:04:14 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/03/04 16:44:21 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/03/05 12:15:34 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ void	check_args(t_env *e, int argc, char **argv)
 		while (argv[i][++k])
 			error(!(!ft_isdigit(argv[i][k]) && argv[i][k] != '-'));
 		j = i;
-		while (++j < argc)
-			error(!(ft_strcmp(argv[j], argv[i]) == 0));
 		val = ft_atof(argv[i]);
+		while (++j < argc)
+			error(!(val == ft_atof(argv[j])));
 		error(!(val > MAX_INT || val < MIN_INT));
 	}
 }
