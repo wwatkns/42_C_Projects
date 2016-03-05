@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 09:35:22 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/03/04 12:55:24 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/03/05 12:48:58 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,24 +32,10 @@ void	ft_core(t_env *e)
 
 void	ft_displayfract(t_env *e)
 {
-	int	t;
-
-	t = 0;
-	while (t < THREADS_NUM)
-	{
-		e->thread_id = t;
-		pthread_create(&e->threads[t], NULL, (void*)ft_displayfract_thread, e);
-		pthread_join(e->threads[t], NULL);
-		t++;
-	}
-}
-
-void	ft_displayfract_thread(t_env *e)
-{
 	int	x;
 	int	y;
 
-	y = e->thread_id;
+	y = 0;
 	e->f.zwin_w = e->f.zoom * e->win_w;
 	e->f.zwin_h = e->f.zoom * e->win_h;
 	while (y < e->win_h)
@@ -62,7 +48,7 @@ void	ft_displayfract_thread(t_env *e)
 			e->f.n == 2 ? ft_burningship(e, x, y) : 0;
 			e->f.n == 3 ? ft_tricorn(e, x, y) : 0;
 		}
-		y += THREADS_NUM;
+		y++;
 	}
 }
 
@@ -79,5 +65,4 @@ void	ft_initenv(t_env *e)
 	e->key.km = 0;
 	e->mouse.x = e->hwin_w;
 	e->mouse.y = e->hwin_h;
-	e->threads = (pthread_t*)malloc(sizeof(pthread_t) * THREADS_NUM);
 }
