@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: wwatkins <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2016/01/11 09:24:09 by wwatkins          #+#    #+#              #
-#    Updated: 2016/03/02 17:17:19 by wwatkins         ###   ########.fr        #
+#    Created: 2016/03/05 13:51:09 by wwatkins          #+#    #+#              #
+#    Updated: 2016/03/06 14:35:54 by wwatkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,7 @@ MLX_PATH = ./lib/minilibx_macos
 NAME = fractol
 CC = gcc
 CFLGS = -Werror -Wextra -Wall -Ofast
-MLXFLGS = -L$(MLX_PATH) -I$(MLX_PATH) -lmlx \
-		  -framework OpenGL -framework AppKit
+MLXFLGS = -L$(MLX_PATH) -I$(MLX_PATH) -lmlx -framework OpenGL -framework AppKit
 FNCTION = $(shell ls -l $(LIB_PATH)/src | grep ft_ | sed 's/^.*ft_//' | sed 's/..$$//')
 FORBID = printf $(FNCTION)
 

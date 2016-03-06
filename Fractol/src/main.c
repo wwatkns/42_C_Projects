@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wwatkins <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 09:28:40 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/03/02 13:28:58 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/03/06 14:36:44 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		main(int argc, char **argv)
 	return (0);
 }
 
-void	ft_getargs(t_env *e, int argc, char **argv)
+void 	ft_getargs(t_env *e, int argc, char **argv)
 {
 	int i;
 
