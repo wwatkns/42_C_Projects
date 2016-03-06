@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/05 13:51:05 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/03/06 14:36:30 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/03/06 16:28:03 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
+# include <openGL/glu.h>
 # include <mlx.h>
 
 # define ABS(x) (x < 0 ? -x : x)
@@ -87,6 +88,7 @@ typedef struct	s_env
 	int			win_h;
 	int			hwin_w;
 	int			hwin_h;
+	GLuint		program;
 }				t_env;
 
 /*
@@ -103,6 +105,7 @@ void			ft_error(int err);
 
 void			ft_core(t_env *e);
 void			ft_displayfract(t_env *e);
+void			init_shader_env(t_env *e);
 void			ft_initenv(t_env *e);
 
 /*
@@ -140,5 +143,13 @@ void			ft_mandelbrot(t_env *e, int x, int y);
 void			ft_burningship(t_env *e, int x, int y);
 void			ft_tricorn(t_env *e, int x, int y);
 void			ft_initfract(t_env *e);
+
+/*
+**	shader.c
+*/
+
+char			*load_source(const char *file_name);
+GLuint			set_shader(GLenum type, const char *file_name);
+GLuint			set_program(GLuint shader);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/05 13:51:09 by wwatkins          #+#    #+#              #
-#    Updated: 2016/03/06 14:35:54 by wwatkins         ###   ########.fr        #
+#    Updated: 2016/03/06 15:33:29 by wwatkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ MLXFLGS = -L$(MLX_PATH) -I$(MLX_PATH) -lmlx -framework OpenGL -framework AppKit
 FNCTION = $(shell ls -l $(LIB_PATH)/src | grep ft_ | sed 's/^.*ft_//' | sed 's/..$$//')
 FORBID = printf $(FNCTION)
 
-SRC_NAME  = main.c hook.c mousehook.c core.c draw.c fractal.c
+SRC_NAME  = main.c hook.c mousehook.c core.c draw.c fractal.c shader.c
 OBJ_NAME = $(SRC_NAME:.c=.o)
 LIB_NAME = libft.a
 

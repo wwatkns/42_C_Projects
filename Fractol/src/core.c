@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 09:35:22 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/03/06 09:48:57 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/03/06 16:41:35 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	ft_core(t_env *e)
 	ft_error((int)(e->win = mlx_new_window(e->mlx, e->win_w, e->win_h,
 	e->arg.fract)));
 	ft_initimg(e);
+	init_shader_env(e);
+	glUseProgram(e->program);
 	ft_initfract(e);
 	ft_displayfract(e);
 	mlx_hook(e->win, 2, (1L << 0), ft_key_pressed, e);
@@ -50,6 +52,26 @@ void	ft_displayfract(t_env *e)
 		}
 		y++;
 	}
+}
+
+void	init_shader_env(t_env *e)
+{
+	GLuint	shader;
+	GLuint	program;
+
+	glBegin(GL_QUADS);
+	glTexCoord2f(0, 0);
+	glVertex2f(-1, -1);
+	glTexCoord2f(1, 0);
+	glVertex2f(1, -1);
+	glTexCoord2f(1, 1);
+	glVertex2f(1, 1);
+	glTexCoord2f(0, 1);
+	glVertex2f(-1, 1);
+	glEnd();
+	shader = set_shader(GL_FRAGMENT_SHADER, "./shader/mandelbrot.frag");
+	program = set_program(shader);
+	e->program = program;
 }
 
 void	ft_initenv(t_env *e)
