@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 10:03:22 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/03/03 14:42:22 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/03/06 17:48:18 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,9 @@ int		ft_loop_hook(t_env *e)
 
 int		ft_expose_hook(t_env *e)
 {
-	mlx_clear_window(e->mlx, e->win);
+	glClear(e->mask);
+	//glUseProgram(e->program);
+	//mlx_clear_window(e->mlx, e->win);
 	if (e->key.kp || e->key.km || e->mouse.zp || e->mouse.zm || e->key.p ||
 		e->key.pu || e->key.pd)
 		ft_displayfract(e);
@@ -46,8 +48,10 @@ int		ft_expose_hook(t_env *e)
 	e->mouse.zp = 0;
 	e->mouse.zm = 0;
 	e->key.p = 0;
-	mlx_put_image_to_window(e->mlx, e->win, e->img.adr, 0, 0);
+	//mlx_put_image_to_window(e->mlx, e->win, e->img.adr, 0, 0);
 	ft_debugtext(e);
+	// modification for opengl mlx.
+	mlx_opengl_swap_buffers(e->win);
 	return (0);
 }
 

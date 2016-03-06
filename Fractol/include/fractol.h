@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/05 13:51:05 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/03/06 16:28:03 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/03/06 17:26:33 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <fcntl.h>
 # include <openGL/glu.h>
 # include <mlx.h>
+# include <mlx_opengl.h>
 
 # define ABS(x) (x < 0 ? -x : x)
 
@@ -89,6 +90,7 @@ typedef struct	s_env
 	int			hwin_w;
 	int			hwin_h;
 	GLuint		program;
+	int			mask;
 }				t_env;
 
 /*

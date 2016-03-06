@@ -6,7 +6,7 @@
 #    By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/05 13:51:09 by wwatkins          #+#    #+#              #
-#    Updated: 2016/03/06 15:33:29 by wwatkins         ###   ########.fr        #
+#    Updated: 2016/03/06 17:22:13 by wwatkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ SRC_PATH = ./src/
 OBJ_PATH = ./obj/
 INC_PATH = ./include/ ./lib/libft/include/
 LIB_PATH = ./lib/libft/
-MLX_PATH = ./lib/minilibx_macos
+MLX_PATH = ./lib/minilibx_macos/
 
 NAME = fractol
 CC = gcc
@@ -45,7 +45,7 @@ $(NAME): $(OBJ)
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@mkdir -p $(OBJ_PATH)
-	$(CC) $(CFLGS) $(INC) -o $@ -c $<
+	$(CC) $(CFLGS) -I$(MLX_PATH) $(INC) -o $@ -c $<
 
 nolib: $(OBJ)
 	$(CC) $(CFLGS) $(LIB) $(INC) $(OBJ) $(MLXFLGS) -o $(NAME)

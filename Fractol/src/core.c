@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 09:35:22 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/03/06 16:41:35 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/03/06 17:48:21 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,14 @@ void	ft_core(t_env *e)
 {
 	ft_initenv(e);
 	ft_error((int)(e->mlx = mlx_init()));
-	ft_error((int)(e->win = mlx_new_window(e->mlx, e->win_w, e->win_h,
-	e->arg.fract)));
+	// modification for creating a mlx window with openGL.
+	e->win = mlx_new_opengl_window(e->mlx, e->win_w, e->win_h, e->arg.fract);
+	e->mask = mlx_opengl_window_set_context(e->win);
+	//ft_error((int)(e->win = mlx_new_window(e->mlx, e->win_w, e->win_h,
+	//e->arg.fract)));
 	ft_initimg(e);
+	// Modification for loading shader.
 	init_shader_env(e);
-	glUseProgram(e->program);
 	ft_initfract(e);
 	ft_displayfract(e);
 	mlx_hook(e->win, 2, (1L << 0), ft_key_pressed, e);
@@ -45,6 +48,7 @@ void	ft_displayfract(t_env *e)
 		x = -1;
 		while (++x < e->win_w)
 		{
+			glUseProgram(e->program);
 			e->f.n == 0 ? ft_mandelbrot(e, x, y) : 0;
 			e->f.n == 1 ? ft_julia(e, x, y) : 0;
 			e->f.n == 2 ? ft_burningship(e, x, y) : 0;
@@ -57,7 +61,6 @@ void	ft_displayfract(t_env *e)
 void	init_shader_env(t_env *e)
 {
 	GLuint	shader;
-	GLuint	program;
 
 	glBegin(GL_QUADS);
 	glTexCoord2f(0, 0);
@@ -70,8 +73,7 @@ void	init_shader_env(t_env *e)
 	glVertex2f(-1, 1);
 	glEnd();
 	shader = set_shader(GL_FRAGMENT_SHADER, "./shader/mandelbrot.frag");
-	program = set_program(shader);
-	e->program = program;
+	e->program = set_program(shader);
 }
 
 void	ft_initenv(t_env *e)
