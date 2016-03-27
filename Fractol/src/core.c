@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 09:35:22 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/03/27 16:11:39 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/03/27 16:13:05 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,28 +28,6 @@ void	ft_core(t_env *e)
 	mlx_expose_hook(e->win, ft_expose_hook, e);
 	mlx_loop_hook(e->mlx, ft_loop_hook, e);
 	mlx_loop(e->mlx);
-}
-
-void	ft_displayfract(t_env *e)
-{
-	int	x;
-	int	y;
-
-	y = 0;
-	e->f.zwin_w = e->f.zoom * e->win_w;
-	e->f.zwin_h = e->f.zoom * e->win_h;
-	while (y < e->win_h)
-	{
-		x = -1;
-		while (++x < e->win_w)
-		{
-			e->f.n == 0 ? ft_mandelbrot(e, x, y) : 0;
-			e->f.n == 1 ? ft_julia(e, x, y) : 0;
-			e->f.n == 2 ? ft_burningship(e, x, y) : 0;
-			e->f.n == 3 ? ft_tricorn(e, x, y) : 0;
-		}
-		y++;
-	}
 }
 
 void	ft_displayfract(t_env *e)
