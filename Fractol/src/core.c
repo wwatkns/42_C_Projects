@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 09:35:22 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/03/27 16:34:03 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/03/27 16:43:32 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ static void	ft_displayfract_thread(t_th *th)
 void	ft_displayfract(t_env *e)
 {
 	int			t;
-	pthread_t	thread[THREADS_NUM];
 	t_th		th[THREADS_NUM];
+	pthread_t	thread[THREADS_NUM];
 
 	t = -1;
 	while (++t < THREADS_NUM)
