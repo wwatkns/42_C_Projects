@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 09:35:22 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/03/27 16:13:05 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/03/27 16:34:03 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,26 +30,44 @@ void	ft_core(t_env *e)
 	mlx_loop(e->mlx);
 }
 
-void	ft_displayfract(t_env *e)
+static void	ft_displayfract_thread(t_th *th)
 {
 	int	x;
 	int	y;
 
-	y = 0;
-	e->f.zwin_w = e->f.zoom * e->win_w;
-	e->f.zwin_h = e->f.zoom * e->win_h;
-	while (y < e->win_h)
+	y = th->id;
+	th->e.f.zwin_w = th->e.f.zoom * th->e.win_w;
+	th->e.f.zwin_h = th->e.f.zoom * th->e.win_h;
+	while (y < th->e.win_h)
 	{
 		x = -1;
-		while (++x < e->win_w)
+		while (++x < th->e.win_w)
 		{
-			e->f.n == 0 ? ft_mandelbrot(e, x, y) : 0;
-			e->f.n == 1 ? ft_julia(e, x, y) : 0;
-			e->f.n == 2 ? ft_burningship(e, x, y) : 0;
-			e->f.n == 3 ? ft_tricorn(e, x, y) : 0;
+			th->e.f.n == 0 ? ft_mandelbrot(&th->e, x, y) : 0;
+			th->e.f.n == 1 ? ft_julia(&th->e, x, y) : 0;
+			th->e.f.n == 2 ? ft_burningship(&th->e, x, y) : 0;
+			th->e.f.n == 3 ? ft_tricorn(&th->e, x, y) : 0;
 		}
-		y++;
+		y += THREADS_NUM;
 	}
+}
+
+void	ft_displayfract(t_env *e)
+{
+	int			t;
+	pthread_t	thread[THREADS_NUM];
+	t_th		th[THREADS_NUM];
+
+	t = -1;
+	while (++t < THREADS_NUM)
+	{
+		th[t].id = t;
+		th[t].e = *e;
+		pthread_create(&thread[t], NULL, (void*)ft_displayfract_thread, &th[t]);
+	}
+	t = -1;
+	while (++t < THREADS_NUM)
+		pthread_join(thread[t], NULL);
 }
 
 void	ft_initenv(t_env *e)
