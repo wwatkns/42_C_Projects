@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 09:35:22 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/03/06 17:48:21 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/03/27 16:11:39 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,9 @@ void	ft_core(t_env *e)
 {
 	ft_initenv(e);
 	ft_error((int)(e->mlx = mlx_init()));
-	// modification for creating a mlx window with openGL.
-	e->win = mlx_new_opengl_window(e->mlx, e->win_w, e->win_h, e->arg.fract);
-	e->mask = mlx_opengl_window_set_context(e->win);
-	//ft_error((int)(e->win = mlx_new_window(e->mlx, e->win_w, e->win_h,
-	//e->arg.fract)));
+	ft_error((int)(e->win = mlx_new_window(e->mlx, e->win_w, e->win_h,
+	e->arg.fract)));
 	ft_initimg(e);
-	// Modification for loading shader.
-	init_shader_env(e);
 	ft_initfract(e);
 	ft_displayfract(e);
 	mlx_hook(e->win, 2, (1L << 0), ft_key_pressed, e);
@@ -48,7 +43,6 @@ void	ft_displayfract(t_env *e)
 		x = -1;
 		while (++x < e->win_w)
 		{
-			glUseProgram(e->program);
 			e->f.n == 0 ? ft_mandelbrot(e, x, y) : 0;
 			e->f.n == 1 ? ft_julia(e, x, y) : 0;
 			e->f.n == 2 ? ft_burningship(e, x, y) : 0;
@@ -58,22 +52,26 @@ void	ft_displayfract(t_env *e)
 	}
 }
 
-void	init_shader_env(t_env *e)
+void	ft_displayfract(t_env *e)
 {
-	GLuint	shader;
+	int	x;
+	int	y;
 
-	glBegin(GL_QUADS);
-	glTexCoord2f(0, 0);
-	glVertex2f(-1, -1);
-	glTexCoord2f(1, 0);
-	glVertex2f(1, -1);
-	glTexCoord2f(1, 1);
-	glVertex2f(1, 1);
-	glTexCoord2f(0, 1);
-	glVertex2f(-1, 1);
-	glEnd();
-	shader = set_shader(GL_FRAGMENT_SHADER, "./shader/mandelbrot.frag");
-	e->program = set_program(shader);
+	y = 0;
+	e->f.zwin_w = e->f.zoom * e->win_w;
+	e->f.zwin_h = e->f.zoom * e->win_h;
+	while (y < e->win_h)
+	{
+		x = -1;
+		while (++x < e->win_w)
+		{
+			e->f.n == 0 ? ft_mandelbrot(e, x, y) : 0;
+			e->f.n == 1 ? ft_julia(e, x, y) : 0;
+			e->f.n == 2 ? ft_burningship(e, x, y) : 0;
+			e->f.n == 3 ? ft_tricorn(e, x, y) : 0;
+		}
+		y++;
+	}
 }
 
 void	ft_initenv(t_env *e)
