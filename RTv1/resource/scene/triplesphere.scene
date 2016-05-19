@@ -18,7 +18,7 @@ object
 	scale = 1.0
 	material
 	{
-		color = 0xFF0000
+		color = 0xC8233E
 		ambient = 0.075
 		diffuse = 0.925
 		specular = 50.0
@@ -48,7 +48,7 @@ object
 	scale = 1.0
 	material
 	{
-		color = 0x0000FF
+		color = 0xFC4A3F
 		ambient = 0.075
 		diffuse = 0.925
 		specular = 50.0

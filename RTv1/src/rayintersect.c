@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 17:05:08 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/03/06 11:50:14 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/03/11 15:16:16 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,11 @@ t_obj	*ray_intersect(t_env *e, double *tmin, double *t)
 	obj = e->obj;
 	while ((obj = obj->next) != NULL)
 	{
-		obj->type == CONE ? *t = ray_intersect_cone(e, obj) : 0;
+		*t = e->intersect[obj->type](e, obj);
+		/*obj->type == CONE ? *t = ray_intersect_cone(e, obj) : 0;
 		obj->type == PLANE ? *t = ray_intersect_plane(e, obj) : 0;
 		obj->type == SPHERE ? *t = ray_intersect_sphere(e, obj) : 0;
-		obj->type == CYLINDER ? *t = ray_intersect_cylinder(e, obj) : 0;
+		obj->type == CYLINDER ? *t = ray_intersect_cylinder(e, obj) : 0;*/
 		if (*t > EPSILON && *t < *tmin)
 		{
 			out = obj;

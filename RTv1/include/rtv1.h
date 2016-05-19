@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 10:54:12 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/03/03 15:00:37 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/03/11 15:12:56 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 # include <mlx.h>
 # include <math.h>
 # include <stdlib.h>
+
+#include <time.h>
+#include <stdio.h>
 
 # define ABS(x) (x < 0 ? -x : x)
 # define MIN_POS -1000.0
@@ -137,6 +140,7 @@ typedef struct	s_env
 	double	i;
 	double	j;
 	int		loading;
+	double	(*intersect[6])(struct s_env *, t_obj *);
 	void	*mlx;
 }				t_env;
 
@@ -232,5 +236,7 @@ void			set_normal(t_env *e, t_obj *obj);
 void			set_shadows(t_env *e, t_obj *obj, double *tmin, double *t);
 t_vec3			set_diffuse(t_env *e, t_obj *obj, t_lgt *light);
 t_vec3			set_specular(t_env *e, t_obj *obj, t_lgt *light);
+
+void			viewer_export(t_env *e);
 
 #endif

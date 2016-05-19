@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 12:52:47 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/03/03 15:00:50 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/03/11 15:16:09 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@ void	core(t_env *e)
 	error((int)(e->mlx = mlx_init()));
 	error((int)(e->win.adr = mlx_new_window(e->mlx, e->win.w, e->win.h,
 	e->arg.file_scene)));
-	ft_strdel(&e->arg.file_scene);
+//	ft_strdel(&e->arg.file_scene);
 	img_init(e);
 	raytracing(e);
+//	viewer_export(e);
 	mlx_hook(e->win.adr, 2, (1L << 0), key_pressed, e);
 	mlx_expose_hook(e->win.adr, expose_hook, e);
 	mlx_loop_hook(e->mlx, loop_hook, e);
@@ -44,6 +45,10 @@ void	env_init(t_env *e)
 	e->recursiondepth = 0;
 	e->shadow = 1.0;
 	e->loading = e->win.h / 100.0;
+	e->intersect[0] = ray_intersect_sphere;
+	e->intersect[1] = ray_intersect_cone;
+	e->intersect[2] = ray_intersect_plane;
+	e->intersect[3] = ray_intersect_cylinder;
 }
 
 void	cam_init(t_env *e)

@@ -6,7 +6,7 @@
 #    By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/28 10:58:16 by wwatkins          #+#    #+#              #
-#    Updated: 2016/03/06 11:20:10 by wwatkins         ###   ########.fr        #
+#    Updated: 2016/03/09 16:35:31 by wwatkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ FNCTION = $(shell ls -l $(LIB_PATH)/src | grep ft_ | sed 's/^.*ft_//' | sed 's/.
 FORBID = printf $(FNCTION)
 
 SRC_NAME = main.c parse.c utils.c core.c hook.c draw.c raytracing.c \
-		   rayintersect.c light.c init.c
+		   rayintersect.c light.c init.c viewer_export.c
 OBJ_NAME = $(SRC_NAME:.c=.o)
 LIB_NAME = libft.a
 VEC_NAME = libvec.a

@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 13:00:04 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/02/10 18:14:53 by wwatkins         ###   ########.fr       */
+/*   Updated: 2016/03/11 15:32:37 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	img_pixel_put_hex(t_env *e, int x, int y, int hex)
 		e->img.img[pos] = hex % 256 / 255.0;
 		e->img.img[pos + 1] = (hex >> 8) % 256 / 255.0;
 		e->img.img[pos + 2] = (hex >> 16) % 256 / 255.0;
+		e->img.img[pos + 3] = 0;
 	}
 }
 
@@ -43,6 +44,7 @@ void	img_pixel_put(t_env *e, int x, int y, t_vec3 color)
 		e->img.img[pos] = color.z * 255;
 		e->img.img[pos + 1] = color.y * 255;
 		e->img.img[pos + 2] = color.x * 255;
+		e->img.img[pos + 3] = 0;
 	}
 }
 
