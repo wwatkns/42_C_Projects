@@ -6,7 +6,7 @@
 #    By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/22 19:20:08 by wwatkins          #+#    #+#              #
-#    Updated: 2016/03/02 17:18:20 by wwatkins         ###   ########.fr        #
+#    Updated: 2017/03/20 16:24:50 by wwatkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,16 +14,14 @@ SRC_PATH = ./src/
 OBJ_PATH = ./obj/
 INC_PATH = ./include/ ./lib/libft/include/
 LIB_PATH = ./lib/libft/
-MLX_PATH = ./lib/minilibx_macos
+MLX_PATH = ./lib/minilibx_macos/
 
 NAME = fdf
 CC = gcc
 CFLGS = -Werror -Wextra -Wall -Ofast
-MLXFLGS = -L$(MLX_PATH) -I$(MLX_PATH) -lmlx \
-		  -framework OpenGL -framework AppKit
+MLXFLGS = -L$(MLX_PATH) -I$(MLX_PATH) -lmlx -framework OpenGL -framework AppKit
 
 SRC_NAME  = main.c core.c draw.c triangle.c parse.c hook.c
-
 OBJ_NAME = $(SRC_NAME:.c=.o)
 LIB_NAME = libft.a
 
@@ -43,7 +41,7 @@ $(NAME): $(OBJ)
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@mkdir -p $(OBJ_PATH)
-	$(CC) $(CFLGS) $(INC) -o $@ -c $<
+	$(CC) $(CFLGS) -I$(MLX_PATH) $(INC) -o $@ -c $<
 
 nolib: $(OBJ)
 	$(CC) $(CFLGS) -L$(LIB_PATH) -lft $(SRC) $(INC) $(OBJ) $(MLXFLGS) -o $(NAME)
