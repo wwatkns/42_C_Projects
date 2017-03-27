@@ -14,13 +14,12 @@ SRC_PATH = ./src/
 OBJ_PATH = ./obj/
 INC_PATH = ./include/ ./lib/libft/include/
 LIB_PATH = ./lib/libft/
-MLX_PATH = ./lib/minilibx_macos
+MLX_PATH = ./lib/minilibx_macos/
 
 NAME = wolf3d
 CC = gcc
 CFLGS = -Werror -Wextra -Wall -Ofast
-MLXFLGS = -L$(MLX_PATH) -I$(MLX_PATH) -lmlx \
-		  -framework OpenGL -framework AppKit
+MLXFLGS = -L$(MLX_PATH) -I$(MLX_PATH) -lmlx -framework OpenGL -framework AppKit
 FNCTION = $(shell ls -l $(LIB_PATH)/src | grep ft_ | sed 's/^.*ft_//' | sed 's/..$$//')
 FORBID = printf $(FNCTION)
 
@@ -47,10 +46,10 @@ $(NAME): $(OBJ)
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@mkdir -p $(OBJ_PATH)
-	$(CC) $(CFLGS) $(INC) -o $@ -c $<
+	$(CC) $(CFLGS) -I$(MLX_PATH) $(INC) -o $@ -c $<
 
 nolib: $(OBJ)
-	$(CC) $(CFLGS) $(LIB) $(INC) $(OBJ) $(MLXFLGS) -o $(NAME)
+	$(CC) $(CFLGS) -L$(LIB_PATH) $(LIB) $(INC) $(OBJ) $(MLXFLGS) -o $(NAME)
 
 cleanmlx:
 	make -C $(MLX_PATH) clean
