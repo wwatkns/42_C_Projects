@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 09:28:40 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/03/06 14:36:44 by wwatkins         ###   ########.fr       */
+/*   Updated: 2017/04/15 18:28:08 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ void 	ft_getargs(t_env *e, int argc, char **argv)
 	!ft_strcmp(e->arg.fract, "julia") ? e->f.n = 1 : 0;
 	!ft_strcmp(e->arg.fract, "burningship") ? e->f.n = 2 : 0;
 	!ft_strcmp(e->arg.fract, "tricorn") ? e->f.n = 3 : 0;
-	e->arg.w = (e->arg.w < 420 || e->arg.w > 2560 ? 800 : e->arg.w);
-	e->arg.h = (e->arg.h < 420 || e->arg.h > 1440 ? 800 : e->arg.h);
+	e->arg.w = (e->arg.w < 300 || e->arg.w > 2560 ? 800 : e->arg.w);
+	e->arg.h = (e->arg.h < 300 || e->arg.h > 1440 ? 800 : e->arg.h);
 }
 
 void	ft_dispargs(void)

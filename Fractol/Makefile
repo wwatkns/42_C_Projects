@@ -6,7 +6,7 @@
 #    By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/05 13:51:09 by wwatkins          #+#    #+#              #
-#    Updated: 2016/03/27 16:13:46 by wwatkins         ###   ########.fr        #
+#    Updated: 2017/04/15 21:21:26 by wwatkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,12 +18,12 @@ MLX_PATH = ./lib/minilibx_macos/
 
 NAME = fractol
 CC = gcc
-CFLGS = -Werror -Wextra -Wall -Ofast
+CFLGS = -Werror -Wextra -Wall -O3
 MLXFLGS = -L$(MLX_PATH) -I$(MLX_PATH) -lmlx -framework OpenGL -framework AppKit
 FNCTION = $(shell ls -l $(LIB_PATH)/src | grep ft_ | sed 's/^.*ft_//' | sed 's/..$$//')
 FORBID = printf $(FNCTION)
 
-SRC_NAME  = main.c hook.c mousehook.c core.c draw.c fractal.c
+SRC_NAME  = main.c hook.c mousehook.c core.c draw.c fractal.c smooth_shading.c
 OBJ_NAME = $(SRC_NAME:.c=.o)
 LIB_NAME = libft.a
 

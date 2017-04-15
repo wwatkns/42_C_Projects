@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 15:46:11 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/03/27 16:06:08 by wwatkins         ###   ########.fr       */
+/*   Updated: 2017/04/15 21:52:44 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,18 @@ void	ft_julia(t_env *e, int x, int y)
 	iteration = 0;
 	while (f.x2 + f.y2 < 4 && iteration < e->f.max)
 	{
-		f.y = 2.0 * f.x * f.y + e->f.c_im;
+		f.y = (f.x + f.x) * f.y + e->f.c_im;
 		f.x = f.x2 - f.y2 + e->f.c_re;
 		f.x2 = f.x * f.x;
 		f.y2 = f.y * f.y;
 		++iteration;
 	}
+
 	if (e->key.o)
 		iteration == e->f.max ? ft_imgpixelput(e, x, y, ft_getcolor(e, -1)) :
-		ft_imgpixelput(e, x, y, ft_getcolor(e, iteration));
+		ft_imgpixelput(e, x, y, smooth_shading(&f, &iteration, 3));
 	else
+		iteration == e->f.max ? ft_imgpixelput(e, x, y, ft_getcolor(e, -1)) :
 		ft_imgpixelput(e, x, y, ft_getcolor(e, iteration));
 }
 
@@ -42,6 +44,7 @@ void	ft_mandelbrot(t_env *e, int x, int y)
 	int		iteration;
 	t_fract	f;
 
+	f.n = e->f.n;
 	f.x = 0;
 	f.y = 0;
 	f.x2 = 0;
@@ -51,7 +54,7 @@ void	ft_mandelbrot(t_env *e, int x, int y)
 	iteration = 0;
 	while (f.x2 + f.y2 < 4 && iteration < e->f.max)
 	{
-		f.y = 2.0 * f.x * f.y + f.c_im;
+		f.y = (f.x + f.x) * f.y + f.c_im;
 		f.x = f.x2 - f.y2 + f.c_re;
 		f.x2 = f.x * f.x;
 		f.y2 = f.y * f.y;
@@ -59,8 +62,9 @@ void	ft_mandelbrot(t_env *e, int x, int y)
 	}
 	if (e->key.o)
 		iteration == e->f.max ? ft_imgpixelput(e, x, y, ft_getcolor(e, -1)) :
-		ft_imgpixelput(e, x, y, ft_getcolor(e, iteration));
+		ft_imgpixelput(e, x, y, smooth_shading(&f, &iteration, 3));
 	else
+		iteration == e->f.max ? ft_imgpixelput(e, x, y, ft_getcolor(e, -1)) :
 		ft_imgpixelput(e, x, y, ft_getcolor(e, iteration));
 }
 
@@ -69,6 +73,7 @@ void	ft_burningship(t_env *e, int x, int y)
 	int		iteration;
 	t_fract	f;
 
+	f.n = e->f.n;
 	f.x = 0;
 	f.y = 0;
 	f.x2 = 0;
@@ -86,8 +91,9 @@ void	ft_burningship(t_env *e, int x, int y)
 	}
 	if (e->key.o)
 		iteration == e->f.max ? ft_imgpixelput(e, x, y, ft_getcolor(e, -1)) :
-		ft_imgpixelput(e, x, y, ft_getcolor(e, iteration));
+		ft_imgpixelput(e, x, y, smooth_shading(&f, &iteration, 3));
 	else
+		iteration == e->f.max ? ft_imgpixelput(e, x, y, ft_getcolor(e, -1)) :
 		ft_imgpixelput(e, x, y, ft_getcolor(e, iteration));
 }
 
@@ -105,7 +111,7 @@ void	ft_tricorn(t_env *e, int x, int y)
 	iteration = 0;
 	while (f.x2 + f.y2 < 4 && iteration < e->f.max)
 	{
-		f.y = -2.0 * f.x * f.y + f.c_im;
+		f.y = -(f.x + f.x) * f.y + f.c_im;
 		f.x = f.x2 - f.y2 + f.c_re;
 		f.x2 = f.x * f.x;
 		f.y2 = f.y * f.y;

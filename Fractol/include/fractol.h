@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/05 13:51:05 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/03/27 16:43:52 by wwatkins         ###   ########.fr       */
+/*   Updated: 2017/04/15 21:36:44 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <fcntl.h>
 # include <mlx.h>
 # include <pthread.h>
+# include <math.h>
 
 # define ABS(x) (x < 0 ? -x : x)
 # define THREADS_NUM 32
@@ -99,7 +100,7 @@ typedef struct	s_th
 }				t_th;
 
 /*
-**	main.c functions
+**	main.c
 */
 
 void			ft_getargs(t_env *e, int argc, char **argv);
@@ -107,7 +108,7 @@ void			ft_dispargs(void);
 void			ft_error(int err);
 
 /*
-**	core.c functions
+**	core.c
 */
 
 void			ft_core(t_env *e);
@@ -115,7 +116,7 @@ void			ft_displayfract(t_env *e);
 void			ft_initenv(t_env *e);
 
 /*
-**	hook.c functions
+**	hook.c
 */
 
 int				ft_expose_hook(t_env *e);
@@ -125,14 +126,14 @@ int				ft_key_released(int keycode, t_env *e);
 void			ft_debugtext(t_env *e);
 
 /*
-**	mousehook.c functions
+**	mousehook.c
 */
 
 int				ft_mouse_pos(int x, int y, t_env *e);
 int				ft_mouse_hook(int button, int x, int y, t_env *e);
 
 /*
-**	draw.c functions
+**	draw.c
 */
 
 void			ft_imgpixelput(t_env *e, int x, int y, int *rgb);
@@ -141,7 +142,7 @@ int				*ft_getcolor(t_env *e, int i);
 int				*ft_setrgb(int r, int g, int b);
 
 /*
-**	fractale.c
+**	fractal.c
 */
 
 void			ft_julia(t_env *e, int x, int y);
@@ -149,5 +150,15 @@ void			ft_mandelbrot(t_env *e, int x, int y);
 void			ft_burningship(t_env *e, int x, int y);
 void			ft_tricorn(t_env *e, int x, int y);
 void			ft_initfract(t_env *e);
+
+/*
+**  smooth_shading.c
+*/
+int				*smooth_shading(t_fract *f, int *iteration, int e);
+int				*get_smooth_color(double mu);
+double			compute_mu(t_fract *f, int iteration);
+void			reduce_error_mandelbrot(t_fract *f, int *iteration, int e);
+void			reduce_error_burningship(t_fract *f, int *iteration, int e);
+void			reduce_error_julia(t_fract *f, int *iteration, int e);
 
 #endif
