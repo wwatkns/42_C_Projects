@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 10:03:22 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/03/19 11:43:07 by wwatkins         ###   ########.fr       */
+/*   Updated: 2017/04/25 14:18:20 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,8 @@ int		ft_loop_hook(t_env *e)
 	{
 		e->f.zoom *= 1.0f + (e->key.kp * 0.05f - e->key.km * 0.05f);
 		e->f.zoom < 0.01f ? e->f.zoom = 0.01f : 0;
-		e->f.offx += ((double)e->mouse.x - e->hwin_w) / e->hwin_w /
-		e->f.zoom / 10;
-		e->f.offy += ((double)e->mouse.y - e->hwin_h) / e->hwin_h /
-		e->f.zoom / 10;
+		e->f.offx += ((double)e->mouse.x - e->hwin_w) / (e->hwin_w * e->f.zoom) / 10.0;
+		e->f.offy += ((double)e->mouse.y - e->hwin_h) / (e->hwin_h * e->f.zoom) / 10.0;
 	}
 	if (e->f.n == 1)
 	{
@@ -53,8 +51,7 @@ int		ft_expose_hook(t_env *e)
 
 void	ft_debugtext(t_env *e)
 {
-	mlx_string_put(e->mlx, e->win, 4, 2, 0xFFFFDF, "i:");
-	mlx_string_put(e->mlx, e->win, 24, 2, 0xFFFFDF, ft_itoa(e->f.max));
+	mlx_string_put(e->mlx, e->win, 5, 2, 0xFFFFDF, ft_itoa(e->f.max));
 }
 
 int		ft_key_pressed(int keycode, t_env *e)

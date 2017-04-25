@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 09:35:22 by wwatkins          #+#    #+#             */
-/*   Updated: 2016/03/27 16:43:32 by wwatkins         ###   ########.fr       */
+/*   Updated: 2017/04/16 12:37:16 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	ft_core(t_env *e)
 	mlx_loop(e->mlx);
 }
 
+ /* Multi-thread */
 static void	ft_displayfract_thread(t_th *th)
 {
 	int	x;
@@ -68,7 +69,32 @@ void	ft_displayfract(t_env *e)
 	t = -1;
 	while (++t < THREADS_NUM)
 		pthread_join(thread[t], NULL);
+	// t = -1;
+	// while (++t < THREADS_NUM)
+		// mlx_put_image_to_window(th[t].e.mlx, th[t].e.win, th[t].e.img.adr, 0, 0);
 }
+
+ /* Single-thread */
+// void	ft_displayfract(t_env *e)
+// {
+// 	int	x;
+// 	int	y;
+//
+// 	y = -1;
+// 	e->f.zwin_w = e->f.zoom * e->win_w;
+// 	e->f.zwin_h = e->f.zoom * e->win_h;
+// 	while (++y < e->win_h)
+// 	{
+// 		x = -1;
+// 		while (++x < e->win_w)
+// 		{
+// 			e->f.n == 0 ? ft_mandelbrot(e, x, y) : 0;
+// 			e->f.n == 1 ? ft_julia(e, x, y) : 0;
+// 			e->f.n == 2 ? ft_burningship(e, x, y) : 0;
+// 			e->f.n == 3 ? ft_tricorn(e, x, y) : 0;
+// 		}
+// 	}
+// }
 
 void	ft_initenv(t_env *e)
 {

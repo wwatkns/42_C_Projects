@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/05 13:51:05 by wwatkins          #+#    #+#             */
-/*   Updated: 2017/04/15 21:36:44 by wwatkins         ###   ########.fr       */
+/*   Updated: 2017/04/16 14:33:34 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <math.h>
 
 # define ABS(x) (x < 0 ? -x : x)
-# define THREADS_NUM 32
+# define THREADS_NUM 8
 
 typedef struct	s_mouse
 {
@@ -160,5 +160,6 @@ double			compute_mu(t_fract *f, int iteration);
 void			reduce_error_mandelbrot(t_fract *f, int *iteration, int e);
 void			reduce_error_burningship(t_fract *f, int *iteration, int e);
 void			reduce_error_julia(t_fract *f, int *iteration, int e);
+void			reduce_error_tricorn(t_fract *f, int *iteration, int e);
 
 #endif

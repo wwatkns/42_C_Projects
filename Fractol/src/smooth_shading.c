@@ -6,7 +6,7 @@
 /*   By: wwatkins <wwatkins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/15 17:50:19 by wwatkins          #+#    #+#             */
-/*   Updated: 2017/04/15 21:54:06 by wwatkins         ###   ########.fr       */
+/*   Updated: 2017/04/25 14:33:11 by wwatkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,33 @@ int		*smooth_shading(t_fract *f, int *iteration, int e)
 	f->n == 0 ? reduce_error_mandelbrot(f, iteration, e) : 0;
 	f->n == 1 ? reduce_error_julia(f, iteration, e) : 0;
 	f->n == 2 ? reduce_error_burningship(f, iteration, e) : 0;
-	// e->f.n == 3 ? ft_tricorn(&th->e, x, y) : 0;
+	f->n == 3 ? reduce_error_tricorn(f, iteration, e) : 0;
 	mu = compute_mu(f, *iteration);
 	return (get_smooth_color(mu));
 }
+
+// int		*get_smooth_color(double mu)
+// {
+// 	static int	rgb[3];
+//
+// 	rgb[0] = sin(mu + 0) * 127 + 128;
+// 	rgb[1] = sin(mu + 1) * 127 + 128;
+// 	rgb[2] = sin(mu + 3) * 127 + 128; // or + 2
+// 	return (rgb);
+// }
 
 int		*get_smooth_color(double mu)
 {
 	static int	rgb[3];
 	int 		c[2];
 	double		t[2];
-	// int 		count = 10;
-	// int 		palette[10] = {0xFF0000, 0xffb000, 0xfaff00, 0x00ff5e, 0x00d1ff,
-					// 0x3025b8, 0xd839f9, 0xe684b9, 0xfb0d5b, 0x15f482};
 	int			count = 8;
-	int 		palette[8] = {0xFAF0C8, 0xFAE97D, 0xD76806, 0x9B3411, 0x490528,
-					0x110640, 0x0E43B1, 0x83BEDF};
+	int 		palette[8] = {
+		0xFAF0C8, 0xFAE97D,
+		0xD76806, 0x9B3411,
+		0x490528, 0x110640,
+		0x0E43B1, 0x83BEDF
+	};
 
 	c[0] = (int)mu;
 	t[1] = mu - c[0];
@@ -48,7 +59,6 @@ int		*get_smooth_color(double mu)
 	rgb[0] += (palette[c[1]] & 0xff) * t[1];
 	rgb[1] += ((palette[c[1]] >> 8) & 0xff) * t[1];
 	rgb[2] += ((palette[c[1]] >> 16) & 0xff) * t[1];
-
 	return (rgb);
 }
 
@@ -100,6 +110,21 @@ void	reduce_error_julia(t_fract *f, int *iteration, int e)
 	while (++i < e)
 	{
 		f->y = (f->x + f->x) * f->y + f->c_im;
+		f->x = f->x2 - f->y2 + f->c_re;
+		f->x2 = f->x * f->x;
+		f->y2 = f->y * f->y;
+		++(*iteration);
+	}
+}
+
+void	reduce_error_tricorn(t_fract *f, int *iteration, int e)
+{
+	int i;
+
+	i = -1;
+	while (++i < e)
+	{
+		f->y = -(f->x + f->x) * f->y + f->c_im;
 		f->x = f->x2 - f->y2 + f->c_re;
 		f->x2 = f->x * f->x;
 		f->y2 = f->y * f->y;
